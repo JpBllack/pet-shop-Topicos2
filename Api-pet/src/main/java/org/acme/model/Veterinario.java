@@ -2,6 +2,7 @@ package org.acme.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -17,6 +18,9 @@ public class Veterinario extends DefaultyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
+   
+
     
     @NotBlank(message = "O campo 'nome' não pode estar em branco")
     @Size(max = 100, message = "O campo 'nome' deve ter no máximo 100 caracteres")

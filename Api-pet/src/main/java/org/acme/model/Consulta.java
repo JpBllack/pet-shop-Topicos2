@@ -29,6 +29,10 @@ public class Consulta extends DefaultyEntity {
     }
 
 
+    public Consulta() {
+    }
+
+
 
     public Long getId() {
         return id;
