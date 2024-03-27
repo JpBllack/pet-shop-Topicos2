@@ -1,22 +1,19 @@
-package org.acme.model;
+package org.acme.dto;
 
-public class Pet {
-    private Long id; // Adicionando o atributo id
+import org.acme.model.Animal;
+import org.acme.model.Sexo;
+
+public class PetDTO {
+    private Long id;
     private String nome;
     private int anoNascimento;
     private Animal tipoAnimal;
     private Sexo sexo;
 
-    public Pet(Long id, String nome, int anoNascimento, Animal tipoAnimal, Sexo sexo) { // Atualizando o construtor
-        this.id = id;
-        this.nome = nome;
-        this.anoNascimento = anoNascimento;
-        this.tipoAnimal = tipoAnimal;
-        this.sexo = sexo;
-    }
+   
+    public PetDTO() {}
 
-    // Getters e Setters para nome, anoNascimento, tipoAnimal, sexo e id
-
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -38,7 +35,7 @@ public class Pet {
     }
 
     public void setAnoNascimento(int anoNascimento) {
-        this.anoNascimento = anoNascimento;
+        this.anoNascimento = anoNascimento; 
     }
 
     public Animal getTipoAnimal() {
