@@ -66,6 +66,10 @@ INSERT INTO usuario_perfil(perfil, id_usuario) VALUES (1, 'testestestesteste');
 INSERT INTO usuario (id, dataInclusao, cpf, email, login, nome, senha) VALUES ('testestestesteste2','2023-11-28 18:08:04.895422', '00000000000', 'teste2@gmail.com', 'testeste2', 'TEstte', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==');
 INSERT INTO usuario_perfil(perfil, id_usuario) VALUES (2, 'testestestesteste2');
 
+
+
+insert into veterinario (id,nome,email, cpf) values (1,'Claudio','claudiovet@gmail','68468');
+
 -- Inserção de dados na tabela 'usuario_perfil'
 INSERT INTO usuario_perfil(perfil, id_usuario) VALUES (2, 'sdas-asdasdsas-aasd23234');
 INSERT INTO usuario_perfil(perfil, id_usuario) VALUES (1, 'sdas-asdasdsas-aasd23234');

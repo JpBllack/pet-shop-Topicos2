@@ -1,0 +1,147 @@
+@startuml
+
+
+    class Cliente{
+        - nome: String
+        - cpf: String
+        - username: String
+        - email: String
+        - senha: String
+    }
+
+    class CompraRecorrente{
+        - quantidade: int
+        - dataCompra: Date
+
+    }
+
+    class Veterinario{
+        - email: String
+        - nome: String
+        - cpf: String
+    }
+
+    class Consulta{
+        - data: Date
+        - motivo: String
+    }
+
+    class Telefone{
+        - codigoArea: String
+        - numero: String
+    }
+
+    class Racao{
+        - sabor: String
+    }
+
+    class Pet{
+        - nome: String
+        - anoNascimento: int
+    }
+
+    enum Animal{
+        - CACHORRO: int
+        - GATO: int
+        - PEIXE: int
+        - PASSARO: int
+    }
+
+    enum Peso{
+        - 500G: int
+        - 1KG: int
+        - 2KG: int
+        - 5KG: int
+        - 10KG: int
+    }
+
+    enum Idade{
+        - FILHOTE: int
+        - ADULTO: int
+    }
+
+    enum Sexo{
+        - MASCULINO: int
+        - FEMININO: int
+    }
+
+    enum IntervaloTempo{
+        - 1SEMANA: int
+        - 2SEMANA: int
+        - 3SEMANA: int
+        - 1MES: int
+        - 2MES: int
+        - 3MES: int
+        - 4MES: int
+        - 5MES: int
+        - 6MES: int
+    }
+
+    class Endereco{
+        - endereco: String
+        - complemento: String
+        - estado: Estado
+        - cidade: Cidade
+        - codigoPostal: String
+        - ePrincipal: boolean
+    }
+
+
+    class Pedido {
+        - produtos: List<Produto>
+        - enderecoEntrega: EnderecoDeEntrega
+        - metodoPagamento: MetodoDePagamento
+    }
+
+    class Pagamento{
+        - valor: Double
+    }
+
+    class CartaoCredito{
+        - numeroCartao: String
+        - dataValidade: LocalDate
+        - codigoSeguranca: String
+        - bandeira: String
+    }
+
+    class BoletoBancario{
+        - banco: String
+        - numeroBoleto: String
+        - dataVencimento: LocalDate
+    }
+    
+    class Pix{
+        - chave: String
+    }
+    
+    
+    Racao "*" --> "1" Animal
+    Racao "*" --> "1" Peso
+    Racao "*" --> "1" Idade
+
+    Cliente "1" -up-> "1" Telefone
+    Cliente "1" --> "*" Endereco
+    Cliente "1" --> "1" Sexo
+
+    Pet "1" --> "1" Animal
+    Pet "1" --> "1" Sexo
+    Cliente "1" --> "*" Pet
+
+    Consulta "1" --> "1" Veterinario
+    Consulta "1" --> "1" Pet
+    Consulta "1" --> Cliente
+
+    CompraRecorrente "1" -left-> "1" IntervaloTempo
+    CompraRecorrente "1" --> "*" Pedido
+    CompraRecorrente "*" --> "1" Cliente
+
+    Pedido "1" --> "*" Racao
+    Pedido "1" --> "1" Endereco
+    Pedido "1" --> "1" Pagamento
+
+    Pagamento <|-- CartaoCredito
+    Pagamento <|-- BoletoBancario
+    Pagamento <|-- Pix
+
+
+@enduml

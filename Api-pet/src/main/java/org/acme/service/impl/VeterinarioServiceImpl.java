@@ -120,4 +120,11 @@ public class VeterinarioServiceImpl implements VeterinarioService {
         }
 
     }
+
+
+    @Override
+    public Veterinario findByLoginAndSenha(String login, String senha) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByLoginAndSenha'");
+    }
 }
