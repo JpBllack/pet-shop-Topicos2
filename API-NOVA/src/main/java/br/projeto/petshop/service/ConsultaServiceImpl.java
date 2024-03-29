@@ -1,6 +1,7 @@
 package br.projeto.petshop.service;
 
 import br.projeto.petshop.dto.ConsultaDTO;
+import br.projeto.petshop.dto.ConsultaResponseDTO;
 import br.projeto.petshop.model.Consulta;
 import br.projeto.petshop.model.Veterinario;
 import br.projeto.petshop.repository.ConsultaRepository;
@@ -30,12 +31,12 @@ public class ConsultaServiceImpl implements ConsultaService {
             LOG.info("Requisição insert de consulta()");
     
             Consulta consulta = new Consulta();
-            consulta.setData(consultaDTO.getData());
-            consulta.setMotivo(consultaDTO.getMotivo());
+            consulta.setData(consultaDTO.data());
+            consulta.setMotivo(consultaDTO.motivo());
             
             // Supondo que o ID do veterinário seja uma String
             Veterinario veterinario = new Veterinario();
-            veterinario.setId(consultaDTO.getVeterinarioId());
+            veterinario.setId(consultaDTO.veterinario());
             consulta.setVeterinario(veterinario);
        
             consultaRepository.persist(consulta);
@@ -66,6 +67,7 @@ public class ConsultaServiceImpl implements ConsultaService {
     }
 
 
+
     @Override
     @Transactional
     public Response atualizarConsulta(ConsultaDTO consultaDTO, long id) {
@@ -79,11 +81,11 @@ public class ConsultaServiceImpl implements ConsultaService {
             }
 
             // Atualiza os campos da consulta com os dados do DTO
-            consulta.setData(consultaDTO.getData());
-            consulta.setMotivo(consultaDTO.getMotivo());
+            consulta.setData(consultaDTO.data());
+            consulta.setMotivo(consultaDTO.motivo());
             // Supondo que o ID do veterinário seja uma String
             Veterinario veterinario = new Veterinario();
-            veterinario.setId(consultaDTO.getVeterinarioId());
+            veterinario.setId(consultaDTO.veterinario());
             consulta.setVeterinario(veterinario);
 
             consultaRepository.persist(consulta);

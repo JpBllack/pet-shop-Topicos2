@@ -39,7 +39,7 @@ public class UserResourse {
 
     @POST
     @Path("/insert/user/")
-    @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     public Response insert(UserDTO dto){
         try{
             LOG.info("Inserindo um usuario");
@@ -55,7 +55,7 @@ public class UserResourse {
      @PUT
     @Transactional
     @Path("/update/user/{id}")
-    @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, UserDTO dto){
 
         try{
@@ -73,7 +73,7 @@ public class UserResourse {
     @DELETE
     @Transactional
     @Path("/delete/user/{id}")
-    @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id){
 
         try{
@@ -89,7 +89,7 @@ public class UserResourse {
     }
 
     @GET
-    @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     public Response findAll(){
         try{
             LOG.info("Buscando todos os usuarios");
@@ -103,7 +103,7 @@ public class UserResourse {
     }
 
     @GET
-    @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         try{
@@ -118,7 +118,7 @@ public class UserResourse {
     }
 
     @GET
-    @RolesAllowed({"Admin"})
+    //@RolesAllowed({"Admin"})
     @Path("/search/name/{username}")
     public Response findByUsername(@PathParam("username") String username){
         try{

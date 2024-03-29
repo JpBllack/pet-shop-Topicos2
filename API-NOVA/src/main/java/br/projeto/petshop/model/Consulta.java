@@ -12,13 +12,16 @@ public class Consulta extends DefaultEntity {
     private Usuario usuario;
     @ManyToOne
     private Veterinario veterinario;
+    @ManyToOne
+    private Pet pet;
 
 
-    public Consulta(Date data, String motivo, Usuario usuario, Veterinario veterinario) {
+    public Consulta(Date data, String motivo, Usuario usuario, Veterinario veterinario, Pet pet) {
         this.data = data;
         this.motivo = motivo;
         this.usuario = usuario;
         this.veterinario = veterinario;
+        this.pet = pet;
     }
 
 
@@ -42,14 +45,6 @@ public class Consulta extends DefaultEntity {
         this.motivo = motivo;
     }
 
-    public Usuario getCliente() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Veterinario getVeterinario() {
         return veterinario;
     }
@@ -57,4 +52,26 @@ public class Consulta extends DefaultEntity {
     public void setVeterinario(Veterinario veterinario) {
         this.veterinario = veterinario;
     }
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+
+    public Pet getPet() {
+        return pet;
+    }
+
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    
 }
