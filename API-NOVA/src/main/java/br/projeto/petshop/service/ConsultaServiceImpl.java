@@ -1,20 +1,18 @@
 package br.projeto.petshop.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.jboss.logging.Logger;
+
 import br.projeto.petshop.dto.ConsultaDTO;
-import br.projeto.petshop.dto.ConsultaResponseDTO;
 import br.projeto.petshop.model.Consulta;
 import br.projeto.petshop.model.Veterinario;
 import br.projeto.petshop.repository.ConsultaRepository;
-import br.projeto.petshop.service.ConsultaService;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class ConsultaServiceImpl implements ConsultaService {
