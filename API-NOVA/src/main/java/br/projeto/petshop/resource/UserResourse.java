@@ -4,7 +4,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.UsuarioDTO;
-import br.projeto.petshop.service.UserService;
+import br.projeto.petshop.service.UsuarioService;
 import br.projeto.petshop.validation.ValidationException;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.core.MediaType;
@@ -30,7 +30,7 @@ import br.projeto.petshop.application.Error;
 public class UserResourse {
 
     @Inject
-    UserService service;
+    UsuarioService service;
 
     @Inject
     JsonWebToken jwt;

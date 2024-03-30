@@ -16,7 +16,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import br.projeto.petshop.validation.ValidationException;
-import br.projeto.petshop.service.UserService;
+import br.projeto.petshop.service.UsuarioService;
 
 import org.jboss.logging.Logger;
 
@@ -29,7 +29,7 @@ import br.projeto.petshop.dto.LoginDTO;
 public class BasicRegistrationResource {
 
     @Inject
-    UserService userService;
+    UsuarioService userService;
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -38,7 +38,7 @@ public class BasicRegistrationResource {
     public Response insertBasicUser(LoginDTO dto){
         try{
             LOG.info("Inserindo um usuario basico");
-            return Response.status(Status.CREATED).entity(userService.insertBasicUser(dto)).build();
+            return Response.status(Status.CREATED).entity(userService.inserirUsuarioBasico(dto)).build();
         } catch(ValidationException e){
             LOG.error("Erro ao inserir o usuario basico");
             e.printStackTrace();

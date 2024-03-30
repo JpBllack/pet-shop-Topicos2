@@ -1,14 +1,13 @@
 package br.projeto.petshop.repository;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import br.projeto.petshop.model.Usuario;
 
 import java.util.List;
 
 @ApplicationScoped
-public class UsuarioRepository implements PanacheRepositoryBase<Usuario, String> {
+public class UsuarioRepository implements PanacheRepository<Usuario> {
 
     public List<Usuario> findByNome(String nome){
         if (nome == null)
@@ -16,14 +15,14 @@ public class UsuarioRepository implements PanacheRepositoryBase<Usuario, String>
         return find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase()+"%").list();
     }
 
-    public Usuario findByEmailAndSenha(String email, String senha){
+    public Usuario findByEmailSenha(String email, String senha){
         if (email == null || senha == null)
             return null;
 
         return find("email = ?1 AND senha = ?2 ", email, senha).firstResult();
     }
 
-    public Usuario findByUsernameAndSenha(String username, String senha){
+    public Usuario findByUsernameSenha(String username, String senha){
         if (username == null || senha == null)
             return null;
 
@@ -51,6 +50,8 @@ public class UsuarioRepository implements PanacheRepositoryBase<Usuario, String>
         return find("username = ?1", username).firstResult();
     }
 
+
+    //Verifica se já existe no sistema
     public boolean existsByEmail(String email) {
         return find("email", email).count() > 0;
     }

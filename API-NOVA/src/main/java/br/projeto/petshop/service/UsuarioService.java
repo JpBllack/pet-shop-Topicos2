@@ -7,7 +7,7 @@ import br.projeto.petshop.dto.LoginResponseDTO;
 import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 
-public interface UserService {
+public interface UsuarioService {
 
     public LoginResponseDTO inserirUsuarioBasico(LoginDTO dto);
 
@@ -23,7 +23,7 @@ public interface UserService {
 
     public UsuarioResponseDTO findByEmail(String email);
 
-    public UsuarioResponseDTO findByEmailAndPassword(String email, String password);
+    public UsuarioResponseDTO findByEmailSenha(String email, String password);
 
     public List<UsuarioResponseDTO> findAll();
 }

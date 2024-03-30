@@ -6,7 +6,7 @@ import br.projeto.petshop.dto.LoginDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.service.HashService;
 import br.projeto.petshop.service.JwtService;
-import br.projeto.petshop.service.UserService;
+import br.projeto.petshop.service.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -22,7 +22,7 @@ import jakarta.ws.rs.core.Response;
 public class AuthResource {
 
     @Inject
-    UserService service;
+    UsuarioService service;
 
     @Inject
     HashService hashService;
@@ -43,7 +43,7 @@ public class AuthResource {
 
         LOG.debug(hashSenha);
 
-        UsuarioResponseDTO result = service.findByEmailAndPassword(dto.email(), hashSenha);
+        UsuarioResponseDTO result = service.findByEmailSenha(dto.email(), hashSenha);
 
         if(result != null){
             LOG.info("Login e senha corretos.");
