@@ -2,24 +2,25 @@ package br.projeto.petshop.service;
 
 import java.util.List;
 
-import br.projeto.petshop.repository.UserRepository;
+
+import br.projeto.petshop.repository.UsuarioRepository;
 import br.projeto.petshop.validation.ValidationException;
 import br.projeto.petshop.dto.LoginDTO;
 import br.projeto.petshop.dto.LoginResponseDTO;
-import br.projeto.petshop.dto.UserDTO;
-import br.projeto.petshop.dto.UserResponseDTO;
-import br.projeto.petshop.model.Profile;
-import br.projeto.petshop.model.User;
+import br.projeto.petshop.dto.UsuarioDTO;
+import br.projeto.petshop.dto.UsuarioResponseDTO;
+import br.projeto.petshop.model.Perfil;
+import br.projeto.petshop.model.Usuario;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
-public class UserServiceImpl implements UserService {
+public class UsuarioServiceImpl implements UsuarioService {
 
     @Inject
-    UserRepository repository;
+    UsuarioRepository repository;
 
     @Inject
     HashService hashService;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public LoginResponseDTO insertBasicUser(LoginDTO dto) {
+    public LoginResponseDTO inserirUsuarioBasico(LoginDTO dto) {
         if(dto.email() == null || dto.email().isEmpty()){
             throw new ValidationException("400", "O email não pode estar em branco");
         } else if(dto.password() == null || dto.password().isEmpty()){
@@ -40,22 +41,22 @@ public class UserServiceImpl implements UserService {
             throw new ValidationException("400", "O email já existe");
         }
 
-        User newUser = new User();
+        Usuario newUsuario = new Usuario();
 
-        newUser.setEmail(dto.email());
+        newUsuario.setEmail(dto.email());
 
-        newUser.setPassword(hashService.getHashPassword(dto.password()));
+        newUsuario.setSenha(hashService.getHashPassword(dto.password()));
 
-        newUser.setProfile(Profile.valueOf(1));
+        newUsuario.setPerfil(Perfil.valueOf(1));
 
-        repository.persist(newUser);
+        repository.persist(newUsuario);
 
-        return LoginResponseDTO.valueOf(newUser);
+        return LoginResponseDTO.valueOf(newUsuario);
     }
 
     @Override
     @Transactional
-    public UserResponseDTO insert(UserDTO dto) {
+    public UsuarioResponseDTO insert(UsuarioDTO dto) {
         if(dto.email() == null || dto.email().isEmpty() || dto.password() == null || dto.password().isEmpty()) {
             throw new ValidationException("400", "Email e senha não podem estar em branco");
         }
@@ -64,23 +65,23 @@ public class UserServiceImpl implements UserService {
             throw new ValidationException("400", "O tipo de perfil não pode ser nulo");
         }
 
-        User newUser = new User();
+        Usuario newUsuario = new Usuario();
 
-        newUser.setUsername(dto.username());
-        newUser.setEmail(dto.email());
+        newUsuario.setUsuarioname(dto.usuarioname());
+        newUsuario.setEmail(dto.email());
 
-        newUser.setProfile(Profile.valueOf(dto.profile()));
+        newUsuario.setProfile(Profile.valueOf(dto.profile()));
 
-        newUser.setPassword(hashService.getHashPassword(dto.password()));
+        newUsuario.setPassword(hashService.getHashPassword(dto.password()));
 
-        repository.persist(newUser);
+        repository.persist(newUsuario);
 
-        return UserResponseDTO.valueOf(newUser);
+        return UsuarioResponseDTO.valueOf(newUsuario);
     }
 
     @Override
     @Transactional
-    public UserResponseDTO update(Long id, UserDTO dto) {
+    public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
         if(repository.findById(id) == null){
             throw new NotFoundException("Usuario não encontrado");
         }
@@ -93,12 +94,12 @@ public class UserServiceImpl implements UserService {
             throw new ValidationException("400", "O tipo de perfil não pode ser nulo");
         }
 
-        User user = repository.findById(id);
-        user.setUsername(dto.username());
-        user.setEmail(dto.email());
-        user.setPassword(hashService.getHashPassword(dto.password()));
+        Usuario usuario = repository.findById(id);
+        usuario.setUsuarioname(dto.usuarioname());
+        usuario.setEmail(dto.email());
+        usuario.setPassword(hashService.getHashPassword(dto.password()));
 
-        return UserResponseDTO.valueOf(user);
+        return UsuarioResponseDTO.valueOf(usuario);
     }
 
     @Override
@@ -110,46 +111,46 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO findById(long id) {
+    public UsuarioResponseDTO findById(long id) {
         if(repository.findById(id) == null) {
             throw new NotFoundException("Usuario não encontrado");
         }
-        return UserResponseDTO.valueOf(repository.findById(id));
+        return UsuarioResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override
-    public UserResponseDTO findByUsername(String username) {
-        if(repository.findByUsername(username) == null) {
+    public UsuarioResponseDTO findByUsuarioname(String usuarioname) {
+        if(repository.findByUsuarioname(usuarioname) == null) {
             throw new NotFoundException("Usuario não encontrado");
         }
-        return UserResponseDTO.valueOf(repository.findByUsername(username));
+        return UsuarioResponseDTO.valueOf(repository.findByUsuarioname(usuarioname));
 
     }
 
     @Override
-    public UserResponseDTO findByEmail(String email) {
-        User user = repository.findByEmail(email);
+    public UsuarioResponseDTO findByEmail(String email) {
+        Usuario usuario = repository.findByEmail(email);
         if(email == null){
             throw new ValidationException("email", "Email invalido");
         }
-        return UserResponseDTO.valueOf(user);
+        return UsuarioResponseDTO.valueOf(usuario);
     }
 
     @Override
-    public UserResponseDTO findByEmailAndPassword(String email, String password) {
-        User user = repository.findByEmailAndPassword(email, password);
-        if (user == null) 
+    public UsuarioResponseDTO findByEmailAndPassword(String email, String password) {
+        Usuario usuario = repository.findByEmailAndPassword(email, password);
+        if (usuario == null) 
             throw new ValidationException("login", "Login ou senha inválido");
         
-        return UserResponseDTO.valueOf(user);
+        return UsuarioResponseDTO.valueOf(usuario);
     }
 
     @Override
-    public List<UserResponseDTO> findAll() {
-        if(repository.listAll().stream().map(e -> UserResponseDTO.valueOf(e)).toList().isEmpty()){
+    public List<UsuarioResponseDTO> findAll() {
+        if(repository.listAll().stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList().isEmpty()){
             throw new NotFoundException("Não há usuarios");
         }
-        return repository.listAll().stream().map(e -> UserResponseDTO.valueOf(e)).toList();
+        return repository.listAll().stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
     }
     
 }

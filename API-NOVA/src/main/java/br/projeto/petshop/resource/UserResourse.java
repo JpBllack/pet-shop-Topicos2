@@ -3,7 +3,7 @@ package br.projeto.petshop.resource;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
-import br.projeto.petshop.dto.UserDTO;
+import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.service.UserService;
 import br.projeto.petshop.validation.ValidationException;
 import jakarta.annotation.security.RolesAllowed;
@@ -40,7 +40,7 @@ public class UserResourse {
     @POST
     @Path("/insert/user/")
     //@RolesAllowed({"Admin"})
-    public Response insert(UserDTO dto){
+    public Response insert(UsuarioDTO dto){
         try{
             LOG.info("Inserindo um usuario");
             return Response.status(Status.CREATED).entity(service.insert(dto)).build();
@@ -56,7 +56,7 @@ public class UserResourse {
     @Transactional
     @Path("/update/user/{id}")
     //@RolesAllowed({"Admin"})
-    public Response update(@PathParam("id") Long id, UserDTO dto){
+    public Response update(@PathParam("id") Long id, UsuarioDTO dto){
 
         try{
             LOG.infof("Update em usuario %s", dto.email());

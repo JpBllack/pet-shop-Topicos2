@@ -4,26 +4,26 @@ import java.util.List;
 
 import br.projeto.petshop.dto.LoginDTO;
 import br.projeto.petshop.dto.LoginResponseDTO;
-import br.projeto.petshop.dto.UserDTO;
-import br.projeto.petshop.dto.UserResponseDTO;
+import br.projeto.petshop.dto.UsuarioDTO;
+import br.projeto.petshop.dto.UsuarioResponseDTO;
 
 public interface UserService {
 
-    public LoginResponseDTO insertBasicUser(LoginDTO dto);
+    public LoginResponseDTO inserirUsuarioBasico(LoginDTO dto);
 
-    public UserResponseDTO insert(UserDTO dto);
+    public UsuarioResponseDTO insert(UsuarioDTO dto);
 
-    public UserResponseDTO update(Long id, UserDTO dto);
+    public UsuarioResponseDTO update(Long id, UsuarioDTO dto);
 
     public void delete(long id);
 
-    public UserResponseDTO findById(long id);
+    public UsuarioResponseDTO findById(long id);
 
-    public UserResponseDTO findByUsername(String username);
+    public UsuarioResponseDTO findByUsername(String username);
 
-    public UserResponseDTO findByEmail(String email);
+    public UsuarioResponseDTO findByEmail(String email);
 
-    public UserResponseDTO findByEmailAndPassword(String email, String password);
+    public UsuarioResponseDTO findByEmailAndPassword(String email, String password);
 
-    public List<UserResponseDTO> findAll();
+    public List<UsuarioResponseDTO> findAll();
 }

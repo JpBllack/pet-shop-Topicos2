@@ -3,7 +3,7 @@ package br.projeto.petshop.resource;
 import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.LoginDTO;
-import br.projeto.petshop.dto.UserResponseDTO;
+import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.service.HashService;
 import br.projeto.petshop.service.JwtService;
 import br.projeto.petshop.service.UserService;
@@ -43,7 +43,7 @@ public class AuthResource {
 
         LOG.debug(hashSenha);
 
-        UserResponseDTO result = service.findByEmailAndPassword(dto.email(), hashSenha);
+        UsuarioResponseDTO result = service.findByEmailAndPassword(dto.email(), hashSenha);
 
         if(result != null){
             LOG.info("Login e senha corretos.");

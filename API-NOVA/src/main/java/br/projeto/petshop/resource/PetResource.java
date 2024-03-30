@@ -67,6 +67,7 @@ public class PetResource {
 
     private PetDTO mapToDTO(Pet pet) {
         PetDTO petDTO = new PetDTO();
+
         petDTO.setId(pet.getId());
         petDTO.setNome(pet.getNome());
         petDTO.setAnoNascimento(pet.getAnoNascimento());

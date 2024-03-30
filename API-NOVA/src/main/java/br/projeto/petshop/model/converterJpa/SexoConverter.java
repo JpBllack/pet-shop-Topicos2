@@ -9,7 +9,7 @@ public class SexoConverter implements AttributeConverter<Sexo, Integer>{
 
     @Override
     public Integer convertToDatabaseColumn(Sexo sexo) {
-        return (sexo == null ? null : sexo.getId())
+        return (sexo == null ? null : sexo.getId());
     }
 
     @Override
