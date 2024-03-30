@@ -1,27 +1,22 @@
 package br.projeto.petshop.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.hibernate.validator.constraints.br.CPF;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@Entity
+@MappedSuperclass
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends DefaultEntity {
-    
+
     @NotBlank(message = "O campo 'nome' não pode estar em branco")
     @Size(max = 100, message = "O campo 'nome' deve ter no máximo 100 caracteres")
     @Size(min = 3, message = "O campo 'nome' deve ter no minimo 3 caracteres")
     private String nome;
 
-    @NotBlank(message = "O campo 'login' não pode estar em branco")
-    @Size(max = 50, message = "O campo 'login' deve ter no máximo 50 caracteres")
-    private String login;
+    @NotBlank(message = "O campo 'username' não pode estar em branco")
+    @Size(max = 50, message = "O campo 'username' deve ter no máximo 50 caracteres")
+    private String username;
 
     @Email
     private String email;
@@ -29,13 +24,8 @@ public class Usuario extends DefaultEntity {
     @NotBlank(message = "O campo 'senha' não pode estar em branco")
     private String senha;
 
-    @CPF
-    private String cpf;
-
-    @ElementCollection
-    @CollectionTable(name = "usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
-    @Column(name = "perfil", length = 30)
-    private Set<Perfil> perfis;
+    @OneToOne
+    private Perfil perfil;
 
     public String getEmail() {
         return email;
@@ -45,15 +35,20 @@ public class Usuario extends DefaultEntity {
         this.email = email;
     }
 
-    public Set<Perfil> getPerfis() {
-        if( perfis == null){
-            perfis =  new HashSet<>();
-        }
-        return perfis;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPerfis(Set<Perfil> perfis) {
-        this.perfis = perfis;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public String getNome() {
@@ -64,14 +59,6 @@ public class Usuario extends DefaultEntity {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -80,14 +67,4 @@ public class Usuario extends DefaultEntity {
         this.senha = senha;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    
 }
-

@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 public record VeterinarioResponseDTO(
         String nome,
         String email,
-        String cpf,
+        String crvm,
         Perfil perfil
 ) {
     public static VeterinarioResponseDTO valueof(Veterinario vet){
-        return new VeterinarioResponseDTO(vet.getNome(), vet.getEmail(), vet.getCpf(), vet.getPerfil());
+        return new VeterinarioResponseDTO(vet.getNome(), vet.getEmail(), vet.getCrvm(), vet.getPerfil());
     }
     
 }

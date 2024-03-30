@@ -23,11 +23,11 @@ public class UsuarioRepository implements PanacheRepositoryBase<Usuario, String>
         return find("email = ?1 AND senha = ?2 ", email, senha).firstResult();
     }
 
-    public Usuario findByLoginAndSenha(String login, String senha){
-        if (login == null || senha == null)
+    public Usuario findByUsernameAndSenha(String username, String senha){
+        if (username == null || senha == null)
             return null;
 
-        return find("login = ?1 AND senha = ?2 ", login, senha).firstResult();
+        return find("username = ?1 AND senha = ?2 ", username, senha).firstResult();
     }
 
     public Usuario findByCpf(String cpf){
@@ -44,11 +44,19 @@ public class UsuarioRepository implements PanacheRepositoryBase<Usuario, String>
         return find("email = ?1", email).firstResult();
     }
 
-    public Usuario findByLogin(String login){
-        if (login == null)
+    public Usuario findByUsername(String username){
+        if (username == null)
             return null;
 
-        return find("login = ?1", login).firstResult();
+        return find("username = ?1", username).firstResult();
+    }
+
+    public boolean existsByEmail(String email) {
+        return find("email", email).count() > 0;
+    }
+
+    public boolean existsByUsername(String username){
+        return find("username", username).count() > 0;
     }
 
 }
