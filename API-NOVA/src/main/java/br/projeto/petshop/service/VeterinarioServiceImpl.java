@@ -6,18 +6,14 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-import br.projeto.petshop.dto.*;
+import br.projeto.petshop.dto.VeterinarioDTO;
+import br.projeto.petshop.dto.VeterinarioResponseDTO;
 import br.projeto.petshop.model.Perfil;
 import br.projeto.petshop.model.Veterinario;
 import br.projeto.petshop.repository.VeterinarioRepository;
-import br.projeto.petshop.HashService;
-import br.projeto.petshop.VeterinarioService;
 import org.jboss.logging.Logger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -35,32 +31,33 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     public List<VeterinarioResponseDTO> getAll() {
         try {
             LOG.info("Requisição getAll()");
-
-            return repository.findAll().stream().map(VeterinarioResponseDTO::new).collect(Collectors.toList());
-        }catch (Exception e){
+            return repository.listAll().stream()
+                    .map(VeterinarioResponseDTO::new)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
             LOG.error("Erro ao rodar Requisição getAll()");
             return null;
         }
     }
-
 
     @Override
     public VeterinarioResponseDTO getId(String id) {
         try {
             LOG.info("Requisição getId()");
             return new VeterinarioResponseDTO(repository.findById(id));
-
-        }catch (Exception e){
-
-            LOG.info("erro ao rodar Requisição getId()");
+        } catch (Exception e) {
+            LOG.error("Erro ao rodar Requisição getId()");
             return null;
         }
     }
 
     @Override
     public List<VeterinarioResponseDTO> getNome(String nome) {
-        return repository.findByNome(nome).stream().map(VeterinarioResponseDTO::new).collect(Collectors.toList());
+        return repository.findByNome(nome).stream()
+                .map(VeterinarioResponseDTO::new)
+                .collect(Collectors.toList());
     }
+
     @Override
     public VeterinarioResponseDTO getCpf(String cpf) {
         return new VeterinarioResponseDTO(repository.findByCpf(cpf));
@@ -69,37 +66,24 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     @Transactional
     @Override
     public Response insert(VeterinarioDTO dto) {
-
         try {
             LOG.info("Requisição insert()");
+            Veterinario veterinario = new Veterinario();
+            veterinario.setNome(dto.nome());
+            veterinario.setCpf(dto.cpf());
+            veterinario.setEmail(dto.email());
+            veterinario.setPerfil(Perfil.VET); // Define o perfil do veterinário
 
-            Veterinario u = new Veterinario();
-            u.setNome(dto.nome());
-            if(!dto.cpf().isEmpty()){
-
-                u.setCpf(dto.cpf());
-            }
-            else{
-                throw new Exception("Cpf invalido!");
-            }
-            u.setEmail(dto.email());
-            
-            Set<Perfil> perfis =  new HashSet<>();
-            perfis.add(Perfil.USER);
-            u.setPerfis(perfis);
-
-            Veterinario teste = new Veterinario();
-            teste = repository.findByEmail(dto.email());
-            if(teste != null){
-                throw new Exception("veterinario com esse email ja existe");
+            // Verifica se já existe um veterinário com o mesmo e-mail
+            Veterinario existingVeterinario = repository.findByEmail(dto.email());
+            if (existingVeterinario != null) {
+                throw new Exception("Veterinário com este e-mail já existe");
             }
 
-            repository.persist(u);
-            return Response.ok(new VeterinarioResponseDTO(u)).build();
-
-        } catch (Exception e){
-
-            LOG.info("erro ao rodar Requisição insert()");
+            repository.persist(veterinario);
+            return Response.ok(new VeterinarioResponseDTO(veterinario)).build();
+        } catch (Exception e) {
+            LOG.error("Erro ao rodar Requisição insert()");
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -109,22 +93,17 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     public Response delete(String id) {
         try {
             LOG.info("Requisição delete()");
-            Veterinario u = new Veterinario();
-            u = repository.findById(id);
-            repository.deleteById(u.getId());
+            repository.deleteById(id);
             return Response.ok().build();
-        }catch (Exception e){
-
-            LOG.info("erro ao rodar Requisição delete() - " + e.getMessage());
-            return Response.notModified(e.getMessage()).build();
+        } catch (Exception e) {
+            LOG.error("Erro ao rodar Requisição delete() - " + e.getMessage());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
-
     }
-
 
     @Override
     public Veterinario findByLoginAndSenha(String login, String senha) {
-        // TODO Auto-generated method stub
+        // Não implementado neste método
         throw new UnsupportedOperationException("Unimplemented method 'findByLoginAndSenha'");
     }
 }

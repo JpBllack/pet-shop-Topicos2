@@ -14,6 +14,9 @@ public class Usuario extends DefaultEntity {
     @Size(min = 3, message = "O campo 'nome' deve ter no minimo 3 caracteres")
     private String nome;
 
+    private String cpf; 
+
+
     @NotBlank(message = "O campo 'username' não pode estar em branco")
     @Size(max = 50, message = "O campo 'username' deve ter no máximo 50 caracteres")
     private String username;
@@ -26,6 +29,16 @@ public class Usuario extends DefaultEntity {
 
     @OneToOne
     private Perfil perfil;
+
+
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public String getEmail() {
         return email;

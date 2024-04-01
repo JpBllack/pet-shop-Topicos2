@@ -50,20 +50,15 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public List<ConsultaDTO> buscarTodasConsultas() {
         return consultaRepository.listAll().stream()
-                .map(this::mapToConsultaDTO)
+                .map(consulta -> new ConsultaDTO(
+                    consulta.getData(),
+                    consulta.getMotivo(),
+                    consulta.getVeterinario().getId(),
+                    consulta.getPet().getId()
+                ))
                 .collect(Collectors.toList());
     }
-
-    private ConsultaDTO mapToConsultaDTO(Consulta consulta) {
-        ConsultaDTO consultaDTO = new ConsultaDTO();
-        consultaDTO.setId(consulta.getId());
-        consultaDTO.setData(consulta.getData());
-        consultaDTO.setMotivo(consulta.getMotivo());
-        consultaDTO.setVeterinarioId(consulta.getVeterinario().getId()); 
-
-        return consultaDTO;
-    }
-
+    
 
 
     @Override
@@ -100,20 +95,25 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public Response buscarConsultaPorId(long id) {
         LOG.info("Buscando consulta com ID: {}");
-
+    
         Consulta consulta = consultaRepository.findById(id);
         if (consulta == null) {
             LOG.warn("Consulta com ID {} não encontrada.");
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
-        // Converte a consulta encontrada em DTO e a retorna
-        ConsultaDTO consultaDTO = mapToConsultaDTO(consulta);
-
+    
+        // Cria o ConsultaDTO diretamente aqui
+        ConsultaDTO consultaDTO = new ConsultaDTO(
+            consulta.getData(),
+            consulta.getMotivo(),
+            consulta.getVeterinario().getId(),
+            consulta.getPet().getId()
+        );
+    
         LOG.info("Consulta com ID {} encontrada.");
         return Response.ok(consultaDTO).build();
     }
-
+    
 
     @Override
     @Transactional

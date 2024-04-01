@@ -1,10 +1,7 @@
 package br.projeto.petshop.dto;
+
 import br.projeto.petshop.model.Perfil;
 import br.projeto.petshop.model.Veterinario;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public record VeterinarioResponseDTO(
         String nome,
@@ -12,8 +9,8 @@ public record VeterinarioResponseDTO(
         String crvm,
         Perfil perfil
 ) {
-    public static VeterinarioResponseDTO valueof(Veterinario vet){
-        return new VeterinarioResponseDTO(vet.getNome(), vet.getEmail(), vet.getCrvm(), vet.getPerfil());
+    // Construtor que recebe um objeto Veterinario como argumento
+    public VeterinarioResponseDTO(Veterinario veterinario) {
+        this(veterinario.getNome(), veterinario.getEmail(), veterinario.getCrvm(), veterinario.getPerfil());
     }
-    
 }

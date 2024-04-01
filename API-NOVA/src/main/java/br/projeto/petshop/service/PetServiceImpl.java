@@ -6,7 +6,6 @@ import jakarta.transaction.Transactional;
 import br.projeto.petshop.dto.PetDTO;
 import br.projeto.petshop.model.Pet;
 import br.projeto.petshop.repository.PetRepository;
-import br.projeto.petshop.service.PetService;
 
 import jakarta.ws.rs.core.Response;
 import java.util.Collection;
@@ -17,85 +16,86 @@ import java.util.stream.Collectors;
 public class PetServiceImpl implements PetService {
 
     @Inject
-    PetRepository petRepository;
+    private PetRepository petRepository; // Assumindo que você tem um repositório para interagir com o banco de dados
 
     @Override
     public List<PetDTO> buscarTodosPets() {
-        return petRepository.listAll().stream()
-                .map(this::mapToDTO)
+        List<Pet> pets = petRepository.buscarTodos(); // Supondo que seu repositório tenha um método para buscar todos os pets
+        return pets.stream()
+                .map(this::converterParaDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public PetDTO buscarPetPorNome(String nome) {
-        Pet pet = petRepository.findByNome(nome);
-        return mapToDTO(pet);
+        Pet pet = petRepository.buscarPorNome(nome); // Supondo que seu repositório tenha um método para buscar pet por nome
+        return converterParaDTO(pet);
     }
 
     @Override
     public PetDTO buscarPetPorId(Long id) {
-        Pet pet = petRepository.findById(id);
-        return mapToDTO(pet);
+        Pet pet = petRepository.buscarPorId(id); // Supondo que seu repositório tenha um método para buscar pet por ID
+        return converterParaDTO(pet);
     }
 
     @Override
     @Transactional
     public Response criarPet(Pet pet) {
-        petRepository.persist(pet);
-        return Response.ok().build();
+        petRepository.salvar(pet); // Supondo que seu repositório tenha um método para salvar um novo pet
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @Override
     @Transactional
     public Response atualizarPet(PetDTO petDTO, Long id) {
-        Pet pet = mapToEntity(petDTO);
-        pet.setId(id);
-        petRepository.update(pet);
-        return Response.ok().build();
+        Pet petExistente = petRepository.buscarPorId(id);
+        if (petExistente != null) {
+            petExistente.setNome(petDTO.nome()); // Atualize outros campos conforme necessário
+            // Atualize o pet existente com os dados do DTO
+            petRepository.atualizar(petExistente); // Supondo que seu repositório tenha um método para atualizar um pet
+            return Response.ok().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     @Override
     @Transactional
     public Response deletarPet(Long id) {
-        petRepository.deleteById(id);
-        return Response.ok().build();
+        Pet pet = petRepository.buscarPorId(id);
+        if (pet != null) {
+            petRepository.remover(pet); // Supondo que seu repositório tenha um método para remover um pet
+            return Response.ok().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     @Override
     public Collection<PetDTO> getAllPets() {
-        return buscarTodosPets();
+        List<Pet> pets = petRepository.buscarTodos(); // Supondo que seu repositório tenha um método para buscar todos os pets
+        return pets.stream()
+                .map(this::converterParaDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Pet getPetById(Long id) {
-        return petRepository.findById(id);
+        return petRepository.buscarPorId(id); // Supondo que seu repositório tenha um método para buscar pet por ID
     }
 
     @Override
     @Transactional
     public void updatePet(Pet pet) {
-        petRepository.update(pet);
+        petRepository.atualizar(pet); // Supondo que seu repositório tenha um método para atualizar um pet
     }
 
-    // Métodos utilitários para mapear DTOs para entidades e vice-versa
-
-    private PetDTO mapToDTO(Pet pet) {
-        PetDTO petDTO = new PetDTO();
-        petDTO.setId(pet.getId());
-        petDTO.setNome(pet.getNome());
-        petDTO.setAnoNascimento(pet.getAnoNascimento());
-        petDTO.setTipoAnimal(pet.getTipoAnimal());
-        petDTO.setSexo(pet.getSexo());
-        return petDTO;
-    }
-
-    private Pet mapToEntity(PetDTO petDTO) {
-        return new Pet(
-                petDTO.getId(),
-                petDTO.getNome(),
-                petDTO.getAnoNascimento(),
-                petDTO.getTipoAnimal(),
-                petDTO.getSexo()
+    private PetDTO converterParaDTO(Pet pet) {
+        return new PetDTO(
+            pet.getNome(),
+            pet.getAnoNascimento(),
+            pet.getTipoAnimal(),
+            pet.getSexo()
         );
     }
 }
