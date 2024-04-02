@@ -11,7 +11,7 @@ public class Cidade extends DefaultEntity{
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_estado")
+    @JoinColumn(name = "estado_id")
     private Estado estado;
 
     public String getNome() {

@@ -19,7 +19,7 @@ public class HashServiceImpl implements HashService {
     private Integer keyLength = 512;
 
     @Override
-    public String getHashPassword(String senha) {
+    public String getHashSenha(String senha) {
 
         try {
             byte[] result =  SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
@@ -36,7 +36,7 @@ public class HashServiceImpl implements HashService {
 
     public static void main(String[] args) {
         HashService service = new HashServiceImpl();
-        System.out.println(service.getHashPassword("12345"));
+        System.out.println(service.getHashSenha("12345"));
     }
     
 }

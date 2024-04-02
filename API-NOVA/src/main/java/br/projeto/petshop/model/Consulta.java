@@ -3,8 +3,15 @@ package br.projeto.petshop.model;
 import java.util.Date;
 
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
-public class Consulta extends DefaultEntity {
+
+
+    @Entity
+    @Inheritance(strategy = InheritanceType.JOINED)
+    public class Consulta extends DefaultEntity {
 
     private Date data;
     private String motivo;

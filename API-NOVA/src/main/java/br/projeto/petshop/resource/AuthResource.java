@@ -37,7 +37,7 @@ public class AuthResource {
 
         LOG.infof("Iniciando a autenticação do %s", dto.email());
 
-        String hashSenha = hashService.getHashPassword(dto.password());
+        String hashSenha = hashService.getHashSenha(dto.senha());
 
         LOG.info("Hash da senha gerado.");
 

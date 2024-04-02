@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class PetServiceImpl implements PetService {
 
     @Inject
-    private PetRepository petRepository; // Assumindo que você tem um repositório para interagir com o banco de dados
+    private PetRepository petRepository; 
 
     @Override
     public List<PetDTO> buscarTodosPets() {
-        List<Pet> pets = petRepository.buscarTodos(); // Supondo que seu repositório tenha um método para buscar todos os pets
+        List<Pet> pets = petRepository.buscarTodos(); 
         return pets.stream()
                 .map(this::converterParaDTO)
                 .collect(Collectors.toList());
@@ -28,20 +28,20 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetDTO buscarPetPorNome(String nome) {
-        Pet pet = petRepository.buscarPorNome(nome); // Supondo que seu repositório tenha um método para buscar pet por nome
+        Pet pet = petRepository.buscarPorNome(nome); 
         return converterParaDTO(pet);
     }
 
     @Override
     public PetDTO buscarPetPorId(Long id) {
-        Pet pet = petRepository.buscarPorId(id); // Supondo que seu repositório tenha um método para buscar pet por ID
+        Pet pet = petRepository.buscarPorId(id); 
         return converterParaDTO(pet);
     }
 
     @Override
     @Transactional
     public Response criarPet(Pet pet) {
-        petRepository.salvar(pet); // Supondo que seu repositório tenha um método para salvar um novo pet
+        petRepository.salvar(pet); 
         return Response.status(Response.Status.CREATED).build();
     }
 
@@ -50,9 +50,9 @@ public class PetServiceImpl implements PetService {
     public Response atualizarPet(PetDTO petDTO, Long id) {
         Pet petExistente = petRepository.buscarPorId(id);
         if (petExistente != null) {
-            petExistente.setNome(petDTO.nome()); // Atualize outros campos conforme necessário
-            // Atualize o pet existente com os dados do DTO
-            petRepository.atualizar(petExistente); // Supondo que seu repositório tenha um método para atualizar um pet
+            petExistente.setNome(petDTO.nome()); 
+           
+            petRepository.atualizar(petExistente);
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -64,7 +64,7 @@ public class PetServiceImpl implements PetService {
     public Response deletarPet(Long id) {
         Pet pet = petRepository.buscarPorId(id);
         if (pet != null) {
-            petRepository.remover(pet); // Supondo que seu repositório tenha um método para remover um pet
+            petRepository.remover(pet); 
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -73,7 +73,7 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Collection<PetDTO> getAllPets() {
-        List<Pet> pets = petRepository.buscarTodos(); // Supondo que seu repositório tenha um método para buscar todos os pets
+        List<Pet> pets = petRepository.buscarTodos(); 
         return pets.stream()
                 .map(this::converterParaDTO)
                 .collect(Collectors.toList());
@@ -81,13 +81,13 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet getPetById(Long id) {
-        return petRepository.buscarPorId(id); // Supondo que seu repositório tenha um método para buscar pet por ID
+        return petRepository.buscarPorId(id); 
     }
 
     @Override
     @Transactional
     public void updatePet(Pet pet) {
-        petRepository.atualizar(pet); // Supondo que seu repositório tenha um método para atualizar um pet
+        petRepository.atualizar(pet); 
     }
 
     private PetDTO converterParaDTO(Pet pet) {

@@ -6,4 +6,10 @@
 -- alter sequence myentity_seq restart with 4;
 
 -- senha padrão: 12345
-insert into user_table (username, email, `password`, `profile`) values('Teste', 'teste@mail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 2);
+insert into Usuario (id, nome, cpf, username, email, senha, perfil) 
+values (1,'Teste', '123456' ,'Testizinho', 'teste@mail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 2);
+
+INSERT INTO Usuario (id, nome, cpf, username, email, senha, perfil) 
+VALUES (2, 'Ale', '123.456.789-10', 'alezinho', 'ale@gmail.com', 'senha123', 3);
+
+

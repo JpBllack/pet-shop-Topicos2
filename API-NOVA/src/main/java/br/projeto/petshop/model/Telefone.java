@@ -8,12 +8,14 @@ import jakarta.validation.constraints.Size;
 public class Telefone extends DefaultEntity{
 
     @OneToOne
-    @JoinColumn(name = "telefone_usuario")
+    @JoinColumn(name = "usuario_id") // Nome da coluna que representa a chave estrangeira para a tabela de usuários
     private Usuario usuario;
     @Size(min = 2, max = 3)
     private String CodigoArea;
     @Size(min = 6, max = 25)
     private String numero;
+
+    
 
     public Usuario getUsuario() {
         return usuario;

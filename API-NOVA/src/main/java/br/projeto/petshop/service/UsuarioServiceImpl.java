@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public LoginResponseDTO inserirUsuarioBasico(LoginDTO dto) {
         if(dto.email() == null || dto.email().isEmpty()){
             throw new ValidationException("400", "O email não pode estar em branco");
-        } else if(dto.password() == null || dto.password().isEmpty()){
+        } else if(dto.senha() == null || dto.senha().isEmpty()){
             throw new ValidationException("400", "A senha não pode estar em branco");
         }
 
@@ -45,7 +45,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         newUsuario.setEmail(dto.email());
 
-        newUsuario.setSenha(hashService.getHashPassword(dto.password()));
+        newUsuario.setSenha(hashService.getHashSenha(dto.senha()));
 
         newUsuario.setPerfil(Perfil.valueOf(1));
 
@@ -56,51 +56,58 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioResponseDTO insert(UsuarioDTO dto) {
-        if(dto.email() == null || dto.email().isEmpty() || dto.password() == null || dto.password().isEmpty()) {
-            throw new ValidationException("400", "Email e senha não podem estar em branco");
-        }
-
-        if(Perfil.valueOf(dto.profile()) == null){
-            throw new ValidationException("400", "O tipo de perfil não pode ser nulo");
-        }
-
-        Usuario newUsuario = new Usuario();
-
-        newUsuario.setUsername(dto.username());
-        newUsuario.setEmail(dto.email());
-
-        newUsuario.setPerfil(Perfil.valueOf(dto.profile()));
-
-        newUsuario.setSenha(hashService.getHashPassword(dto.password()));
-
-        repository.persist(newUsuario);
-
-        return UsuarioResponseDTO.valueOf(newUsuario);
+public UsuarioResponseDTO insert(UsuarioDTO dto) {
+    if(dto.email() == null || dto.email().isEmpty() || dto.senha() == null || dto.senha().isEmpty()) {
+        throw new ValidationException("400", "Email e senha não podem estar em branco");
     }
 
-    @Override
-    @Transactional
-    public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
-        if(repository.findById(id) == null){
-            throw new NotFoundException("Usuario não encontrado");
-        }
 
-        if(dto.email() == null || dto.email().isEmpty() || dto.password() == null || dto.password().isEmpty()) {
-            throw new ValidationException("400", "Email e senha não podem estar em branco");
-        }
-
-        if(Perfil.valueOf(dto.profile()) == null){
-            throw new ValidationException("400", "O tipo de perfil não pode ser nulo");
-        }
-
-        Usuario usuario = repository.findById(id);
-        usuario.setUsername(dto.username());
-        usuario.setEmail(dto.email());
-        usuario.setSenha(hashService.getHashPassword(dto.password()));
-
-        return UsuarioResponseDTO.valueOf(usuario);
+    if(Perfil.valueOf(dto.perfil().getId()) == null){
+        throw new ValidationException("400", "O tipo de perfil não pode ser nulo");
     }
+
+    Usuario newUsuario = new Usuario();
+
+    newUsuario.setNome(dto.nome());
+    newUsuario.setCpf(dto.cpf());
+    newUsuario.setUsername(dto.username());
+    newUsuario.setEmail(dto.email());
+
+
+    newUsuario.setSenha(hashService.getHashSenha(dto.senha()));
+    
+    newUsuario.setPerfil(Perfil.valueOf(dto.perfil().getId()));
+
+    repository.persist(newUsuario);
+
+    return UsuarioResponseDTO.valueOf(newUsuario);
+}
+
+
+@Override
+@Transactional
+public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
+    if(repository.findById(id) == null){
+        throw new NotFoundException("Usuario não encontrado");
+    }
+
+    if(dto.email() == null || dto.email().isEmpty() || dto.senha() == null || dto.senha().isEmpty()) {
+        throw new ValidationException("400", "Email e senha não podem estar em branco");
+    }
+
+    
+    if(Perfil.valueOf(dto.perfil().getId()) == null){
+        throw new ValidationException("400", "O tipo de perfil não pode ser nulo");
+    }
+
+    Usuario usuario = repository.findById(id);
+    usuario.setUsername(dto.username());
+    usuario.setEmail(dto.email());
+    usuario.setSenha(hashService.getHashSenha(dto.senha()));
+
+    return UsuarioResponseDTO.valueOf(usuario);
+}
+
 
     @Override
     @Transactional
@@ -137,8 +144,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioResponseDTO findByEmailSenha(String email, String password) {
-        Usuario usuario = repository.findByEmailSenha(email, password);
+    public UsuarioResponseDTO findByEmailSenha(String email, String senha) {
+        Usuario usuario = repository.findByEmailSenha(email, senha);
         if (usuario == null) 
             throw new ValidationException("login", "Login ou senha inválido");
         

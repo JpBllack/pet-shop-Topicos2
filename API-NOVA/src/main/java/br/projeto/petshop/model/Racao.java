@@ -1,9 +1,20 @@
 package br.projeto.petshop.model;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+    import jakarta.persistence.ManyToOne;
+    import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+    import jakarta.persistence.InheritanceType;
 
-public class Racao {
+
+    @Entity
+    @Inheritance(strategy = InheritanceType.JOINED)
+    public class Racao {
+
+    @Id
+    private Long id;
+
+    
     private String sabor;
 
     @ManyToOne

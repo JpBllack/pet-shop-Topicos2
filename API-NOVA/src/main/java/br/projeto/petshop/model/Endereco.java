@@ -22,8 +22,8 @@ public class Endereco extends DefaultEntity{
     private String cep;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "usuario_endereco")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     public Usuario getUsuario() {

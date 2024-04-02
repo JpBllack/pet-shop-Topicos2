@@ -76,7 +76,6 @@ public class ConsultaServiceImpl implements ConsultaService {
             // Atualiza os campos da consulta com os dados do DTO
             consulta.setData(consultaDTO.data());
             consulta.setMotivo(consultaDTO.motivo());
-            // Supondo que o ID do veterinário seja uma String
             Veterinario veterinario = new Veterinario();
             veterinario.setId(consultaDTO.veterinario());
             consulta.setVeterinario(veterinario);
