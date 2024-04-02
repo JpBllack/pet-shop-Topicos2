@@ -4,6 +4,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.UsuarioDTO;
+import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.service.UsuarioService;
 import br.projeto.petshop.validation.ValidationException;
 import jakarta.annotation.security.RolesAllowed;
@@ -87,13 +88,20 @@ public class UserResourse {
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
-
+    
     @GET
     //@RolesAllowed({"Admin"})
-    public Response findAll(){
-        try{
+    public Response findAll() {
+        try {
             LOG.info("Buscando todos os usuarios");
-            return Response.ok(service.findAll()).build();
+            UsuarioResponseDTO[] usuarios = service.findAll().toArray(new UsuarioResponseDTO[0]);
+            if (usuarios.length == 0) {
+                LOG.info("Nenhum usuário encontrado");
+                return Response.status(Status.NOT_FOUND).entity("Nenhum usuário encontrado").build();
+            } else {
+                LOG.info("Retornando todos os usuários");
+                return Response.ok(usuarios).build();
+            }
         } catch(NotFoundException e) {
             LOG.error("Usuarios não encontrados");
             e.printStackTrace();
@@ -101,6 +109,8 @@ public class UserResourse {
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
+
+
 
     @GET
     //@RolesAllowed({"Admin"})
