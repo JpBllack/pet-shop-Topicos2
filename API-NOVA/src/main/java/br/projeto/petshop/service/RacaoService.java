@@ -13,7 +13,7 @@ public interface RacaoService {
 
     List<RacaoResponseDTO> getBySabor(String sabor);
 
-    Response update(long id, RacaoDTO racaoDTO);
+    /* Response update(long id, RacaoDTO racaoDTO); */
 
     Response insert(RacaoDTO racaoDTO);
 

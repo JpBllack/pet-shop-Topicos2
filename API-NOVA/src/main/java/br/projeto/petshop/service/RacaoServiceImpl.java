@@ -8,7 +8,9 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class RacaoServiceImpl implements RacaoService {
 
     @Inject
@@ -64,7 +66,7 @@ public class RacaoServiceImpl implements RacaoService {
         return new RacaoResponseDTO(racao.getId(), racao.getSabor(), racao.getAnimal().getNome());
     }
 
-    @Override
+   /*  @Override
 public Response update(long id, RacaoDTO racaoDTO) {
     Racao racao = racaoRepository.findById(id);
     if (racao != null) {
@@ -77,7 +79,7 @@ public Response update(long id, RacaoDTO racaoDTO) {
         return Response.ok().build();
     } else {
         return Response.status(Response.Status.NOT_FOUND).build();
-    }
-}
+    } 
+}*/
 
 }

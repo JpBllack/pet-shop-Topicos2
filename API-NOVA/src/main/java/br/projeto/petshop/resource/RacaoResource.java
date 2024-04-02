@@ -40,13 +40,13 @@ public class RacaoResource {
         return Response.status(response.getStatus()).build();
     }
 
-    @PUT
+   /*  @PUT
     @Path("/{id}")
     public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) {
         Response response = racaoService.update(id, racaoDTO);
         return Response.status(response.getStatus()).build();
     }
-
+ */
     @DELETE
     @Path("/{id}")
     public Response deleteRacao(@PathParam("id") long id) {
