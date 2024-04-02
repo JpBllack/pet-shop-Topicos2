@@ -1,4 +1,4 @@
-package br.projeto.petshop.service;
+/* package br.projeto.petshop.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -107,3 +107,4 @@ public class VeterinarioServiceImpl implements VeterinarioService {
         throw new UnsupportedOperationException("Unimplemented method 'findByLoginAndSenha'");
     }
 }
+ */

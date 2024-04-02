@@ -1,6 +1,5 @@
 package br.projeto.petshop.service;
 
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 
 import java.util.Collection;

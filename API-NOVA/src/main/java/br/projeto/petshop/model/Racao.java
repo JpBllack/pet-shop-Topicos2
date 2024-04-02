@@ -2,17 +2,13 @@ package br.projeto.petshop.model;
 
     import jakarta.persistence.ManyToOne;
     import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
+    import jakarta.persistence.Inheritance;
     import jakarta.persistence.InheritanceType;
 
 
     @Entity
     @Inheritance(strategy = InheritanceType.JOINED)
-    public class Racao {
-
-    @Id
-    private Long id;
+    public class Racao extends DefaultEntity {
 
     
     private String sabor;

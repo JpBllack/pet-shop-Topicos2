@@ -1,4 +1,4 @@
-package br.projeto.petshop.resource;
+/* package br.projeto.petshop.resource;
 
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -65,3 +65,4 @@ public class VeterinarioResource {
     }
 
 }
+ */

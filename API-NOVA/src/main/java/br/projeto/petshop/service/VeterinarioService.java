@@ -1,4 +1,4 @@
-package br.projeto.petshop.service;
+/* package br.projeto.petshop.service;
 
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
@@ -26,3 +26,4 @@ public interface VeterinarioService {
     Response delete(@PathParam("id") String id);
 
 }
+ */
