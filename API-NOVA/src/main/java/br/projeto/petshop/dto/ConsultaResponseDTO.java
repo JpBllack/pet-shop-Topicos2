@@ -10,11 +10,10 @@ public record ConsultaResponseDTO(
     Date data,
     String motivo,
     Usuario veterinario,
-    Pet pet,
-    Usuario usuario
+    Pet pet
 ) {
     public static ConsultaResponseDTO valueOf(Consulta consulta){
-        return new ConsultaResponseDTO(consulta.getData(), consulta.getMotivo(), consulta.getVeterinario(), consulta.getPet(), consulta.getUsuario());
+        return new ConsultaResponseDTO(consulta.getData(), consulta.getMotivo(), consulta.getVeterinario(), consulta.getPet());
     }
     
 }
