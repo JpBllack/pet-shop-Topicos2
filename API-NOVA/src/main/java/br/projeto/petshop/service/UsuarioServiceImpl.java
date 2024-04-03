@@ -56,7 +56,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-public UsuarioResponseDTO insert(UsuarioDTO dto) {
+    public UsuarioResponseDTO insert(UsuarioDTO dto) {
     if(dto.email() == null || dto.email().isEmpty() || dto.senha() == null || dto.senha().isEmpty()) {
         throw new ValidationException("400", "Email e senha não podem estar em branco");
     }

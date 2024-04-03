@@ -5,12 +5,11 @@ import java.util.Date;
 import br.projeto.petshop.model.Consulta;
 import br.projeto.petshop.model.Pet;
 import br.projeto.petshop.model.Usuario;
-import br.projeto.petshop.model.Veterinario;
 
 public record ConsultaResponseDTO(
     Date data,
     String motivo,
-    Veterinario veterinario,
+    Usuario veterinario,
     Pet pet,
     Usuario usuario
 ) {

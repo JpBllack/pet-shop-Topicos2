@@ -7,34 +7,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 
-
-
-    @Entity
-    @Inheritance(strategy = InheritanceType.JOINED)
-    public class Consulta extends DefaultEntity {
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Consulta extends DefaultEntity {
 
     private Date data;
     private String motivo;
     @ManyToOne
-    private Usuario usuario;
-    @ManyToOne
-    private Veterinario veterinario;
+    private Usuario veterinario;
     @ManyToOne
     private Pet pet;
 
-
-    public Consulta(Date data, String motivo, Usuario usuario, Veterinario veterinario, Pet pet) {
+    public Consulta(Date data, String motivo, Usuario veterinario, Pet pet) {
         this.data = data;
         this.motivo = motivo;
-        this.usuario = usuario;
         this.veterinario = veterinario;
         this.pet = pet;
     }
 
-
     public Consulta() {
     }
-
 
     public Date getData() {
         return data;
@@ -52,33 +44,20 @@ import jakarta.persistence.InheritanceType;
         this.motivo = motivo;
     }
 
-    public Veterinario getVeterinario() {
-        return veterinario;
-    }
-
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
-    }
-
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-
     public Pet getPet() {
         return pet;
     }
-
 
     public void setPet(Pet pet) {
         this.pet = pet;
     }
 
-    
+    public Usuario getVeterinario() {
+        return veterinario;
+    }
+
+    public void setVeterinario(Usuario veterinario) {
+        this.veterinario = veterinario;
+    }
+
 }
