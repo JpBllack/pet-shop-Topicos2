@@ -19,6 +19,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.PetDTO;
+import br.projeto.petshop.dto.PetResponseDTO;
+
+import java.util.List;
 
 @Path("/pets")
 @Produces(MediaType.APPLICATION_JSON)
@@ -48,5 +51,83 @@ public class PetResource {
             return Response.status(Response.Status.NOT_FOUND).entity(error).build();
         }
     }
-    
+
+    @PUT
+    @Transactional
+    @Path("/update/{id}")
+    public Response update(@PathParam("id") Long id, PetDTO dto){
+        try{
+            return Response.ok(petService.atualizarPet(id, dto)).build();
+        } catch (ValidationException e){
+            LOG.error("Erro ao atualizar pet");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
+        } catch (NotFoundException e){
+            LOG.error("Pet não encontrado");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+    @DELETE
+    @Transactional
+    @Path("/delete/{id}")
+    public Response delete(@PathParam("id") Long id){
+        try{
+            petService.deletarPet(id);
+            return Response.noContent().build();
+        } catch (NotFoundException e){
+            LOG.error("Pet não encontrado");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+    @GET
+    @Transactional
+    @Path("/all")
+    public Response findAll(){
+        try{
+            List<PetResponseDTO> pets = petService.buscarTodosPets();
+            return Response.ok(pets).build();
+        } catch (NotFoundException e){
+            LOG.error("Pets não encontrados");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+    @GET
+    @Transactional
+    @Path("/byName/{nome}")
+    public Response findByName(@PathParam("nome") String nome){
+        try{
+            PetResponseDTO pet = petService.buscarPetPorNome(nome);
+            return Response.ok(pet).build();
+        } catch (NotFoundException e){
+            LOG.error("Pet não encontrado");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+    @GET
+    @Transactional
+    @Path("/byId/{id}")
+    public Response findById(@PathParam("id") Long id){
+        try{
+            PetResponseDTO pet = petService.buscarPetPorId(id);
+            return Response.ok(pet).build();
+        } catch (NotFoundException e){
+            LOG.error("Pet não encontrado");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
 }
