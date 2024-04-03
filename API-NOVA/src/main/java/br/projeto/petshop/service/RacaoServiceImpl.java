@@ -1,85 +1,88 @@
 package br.projeto.petshop.service;
 
-import br.projeto.petshop.dto.RacaoDTO;
-import br.projeto.petshop.dto.RacaoResponseDTO;
-import br.projeto.petshop.model.Racao;
-import br.projeto.petshop.repository.RacaoRepository;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.core.Response;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import br.projeto.petshop.dto.RacaoDTO;
+import br.projeto.petshop.model.Idade;
+import br.projeto.petshop.model.Peso;
+import br.projeto.petshop.model.Racao;
+import br.projeto.petshop.model.TipoAnimal;
+import br.projeto.petshop.repository.RacaoRepository;
+import br.projeto.petshop.repository.TipoAnimalRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.NotFoundException;
+import br.projeto.petshop.validation.ValidationException;
 
 @ApplicationScoped
 public class RacaoServiceImpl implements RacaoService {
 
     @Inject
-    RacaoRepository racaoRepository;
+    RacaoRepository repository;
 
     @Override
-    public List<RacaoResponseDTO> getAll() {
-        return racaoRepository.findAll().stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
+    public List<RacaoDTO> getAll() {
+        if(repository.listAll().isEmpty()) {
+            throw new NotFoundException("Não há rações");
+        }
+        return repository.listAll().stream().map(RacaoDTO::valueOf).toList();
     }
 
     @Override
-    public Response insert(RacaoDTO racaoDTO) {
+    public RacaoDTO getById(long id) {
+        Racao racao = repository.findById(id);
+        if (racao == null) {
+            throw new NotFoundException("Ração não encontrada");
+        }
+        return RacaoDTO.valueOf(racao);
+    }
+
+    @Override
+    public List<RacaoDTO> getBySabor(String sabor) {
+        List<Racao> racoes = repository.findBySabor(sabor);
+        if (racoes.isEmpty()) {
+            throw new NotFoundException("Nenhuma ração encontrada com o sabor especificado");
+        }
+        return racoes.stream().map(RacaoDTO::valueOf).toList();
+    }
+
+    @Override
+    public void insert(RacaoDTO racaoDTO) {
+        if (repository.existsBySabor(racaoDTO.sabor())) {
+            throw new ValidationException("400", "A ração com este sabor já existe");
+        }
+    
+        // Cria uma instância de TipoAnimalRepository
+        TipoAnimalRepository tipoAnimalRepository = new TipoAnimalRepository();
+    
+        // Verifica se o TipoAnimal já existe no banco de dados
+        TipoAnimal tipoAnimal = tipoAnimalRepository.findByNome(racaoDTO.animal().nome());
+        if (tipoAnimal == null) {
+            // Se o TipoAnimal não existir, cria uma nova instância e persiste
+            tipoAnimal = new TipoAnimal();
+            tipoAnimal.setNome(racaoDTO.animal().nome());
+            tipoAnimalRepository.persist(tipoAnimal);
+        }
+    
         Racao racao = new Racao();
-        racao.setId(racaoDTO.id());
         racao.setSabor(racaoDTO.sabor());
-        racao.setAnimal(racaoDTO.animal());
-        racao.setPeso(racaoDTO.peso());
-        racao.setIdade(racaoDTO.idade());
-        racaoRepository.persist(racao);
-        return Response.status(Response.Status.CREATED).build();
+        racao.setAnimal(tipoAnimal);
+    
+        Peso peso = Peso.valueOf(racaoDTO.peso());
+        racao.setPeso(peso);
+        Idade idade = Idade.valueOf(racaoDTO.idade());
+        racao.setIdade(idade);
+    
+        // Agora que o TipoAnimal está persistido, podemos salvar a Racao
+        repository.persist(racao);
     }
+    
 
-   
 
     @Override
-    public RacaoResponseDTO getById(long id) {
-        Racao racao = racaoRepository.findById(id);
-        if (racao != null) {
-            return convertToResponseDTO(racao);
+    public void delete(long id) {
+        if (!repository.deleteById(id)) {
+            throw new NotFoundException("Ração não encontrada para exclusão");
         }
-        return null;
     }
-
-    @Override
-    public List<RacaoResponseDTO> getBySabor(String sabor) {
-        return racaoRepository.findBySabor(sabor).stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
-    }
-    @Override
-    public Response delete(long id) {
-        Racao racao = racaoRepository.findById(id);
-        if (racao != null) {
-            racaoRepository.delete(racao);
-            return Response.ok().build();
-        }
-        return Response.status(Response.Status.NOT_FOUND).build();
-    }
-
-    private RacaoResponseDTO convertToResponseDTO(Racao racao) {
-        return new RacaoResponseDTO(racao.getId(), racao.getSabor(), racao.getAnimal().getNome());
-    }
-
-   /*  @Override
-public Response update(long id, RacaoDTO racaoDTO) {
-    Racao racao = racaoRepository.findById(id);
-    if (racao != null) {
-        racao.setSabor(racaoDTO.sabor());
-        racao.setAnimal(racaoDTO.animal());
-        racao.setPeso(racaoDTO.peso());
-        racao.setIdade(racaoDTO.idade());
-        
-        racaoRepository.persist(racao);
-        return Response.ok().build();
-    } else {
-        return Response.status(Response.Status.NOT_FOUND).build();
-    } 
-}*/
-
 }

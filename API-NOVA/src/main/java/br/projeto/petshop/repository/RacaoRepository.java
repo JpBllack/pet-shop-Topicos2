@@ -11,5 +11,7 @@ public class RacaoRepository implements PanacheRepository<Racao> {
         return list("sabor", sabor);
     }
     
-    // Outros métodos de persistência e consulta podem ser adicionados aqui
+    public boolean existsBySabor(String sabor) {
+        return find("sabor", sabor).firstResultOptional().isPresent();
+    }
 }

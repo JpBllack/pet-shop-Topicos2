@@ -1,21 +1,17 @@
 package br.projeto.petshop.service;
 
 import br.projeto.petshop.dto.RacaoDTO;
-import br.projeto.petshop.dto.RacaoResponseDTO;
-import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 public interface RacaoService {
 
-    List<RacaoResponseDTO> getAll();
+    List<RacaoDTO> getAll();
 
-    RacaoResponseDTO getById(long id);
+    RacaoDTO getById(long id);
 
-    List<RacaoResponseDTO> getBySabor(String sabor);
+    List<RacaoDTO> getBySabor(String sabor);
 
-    /* Response update(long id, RacaoDTO racaoDTO); */
+    void insert(RacaoDTO racaoDTO);
 
-    Response insert(RacaoDTO racaoDTO);
-
-    Response delete(long id);
+    void delete(long id);
 }

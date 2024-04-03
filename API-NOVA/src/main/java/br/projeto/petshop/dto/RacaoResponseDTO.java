@@ -1,19 +1,26 @@
-package br.projeto.petshop.dto;
+/* package br.projeto.petshop.dto;
+
+import br.projeto.petshop.model.Idade;
+import br.projeto.petshop.model.Peso;
 
 public class RacaoResponseDTO {
     private Long id;
     private String sabor;
     private String tipoAnimal;
+    private Peso peso;
+    private Idade idade;
 
     // Construtores, getters e setters
 
     public RacaoResponseDTO() {
     }
 
-    public RacaoResponseDTO(Long id, String sabor, String tipoAnimal) {
+    public RacaoResponseDTO(Long id, String sabor, String tipoAnimal, Peso peso, Idade idade) {
         this.id = id;
         this.sabor = sabor;
         this.tipoAnimal = tipoAnimal;
+        this.peso = peso;
+        this.idade = idade;
     }
 
     public Long getId() {
@@ -40,3 +47,4 @@ public class RacaoResponseDTO {
         this.tipoAnimal = tipoAnimal;
     }
 }
+ */
