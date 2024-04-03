@@ -37,7 +37,7 @@ public class PetResource {
     @Path("/create")
     public Response insert(PetDTO dto){
         try{
-            return Response.status(Status.CREATED).entity(petService.criarConsulta(petDTO)).build();
+            return Response.status(Status.CREATED).entity(petService.criarPet(dto.build);
         } catch (ValidationException e){
             LOG.error("Erro ao criar consulta");
             e.printStackTrace();
