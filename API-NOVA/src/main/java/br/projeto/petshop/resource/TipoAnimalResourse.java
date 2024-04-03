@@ -1,16 +1,11 @@
 package br.projeto.petshop.resource;
 
-import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
-import br.projeto.petshop.dto.UsuarioDTO;
+import br.projeto.petshop.dto.TipoAnimalDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
-import br.projeto.petshop.service.UsuarioService;
+import br.projeto.petshop.service.TipoAnimalService;
 import br.projeto.petshop.validation.ValidationException;
-import jakarta.annotation.security.RolesAllowed;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.Status;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -22,32 +17,33 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 import br.projeto.petshop.application.Error;
 
-@Path("/users")
+@Path("/tipos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserResourse {
+public class TipoAnimalResourse {
 
     @Inject
-    UsuarioService service;
-
-    @Inject
-    JsonWebToken jwt;
+    TipoAnimalService service;
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @POST
-    @Path("/insert/user/")
-    //@RolesAllowed({"Admin"})
-    public Response insert(UsuarioDTO dto){
-        try{
-            LOG.info("Inserindo um usuario");
+    @Transactional
+    @Path("/insert")
+    public Response insert(TipoAnimalDTO dto) {
+        try {
+            LOG.info("Inserindo um tipo");
             return Response.status(Status.CREATED).entity(service.insert(dto)).build();
-        } catch(ValidationException e){
-            LOG.error("Erro ao inserir o usuario");
+        } catch (ValidationException e) {
+            LOG.error("Erro ao inserir o tipo");
             e.printStackTrace();
+            ;
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
         }
@@ -55,15 +51,13 @@ public class UserResourse {
 
     @PUT
     @Transactional
-    @Path("/update/user/{id}")
-    //@RolesAllowed({"Admin"})
-    public Response update(@PathParam("id") Long id, UsuarioDTO dto){
-
-        try{
-            LOG.infof("Update em usuario %s", dto.email());
+    @Path("/update/{id}")
+    public Response update(@PathParam("id") Long id, TipoAnimalDTO dto) {
+        try {
+            LOG.infof("Update em %s", dto.nome());
             service.update(id, dto);
             return Response.noContent().build();
-        } catch(NotFoundException e){
+        } catch (NotFoundException e) {
             LOG.error("Update não concluido");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
@@ -73,54 +67,48 @@ public class UserResourse {
 
     @DELETE
     @Transactional
-    @Path("/delete/user/{id}")
-    //@RolesAllowed({"Admin"})
-    public Response delete(@PathParam("id") Long id){
-
-        try{
-            LOG.info("Deletando usuario");
+    @Path("/delete/{id}")
+    public Response delete(@PathParam("id") Long id) {
+        try {
+            LOG.info("Deletando tipo");
             service.delete(id);
             return Response.noContent().build();
-        } catch(NotFoundException e){
+        } catch (NotFoundException e) {
             LOG.error("Deleção não concluido");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
-    
+
     @GET
-    //@RolesAllowed({"Admin"})
     public Response findAll() {
         try {
-            LOG.info("Buscando todos os usuarios");
-            UsuarioResponseDTO[] usuarios = service.findAll().toArray(new UsuarioResponseDTO[0]);
-            if (usuarios.length == 0) {
+            LOG.info("Buscando todos os tipos");
+            TipoAnimalDTO[] tipos = service.getAll().toArray(new TipoAnimalDTO[0]);
+            if (tipos.length == 0) {
                 LOG.info("Nenhum usuário encontrado");
-                return Response.status(Status.NOT_FOUND).entity("Nenhum usuário encontrado").build();
+                return Response.status(Status.NOT_FOUND).entity("Nenhum tipo encontrado").build();
             } else {
-                LOG.info("Retornando todos os usuários");
-                return Response.ok(usuarios).build();
+                LOG.info("Retornando todos os tipos");
+                return Response.ok(tipos).build();
             }
-        } catch(NotFoundException e) {
-            LOG.error("Usuarios não encontrados");
+        } catch (NotFoundException e) {
+            LOG.error("tipos não encontrados");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
 
-
-
     @GET
-    //@RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         try{
-            LOG.infof("Buscando usuario de id %s", id);
+            LOG.infof("Buscando tipo de id %s", id);
             return Response.ok(service.findById(id)).build();
         } catch(NotFoundException e) {
-            LOG.error("Usuario não encontrado");
+            LOG.error("Tipo não encontrado");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
@@ -128,17 +116,17 @@ public class UserResourse {
     }
 
     @GET
-    //@RolesAllowed({"Admin"})
-    @Path("/search/name/{username}")
-    public Response findByUsername(@PathParam("username") String username){
+    @Path("/search/{nome}")
+    public Response findByNome(@PathParam("nome") String nome){
         try{
-            LOG.infof("Buscando %s", username);
-            return Response.ok(service.findByUsername(username)).build();
+            LOG.infof("Buscando %s", nome);
+            return Response.ok(service.findByNome(nome)).build();
         } catch(NotFoundException e) {
-            LOG.error("Usuario não encontrado");
+            LOG.error("Tipo não encontrado");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
+
 }

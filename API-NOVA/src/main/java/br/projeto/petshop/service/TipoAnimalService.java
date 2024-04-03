@@ -10,7 +10,7 @@ public interface TipoAnimalService {
 
     public TipoAnimalDTO insert(TipoAnimalDTO dto);
 
-    public TipoAnimalDTO update(TipoAnimalDTO dto);
+    public TipoAnimalDTO update(Long id, TipoAnimalDTO dto);
 
     public void delete(Long id);
 

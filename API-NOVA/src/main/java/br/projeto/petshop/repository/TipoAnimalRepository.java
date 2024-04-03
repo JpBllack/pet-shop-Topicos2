@@ -8,10 +8,14 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class TipoAnimalRepository implements PanacheRepository<TipoAnimal>{
-    public List<TipoAnimal> findByNome(String nome){
+    public TipoAnimal findByNome(String nome){
         if (nome == null)
             return null;
-        return find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase()+"%").list();
+        return find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase()+"%").firstResult();
     }
     
+    //verificar se já existe
+    public boolean existsByNome(String nome) {
+        return find("nome", nome).count() > 0;
+    }
 }
