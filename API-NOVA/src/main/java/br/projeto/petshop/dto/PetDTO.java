@@ -5,7 +5,7 @@ import br.projeto.petshop.model.TipoAnimal;
 
 public record PetDTO (
     String nome,
-    Integer anoNascimentoInteger,
+    Integer anoNascimento,
     TipoAnimal tipoAnimal,
     Sexo sexo
 ){

@@ -6,26 +6,21 @@ import java.util.Collection;
 import java.util.List;
 
 import br.projeto.petshop.dto.PetDTO;
+import br.projeto.petshop.dto.PetResponseDTO;
 import br.projeto.petshop.model.Pet;
 
 public interface PetService {
 
-    List<PetDTO> buscarTodosPets();
+    public PetResponseDTO criarPet(PetDTO dto);
 
-    PetDTO buscarPetPorNome(String nome);
+    public PetResponseDTO atualizarPet(Long id, PetDTO dto);
 
-    PetDTO buscarPetPorId(Long id);
+    public void deletarPet(Long id);
 
-    Response criarPet(Pet pet);
+    public List<PetResponseDTO> buscarTodosPets();
 
-    Response atualizarPet(PetDTO petDTO, Long id);
+    public PetResponseDTO buscarPetPorNome(String nome);
 
-    Response deletarPet(Long id);
-
-    Collection<PetDTO> getAllPets();
-
-    Pet getPetById(Long id);
-
-    void updatePet(Pet pet);
+    public PetResponseDTO buscarPetPorId(Long id);
 
 }

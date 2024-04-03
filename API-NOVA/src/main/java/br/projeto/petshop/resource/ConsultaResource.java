@@ -7,7 +7,6 @@ import br.projeto.petshop.validation.ValidationException;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -40,6 +39,7 @@ public class ConsultaResource {
 
     @POST
     @Transactional
+    @Path("/create")
     //@PermitAll
     public Response criarConsulta(ConsultaDTO consultaDTO) {
         try{
@@ -60,7 +60,7 @@ public class ConsultaResource {
     @PUT
     @Transactional
     //@RolesAllowed({"Admin"})
-    @Path("/{id}")
+    @Path("/atualizar/{id}")
     public Response atualizarConsulta(@PathParam("id") long id, ConsultaDTO consultaDTO) {
         try{
             LOG.info("Atualizando consulta");
@@ -76,7 +76,7 @@ public class ConsultaResource {
 
     @GET
     //@PermitAll
-    @Path("/{id}")
+    @Path("/search/{id}")
     public Response buscarConsultaPorId(@PathParam("id") long id, ConsultaDTO dto) {
         try {
             LOG.infof("Update em consulta");
@@ -114,7 +114,7 @@ public class ConsultaResource {
     @DELETE
     @Transactional
     //@RolesAllowed({"Admin"})
-    @Path("/{id}")
+    @Path("/delete/{id}")
     public Response deletarConsulta(@PathParam("id") long id) {
         try {
             LOG.info("Deletando consulta");

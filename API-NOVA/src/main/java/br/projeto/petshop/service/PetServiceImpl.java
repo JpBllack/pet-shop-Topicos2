@@ -2,11 +2,15 @@ package br.projeto.petshop.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import br.projeto.petshop.validation.ValidationException;
 import jakarta.transaction.Transactional;
 import br.projeto.petshop.dto.PetDTO;
+import br.projeto.petshop.dto.PetResponseDTO;
+import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.Pet;
 import br.projeto.petshop.repository.PetRepository;
-
+import br.projeto.petshop.repository.TipoAnimalRepository;
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import java.util.Collection;
 import java.util.List;
@@ -16,86 +20,90 @@ import java.util.stream.Collectors;
 public class PetServiceImpl implements PetService {
 
     @Inject
-    private PetRepository petRepository; 
+    private PetRepository petRepository;
+
+    @Inject
+    TipoAnimalRepository tipoAnimalRepository;
 
     @Override
-    public List<PetDTO> buscarTodosPets() {
-        List<Pet> pets = petRepository.buscarTodos(); 
-        return pets.stream()
-                .map(this::converterParaDTO)
-                .collect(Collectors.toList());
+    public PetResponseDTO criarPet(PetDTO dto) {
+        if(dto.anoNascimento() == null){
+            throw new ValidationException("400", "O ano de nascimento deve ser informado");
+        } else if(dto.nome().isBlank() || dto.nome().isEmpty()){
+            throw new ValidationException("400", "O nome do pet deve ser informado");
+        } else if(dto.tipoAnimal() == null){
+            throw new ValidationException("400", "O tipo de animal deve ser informado");
+        } else if(dto.sexo() == null){
+            throw new ValidationException("400", "O sexo do animal deve ser informado");
+        }
+
+        Pet pet = new Pet();
+
+        pet.setNome(dto.nome());
+        pet.setAnoNascimento(dto.anoNascimento());
+        pet.setTipoAnimal(tipoAnimalRepository.findById(dto.tipoAnimal().getId()));
+        pet.setSexo(dto.sexo());
+
+        petRepository.persist(pet);
+
+        return PetResponseDTO.valueof(pet);
+
     }
 
     @Override
-    public PetDTO buscarPetPorNome(String nome) {
-        Pet pet = petRepository.buscarPorNome(nome); 
-        return converterParaDTO(pet);
+    public PetResponseDTO atualizarPet(Long id, PetDTO dto) {
+        if(dto.anoNascimento() == null){
+            throw new ValidationException("400", "O ano de nascimento deve ser informado");
+        } else if(dto.nome().isBlank() || dto.nome().isEmpty()){
+            throw new ValidationException("400", "O nome do pet deve ser informado");
+        } else if(dto.tipoAnimal() == null){
+            throw new ValidationException("400", "O tipo de animal deve ser informado");
+        } else if(dto.sexo() == null){
+            throw new ValidationException("400", "O sexo do animal deve ser informado");
+        } else if(petRepository.findById(id) == null){
+            throw new NotFoundException("Pet não encontrado");
+        }
+
+        Pet pet = petRepository.findById(id);
+
+        pet.setNome(dto.nome());
+        pet.setAnoNascimento(dto.anoNascimento());
+        pet.setTipoAnimal(tipoAnimalRepository.findById(dto.tipoAnimal().getId()));
+        pet.setSexo(dto.sexo());
+
+        return PetResponseDTO.valueof(pet);
     }
 
     @Override
-    public PetDTO buscarPetPorId(Long id) {
-        Pet pet = petRepository.buscarPorId(id); 
-        return converterParaDTO(pet);
-    }
-
-    @Override
-    @Transactional
-    public Response criarPet(Pet pet) {
-        petRepository.salvar(pet); 
-        return Response.status(Response.Status.CREATED).build();
-    }
-
-    @Override
-    @Transactional
-    public Response atualizarPet(PetDTO petDTO, Long id) {
-        Pet petExistente = petRepository.buscarPorId(id);
-        if (petExistente != null) {
-            petExistente.setNome(petDTO.nome()); 
-           
-            petRepository.atualizar(petExistente);
-            return Response.ok().build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    public void deletarPet(Long id) {
+        if(!petRepository.deleteById(id)){
+            throw new NotFoundException("Pet não encontrado");
         }
     }
 
     @Override
-    @Transactional
-    public Response deletarPet(Long id) {
-        Pet pet = petRepository.buscarPorId(id);
-        if (pet != null) {
-            petRepository.remover(pet); 
-            return Response.ok().build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    public List<PetResponseDTO> buscarTodosPets() {
+        if(petRepository.listAll().stream().map(e -> PetResponseDTO.valueof(e)).toList().isEmpty()){
+            throw new NotFoundException("Pet não encontrado");
         }
+        return petRepository.listAll().stream().map(e -> PetResponseDTO.valueof(e)).toList();
     }
 
     @Override
-    public Collection<PetDTO> getAllPets() {
-        List<Pet> pets = petRepository.buscarTodos(); 
-        return pets.stream()
-                .map(this::converterParaDTO)
-                .collect(Collectors.toList());
+    public PetResponseDTO buscarPetPorNome(String nome) {
+        if(petRepository.findByNome(nome) == null) {
+            throw new NotFoundException("Pet não encontrado");
+        }
+        return PetResponseDTO.valueof(petRepository.findByNome(nome));
     }
 
     @Override
-    public Pet getPetById(Long id) {
-        return petRepository.buscarPorId(id); 
-    }
+    public PetResponseDTO buscarPetPorId(Long id) {
+        if(petRepository.findById(id) == null){
+            throw new NotFoundException("Pet não encontrado");
+        }
+        return PetResponseDTO.valueof(petRepository.findById(id));
+    } 
 
-    @Override
-    @Transactional
-    public void updatePet(Pet pet) {
-        petRepository.atualizar(pet); 
-    }
-
-    private PetDTO converterParaDTO(Pet pet) {
-        return new PetDTO(
-            pet.getNome(),
-            pet.getAnoNascimento(),
-            pet.getTipoAnimal(),
-            pet.getSexo()
-        );
-    }
+    
 }
