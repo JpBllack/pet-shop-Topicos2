@@ -1,0 +1,79 @@
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Pets</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>nome</mat-label>
+                    <input matInput type="text" formControlName="nome">
+                    <mat-error *ngIf="formGroup.get('nome') 
+                                   && formGroup.get('nome')?.invalid
+                                   && formGroup.get('nome')?.touched">
+                        O nome é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de Animal</mat-label>
+                    <mat-select formControlName="animal" id="animal_id">
+                        <mat-option *ngFor="let tipoAnimal of tiposAnimais" [value]="tipoAnimal">
+                            {{ tipoAnimal.nome }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('animal') 
+                                   && formGroup.get('animal')?.invalid
+                                   && formGroup.get('animal')?.touched">
+                        O tipo de animal é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Peso</mat-label>
+                    <mat-select formControlName="peso" id="peso_id">
+                        <mat-option *ngFor="let peso of pesos" [value]="peso.id">
+                            {{ peso.label }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('peso') 
+                                   && formGroup.get('peso')?.invalid
+                                   && formGroup.get('peso')?.touched">
+                        O peso é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Idade</mat-label>
+                    <mat-select formControlName="idade" id="idade_id">
+                        <mat-option *ngFor="let idade of idades" [value]="idade.id">
+                            {{ idade.label }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('idade') 
+                                   && formGroup.get('idade')?.invalid
+                                   && formGroup.get('idade')?.touched">
+                        A idade é obrigatória.
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()"
+                    [disabled]="formGroup.invalid"> 
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                    routerLink="/racoes"> 
+                Cancelar 
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

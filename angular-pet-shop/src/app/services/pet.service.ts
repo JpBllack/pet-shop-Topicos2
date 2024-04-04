@@ -15,7 +15,7 @@ export class PetService{
         return this.httpClient.get<pet[]>(this.baseUrl);
     }
 
-    findById(id: number): Observable<pet>{
+    findById(id: string): Observable<pet>{
         return this.httpClient.get<pet>(`${this.baseUrl}/${id}`);
     }
 

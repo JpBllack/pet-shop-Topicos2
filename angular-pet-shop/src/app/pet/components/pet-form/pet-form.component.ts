@@ -1,14 +1,22 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { PetService } from "../../../services/pet.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { usuario } from "../../../models/Usuario";
 import { pet } from "../../../models/pet";
+import { NgIf } from "@angular/common";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSelectModule } from "@angular/material/select";
 
 @Component({
     selector: 'app-pet-form',
     standalone: true,
-    imports: [],
+    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
+        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule],
     templateUrl: './pet-form.component.html',
     styleUrl: './pet-form.component.css'
 })
@@ -36,7 +44,39 @@ export class PetFormComponent implements OnInit
         if(this.formGroup.valid){
             const pet = this.formGroup.value;
             if(pet.id == null){
-                this.petService.
+                this.petService.insert(pet).subscribe({
+                    next: () => {
+                        this.router.navigateByUrl('/pets');
+                    },
+                    error: (err) => {
+                        console.log('Erro ao incluir' + JSON.stringify(err));
+                    }
+                });
+            } else{
+                this.petService.update(pet).subscribe({
+                    next: () => {
+                        this.router.navigateByUrl('/pets');
+                    },
+                    error: (err) => {
+                        console.log('Erro ao editar' + JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    }
+
+    excluir(){
+        if(this.formGroup.valid){
+            const pet = this.formGroup.value;
+            if(pet.id != null){
+                this.petService.delete(pet).subscribe({
+                    next: () => {
+                        this.router.navigateByUrl('/pets');
+                    },
+                    error: (err) => {
+                        console.log('Erro ao Excluir' + JSON.stringify(err));
+                    }
+                });
             }
         }
     }
