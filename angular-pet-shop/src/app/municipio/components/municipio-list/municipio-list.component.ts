@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+
 import { municipio } from '../../../models/municipio.model';
 import { municipioService } from '../../../services/municipio.service';
 import { NgFor } from '@angular/common';
@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-municipio-list',

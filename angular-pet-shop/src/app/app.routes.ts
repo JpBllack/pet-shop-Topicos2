@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import { EstadoListComponent } from './components/estado/estado-list/estado-list.component';
-import { EstadoFormComponent } from './components/estado/estado-form/estado-form.component';
-import { estadoResolver } from './components/estado/resolver/estado-resolver';
-import { municipioFormComponent } from './components/municipio/municipio-form/municipio-form.component';
-import { municipioResolver } from './components/municipio/resolver/municipio-resolver';
-import { municipioListComponent } from './components/municipio/municipio-list/municipio-list.component';
-import { RacaoListComponent } from './components/racao/racao-list/racao-list.component'; 
+ 
+import { EstadoListComponent } from './estado/components/estado-list/estado-list.component';
+import { EstadoFormComponent } from './estado/components/estado-form/estado-form.component';
+import { estadoResolver } from './estado/resolver/estado-resolver';
+import { municipioListComponent } from './municipio/components/municipio-list/municipio-list.component';
+import { municipioFormComponent } from './municipio/components/municipio-form/municipio-form.component';
+import { RacaoListComponent } from './racao/components/racao-list/racao-list.component';
+import { municipioResolver } from './municipio/resolver/municipio-resolver';
 
 export const routes: Routes = [
     { path: 'estado', component: EstadoListComponent, title: 'Lista de Estados'},

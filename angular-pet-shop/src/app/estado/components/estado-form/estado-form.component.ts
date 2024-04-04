@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { EstadoService } from '../../../services/estado.service';
+
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Estado } from '../../../models/estado.model';
+import { Component } from '@angular/core';
+import { EstadoService } from '../../../services/estado.service';
 
 @Component({
   selector: 'app-estado-form',

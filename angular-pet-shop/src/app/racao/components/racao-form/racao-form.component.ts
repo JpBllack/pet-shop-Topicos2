@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RacaoService } from '../../../services/racao.serviçe';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Racao } from '../../../models/racao.model';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @Component({
   selector: 'app-racao-form',
+  standalone: true,
+  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule],
   templateUrl: './racao-form.component.html',
-  styleUrls: ['./racao-form.component.css']
+  styleUrl: './racao-form.component.css'
 })
 
 export class RacaoFormComponent implements OnInit {
