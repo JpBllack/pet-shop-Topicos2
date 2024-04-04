@@ -1,0 +1,65 @@
+<mat-toolbar color="primary" class="toolbar-title">Consulta</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Data</mat-label>
+                    <input matInput type="text" formControlName="data">
+                    <mat-error *ngIf="formGroup.get('data') 
+                                   && formGroup.get('data')?.invalid
+                                   && formGroup.get('data')?.touched">
+                        A data é obrigatória.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Motivo</mat-label>
+                    <input matInput type="text" formControlName="motivo">
+                    <mat-error *ngIf="formGroup.get('motivo') 
+                                   && formGroup.get('motivo')?.invalid
+                                   && formGroup.get('motivo')?.touched">
+                        O motivo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Veterinário</mat-label>
+                    <mat-select formControlName="veterinario" id="veterinario_id">
+                        <mat-option *ngFor="let veterinario of veterinarios" [value]="veterinario">
+                            {{veterinario.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Pet</mat-label>
+                    <mat-select formControlName="pet" id="pet_id">
+                        <mat-option *ngFor="let pet of pets" [value]="pet">
+                            {{pet.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()"
+                    [disabled]="formGroup.invalid"> 
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                    routerLink="/consultas"> 
+                Cancelar 
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

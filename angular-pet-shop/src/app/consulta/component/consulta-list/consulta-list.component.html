@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  <div class="flex-container">
+    <span class="toolbar-title">Controle de Consultas</span>
+    <button mat-fab color="accent" routerLink="/consultas/new">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<table mat-table [dataSource]="consultas" class="mat-elevation-z8">
+  <!-- Data Column -->
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <td mat-cell *matCellDef="let consulta"> {{ consulta.data | date:'dd/MM/yyyy' }} </td>
+  </ng-container>
+
+  <!-- Motivo Column -->
+  <ng-container matColumnDef="motivo">
+    <th mat-header-cell *matHeaderCellDef> Motivo </th>
+    <td mat-cell *matCellDef="let consulta"> {{ consulta.motivo }} </td>
+  </ng-container>
+
+  <!-- Veterinário Column -->
+  <ng-container matColumnDef="veterinario">
+    <th mat-header-cell *matHeaderCellDef> Veterinário </th>
+    <td mat-cell *matCellDef="let consulta"> {{ consulta.veterinario.nome }} </td>
+  </ng-container>
+
+  <!-- Pet Column -->
+  <ng-container matColumnDef="pet">
+    <th mat-header-cell *matHeaderCellDef> Pet </th>
+    <td mat-cell *matCellDef="let consulta"> {{ consulta.pet.nome }} </td>
+  </ng-container>
+
+  <!-- Ação Column -->
+  <ng-container matColumnDef="acao">
+    <th mat-header-cell *matHeaderCellDef> Ação </th>
+    <td mat-cell *matCellDef="let consulta">
+      <button mat-icon-button color="primary" routerLink="/consultas/edit/{{ consulta.id }}">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let consulta; columns: displayedColumns;"></tr>
+</table>
