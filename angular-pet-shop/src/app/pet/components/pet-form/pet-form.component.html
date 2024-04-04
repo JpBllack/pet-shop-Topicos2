@@ -28,31 +28,27 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>Peso</mat-label>
-                    <mat-select formControlName="peso" id="peso_id">
-                        <mat-option *ngFor="let peso of pesos" [value]="peso.id">
-                            {{ peso.label }}
+                    <mat-label>Usuario</mat-label>
+                    <mat-select formControlName="usuario" id="usuario">
+                        <mat-option *ngFor="let usuario of usuarios" [value]="usuario">
+                            {{ usuario.nome }}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('peso') 
-                                   && formGroup.get('peso')?.invalid
-                                   && formGroup.get('peso')?.touched">
-                        O peso é obrigatório.
+                    <mat-error *ngIf="formGroup.get('usuario') 
+                                   && formGroup.get('usuario')?.invalid
+                                   && formGroup.get('usuario')?.touched">
+                        O usuario é obrigatório.
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Idade</mat-label>
-                    <mat-select formControlName="idade" id="idade_id">
-                        <mat-option *ngFor="let idade of idades" [value]="idade.id">
-                            {{ idade.label }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="formGroup.get('idade') 
-                                   && formGroup.get('idade')?.invalid
-                                   && formGroup.get('idade')?.touched">
-                        A idade é obrigatória.
-                    </mat-error>
+                        <input matInput type="number" formControlName="anoNascimento">
+                        <mat-error *ngIf="formGroup.get('nome') 
+                                   && formGroup.get('anoNascimento')?.invalid
+                                   && formGroup.get('anoNascimento')?.touched">
+                        O ano de Nascimento é obrigatório.
+                        </mat-error>
                 </mat-form-field>
             </form>
         </mat-card-content>

@@ -7,6 +7,9 @@ import { municipioListComponent } from './municipio/components/municipio-list/mu
 import { municipioFormComponent } from './municipio/components/municipio-form/municipio-form.component';
 import { RacaoListComponent } from './racao/components/racao-list/racao-list.component';
 import { municipioResolver } from './municipio/resolver/municipio-resolver';
+import { PetListComponent } from './pet/components/pet-list/pet-list.component';
+import { PetFormComponent } from './pet/components/pet-form/pet-form.component';
+import { petResolver } from './pet/resolver/pet-resolver';
 
 export const routes: Routes = [
     { path: 'estado', component: EstadoListComponent, title: 'Lista de Estados'},
@@ -18,4 +21,8 @@ export const routes: Routes = [
     { path: 'municipios/edit/:id', component: municipioFormComponent, resolve: {municipio: municipioResolver}},
 
     { path: 'racao', component: RacaoListComponent, title: 'Lista de Rações' },
+
+    { path: 'pets', component: PetListComponent, title: 'Lista de Pets'},
+    { path: 'pets/new', component: PetFormComponent, title: 'Novo pet'},
+    { path: 'pets/edit/:id', component: PetFormComponent, resolve: {pet: petResolver}}
 ];
