@@ -7,7 +7,7 @@ import { Racao } from '../models/racao.model';
   providedIn: 'root'
 })
 export class RacaoService {
-  private apiUrl = 'http://localhost:8080/racoes';
+  private apiUrl = 'http://localhost:8080/racoes/all';
 
   constructor(private http: HttpClient) { }
 

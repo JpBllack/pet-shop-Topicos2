@@ -7,7 +7,7 @@ import { pet } from "../models/pet";
 
 export class PetService{
 
-    private baseUrl = 'http://localhost:8080/pets';
+    private baseUrl = 'http://localhost:8080/pets/all';
 
     constructor(private httpClient: HttpClient){}
 

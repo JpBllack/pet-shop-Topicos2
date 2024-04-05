@@ -26,11 +26,11 @@ export const routes: Routes = [
     { path: 'municipios/new', component: municipioFormComponent, title: 'Novo município'},
     { path: 'municipios/edit/:id', component: municipioFormComponent, resolve: {municipio: municipioResolver}},
 
-    { path: 'racao', component: RacaoListComponent, title: 'Lista de Rações' },
-    { path: 'racao/new', component: RacaoFormComponent, title: 'Nova Ração' },
-    { path: 'racao/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver } },
+    { path: 'racoes/all', component: RacaoListComponent, title: 'Lista de Rações' },
+    { path: 'racoes/new', component: RacaoFormComponent, title: 'Nova Ração' },
+    { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver } },
 
-    { path: 'pets', component: PetListComponent, title: 'Lista de Pets' },
+    { path: 'pets/all', component: PetListComponent, title: 'Lista de Pets' },
     { path: 'pets/new', component: PetFormComponent, title: 'Novo Pet' },
     { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver } },
 
