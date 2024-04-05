@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RacaoService } from '../../../services/racao.serviçe';
+import { RacaoService } from '../../../services/racao.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Racao } from '../../../models/racao.model';
 import { MatToolbarModule } from '@angular/material/toolbar';
