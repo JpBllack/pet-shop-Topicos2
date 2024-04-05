@@ -1,6 +1,6 @@
 
 import { Racao } from '../../../models/racao.model';
-import { RacaoService } from '../../../services/racao.serviçe';
+import { RacaoService } from '../../../services/racao.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';

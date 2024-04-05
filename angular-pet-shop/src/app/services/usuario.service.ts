@@ -10,7 +10,7 @@ export class UsuarioService{
     getAllUsers(): Observable<usuario[]>{
         return this.http.get<usuario[]>(this.apiUrl);
     }
-    getUseById(id: number): Observable<usuario>{
+    getUserById(id: string): Observable<usuario>{
         const url = `${this.apiUrl}/${id}`;
         return this.http.get<usuario>(url);
     }
