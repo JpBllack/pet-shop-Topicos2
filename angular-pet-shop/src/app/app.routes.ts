@@ -18,6 +18,9 @@ import { ConsultaResolver } from './consulta/resolver/consulta-resolver';
 import { TipoAnimalListComponent } from './tipoAnimal/components/tipoAnimal-list/tipoAnimal-list.component';
 import { tipoAnimalResolver } from './tipoAnimal/resolver/tipoAnimal-resolver';
 import { TipoAnimalFormComponent } from './tipoAnimal/components/tipoAnimal-form/tipoAnimal-form.component';
+import { UsuarioListComponent } from './usuario/components/usuario-list/usuario-list.component';
+import { UsuarioFormComponent } from './usuario/components/usuario-form/usuario-form.component';
+import { usuarioResolver } from './usuario/resolver/usuario-resolver';
 
 
 export const routes: Routes = [
@@ -42,8 +45,12 @@ export const routes: Routes = [
     { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver } },
 
     { path: 'tipoAnimais/all', component: TipoAnimalListComponent, title: 'Lista de tipos de animal'},
-    { path: 'tipoAnimais/new', component: TipoAnimalFormComponent, title: "Novo tipo animal"},
+    { path: 'tipoAnimais/new', component: TipoAnimalFormComponent, title: 'Novo tipo animal'},
     { path: 'tipoAnimais/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}},
+
+    { path: 'usuarios/all', component: UsuarioListComponent, title: "Lista de usuarios"},
+    { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario'},
+    { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}},
 
 
 

@@ -2,7 +2,7 @@ import { Component, Injectable, NgModule, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { PetService } from "../../../services/pet.service";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { usuario } from "../../../models/Usuario";
+import { Usuario } from "../../../models/Usuario";
 import { pet } from "../../../models/pet";
 import { NgIf } from "@angular/common";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -30,6 +30,7 @@ export class PetFormComponent implements OnInit
             id: [null],
             nome:['', Validators.required],
             usuario: [null, Validators.required],
+            tipoAnimal: [null, Validators.required]
         });
     }
 

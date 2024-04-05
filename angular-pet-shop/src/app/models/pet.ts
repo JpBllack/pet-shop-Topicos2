@@ -1,10 +1,10 @@
 import { TipoAnimal } from "./tipoAnimal";
-import { usuario } from "./Usuario";
+import { Usuario } from "./Usuario";
 
 export class pet{
     id!: number;
     anoNascimento!: number;
     nome!: string;
-    usuario!: usuario;
+    usuario!: Usuario;
     tipoAnimal!: TipoAnimal;
 }

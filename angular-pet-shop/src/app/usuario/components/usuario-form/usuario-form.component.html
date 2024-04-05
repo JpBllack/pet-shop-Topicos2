@@ -1,0 +1,84 @@
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Usuarios</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>nome</mat-label>
+                    <input matInput type="text" formControlName="nome">
+                    <mat-error *ngIf="formGroup.get('nome') 
+                                   && formGroup.get('nome')?.invalid
+                                   && formGroup.get('nome')?.touched">
+                        O nome é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>cpf</mat-label>
+                    <input matInput type="text" formControlName="cpf">
+                    <mat-error *ngIf="formGroup.get('cpf') 
+                                   && formGroup.get('cpf')?.invalid
+                                   && formGroup.get('cpf')?.touched">
+                        O cpf é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>username</mat-label>
+                    <input matInput type="text" formControlName="username">
+                    <mat-error *ngIf="formGroup.get('username') 
+                                   && formGroup.get('username')?.invalid
+                                   && formGroup.get('username')?.touched">
+                        O username é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>email</mat-label>
+                    <input matInput type="text" formControlName="email">
+                    <mat-error *ngIf="formGroup.get('email') 
+                                   && formGroup.get('email')?.invalid
+                                   && formGroup.get('email')?.touched">
+                        O emal é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo perfil</mat-label>
+                    <mat-select formControlName="perfil" id="perfil_id">
+                        <mat-option *ngFor="let perfil of perfis" [value]="perfil.id">
+                            {{ perfil.label }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('perfil') 
+                                   && formGroup.get('perfil')?.invalid
+                                   && formGroup.get('perfil')?.touched">
+                        O perfil deve ser informado.
+                    </mat-error>
+                </mat-form-field>
+
+                
+
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()"
+                    [disabled]="formGroup.invalid"> 
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                    routerLink="/usuarios/all"> 
+                Cancelar 
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
