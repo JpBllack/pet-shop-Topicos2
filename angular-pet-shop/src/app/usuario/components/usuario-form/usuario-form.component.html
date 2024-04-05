@@ -46,8 +46,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Tipo perfil</mat-label>
                     <mat-select formControlName="perfil" id="perfil_id">
-                        <mat-option *ngFor="let perfil of perfis" [value]="perfil.id">
-                            {{ perfil.label }}
+                        <mat-option *ngFor="let perfil of perfis" [value]="perfil">
+                            {{ perfil }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="formGroup.get('perfil') 

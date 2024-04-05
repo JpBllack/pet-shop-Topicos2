@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+import { CommonModule, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -10,21 +10,24 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { UsuarioService } from "../../../services/usuario.service";
 import { Usuario } from "../../../models/Usuario";
+import { Perfil } from "../../../models/perfil";
 
 
 @Component({
     selector: 'app-usuario-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule],
+        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule],
         templateUrl: './usuario-form.component.html',
         styleUrl: './usuario-form.component.css'
 })
 
 export class UsuarioFormComponent implements OnInit{
     formGroup: FormGroup;
+    perfis = Object.keys(Perfil);
 
     constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute){
+
         this.formGroup = formBuilder.group({
             id: [null],
             nome:['', Validators.required],
