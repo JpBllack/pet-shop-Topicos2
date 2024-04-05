@@ -18,6 +18,7 @@ import { ConsultaResolver } from './consulta/resolver/consulta-resolver';
 
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/racoes/all', pathMatch: 'full' },
     { path: 'estado', component: EstadoListComponent, title: 'Lista de Estados'},
     { path: 'estado/new', component: EstadoFormComponent, title: 'Novo Estado'},
     { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}},
