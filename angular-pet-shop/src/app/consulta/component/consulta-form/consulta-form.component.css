@@ -1,0 +1,28 @@
+.toolbar-title {
+    margin-bottom: 20px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.mat-card {
+    width: 400px;
+}
+
+.full-width-input {
+    width: 100%;
+}
+
+.mat-form-field {
+    margin-bottom: 20px;
+}
+
+.mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
