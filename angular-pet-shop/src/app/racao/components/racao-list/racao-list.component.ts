@@ -11,8 +11,8 @@ import { RouterModule } from "@angular/router";
     selector: 'app-pet-list',
     standalone: true,
     imports: [MatTableModule, MatToolbarModule, MatIconModule, MatButtonModule, RouterModule],
-    templateUrl: './pet-list.component.html',
-    styleUrls: ['./pet-list.component.css']
+    templateUrl: './racao-list.component.html',
+    styleUrls: ['./racao-list.component.css']
 })
 
 export class PetListComponent implements OnInit {
