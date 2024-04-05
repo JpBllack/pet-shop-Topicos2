@@ -1,35 +1,29 @@
-
-import { Racao } from '../../../models/racao.model';
-import { RacaoService } from '../../../services/racao.service';
-import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { pet } from "../../../models/pet";
+import { PetService } from "../../../services/pet.service";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTableModule } from "@angular/material/table";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-racao-list',
-  standalone : true,
-  templateUrl: './racao-list.component.html',
-  styleUrls: ['./racao-list.component.css'],
-  imports: [
-    MatTableModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule
-  ]
+    selector: 'app-pet-list',
+    standalone: true,
+    imports: [MatTableModule, MatToolbarModule, MatIconModule, MatButtonModule, RouterModule],
+    templateUrl: './pet-list.component.html',
+    styleUrls: ['./pet-list.component.css']
 })
-export class RacaoListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'sabor', 'animal', 'peso', 'idade', 'acao'];
-  racoes: Racao[] = [];
 
-  constructor(private racaoService: RacaoService) {}
+export class PetListComponent implements OnInit {
+    displayedColumns: string[] = ['id', 'nome', 'usuario', 'tipoAnimal', 'anoNascimento'];
+    pets: pet[] = [];
 
-  ngOnInit(): void {
-    this.racaoService.getAllRacoes().subscribe((data: Racao[]) => {
-      this.racoes = data;
-    });
-  }
+    constructor(private petService: PetService) {}
+
+    ngOnInit(): void {
+        this.petService.findAll().subscribe((data: pet[]) => {
+            this.pets = data;
+        })
+    }
 }
