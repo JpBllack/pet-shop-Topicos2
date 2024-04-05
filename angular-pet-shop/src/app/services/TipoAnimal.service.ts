@@ -2,7 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { TipoAnimal } from "../models/tipoAnimal";
 import { pet } from "../models/pet";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+    providedIn: 'root'
+  })
 export class TipoAnimalService{
 
     private baseUrl = 'http://localhost:8080/tipos'

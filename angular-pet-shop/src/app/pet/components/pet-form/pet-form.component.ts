@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Injectable, NgModule, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { PetService } from "../../../services/pet.service";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
@@ -18,7 +18,7 @@ import { MatSelectModule } from "@angular/material/select";
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
         MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule],
     templateUrl: './pet-form.component.html',
-    styleUrl: './pet-form.component.css'
+    styleUrl: './pet-form.component.css',
 })
 
 export class PetFormComponent implements OnInit

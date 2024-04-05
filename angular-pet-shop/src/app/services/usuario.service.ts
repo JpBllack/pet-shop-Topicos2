@@ -1,7 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { usuario } from "../models/Usuario";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+    providedIn: 'root'
+  })
 export class UsuarioService{
     private apiUrl= 'http//localhost:8080/users'
 

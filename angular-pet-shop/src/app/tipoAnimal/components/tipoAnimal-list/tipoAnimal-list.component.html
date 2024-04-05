@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+    <div class="flex-container">
+      <span class="toolbar-title">Controle de tipoAnimals</span>
+      <button mat-fab color="accent" routerLink="/tipoAnimais/new">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  
+  <table mat-table [dataSource]="tipoAnimais" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let tipoAnimal"> {{ tipoAnimal.id }} </td>
+    </ng-container>
+  
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> nome </th>
+      <td mat-cell *matCellDef="let tipoAnimal"> {{ tipoAnimal.nome }} </td>
+    </ng-container>
+  
+    <!-- Acao Column -->
+    <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let tipoAnimal"> 
+          <button mat-icon-button 
+                  color="primary"   
+                  routerLink="/tipoAnimal/edit/{{tipoAnimal.id}}">
+                  <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button 
+                  color="warn">
+                  <mat-icon>delete</mat-icon>
+          </button>        
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
