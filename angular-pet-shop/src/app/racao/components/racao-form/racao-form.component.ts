@@ -10,17 +10,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatOptionModule } from '@angular/material/core';
+
 
 
 @Component({
   selector: 'app-racao-form',
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule],
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, MatOptionModule],
   templateUrl: './racao-form.component.html',
-  styleUrl: './racao-form.component.css'
+  styleUrls: ['./racao-form.component.css']
 })
-
 export class RacaoFormComponent implements OnInit {
 
   formGroup: FormGroup;
@@ -52,7 +55,7 @@ export class RacaoFormComponent implements OnInit {
       if (racao.id == null) {
         this.racaoService.createRacao(racao).subscribe({
           next: () => {
-            this.router.navigateByUrl('/racoes');
+            this.router.navigateByUrl('/racoes/all');
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -61,7 +64,7 @@ export class RacaoFormComponent implements OnInit {
       } else {
         this.racaoService.updateRacao(racao).subscribe({
           next: () => {
-            this.router.navigateByUrl('/racoes');
+            this.router.navigateByUrl('/racoes/all');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -77,7 +80,7 @@ export class RacaoFormComponent implements OnInit {
       if (racao.id != null) {
         this.racaoService.deleteRacao(racao.id).subscribe({
           next: () => {
-            this.router.navigateByUrl('/racoes');
+            this.router.navigateByUrl(`/racoes/delete/${racao.id}`);
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
@@ -86,5 +89,14 @@ export class RacaoFormComponent implements OnInit {
       }
     }
   }
-
 }
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule,
+    MatSelectModule,
+    MatOptionModule
+  ],
+})
+export class RacaoFormModule { }
