@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { usuario } from "../models/Usuario";
+import { Usuario } from "../models/Usuario";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -11,26 +11,26 @@ export class UsuarioService{
 
     constructor(private http: HttpClient){}
 
-    getAllUsers(): Observable<usuario[]>{
-        return this.http.get<usuario[]>(this.apiUrl);
+    getAllUsers(): Observable<Usuario[]>{
+        return this.http.get<Usuario[]>(this.apiUrl);
     }
-    getUserById(id: string): Observable<usuario>{
+    getUserById(id: string): Observable<Usuario>{
         const url = `${this.apiUrl}/${id}`;
-        return this.http.get<usuario>(url);
+        return this.http.get<Usuario>(url);
     }
 
-    getUserByName(nome: string): Observable<usuario>{
+    getUserByName(nome: string): Observable<Usuario>{
         const url = `${this.apiUrl}/${nome}`;
-        return this.http.get<usuario>(url);
+        return this.http.get<Usuario>(url);
     }
 
-    insertUser(usuario: usuario): Observable<usuario>{
-        return this.http.post<usuario>(this.apiUrl, usuario);
+    insertUser(usuario: Usuario): Observable<Usuario>{
+        return this.http.post<Usuario>(this.apiUrl, usuario);
     }
 
-    updateUser(usuario: usuario): Observable<usuario>{
+    updateUser(usuario: Usuario): Observable<Usuario>{
         const url = `${this.apiUrl}/${usuario.id}`;
-        return this.http.put<usuario>(url, usuario);
+        return this.http.put<Usuario>(url, usuario);
     }
 
     deleteUser(id: number): Observable<void>{
