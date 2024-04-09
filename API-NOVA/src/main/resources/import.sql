@@ -47,10 +47,6 @@ INSERT INTO TipoAnimal (nome) VALUES
 
 
 
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('carne', 1, 1, 1);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('frango', 1, 1,2);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('pistaxe', 5, 2, 2);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('atum', 2, 1, 2);
 
 -- Inserir um pet do tipo cachorro, macho
 INSERT INTO Pet (nome, anoNascimento, tipoAnimal_id, sexo) 
@@ -79,6 +75,12 @@ VALUES ('2024-04-05', 'Vacinação', 4, 2);
 INSERT INTO Consulta (data, motivo, veterinario_id, pet_id) 
 VALUES ('2024-04-06', 'Tratamento de ferimento', 3, 2);
 
+
+
+INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('carne', 1, 1, 1);
+INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('frango', 1, 1, 2);
+INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('pistaxe', 5, 2, 2);
+INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('atum', 2, 1, 1);
 
 
 

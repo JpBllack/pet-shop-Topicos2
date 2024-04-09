@@ -2,7 +2,7 @@ package org.acme.model;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
+
 
 import org.hibernate.validator.constraints.br.CPF;
 

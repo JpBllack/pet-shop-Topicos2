@@ -5,7 +5,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
-import org.acme.model.Cidade;
+
 import org.acme.model.Endereco;
 
 @ApplicationScoped

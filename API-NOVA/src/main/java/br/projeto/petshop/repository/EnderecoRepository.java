@@ -5,7 +5,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
-import br.projeto.petshop.model.Cidade;
 import br.projeto.petshop.model.Endereco;
 
 @ApplicationScoped

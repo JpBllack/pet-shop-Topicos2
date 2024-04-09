@@ -3,7 +3,6 @@ package br.projeto.petshop.repository;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import br.projeto.petshop.model.Categoria;
-import br.projeto.petshop.model.Usuario;
 
 import java.util.List;
 

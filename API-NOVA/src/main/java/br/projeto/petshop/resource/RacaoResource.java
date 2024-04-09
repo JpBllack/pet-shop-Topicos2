@@ -1,7 +1,6 @@
 package br.projeto.petshop.resource;
 
 import br.projeto.petshop.dto.RacaoDTO;
-import br.projeto.petshop.dto.RacaoDTO;
 import br.projeto.petshop.service.RacaoService;
 import br.projeto.petshop.validation.ValidationException;
 import jakarta.inject.Inject;
