@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { TipoAnimal } from "../models/tipoAnimal";
-import { pet } from "../models/pet";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -22,11 +21,10 @@ export class TipoAnimalService{
     }
 
     insert(tipoAnimal: TipoAnimal): Observable<TipoAnimal>{
-        return this.httpClient.post<TipoAnimal>(this.baseUrl, pet);
+        return this.httpClient.post<TipoAnimal>(this.baseUrl, tipoAnimal);
     }
-
     update(tipoAnimal: TipoAnimal): Observable<TipoAnimal>{
-        return this.httpClient.put<TipoAnimal>(`${this.baseUrl}/${tipoAnimal.nome}`, tipoAnimal);
+        return this.httpClient.put<TipoAnimal>(`${this.baseUrl}/${tipoAnimal.id}`, tipoAnimal);
     }
      
     delete(id: number): Observable<void>{

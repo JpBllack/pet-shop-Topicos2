@@ -44,9 +44,9 @@ export const routes: Routes = [
     { path: 'consultas/new', component: ConsultaFormComponent, title: 'Nova Consulta' },
     { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver } },
 
-    { path: 'tipoAnimais/all', component: TipoAnimalListComponent, title: 'Lista de tipos de animal'},
-    { path: 'tipoAnimais/new', component: TipoAnimalFormComponent, title: 'Novo tipo animal'},
-    { path: 'tipoAnimais/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}},
+    { path: 'tipos', component: TipoAnimalListComponent, title: 'Lista de tipos de animal'},
+    { path: 'tipos/new', component: TipoAnimalFormComponent, title: 'Novo tipo animal'},
+    { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}},
 
     { path: 'usuarios/all', component: UsuarioListComponent, title: "Lista de usuarios"},
     { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario'},

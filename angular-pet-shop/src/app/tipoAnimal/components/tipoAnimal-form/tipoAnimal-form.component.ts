@@ -20,38 +20,44 @@ import { TipoAnimalService } from "../../../services/TipoAnimal.service";
         styleUrl: './tipoAnimal-form.component.css',
 })
 
-export class TipoAnimalFormComponent implements OnInit{
+export class TipoAnimalFormComponent implements OnInit {
     formGroup: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private tipoAnimalService: TipoAnimalService, private router: Router, private activatedRoute: ActivatedRoute){
+    constructor(
+        private formBuilder: FormBuilder,
+        private tipoAnimalService: TipoAnimalService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {
         this.formGroup = formBuilder.group({
-            i: [null],
+            id: [null],
             nome: ['', Validators.required],
         });
     }
+
     ngOnInit(): void {
         const tipoAnimal: TipoAnimal = this.activatedRoute.snapshot.data['tipoAnimal'];
-        if(tipoAnimal){
+        if (tipoAnimal) {
             this.formGroup.patchValue(tipoAnimal);
         }
     }
 
-    salvar(){
-        if(this.formGroup.valid){
+    salvar() {
+        if (this.formGroup.valid) {
             const tipoAnimal = this.formGroup.value;
-            if(tipoAnimal.id == null){
+            if (tipoAnimal.id == null) {
                 this.tipoAnimalService.insert(tipoAnimal).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/tipoAnimais');
+                        this.router.navigateByUrl('/tipos/insert');
                     },
                     error: (err) => {
                         console.log('Erro ao incluir' + JSON.stringify(err));
                     }
                 });
-            } else{
+            } else {
                 this.tipoAnimalService.update(tipoAnimal).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/tipoAnimals');
+                        this.router.navigateByUrl(`/tipos/update/${tipoAnimal.id}`);
                     },
                     error: (err) => {
                         console.log('Erro ao editar' + JSON.stringify(err));
@@ -61,13 +67,13 @@ export class TipoAnimalFormComponent implements OnInit{
         }
     }
 
-    excluir(){
-        if(this.formGroup.valid){
+    excluir() {
+        if (this.formGroup.valid) {
             const tipoAnimal = this.formGroup.value;
-            if(tipoAnimal.id != null){
-                this.tipoAnimalService.delete(tipoAnimal).subscribe({
+            if (tipoAnimal.id != null) {
+                this.tipoAnimalService.delete(tipoAnimal.id).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/tipoAnimais');
+                        this.router.navigateByUrl(`/tipos/delete/${tipoAnimal.id}`);
                     },
                     error: (err) => {
                         console.log('Erro ao Excluir' + JSON.stringify(err));
@@ -76,6 +82,4 @@ export class TipoAnimalFormComponent implements OnInit{
             }
         }
     }
-    
-    
 }
