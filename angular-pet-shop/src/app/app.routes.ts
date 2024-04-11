@@ -24,7 +24,7 @@ import { usuarioResolver } from './usuario/resolver/usuario-resolver';
 
 
 export const routes: Routes = [
-    { path: 'estado', component: EstadoListComponent, title: 'Lista de Estados'},
+    { path: 'estado/all', component: EstadoListComponent, title: 'Lista de Estados'},
     { path: 'estado/new', component: EstadoFormComponent, title: 'Novo Estado'},
     { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}},
 
