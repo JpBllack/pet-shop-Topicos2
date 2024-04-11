@@ -3,7 +3,6 @@ package br.projeto.petshop.resource;
 import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.TipoAnimalDTO;
-import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.service.TipoAnimalService;
 import br.projeto.petshop.validation.ValidationException;
 import jakarta.inject.Inject;

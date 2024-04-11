@@ -3,18 +3,13 @@ package br.projeto.petshop.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import br.projeto.petshop.validation.ValidationException;
-import jakarta.transaction.Transactional;
 import br.projeto.petshop.dto.PetDTO;
 import br.projeto.petshop.dto.PetResponseDTO;
-import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.Pet;
 import br.projeto.petshop.repository.PetRepository;
 import br.projeto.petshop.repository.TipoAnimalRepository;
 import jakarta.ws.rs.NotFoundException;
-import jakarta.ws.rs.core.Response;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class PetServiceImpl implements PetService {

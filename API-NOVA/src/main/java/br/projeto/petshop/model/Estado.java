@@ -14,19 +14,19 @@ public class Estado extends DefaultEntity {
     private String sigla;
 
 
-    public String getnome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setnome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getsigla() {
+    public String getSigla() {
         return sigla;
     }
 
-    public void setsigla(String sigla) {
+    public void setSigla(String sigla) {
         this.sigla = sigla;
     }
 

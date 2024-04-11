@@ -7,7 +7,6 @@ import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.service.UsuarioService;
 import br.projeto.petshop.validation.ValidationException;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;

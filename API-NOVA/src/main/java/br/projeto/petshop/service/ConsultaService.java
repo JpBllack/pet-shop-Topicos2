@@ -2,7 +2,6 @@ package br.projeto.petshop.service;
 
 import br.projeto.petshop.dto.ConsultaDTO;
 import br.projeto.petshop.dto.ConsultaResponseDTO;
-import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
