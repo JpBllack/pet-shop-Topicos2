@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterModule } from "@angular/router";
+import { TitleService } from "../../../title.service";
 
 @Component({
     selector: 'app-racao-list',
@@ -21,11 +22,15 @@ export class PetListComponent implements OnInit{
     displayedColumns: string[] = ['id', 'nome', 'usuario', 'tipoAnimal', 'anoNascimento'];
     pets: pet[] = [];
 
-    constructor(private petService: PetService){}
+    constructor(
+     private petService: PetService,
+     private titleService: TitleService 
+    ){}
 
     ngOnInit(): void {
         this.petService.findAll().subscribe((data: pet[]) => {
             this.pets = data;
+            this.titleService.setTitle('Lista de Pets');
         })
     }
 

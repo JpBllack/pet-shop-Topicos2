@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-racao-list',
@@ -25,11 +26,15 @@ export class RacaoListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'sabor', 'animal', 'peso', 'idade', 'acao'];
   racoes: Racao[] = [];
 
-  constructor(private racaoService: RacaoService) {}
+  constructor(
+    private racaoService: RacaoService,
+    private titleService: TitleService 
+  ) {}
 
   ngOnInit(): void {
     this.racaoService.getAllRacoes().subscribe((data: Racao[]) => {
       this.racoes = data;
+      this.titleService.setTitle('Lista de Rações');
     });
   }
 }

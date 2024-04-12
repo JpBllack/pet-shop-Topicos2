@@ -22,37 +22,34 @@ import { UsuarioListComponent } from './usuario/components/usuario-list/usuario-
 import { UsuarioFormComponent } from './usuario/components/usuario-form/usuario-form.component';
 import { usuarioResolver } from './usuario/resolver/usuario-resolver';
 
-
 export const routes: Routes = [
-    { path: 'estado/all', component: EstadoListComponent, title: 'Lista de Estados'},
-    { path: 'estado/new', component: EstadoFormComponent, title: 'Novo Estado'},
-    { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}},
+    { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
+    { path: 'estado/new', component: EstadoFormComponent, data: { title: 'Novo Estado'} },
+    { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}, data: { title: 'Editar Estado'} },
 
-    { path: 'municipios', component: municipioListComponent, title: 'Lista de municípios'},
-    { path: 'municipios/new', component: municipioFormComponent, title: 'Novo município'},
-    { path: 'municipios/edit/:id', component: municipioFormComponent, resolve: {municipio: municipioResolver}},
+    { path: 'municipios', component: municipioListComponent, data: { title: 'Lista de municípios'} },
+    { path: 'municipios/new', component: municipioFormComponent, data: { title: 'Novo município'} },
+    { path: 'municipios/edit/:id', component: municipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
 
-    { path: 'racoes/all', component: RacaoListComponent, title: 'Lista de Rações' },
-    { path: 'racoes/new', component: RacaoFormComponent, title: 'Nova Ração' },
-    { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver } },
+    { path: 'racoes/all', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
+    { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },
+    { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Editar Ração' } },
 
-    { path: 'pets/all', component: PetListComponent, title: 'Lista de Pets' },
-    { path: 'pets/new', component: PetFormComponent, title: 'Novo Pet' },
-    { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver } },
+    { path: 'pets/all', component: PetListComponent, data: { title: 'Lista de Pets' } },
+    { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },
+    { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Editar Pet' } },
 
-    { path: 'consultas', component: ConsultaListComponent, title: 'Lista de Consultas' },
-    { path: 'consultas/new', component: ConsultaFormComponent, title: 'Nova Consulta' },
-    { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver } },
+    { path: 'consultas', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
+    { path: 'consultas/new', component: ConsultaFormComponent, data: { title: 'Nova Consulta' } },
+    { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
 
-    { path: 'tipos', component: TipoAnimalListComponent, title: 'Lista de tipos de animal'},
-    { path: 'tipos/new', component: TipoAnimalFormComponent, title: 'Novo tipo animal'},
-    { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}},
+    { path: 'tipos', component: TipoAnimalListComponent, data: { title: 'Lista de tipos de animal'} },
+    { path: 'tipos/new', component: TipoAnimalFormComponent, data: { title: 'Novo tipo animal'} },
+    { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Editar Tipo de Animal'} },
 
-    { path: 'usuarios/all', component: UsuarioListComponent, title: "Lista de usuarios"},
-    { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario'},
-    { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}},
-
-
+    { path: 'usuarios/all', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
+    { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
+    { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
 
     { path: '', redirectTo: '/racoes/all', pathMatch: 'full' },
 ];

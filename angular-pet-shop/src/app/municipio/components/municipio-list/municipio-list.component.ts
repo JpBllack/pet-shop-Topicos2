@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-municipio-list',
@@ -21,13 +22,17 @@ export class municipioListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nome', 'estado', 'acao'];
   municipios: municipio[] = [];
 
-  constructor(private municipioService: municipioService) {
+  constructor(
+    private municipioService: municipioService,
+    private titleService: TitleService            
+  ) {
 
   }
 
   ngOnInit(): void {
     this.municipioService.findAll().subscribe(data => {
       this.municipios = data;
+      this.titleService.setTitle('Municípios');
     })
   }
 

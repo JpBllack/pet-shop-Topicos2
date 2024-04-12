@@ -7,6 +7,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterModule } from "@angular/router";
 import { TipoAnimal } from "../../../models/tipoAnimal";
 import { TipoAnimalService } from "../../../services/TipoAnimal.service";
+import { TitleService } from "../../../title.service";
 
 @Component({
     selector: 'app-tipoAnimal-form',
@@ -20,12 +21,15 @@ export class TipoAnimalListComponent implements OnInit{
     displayedColumns: string[] = ['id', 'nome'];
     tipoAnimais: TipoAnimal[] = [];
 
-    constructor(private tipoAnimalService: TipoAnimalService){
+    constructor(
+        private tipoAnimalService: TipoAnimalService,
+        private titleService: TitleService)
+        {}
 
-    }
     ngOnInit(): void {
         this.tipoAnimalService.findAll().subscribe((data: TipoAnimal[]) => {
             this.tipoAnimais = data;
+            this.titleService.setTitle('Lista de tipos de Animal');
         })
     }
 
