@@ -23,15 +23,6 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Veterinario</mat-label>
-                    <input matInput type="number" formControlName="veterinario">
-                    <mat-error *ngIf="formGroup.get('veterinario') 
-                                   && formGroup.get('veterinario')?.invalid
-                                   && formGroup.get('veterinario')?.touched">
-                        O veterinario é obrigatório.
-                    </mat-error>
-                </mat-form-field>
                 
 
                 <mat-form-field appearance="fill" class="full-width-input">

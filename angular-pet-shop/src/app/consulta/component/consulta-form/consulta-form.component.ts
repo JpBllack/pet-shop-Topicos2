@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Usuario } from '../../../models/Usuario';
+import { UsuarioService } from '../../../services/usuario.service';
 
 
 @Component({
@@ -21,20 +23,21 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
   styleUrls: ['./consulta-form.component.css']
 })
 export class ConsultaFormComponent implements OnInit {
-
+  //veterinarios: Usuario[] = [];
   formGroup: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private consultaService: ConsultaService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private usuarioService: UsuarioService
   ) {
     this.formGroup = this.formBuilder.group({
       id: [null],
       data: ['', Validators.required],
       motivo: ['', Validators.required],
-      veterinario: ['null', Validators.required],
+      veterinario: ['', Validators.required],
       pet: ['null', Validators.required]
     });
   }
@@ -87,4 +90,9 @@ export class ConsultaFormComponent implements OnInit {
       }
     }
   }
+
+  carregarVeterinarios() {
+   
+  }
+  
 }
