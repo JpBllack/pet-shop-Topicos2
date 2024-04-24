@@ -19,6 +19,13 @@ header {
     margin: 0;
 }
 
+li a{
+    font-family: 'Patua One', cursive;
+}
+
+li a:hover{
+    color: white;
+}
 
 .desktop_menu ul li {
 list-style-type: none; 
