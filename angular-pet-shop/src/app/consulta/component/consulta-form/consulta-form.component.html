@@ -5,7 +5,7 @@
             <form [formGroup]="formGroup">
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Data</mat-label>
-                    <input matInput type="text" formControlName="data">
+                    <input matInput type="date" formControlName="data">
                     <mat-error *ngIf="formGroup.get('data') 
                                    && formGroup.get('data')?.invalid
                                    && formGroup.get('data')?.touched">
@@ -23,23 +23,27 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" >
-                    <mat-label>Veterinário</mat-label>
-                    <mat-select formControlName="veterinario" id="veterinario_id">
-                        <mat-option *ngFor="let veterinario of veterinarios" [value]="veterinario">
-                            {{veterinario.nome}}
-                        </mat-option>
-                    </mat-select>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Veterinario</mat-label>
+                    <input matInput type="number" formControlName="veterinario">
+                    <mat-error *ngIf="formGroup.get('veterinario') 
+                                   && formGroup.get('veterinario')?.invalid
+                                   && formGroup.get('veterinario')?.touched">
+                        O veterinario é obrigatório.
+                    </mat-error>
                 </mat-form-field>
+                
 
-                <mat-form-field appearance="fill" >
+                <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Pet</mat-label>
-                    <mat-select formControlName="pet" id="pet_id">
-                        <mat-option *ngFor="let pet of pets" [value]="pet">
-                            {{pet.nome}}
-                        </mat-option>
-                    </mat-select>
+                    <input matInput type="number" formControlName="pet">
+                    <mat-error *ngIf="formGroup.get('pet') 
+                                   && formGroup.get('pet')?.invalid
+                                   && formGroup.get('pet')?.touched">
+                        O pet é obrigatório.
+                    </mat-error>
                 </mat-form-field>
+                
             </form>
         </mat-card-content>
         <mat-card-actions>

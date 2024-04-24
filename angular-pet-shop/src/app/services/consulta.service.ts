@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Consulta } from '../models/consulta.model';
 
 @Injectable({
@@ -20,7 +23,15 @@ export class ConsultaService {
   }
 
   removerConsulta(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${id}`);
+    const url = `${this.baseUrl}/delete/${id}`; // ajuste para o caminho de exclusão correto
+    return this.httpClient.delete<any>(url).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          return throwError('Consulta não encontrada para exclusão');
+        }
+        return throwError('Erro ao excluir consulta');
+      })
+    );
   }
 
   listarTodasConsultas(): Observable<Consulta[]> {
@@ -36,9 +47,7 @@ export class ConsultaService {
   }
 
   excluirConsulta(id: number): Observable<any> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/delete/${id}`; // ajuste para o caminho de exclusão correto
     return this.httpClient.delete<any>(url);
   }
-
-  // Outros métodos de serviço, como atualizar consulta, buscar por critérios específicos, etc.
 }
