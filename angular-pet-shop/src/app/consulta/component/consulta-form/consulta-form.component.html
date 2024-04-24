@@ -23,6 +23,19 @@
                     </mat-error>
                 </mat-form-field>
 
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Veterinário</mat-label>
+                    <mat-select formControlName="veterinario">
+                      <mat-option *ngFor="let veterinario of veterinarios" [value]="veterinario">
+                        {{ veterinario.nome }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('veterinario')?.invalid && formGroup.get('veterinario')?.touched">
+                      O veterinário é obrigatório.
+                    </mat-error>
+                  </mat-form-field>
+                  
                 
 
                 <mat-form-field appearance="fill" class="full-width-input">

@@ -39,4 +39,8 @@ export class UsuarioService {
         const url = `${this.apiUrl}/delete/user/${id}`; // Corrigido: caminho para exclusão de usuário
         return this.http.delete<void>(url);
     }
+
+    getAllVeterinarios(): Observable<Usuario[]> {
+        return this.http.get<Usuario[]>(`${this.apiUrl}/search/veterinarios`);
+    }
 }

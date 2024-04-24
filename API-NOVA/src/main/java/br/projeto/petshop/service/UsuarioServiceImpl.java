@@ -1,7 +1,7 @@
 package br.projeto.petshop.service;
 
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 import br.projeto.petshop.repository.UsuarioRepository;
 import br.projeto.petshop.validation.ValidationException;
@@ -158,6 +158,13 @@ public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
             throw new NotFoundException("Não há usuarios");
         }
         return repository.listAll().stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+    }
+
+    @Override
+    public List<UsuarioResponseDTO> findVeterinario() {
+        List<Usuario> veterinarios = repository.listAll().stream().filter(usuario -> usuario.getPerfil().getId() == 3).collect(Collectors.toList());
+
+        return veterinarios.stream().map(usuario -> UsuarioResponseDTO.valueOf(usuario)).toList();
     }
 
 }

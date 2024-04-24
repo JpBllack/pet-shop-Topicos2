@@ -140,4 +140,26 @@ public class UserResource {
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
+
+    @GET
+    //@RolesAllowed({"Admin"})
+    @Path("/search/veterinarios")
+    public Response findAllVeterinario() {
+        try {
+            LOG.info("Buscando todos os veterinarios");
+            UsuarioResponseDTO[] usuarios = service.findVeterinario().toArray(new UsuarioResponseDTO[0]);
+            if (usuarios.length == 0) {
+                LOG.info("Nenhum usuário encontrado");
+                return Response.status(Status.NOT_FOUND).entity("Nenhum veterinario encontrado").build();
+            } else {
+                LOG.info("Retornando todos os veterinario");
+                return Response.ok(usuarios).build();
+            }
+        } catch(NotFoundException e) {
+            LOG.error("Veterinarios não encontrados");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.NOT_FOUND).entity(error).build();
+        }
+    }
 }

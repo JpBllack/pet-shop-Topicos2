@@ -23,7 +23,7 @@ import { UsuarioService } from '../../../services/usuario.service';
   styleUrls: ['./consulta-form.component.css']
 })
 export class ConsultaFormComponent implements OnInit {
-  //veterinarios: Usuario[] = [];
+  veterinarios: Usuario[] = [];
   formGroup: FormGroup;
 
   constructor(
@@ -44,6 +44,7 @@ export class ConsultaFormComponent implements OnInit {
   
   ngOnInit(): void {
     const consulta: Consulta = this.activatedRoute.snapshot.data['consulta'];
+    this.carregarVeterinarios();
     if(consulta){
       this.formGroup.patchValue(consulta);
     }
@@ -84,7 +85,7 @@ export class ConsultaFormComponent implements OnInit {
             this.router.navigateByUrl('/consultas/all');
           },
           error: (err) => {
-            console.log('Erro ap exvçior' + JSON.stringify(err));
+            console.log('Erro ao excluir' + JSON.stringify(err));
           }
         });
       }
@@ -92,7 +93,15 @@ export class ConsultaFormComponent implements OnInit {
   }
 
   carregarVeterinarios() {
-   
+    this.usuarioService.getAllVeterinarios().subscribe(
+      (vet: Usuario[]) => {
+        this.veterinarios = vet;
+      },
+      (error) => {
+        console.error('Erro ao carregar veterinários:', error);
+      }
+    );
   }
+  
   
 }

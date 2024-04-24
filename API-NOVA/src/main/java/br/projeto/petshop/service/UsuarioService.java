@@ -26,4 +26,6 @@ public interface UsuarioService {
     public UsuarioResponseDTO findByEmailSenha(String email, String password);
 
     public List<UsuarioResponseDTO> findAll();
+
+    public List<UsuarioResponseDTO> findVeterinario();
 }
