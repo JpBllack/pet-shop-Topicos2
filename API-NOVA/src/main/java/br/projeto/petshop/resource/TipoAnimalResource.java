@@ -25,7 +25,7 @@ import br.projeto.petshop.application.Error;
 @Path("/tipos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class TipoAnimalResourse {
+public class TipoAnimalResource {
 
     @Inject
     TipoAnimalService service;

@@ -27,7 +27,7 @@ import br.projeto.petshop.application.Error;
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserResourse {
+public class UserResource {
 
     @Inject
     UsuarioService service;

@@ -48,7 +48,7 @@ export class TipoAnimalFormComponent implements OnInit {
             if (tipoAnimal.id == null) {
                 this.tipoAnimalService.insert(tipoAnimal).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/tipos/insert');
+                        this.router.navigateByUrl('/tipos/all');
                     },
                     error: (err) => {
                         console.log('Erro ao incluir' + JSON.stringify(err));
