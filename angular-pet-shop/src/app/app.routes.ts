@@ -46,6 +46,7 @@ export const routes: Routes = [
     { path: 'tipos/all', component: TipoAnimalListComponent, data: { title: 'Lista de tipos de animal'} },
     { path: 'tipos/new', component: TipoAnimalFormComponent, data: { title: 'Novo tipo animal'} },
     { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Editar Tipo de Animal'} },
+    { path: 'tipos/delete/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Deletar Tipo de Animal'} },
 
     { path: 'usuarios/all', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
     { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },

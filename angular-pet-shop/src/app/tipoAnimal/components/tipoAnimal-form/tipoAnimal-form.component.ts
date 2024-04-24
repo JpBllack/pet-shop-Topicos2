@@ -57,7 +57,7 @@ export class TipoAnimalFormComponent implements OnInit {
             } else {
                 this.tipoAnimalService.update(tipoAnimal).subscribe({
                     next: () => {
-                        this.router.navigateByUrl(`/tipos/update/${tipoAnimal.id}`);
+                        this.router.navigateByUrl(`/tipos/all`);
                     },
                     error: (err) => {
                         console.log('Erro ao editar' + JSON.stringify(err));
@@ -73,7 +73,7 @@ export class TipoAnimalFormComponent implements OnInit {
             if (tipoAnimal.id != null) {
                 this.tipoAnimalService.delete(tipoAnimal.id).subscribe({
                     next: () => {
-                        this.router.navigateByUrl(`/tipos/delete/${tipoAnimal.id}`);
+                        this.router.navigateByUrl(`/tipos/all`);
                     },
                     error: (err) => {
                         console.log('Erro ao Excluir' + JSON.stringify(err));

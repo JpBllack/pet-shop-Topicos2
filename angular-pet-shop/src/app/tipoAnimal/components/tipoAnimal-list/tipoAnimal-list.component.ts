@@ -18,7 +18,7 @@ import { TitleService } from "../../../title.service";
     styleUrl: './tipoAnimal-list.component.css'
 })
 export class TipoAnimalListComponent implements OnInit{
-    displayedColumns: string[] = ['id', 'nome'];
+    displayedColumns: string[] = ['id', 'nome', 'acao'];
     tipoAnimais: TipoAnimal[] = [];
 
     constructor(
