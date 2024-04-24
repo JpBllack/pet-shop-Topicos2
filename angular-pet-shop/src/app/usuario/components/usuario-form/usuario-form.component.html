@@ -39,7 +39,17 @@
                     <mat-error *ngIf="formGroup.get('email') 
                                    && formGroup.get('email')?.invalid
                                    && formGroup.get('email')?.touched">
-                        O emal é obrigatório.
+                        O email é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>senha</mat-label>
+                    <input matInput type="text" formControlName="senha">
+                    <mat-error *ngIf="formGroup.get('senha') 
+                                   && formGroup.get('senha')?.invalid
+                                   && formGroup.get('senha')?.touched">
+                        A senha é obrigatório.
                     </mat-error>
                 </mat-form-field>
 

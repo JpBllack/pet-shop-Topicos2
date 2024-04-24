@@ -1,6 +1,5 @@
 import { CommonModule, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -11,6 +10,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { UsuarioService } from "../../../services/usuario.service";
 import { Usuario } from "../../../models/Usuario";
 import { Perfil } from "../../../models/perfil";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 
 
 @Component({
@@ -34,6 +34,7 @@ export class UsuarioFormComponent implements OnInit{
             cpf:['', Validators.required],
             username:['', Validators.required],
             email:['', Validators.required],
+            senha:['', Validators.required],
             perfil:[null, Validators.required]
             
 
@@ -52,7 +53,7 @@ export class UsuarioFormComponent implements OnInit{
             if(usuario.id == null){
                 this.usuarioService.insertUser(usuario).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/usuarios');
+                        this.router.navigateByUrl('/usuarios/all');
                     },
                     error: (err) => {
                         console.log('Erro ao incluir' + JSON.stringify(err));
@@ -61,7 +62,7 @@ export class UsuarioFormComponent implements OnInit{
             } else{
                 this.usuarioService.updateUser(usuario).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/usuarios');
+                        this.router.navigateByUrl('/usuarios/all');
                     },
                     error: (err) => {
                         console.log('Erro ao editar' + JSON.stringify(err));
@@ -77,7 +78,7 @@ export class UsuarioFormComponent implements OnInit{
             if(usuario.id != null){
                 this.usuarioService.deleteUser(usuario).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/usuarios');
+                        this.router.navigateByUrl('/usuarios/all');
                     },
                     error: (err) => {
                         console.log('Erro ao Excluir' + JSON.stringify(err));

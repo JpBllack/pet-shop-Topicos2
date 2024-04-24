@@ -51,5 +51,4 @@ export const routes: Routes = [
     { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
     { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
 
-    { path: '', redirectTo: '/racoes/all', pathMatch: 'full' },
 ];

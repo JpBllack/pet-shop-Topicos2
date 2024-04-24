@@ -6,5 +6,6 @@ export class Usuario{
     cpf!: string;
     username!: string;
     email!: string;
-    perfil!: Perfil
+    senha!: string;
+    perfil!: Perfil;
 }
