@@ -19,8 +19,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  menuValue:boolean = false;
-menu_icon: string = 'bi bi-list';
+ menuValue:boolean = false;
+ menu_icon: string = 'bi bi-list';
+ 
  openMenu()
  {
   this.menuValue=!this.menuValue;
