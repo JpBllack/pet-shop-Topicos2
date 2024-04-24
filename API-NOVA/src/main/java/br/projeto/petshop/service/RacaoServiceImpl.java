@@ -19,6 +19,9 @@ public class RacaoServiceImpl implements RacaoService {
 
     @Inject
     RacaoRepository repository;
+    @Inject
+    TipoAnimalRepository tipoAnimalRepository;
+
 
     @Override
     public List<RacaoDTO> getAll() {
@@ -68,11 +71,12 @@ public class RacaoServiceImpl implements RacaoService {
         racao.setSabor(racaoDTO.sabor());
         racao.setAnimal(tipoAnimal);
     
-        Peso peso = Peso.valueOf(racaoDTO.peso());
+        Peso peso = racaoDTO.peso();
         racao.setPeso(peso);
-        Idade idade = Idade.valueOf(racaoDTO.idade());
+        Idade idade = racaoDTO.idade();
         racao.setIdade(idade);
     
+        
         // Agora que o TipoAnimal está persistido, podemos salvar a Racao
         repository.persist(racao);
     }

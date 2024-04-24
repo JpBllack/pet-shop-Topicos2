@@ -13,7 +13,7 @@ public enum Peso {
     private final Integer id;
     private final String label;
 
-    private Peso(Integer id, String label) {
+    Peso(Integer id, String label) {
         this.id = id;
         this.label = label;
     }
@@ -27,13 +27,23 @@ public enum Peso {
     }
 
     public static Peso valueOf(Integer id) throws IllegalArgumentException {
-        if (id == null)
+        if (id == null) {
             return null;
-        for (Peso peso : Peso.values()) {
-            if (peso.getId().equals(id))
-                return peso;
         }
-
+        for (Peso peso : Peso.values()) {
+            if (peso.getId().equals(id)) {
+                return peso;
+            }
+        }
         throw new IllegalArgumentException("ID inválido para Peso: " + id);
+    }
+
+    // Método para retornar a label do enum a partir do ID
+    public static String getLabelById(Integer id) {
+        Peso peso = valueOf(id);
+        if (peso != null) {
+            return peso.getLabel();
+        }
+        return null;
     }
 }
