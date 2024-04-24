@@ -22,15 +22,11 @@ export class PetListComponent implements OnInit{
     displayedColumns: string[] = ['id', 'nome', 'usuario', 'tipoAnimal', 'anoNascimento'];
     pets: pet[] = [];
 
-    constructor(
-     private petService: PetService,
-     private titleService: TitleService 
-    ){}
+    constructor(private petService: PetService) { }
 
     ngOnInit(): void {
         this.petService.findAll().subscribe((data: pet[]) => {
             this.pets = data;
-            this.titleService.setTitle('Lista de Pets');
         })
     }
 
