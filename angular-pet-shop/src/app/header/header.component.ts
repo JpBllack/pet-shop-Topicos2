@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TitleService } from '../title.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
