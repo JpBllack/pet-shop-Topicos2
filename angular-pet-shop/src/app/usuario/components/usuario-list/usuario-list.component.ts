@@ -18,7 +18,7 @@ import { UsuarioService } from "../../../services/usuario.service";
 })
 
 export class UsuarioListComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'nome', 'cpf', 'username', 'email', 'perfil'];
+    displayedColumns: string[] = ['id', 'nome', 'cpf', 'username', 'email', 'perfil', 'acao'];
     usuarios: Usuario[] = [];
 
     constructor(private usuarioService: UsuarioService) { }

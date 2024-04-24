@@ -1,6 +1,5 @@
 import { NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -10,6 +9,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { TipoAnimal } from "../../../models/tipoAnimal";
 import { TipoAnimalService } from "../../../services/TipoAnimal.service";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 
 @Component({
     selector: 'app-tipoAnimal-form',

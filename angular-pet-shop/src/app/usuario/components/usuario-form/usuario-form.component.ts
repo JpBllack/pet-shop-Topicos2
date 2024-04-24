@@ -9,7 +9,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { UsuarioService } from "../../../services/usuario.service";
 import { Usuario } from "../../../models/Usuario";
-import { Perfil } from "../../../models/perfil";
+import { Perfil, PerfilLabel } from "../../../models/perfil";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 
 
@@ -24,7 +24,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angula
 
 export class UsuarioFormComponent implements OnInit{
     formGroup: FormGroup;
-    perfis = Object.keys(Perfil);
+    perfis = Object.values(Perfil).filter(value => isNaN(Number(value)));
 
     constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute){
 
@@ -35,7 +35,7 @@ export class UsuarioFormComponent implements OnInit{
             username:['', Validators.required],
             email:['', Validators.required],
             senha:['', Validators.required],
-            perfil:[null, Validators.required]
+            perfil:['', Validators.required]
             
 
         })
@@ -76,7 +76,7 @@ export class UsuarioFormComponent implements OnInit{
         if(this.formGroup.valid){
             const usuario = this.formGroup.value;
             if(usuario.id != null){
-                this.usuarioService.deleteUser(usuario).subscribe({
+                this.usuarioService.deleteUser(usuario.id).subscribe({
                     next: () => {
                         this.router.navigateByUrl('/usuarios/all');
                     },

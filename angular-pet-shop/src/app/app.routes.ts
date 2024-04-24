@@ -50,5 +50,7 @@ export const routes: Routes = [
     { path: 'usuarios/all', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
     { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
     { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
+    { path: 'usuarios/delete/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Deleter Usuario'} },
+    
 
 ];
