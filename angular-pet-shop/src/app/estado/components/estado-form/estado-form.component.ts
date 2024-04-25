@@ -1,63 +1,61 @@
-
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Estado } from '../../../models/estado.model';
-import { Component } from '@angular/core';
+
 import { EstadoService } from '../../../services/estado.service';
+import { Estado } from '../../../models/estado.model';
 
 @Component({
   selector: 'app-estado-form',
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
   templateUrl: './estado-form.component.html',
-  styleUrl: './estado-form.component.css'
+  styleUrls: ['./estado-form.component.css'],
+  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
+  standalone: true
 })
 export class EstadoFormComponent {
 
   formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private estadoService: EstadoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-
+    private activatedRoute: ActivatedRoute
+  ) {
     const estado: Estado = activatedRoute.snapshot.data['estado'];
 
     this.formGroup = formBuilder.group({
-      id: [(estado && estado.id) ? estado.id : null],
-      nome: [(estado && estado.nome) ? estado.nome : '', Validators.required],
-      sigla: [(estado && estado.sigla) ? estado.sigla : '', Validators.required]
+      id: [estado?.id || null],
+      nome: [estado?.nome || '', Validators.required],
+      sigla: [estado?.sigla || '', Validators.required]
     });
-
   }
 
   insert() {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
-      if (estado.id ==null) {
+      if (estado.id == null) {
         this.estadoService.insert(estado).subscribe({
-          next: (estadoCadastrado) => {
-            this.router.navigateByUrl('/estado');
+          next: () => {
+            this.router.navigateByUrl('/estado/all');
           },
           error: (err) => {
-            console.log('Erro ao Incluir' + JSON.stringify(err));
+            console.error('Erro ao incluir estado:', err);
           }
         });
       } else {
         this.estadoService.update(estado).subscribe({
-          next: (estadoAlterado) => {
-            this.router.navigateByUrl('/estado');
+          next: () => {
+            this.router.navigateByUrl('/estado/all');
           },
           error: (err) => {
-            console.log('Erro ao Editar' + JSON.stringify(err));
+            console.error('Erro ao editar estado:', err);
           }
         });
       }
@@ -68,16 +66,15 @@ export class EstadoFormComponent {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
       if (estado.id != null) {
-        this.estadoService.delete(estado).subscribe({
+        this.estadoService.delete(estado.id).subscribe({
           next: () => {
-            this.router.navigateByUrl('/estado');
+            this.router.navigateByUrl('/estado/all');
           },
           error: (err) => {
-            console.log('Erro ao Excluir' + JSON.stringify(err));
+            console.error('Erro ao excluir estado:', err);
           }
         });
       }
     }
   }
-
 }

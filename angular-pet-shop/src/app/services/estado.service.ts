@@ -7,12 +7,12 @@ import { Estado } from '../models/estado.model';
   providedIn: 'root'
 })
 export class EstadoService {
-  private baseUrl = 'http://localhost:8080/estados/all';
+  private baseUrl = 'http://localhost:8080/estados';
 
-  constructor(private httpClient: HttpClient) {  }
+  constructor(private httpClient: HttpClient) {}
 
   findAll(): Observable<Estado[]> {
-    return this.httpClient.get<Estado[]>(this.baseUrl);
+    return this.httpClient.get<Estado[]>(`${this.baseUrl}/all`);
   }
 
   findById(id: string): Observable<Estado> {
@@ -20,15 +20,14 @@ export class EstadoService {
   }
 
   insert(estado: Estado): Observable<Estado> {
-    return this.httpClient.post<Estado>(this.baseUrl, estado);
+    return this.httpClient.post<Estado>(`${this.baseUrl}/insert`, estado);
   }
-  
+
   update(estado: Estado): Observable<Estado> {
     return this.httpClient.put<Estado>(`${this.baseUrl}/${estado.id}`, estado);
   }
 
-  delete(estado: Estado): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${estado.id}`);
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/delete/${id}`);
   }
-
 }
