@@ -25,9 +25,10 @@ export class RacaoService {
   }
 
   updateRacao(racao: Racao): Observable<Racao> {
-    const url = `${this.apiUrl}/${racao.id}`;
+    const url = `${this.apiUrl}/update/${racao.id}`;
     return this.http.put<Racao>(url, racao);
-  }
+}
+
 
   deleteRacao(id: number): Observable<void> {
     const url = `${this.apiUrl}/delete/${id}`;

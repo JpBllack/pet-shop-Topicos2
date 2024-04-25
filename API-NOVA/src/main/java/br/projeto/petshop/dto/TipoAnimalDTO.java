@@ -9,4 +9,12 @@ public record TipoAnimalDTO(
     public static TipoAnimalDTO valueOf(TipoAnimal tipoAnimal){
         return new TipoAnimalDTO(tipoAnimal.getId(), tipoAnimal.getNome());
     }
+
+    public TipoAnimal toModel() {
+        TipoAnimal tipoAnimal = new TipoAnimal();
+        tipoAnimal.setId(this.id());
+        tipoAnimal.setNome(this.nome());
+        return tipoAnimal;
+    }
+    
 }

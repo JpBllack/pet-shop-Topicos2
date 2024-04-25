@@ -13,5 +13,7 @@ public interface RacaoService {
 
     void insert(RacaoDTO racaoDTO);
 
+    void update(long id, RacaoDTO racaoDTO);
+
     void delete(long id);
 }

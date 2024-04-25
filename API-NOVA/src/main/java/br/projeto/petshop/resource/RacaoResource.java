@@ -68,6 +68,24 @@ public class RacaoResource {
         }
     }
 
+    @PUT
+    @Path("/update/{id}")
+    @Transactional
+public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) {
+    LOG.info("Atualizando ração com ID: " + id);
+    try {
+        racaoService.update(id, racaoDTO);
+        LOG.info("Ração atualizada com sucesso");
+        return Response.noContent().build();
+    } catch (NotFoundException e) {
+        LOG.error("Ração não encontrada para o ID: " + id, e);
+        return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+    } catch (ValidationException e) {
+        LOG.error("Erro de validação ao atualizar a ração com ID: " + id, e);
+        return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+    }
+}
+
     @DELETE
     @Path("/delete/{id}")
     @Transactional

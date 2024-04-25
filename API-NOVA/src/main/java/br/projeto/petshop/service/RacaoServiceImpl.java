@@ -2,6 +2,8 @@ package br.projeto.petshop.service;
 
 import java.util.List;
 
+import org.jboss.logging.Logger;
+
 import br.projeto.petshop.dto.RacaoDTO;
 import br.projeto.petshop.model.Idade;
 import br.projeto.petshop.model.Peso;
@@ -11,6 +13,7 @@ import br.projeto.petshop.repository.RacaoRepository;
 import br.projeto.petshop.repository.TipoAnimalRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import br.projeto.petshop.validation.ValidationException;
 
@@ -18,22 +21,25 @@ import br.projeto.petshop.validation.ValidationException;
 public class RacaoServiceImpl implements RacaoService {
 
     @Inject
-    RacaoRepository repository;
+    RacaoRepository racaoRepository;
     @Inject
     TipoAnimalRepository tipoAnimalRepository;
 
 
+    private static final Logger LOG = Logger.getLogger(EstadoServiceImpl.class);
+
+
     @Override
     public List<RacaoDTO> getAll() {
-        if(repository.listAll().isEmpty()) {
+        if(racaoRepository.listAll().isEmpty()) {
             throw new NotFoundException("Não há rações");
         }
-        return repository.listAll().stream().map(RacaoDTO::valueOf).toList();
+        return racaoRepository.listAll().stream().map(RacaoDTO::valueOf).toList();
     }
 
     @Override
     public RacaoDTO getById(long id) {
-        Racao racao = repository.findById(id);
+        Racao racao = racaoRepository.findById(id);
         if (racao == null) {
             throw new NotFoundException("Ração não encontrada");
         }
@@ -42,7 +48,7 @@ public class RacaoServiceImpl implements RacaoService {
 
     @Override
     public List<RacaoDTO> getBySabor(String sabor) {
-        List<Racao> racoes = repository.findBySabor(sabor);
+        List<Racao> racoes = racaoRepository.findBySabor(sabor);
         if (racoes.isEmpty()) {
             throw new NotFoundException("Nenhuma ração encontrada com o sabor especificado");
         }
@@ -50,8 +56,9 @@ public class RacaoServiceImpl implements RacaoService {
     }
 
     @Override
+    @Transactional
     public void insert(RacaoDTO racaoDTO) {
-        if (repository.existsBySabor(racaoDTO.sabor())) {
+        if (racaoRepository.findBySabor(racaoDTO.sabor()) != null) {
             throw new ValidationException("400", "A ração com este sabor já existe");
         }
     
@@ -78,15 +85,34 @@ public class RacaoServiceImpl implements RacaoService {
     
         
         // Agora que o TipoAnimal está persistido, podemos salvar a Racao
-        repository.persist(racao);
+        racaoRepository.persist(racao);
     }
-    
-
 
     @Override
-    public void delete(long id) {
-        if (!repository.deleteById(id)) {
-            throw new NotFoundException("Ração não encontrada para exclusão");
+    @Transactional
+    public void update(long id, RacaoDTO racaoDTO) {
+        LOG.info("Atualizando ração com ID: " + id + ", dados: " + racaoDTO);
+        Racao racao = racaoRepository.findById(id);
+        if (racao == null) {
+            LOG.warn("Ração não encontrada para o ID: " + id);
+            throw new NotFoundException("Ração não encontrada");
         }
+        racao.setSabor(racaoDTO.sabor());
+        racao.setAnimal(racaoDTO.animal().toModel());
+        racao.setPeso(racaoDTO.peso());
+        racao.setIdade(racaoDTO.idade());
+        racaoRepository.persist(racao);
+        LOG.info("Ração atualizada com sucesso: " + racao);
+    }
+
+    @Override
+    @Transactional
+    public void delete(long id) {
+        LOG.info("Deletando ração com ID: " + id);
+        if (!racaoRepository.deleteById(id)) {
+            LOG.warn("Ração não encontrada para o ID: " + id);
+            throw new NotFoundException("Ração não encontrada");
+        }
+        LOG.info("Ração deletada com sucesso");
     }
 }
