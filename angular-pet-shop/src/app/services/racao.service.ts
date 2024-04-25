@@ -21,7 +21,7 @@ export class RacaoService {
   }
 
   createRacao(racao: Racao): Observable<Racao> {
-    return this.http.post<Racao>(this.apiUrl, racao);
+    return this.http.post<Racao>(`${this.apiUrl}/racoes/insert`, racao);
   }
 
   updateRacao(racao: Racao): Observable<Racao> {

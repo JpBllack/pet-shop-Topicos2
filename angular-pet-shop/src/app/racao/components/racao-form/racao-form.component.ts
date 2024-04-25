@@ -13,6 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatOptionModule } from '@angular/material/core';
+import { HttpClient } from '@angular/common/http';
+import { TipoAnimal } from '../../../models/tipoAnimal';
 
 
 
@@ -27,11 +29,15 @@ import { MatOptionModule } from '@angular/material/core';
 export class RacaoFormComponent implements OnInit {
 
   formGroup: FormGroup;
+  animals: TipoAnimal[] = [];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(formBuilder: FormBuilder,
               private racaoService: RacaoService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private http: HttpClient) {
+
+                
 
     this.formGroup = formBuilder.group({
       id: [null],
@@ -47,6 +53,10 @@ export class RacaoFormComponent implements OnInit {
     if (racao) {
       this.formGroup.patchValue(racao);
     }
+
+    this.http.get<TipoAnimal[]>('/tipos').subscribe(data => {
+      this.animals = data;
+  });
   }
 
   salvar() {
@@ -96,7 +106,7 @@ export class RacaoFormComponent implements OnInit {
   imports: [
     CommonModule,
     MatSelectModule,
-    MatOptionModule
-  ],
+    MatOptionModule,
+  ]
 })
 export class RacaoFormModule { }

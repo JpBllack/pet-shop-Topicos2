@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TitleService } from '../../../title.service';
+import { TipoAnimal } from '../../../models/tipoAnimal';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-racao-list',
@@ -19,12 +21,17 @@ import { TitleService } from '../../../title.service';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    RouterModule
-  ]
+    RouterModule,
+    CommonModule,
+
+  ],
 })
+
+
 export class RacaoListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'sabor', 'animal', 'peso', 'idade', 'acao'];
   racoes: Racao[] = [];
+  animals: TipoAnimal[] = [];
 
   constructor(
     private racaoService: RacaoService,

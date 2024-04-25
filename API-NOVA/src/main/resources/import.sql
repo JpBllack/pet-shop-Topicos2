@@ -77,10 +77,15 @@ VALUES ('2024-04-06', 'Tratamento de ferimento', 3, 2);
 
 
 
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('carne', 1, 1, 1);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('frango', 1, 1, 2);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('pistaxe', 5, 2, 2);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('atum', 2, 1, 1);
+INSERT INTO Racao (sabor, animal, peso, idade) VALUES ('carne', 1, 1, 1);
+INSERT INTO Racao (sabor, animal, peso, idade) VALUES ('frango', 1, 1, 2);
+INSERT INTO Racao (sabor, animal, peso, idade) VALUES ('pistaxe', 5, 2, 2);
+INSERT INTO Racao (sabor, animal, peso, idade) VALUES ('atum', 2, 1, 1);
 
 
 
+INSERT INTO Estado (nome, sigla) VALUES ('Tocantins', 'TO');
+INSERT INTO Estado (nome, sigla) VALUES ('Rio de Janeiro', 'RJ');
+INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
+INSERT INTO Estado (nome, sigla) VALUES ('Para', 'PA');
+INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
