@@ -59,7 +59,7 @@ public class RacaoServiceImpl implements RacaoService {
         TipoAnimalRepository tipoAnimalRepository = new TipoAnimalRepository();
     
         // Verifica se o TipoAnimal já existe no banco de dados
-        TipoAnimal tipoAnimal = tipoAnimalRepository.findByNome(racaoDTO.animal().nome());
+        TipoAnimal tipoAnimal = tipoAnimalRepository.findById(racaoDTO.animal().id());
         if (tipoAnimal == null) {
             // Se o TipoAnimal não existir, cria uma nova instância e persiste
             tipoAnimal = new TipoAnimal();

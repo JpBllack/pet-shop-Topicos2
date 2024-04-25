@@ -17,9 +17,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Tipo de Animal</mat-label>
                     <mat-select formControlName="animal" id="animal_id">
-
-
-                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal.id">
+                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal">
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
