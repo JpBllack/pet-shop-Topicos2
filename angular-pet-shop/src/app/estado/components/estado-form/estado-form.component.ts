@@ -37,11 +37,11 @@ export class EstadoFormComponent {
     });
   }
 
-  insert() {
+  createEstado() {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
       if (estado.id == null) {
-        this.estadoService.insert(estado).subscribe({
+        this.estadoService.createEstado(estado).subscribe({
           next: () => {
             this.router.navigateByUrl('/estado/all');
           },
@@ -50,7 +50,7 @@ export class EstadoFormComponent {
           }
         });
       } else {
-        this.estadoService.update(estado).subscribe({
+        this.estadoService.updateEstado(estado).subscribe({
           next: () => {
             this.router.navigateByUrl('/estado/all');
           },
@@ -67,7 +67,7 @@ export class EstadoFormComponent {
       const estado = this.formGroup.value;
       if (estado.id != null) {
         console.log ('excluindo  o estado');
-        this.estadoService.delete(estado.id).subscribe({
+        this.estadoService.deleteEstado(estado.id).subscribe({
           next: () => {
             this.router.navigateByUrl('/estado/all');
           },

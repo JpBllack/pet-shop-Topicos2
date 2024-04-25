@@ -26,7 +26,7 @@
         <mat-card-actions>
             <button mat-raised-button 
                     color="primary" 
-                    (click)="insert()"
+                    (click)="createEstado()"
                     [disabled]="formGroup.invalid"> 
                 Salvar 
             </button>
@@ -34,7 +34,8 @@
                     *ngIf="formGroup?.get('id')?.value"
                     color="warn" 
                     (click)="excluir()"
-                    [disabled]="formGroup.invalid"> 
+                    [disabled]="formGroup.invalid"
+                    routerLink="/estado/all"> 
                 Excluir 
             </button>
             <button mat-raised-button  

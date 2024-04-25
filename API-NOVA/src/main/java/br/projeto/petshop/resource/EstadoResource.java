@@ -3,7 +3,6 @@ package br.projeto.petshop.resource;
 import br.projeto.petshop.dto.EstadoDTO;
 import br.projeto.petshop.service.EstadoService;
 import br.projeto.petshop.validation.ValidationException;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -17,17 +16,12 @@ import java.util.List;
 @Path("/estados")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@ApplicationScoped
 public class EstadoResource {
 
     private static final Logger LOG = Logger.getLogger(EstadoResource.class);
 
-    private final EstadoService estadoService;
-
     @Inject
-    public EstadoResource(EstadoService estadoService) {
-        this.estadoService = estadoService;
-    }
+    EstadoService estadoService;
 
     @GET
     @Path("/all")
@@ -74,6 +68,24 @@ public class EstadoResource {
         }
     }
 
+    @PUT
+    @Path("/update/{id}")
+    @Transactional
+    public Response updateEstado(@PathParam("id") long id, @Valid EstadoDTO estadoDTO) {
+        LOG.info("Atualizando estado com ID: " + id);
+        try {
+            estadoService.update(id, estadoDTO);
+            LOG.info("Estado atualizado com sucesso");
+            return Response.noContent().build();
+        } catch (NotFoundException e) {
+            LOG.error("Estado não encontrado para o ID: " + id, e);
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (ValidationException e) {
+            LOG.error("Erro de validação ao atualizar o estado com ID: " + id, e);
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
     @DELETE
     @Path("/delete/{id}")
     @Transactional
@@ -84,7 +96,7 @@ public class EstadoResource {
             LOG.info("Estado deletado com sucesso");
             return Response.noContent().build();
         } catch (NotFoundException e) {
-            LOG.error("Estado não encontrado", e);
+            LOG.error("Estado não encontrado para o ID: " + id, e);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }

@@ -19,15 +19,17 @@ export class EstadoService {
     return this.httpClient.get<Estado>(`${this.baseUrl}/${id}`);
   }
 
-  insert(estado: Estado): Observable<Estado> {
+  createEstado(estado: Estado): Observable<Estado> {
     return this.httpClient.post<Estado>(`${this.baseUrl}/insert`, estado);
   }
 
-  update(estado: Estado): Observable<Estado> {
-    return this.httpClient.put<Estado>(`${this.baseUrl}/${estado.id}`, estado);
-  }
+  updateEstado(estados: Estado): Observable<Estado> {
+    const url = `${this.baseUrl}/update/${estados.id}`;
+    return this.httpClient.put<Estado>(url, estados);
+}
 
-  delete(id: number): Observable<Estado> {
-    return this.httpClient.get<Estado>(`${this.baseUrl}/delete/${id}`);
-  }
+deleteEstado(id: number): Observable<void> {
+  const url = `${this.baseUrl}/delete/${id}`;
+  return this.httpClient.delete<void>(url);
+}
 }

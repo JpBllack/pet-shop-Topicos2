@@ -10,8 +10,6 @@ public interface EstadoService {
 
     EstadoDTO getById(long id);
 
-    EstadoDTO getBySigla(String sigla);
-
     void insert(EstadoDTO estadoDTO);
 
     void update(long id, EstadoDTO estadoDTO);
