@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RacaoService {
-  private apiUrl = 'http://localhost:8080/racoes/all';
+  private apiUrl = 'http://localhost:8080/racoes';
 
   constructor(private http: HttpClient) { }
 
   getAllRacoes(): Observable<Racao[]> {
-    return this.http.get<Racao[]>(this.apiUrl);
+    return this.http.get<Racao[]>(`${this.apiUrl}/all`);
   }
 
   getRacaoById(id: number): Observable<Racao> {
