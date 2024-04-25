@@ -15,6 +15,9 @@ import { NgModule } from '@angular/core';
 import { MatOptionModule } from '@angular/material/core';
 import { HttpClient } from '@angular/common/http';
 import { TipoAnimal } from '../../../models/tipoAnimal';
+import { TipoAnimalService } from '../../../services/TipoAnimal.service';
+import { Peso } from '../../../models/peso';
+import { Idade } from '../../../models/idade';
 
 
 
@@ -22,17 +25,20 @@ import { TipoAnimal } from '../../../models/tipoAnimal';
   selector: 'app-racao-form',
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, MatOptionModule],
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, MatOptionModule, CommonModule],
   templateUrl: './racao-form.component.html',
   styleUrls: ['./racao-form.component.css']
 })
 export class RacaoFormComponent implements OnInit {
 
   formGroup: FormGroup;
-  animals: TipoAnimal[] = [];
+  animais: TipoAnimal[] = [];
+  pesos = Object.values(Peso).filter(value => isNaN(Number(value)));
+  idades = Object.values(Idade).filter(value => isNaN(Number(value)));
 
   constructor(formBuilder: FormBuilder,
               private racaoService: RacaoService,
+              private tipoAnimalService: TipoAnimalService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private http: HttpClient) {
@@ -50,13 +56,10 @@ export class RacaoFormComponent implements OnInit {
 
   ngOnInit(): void {
     const racao: Racao = this.activatedRoute.snapshot.data['racao'];
+    this.carregarTipos();
     if (racao) {
       this.formGroup.patchValue(racao);
-    }
-
-    this.http.get<TipoAnimal[]>('/tipos').subscribe(data => {
-      this.animals = data;
-  });
+    };
   }
 
   salvar() {
@@ -98,6 +101,17 @@ export class RacaoFormComponent implements OnInit {
         });
       }
     }
+  }
+
+  carregarTipos(){
+    this.tipoAnimalService.findAll().subscribe(
+      (tipo: TipoAnimal[]) => {
+        this.animais = tipo;
+      },
+      (error) => {
+        console.error('Erro ao carregar animais:', error);
+      }
+    )
   }
 }
 

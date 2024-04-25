@@ -19,7 +19,7 @@
                     <mat-select formControlName="animal" id="animal_id">
 
 
-                        <mat-option *ngFor="let tipoAnimal of tiposAnimais" [value]="tipoAnimal">
+                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal">
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
@@ -35,8 +35,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Peso</mat-label>
                     <mat-select formControlName="peso" id="peso_id">
-                        <mat-option *ngFor="let peso of pesos" [value]="peso.id">
-                            {{ peso.label }}
+                        <mat-option *ngFor="let peso of pesos" [value]="peso">
+                            {{ peso }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="formGroup.get('peso') 
@@ -49,8 +49,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Idade</mat-label>
                     <mat-select formControlName="idade" id="idade_id">
-                        <mat-option *ngFor="let idade of idades" [value]="idade.id">
-                            {{ idade.label }}
+                        <mat-option *ngFor="let idade of idades" [value]="idade">
+                            {{ idade }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="formGroup.get('idade') 
