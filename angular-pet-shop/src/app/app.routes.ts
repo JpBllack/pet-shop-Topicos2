@@ -34,6 +34,7 @@ export const routes: Routes = [
     { path: 'racoes/all', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
     { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },
     { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Editar Ração' } },
+    { path: 'racoes/delete/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Deletar Ração' } },
 
     { path: 'pets/all', component: PetListComponent, data: { title: 'Lista de Pets' } },
     { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },

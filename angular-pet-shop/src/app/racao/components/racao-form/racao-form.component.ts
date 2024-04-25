@@ -93,7 +93,7 @@ export class RacaoFormComponent implements OnInit {
       if (racao.id != null) {
         this.racaoService.deleteRacao(racao.id).subscribe({
           next: () => {
-            this.router.navigateByUrl(`/racoes/all'`);
+            this.router.navigateByUrl('/racoes/all');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
