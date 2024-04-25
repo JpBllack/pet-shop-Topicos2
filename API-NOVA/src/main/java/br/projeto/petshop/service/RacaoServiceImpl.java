@@ -58,9 +58,11 @@ public class RacaoServiceImpl implements RacaoService {
     @Override
     @Transactional
     public void insert(RacaoDTO racaoDTO) {
-        if (racaoRepository.findBySabor(racaoDTO.sabor()) != null) {
-            throw new ValidationException("400", "A ração com este sabor já existe");
+        Racao existingRacao = racaoRepository.findById(racaoDTO.id());
+        if (existingRacao != null) {
+        throw new ValidationException("400", "Uma ração com este ID já existe");
         }
+
     
         // Cria uma instância de TipoAnimalRepository
         TipoAnimalRepository tipoAnimalRepository = new TipoAnimalRepository();
