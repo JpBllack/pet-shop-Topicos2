@@ -66,6 +66,7 @@ export class EstadoFormComponent {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
       if (estado.id != null) {
+        console.log ('excluindo  o estado');
         this.estadoService.delete(estado.id).subscribe({
           next: () => {
             this.router.navigateByUrl('/estado/all');

@@ -27,7 +27,7 @@ export class EstadoService {
     return this.httpClient.put<Estado>(`${this.baseUrl}/${estado.id}`, estado);
   }
 
-  delete(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/delete/${id}`);
+  delete(id: number): Observable<Estado> {
+    return this.httpClient.get<Estado>(`${this.baseUrl}/delete/${id}`);
   }
 }
