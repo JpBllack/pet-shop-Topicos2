@@ -35,13 +35,11 @@ export class RacaoListComponent implements OnInit {
 
   constructor(
     private racaoService: RacaoService,
-    private titleService: TitleService 
   ) {}
 
   ngOnInit(): void {
-    this.racaoService.getAllRacoes().subscribe((data: Racao[]) => {
+    this.racaoService.getAllRacoes().subscribe(data => {
       this.racoes = data;
-      this.titleService.setTitle('Lista de Rações');
     });
   }
 }

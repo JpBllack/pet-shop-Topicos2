@@ -19,7 +19,7 @@
                     <mat-select formControlName="animal" id="animal_id">
 
 
-                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal">
+                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal.id">
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
