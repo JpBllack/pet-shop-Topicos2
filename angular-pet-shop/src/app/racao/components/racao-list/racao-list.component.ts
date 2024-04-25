@@ -38,7 +38,7 @@ export class RacaoListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.racaoService.getAllRacoes().subscribe(data => {
+    this.racaoService.getAllRacoes().subscribe((data: Racao[]) => {
       this.racoes = data;
     });
   }
