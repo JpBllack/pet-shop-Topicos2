@@ -1,38 +1,40 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { pet } from '../models/pet';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { pet } from "../models/pet";
+import { Injectable } from "@angular/core";
+
+
 
 @Injectable({
     providedIn: 'root'
-})
-export class petService {
+  })
+export class PetService{
+
     private baseUrl = 'http://localhost:8080/pets';
 
-    constructor(private http: HttpClient) {}
+    constructor(private httpClient: HttpClient){}
 
-    // Retorna todos os pets
-    getAllpets(): Observable<pet[]> {
-        return this.http.get<pet[]>(`${this.baseUrl}/all`);
+    findAll(): Observable<pet[]>{
+        return this.httpClient.get<pet[]>(`${this.baseUrl}/all`);
     }
 
-    // Encontra um pet pelo ID
-    getpetById(id: string): Observable<pet> {
-        return this.http.get<pet>(`${this.baseUrl}/byId/${id}`);
+    findById(id: string): Observable<pet>{
+        const url = `${this.baseUrl}/${id}`;
+        return this.httpClient.get<pet>(url);
     }
 
-    // Insere um novo pet
-    createpet(pet: pet): Observable<pet> {
-        return this.http.post<pet>(`${this.baseUrl}/create`, pet);
+    insert(pet: pet): Observable<pet>{
+        return this.httpClient.post<pet>(`${this.baseUrl}/insert`, pet);
     }
 
-    // Atualiza um pet existente pelo ID
-    updatepet(pet: pet): Observable<pet> {
-        return this.http.put<pet>(`${this.baseUrl}/update/${pet.id}`, pet);
+    update(pet: pet): Observable<pet>{
+        const url = `${this.baseUrl}/update/${pet.id}`;
+        return this.httpClient.put<pet>(url, pet);
     }
-
-    // Deleta um pet pelo ID
-    deletepetById(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+     
+    delete(id: number): Observable<void>{
+        const url = `${this.baseUrl}/delete/${id}`;
+        return this.httpClient.delete<void>(url);
     }
+    
 }

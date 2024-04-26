@@ -10,19 +10,24 @@
 }
 
 .mat-card {
-    width: 400px;
+    width: 400px; /* Altere conforme necessário para se ajustar ao design responsivo */
+    padding: 20px; /* Adicione padding para um layout mais espaçado */
 }
 
 .full-width-input {
-    width: 100%;
+    width: 100%; /* Mantém a largura total */
 }
 
 .mat-form-field {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Espaçamento entre os campos de formulário */
 }
 
 .mat-card-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin-top: 20px; /* Espaçamento superior para os botões */
+}
+
+button {
+    margin-right: 10px; /* Espaçamento entre botões */
 }

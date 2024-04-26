@@ -7,8 +7,7 @@ public record PetDTO (
     String nome,
     Integer anoNascimento,
     TipoAnimal tipoAnimal,
-    Sexo sexo,
-    Long usuarioId
+    Sexo sexo
 ){
 
     

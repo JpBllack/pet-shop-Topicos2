@@ -1,56 +1,60 @@
 <mat-toolbar color="primary">
-  <div class="flex-container">
+    <div class="flex-container">
       <span class="toolbar-title">Controle de Pets</span>
       <button mat-fab color="accent" routerLink="/pets/new">
-          <mat-icon>add</mat-icon>
+        <mat-icon>add</mat-icon>
       </button>
-  </div>
-</mat-toolbar>
-
-<table mat-table [dataSource]="pets" class="mat-elevation-z8">
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
+    </div>
+  </mat-toolbar>
+  
+  <table mat-table [dataSource]="pets" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let pet"> {{ pet.id }} </td>
-  </ng-container>
-
-  <!-- Nome Column -->
-  <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.nome }} </td>
-  </ng-container>
-
-  <!-- Usuário Column -->
-  <ng-container matColumnDef="usuario">
-      <th mat-header-cell *matHeaderCellDef> Usuário </th>
+    </ng-container>
+  
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> nome </th>
+      <td mat-cell *matCellDef="let pet"> {{ pet?.nome }} </td>
+    </ng-container>
+  
+    <!-- Usuario Column -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef> usuario </th>
       <td mat-cell *matCellDef="let pet"> {{ pet.usuario?.nome }} </td>
-  </ng-container>
+    </ng-container>
 
-  <!-- TipoAnimal Column -->
-  <ng-container matColumnDef="tipoAnimal">
-      <th mat-header-cell *matHeaderCellDef> TipoAnimal </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.tipoAnimal?.nome }} </td>
-  </ng-container>
-
-  <!-- Ano de Nascimento Column -->
-  <ng-container matColumnDef="anoNascimento">
-      <th mat-header-cell *matHeaderCellDef> Ano de Nascimento </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.anoNascimento }} </td>
-  </ng-container>
-
-  <!-- Ação Column -->
-  <ng-container matColumnDef="acao">
-      <th mat-header-cell *matHeaderCellDef> Ação </th>
-      <td mat-cell *matCellDef="let pet">
-          <button mat-icon-button color="primary" 
-          routerLink="/pets/edit/{{pet.id}}">
-              <mat-icon>edit</mat-icon>
+    <!-- TipoAnimal Column -->
+    <ng-container matColumnDef="tipoAnimal">
+        <th mat-header-cell *matHeaderCellDef> Animal </th>
+        <td mat-cell *matCellDef="let pet"> {{ pet.animal?.nome }} </td>
+      </ng-container>
+  
+    <!-- Ano nascimento Column -->
+    <ng-container matColumnDef="anoNascimento">
+      <th mat-header-cell *matHeaderCellDef> AnoNascimento </th>
+      <td mat-cell *matCellDef="let pet"> {{ pet?.anoNascimento }} </td>
+    </ng-container>
+  
+    <!-- Acao Column -->
+    <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let pet"> 
+          <button mat-icon-button 
+                  color="primary"   
+                  routerLink="/pet/edit/{{pet.id}}">
+                  <mat-icon>edit</mat-icon>
           </button>
-      </td>
-  </ng-container>
-
-  <!-- Definição das linhas de cabeçalho e linha de dados -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+          <button mat-icon-button 
+                  color="warn">
+                  <mat-icon>delete</mat-icon>
+          </button>        
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   

@@ -6,17 +6,14 @@ import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
 
 import br.projeto.petshop.model.Pet;
-import br.projeto.petshop.model.Usuario;
 
 @ApplicationScoped
 public class PetRepository implements PanacheRepository<Pet> {
 
-    // Método para encontrar um pet pelo nome
     public Pet findByNome(String nome) {
         return find("nome", nome).firstResult();
     }
 
-    // Método para atualizar um pet existente
     public void update(Pet pet) {
         Pet petToUpdate = findById(pet.getId());
         if (petToUpdate != null) {
@@ -24,41 +21,36 @@ public class PetRepository implements PanacheRepository<Pet> {
             petToUpdate.setAnoNascimento(pet.getAnoNascimento());
             petToUpdate.setTipoAnimal(pet.getTipoAnimal());
             petToUpdate.setSexo(pet.getSexo());
-            petToUpdate.setUsuario(pet.getUsuario()); // Atualiza o campo Usuario
             persist(petToUpdate);
         } else {
-            throw new IllegalArgumentException("Pet não encontrado com ID: " + pet.getId());
+            throw new IllegalArgumentException("Animal não encontrado com ID: " + pet.getId());
         }
     }
 
-    // Método para buscar todos os pets
     public List<Pet> buscarTodos() {
-        return listAll();
+        return listAll(); // Retorna todos os pets do banco de dados
     }
 
-    // Método para buscar um pet pelo nome
     public Pet buscarPorNome(String nome) {
-        return find("nome", nome).firstResult();
+        return find("nome", nome).firstResult(); // Busca um pet pelo nome
     }
 
-    // Método para buscar um pet pelo ID
     public Pet buscarPorId(Long id) {
-        return findById(id);
+        return findById(id); // Busca um pet pelo ID
     }
 
-    // Método para salvar um novo pet
     public void salvar(Pet pet) {
-        persist(pet);
+        persist(pet); // Salva um novo pet no banco de dados
     }
 
-    // Método para atualizar um pet (alternativo ao método `update`)
     public void atualizar(Pet pet) {
-        update("nome = ?1, anoNascimento = ?2, tipoAnimal = ?3, sexo = ?4, usuario_id = ?5 where id = ?6",
-                pet.getNome(), pet.getAnoNascimento(), pet.getTipoAnimal(), pet.getSexo(), pet.getUsuario().getId(), pet.getId());
+        update("nome = ?1, anoNascimento = ?2, tipoAnimal = ?3, sexo = ?4 where id = ?5",
+                pet.getNome(), pet.getAnoNascimento(), pet.getTipoAnimal(), pet.getSexo(), pet.getId());
+        // Atualiza os dados de um pet no banco de dados
     }
 
-    // Método para remover um pet
     public void remover(Pet pet) {
-        delete(pet);
+        delete(pet); // Remove um pet do banco de dados
     }
 }
+

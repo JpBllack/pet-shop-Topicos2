@@ -1,5 +1,5 @@
 .mat-toolbar {
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Espaçamento consistente com outros elementos */
 }
 
 table {

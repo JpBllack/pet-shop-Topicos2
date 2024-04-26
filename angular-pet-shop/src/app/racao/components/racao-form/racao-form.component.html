@@ -27,9 +27,6 @@
                         O tipo de animal é obrigatório.
                     </mat-error>
                 </mat-form-field>
- 
-                
-
                 <mat-form-field appearance="fill">
                     <mat-label>Peso</mat-label>
                     <mat-select formControlName="peso" id="peso_id">
@@ -71,9 +68,7 @@
                     color="warn" 
                     (click)="excluir()"
                     [disabled]="formGroup.invalid" 
-                    routerLink="/racoes/all"
-                    > 
-                    
+                    routerLink="/racoes/all">  
                 Excluir 
             </button>
             <button mat-raised-button  
