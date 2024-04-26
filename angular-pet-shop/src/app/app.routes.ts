@@ -21,12 +21,16 @@ import { TipoAnimalFormComponent } from './tipoAnimal/components/tipoAnimal-form
 import { UsuarioListComponent } from './usuario/components/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './usuario/components/usuario-form/usuario-form.component';
 import { usuarioResolver } from './usuario/resolver/usuario-resolver';
+import { Estado } from './models/estado.model';
+import { Title } from '@angular/platform-browser';
 
 export const routes: Routes = [
     { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
     { path: 'estado/new', component: EstadoFormComponent, data: { title: 'Novo Estado'} },
     { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}, data: { title: 'Editar Estado'} },
+    { path: 'estado/delete/:id', component: EstadoFormComponent,  resolve: {estado: estadoResolver}, data:{title: 'Deletar Estado'}},
 
+    
     { path: 'municipios', component: municipioListComponent, data: { title: 'Lista de municípios'} },
     { path: 'municipios/new', component: municipioFormComponent, data: { title: 'Novo município'} },
     { path: 'municipios/edit/:id', component: municipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },

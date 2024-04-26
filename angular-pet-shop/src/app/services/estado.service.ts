@@ -23,9 +23,9 @@ export class EstadoService {
     return this.httpClient.post<Estado>(`${this.baseUrl}/insert`, estado);
   }
 
-  updateEstado(estados: Estado): Observable<Estado> {
-    const url = `${this.baseUrl}/update/${estados.id}`;
-    return this.httpClient.put<Estado>(url, estados);
+  updateEstado(estado: Estado): Observable<Estado> {
+    const url = `${this.baseUrl}/update/${estado.id}`;
+    return this.httpClient.put<Estado>(url, estado);
 }
 
 deleteEstado(id: number): Observable<void> {
