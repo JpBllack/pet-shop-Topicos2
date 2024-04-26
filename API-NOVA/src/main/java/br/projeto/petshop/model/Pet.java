@@ -4,12 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Pet extends DefaultEntity {
 
-    @Entity
-    @Inheritance(strategy = InheritanceType.JOINED)
-    public class Pet extends DefaultEntity {
-        
     private String nome;
     private int anoNascimento;
 
@@ -18,7 +18,12 @@ import jakarta.persistence.ManyToOne;
 
     private Sexo sexo;
 
-    // Getters e Setters para nome, anoNascimento, tipoAnimal, sexo
+    // Adicione a relação com Usuario
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    // Getters e Setters para nome, anoNascimento, tipoAnimal, sexo, usuario
 
     public String getNome() {
         return nome;
@@ -50,5 +55,14 @@ import jakarta.persistence.ManyToOne;
 
     public void setTipoAnimal(TipoAnimal tipoAnimal) {
         this.tipoAnimal = tipoAnimal;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        
     }
 }
