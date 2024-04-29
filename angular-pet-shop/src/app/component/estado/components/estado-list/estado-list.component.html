@@ -1,0 +1,47 @@
+
+<mat-toolbar color="primary">
+  <div class="flex-container">
+    <span class="toolbar-title">Controle de Estados</span>
+    <button mat-fab color="accent" routerLink="/estado/new">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<table mat-table [dataSource]="estado" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let estado"> {{estado.id}} </td>
+    </ng-container>
+  
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let estado"> {{estado.nome}} </td>
+    </ng-container>
+  
+    <!-- Sigla Column -->
+    <ng-container matColumnDef="sigla">
+      <th mat-header-cell *matHeaderCellDef> Sigla </th>
+      <td mat-cell *matCellDef="let estado"> {{estado.sigla}} </td>
+    </ng-container>
+
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="acao">
+    <th mat-header-cell *matHeaderCellDef> Ação </th>
+    <td mat-cell *matCellDef="let estado"> 
+      <button mat-icon-button color="primary" routerLink="/estado/edit/{{estado.id}}">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let estado; columns: displayedColumns;"></tr>
+  </table>
+  
+  

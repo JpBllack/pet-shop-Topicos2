@@ -1,28 +1,29 @@
 import { Routes } from '@angular/router';
 
-import { EstadoListComponent } from './estado/components/estado-list/estado-list.component';
-import { EstadoFormComponent } from './estado/components/estado-form/estado-form.component';
-import { estadoResolver } from './estado/resolver/estado-resolver';
-import { municipioListComponent } from './municipio/components/municipio-list/municipio-list.component';
-import { municipioFormComponent } from './municipio/components/municipio-form/municipio-form.component';
-import { RacaoListComponent } from './racao/components/racao-list/racao-list.component';
-import { RacaoFormComponent } from './racao/components/racao-form/racao-form.component';
-import { municipioResolver } from './municipio/resolver/municipio-resolver';
-import { PetListComponent } from './pet/components/pet-list/pet-list.component';
-import { PetFormComponent } from './pet/components/pet-form/pet-form.component';
-import { petResolver } from './pet/resolver/pet-resolver';
-import { racaoResolver } from './racao/resolver/racao-resolver';
-import { ConsultaListComponent } from './consulta/component/consulta-list/consulta-list.component';
-import { ConsultaFormComponent } from './consulta/component/consulta-form/consulta-form.component';
-import { ConsultaResolver } from './consulta/resolver/consulta-resolver';
-import { TipoAnimalListComponent } from './tipoAnimal/components/tipoAnimal-list/tipoAnimal-list.component';
-import { tipoAnimalResolver } from './tipoAnimal/resolver/tipoAnimal-resolver';
-import { TipoAnimalFormComponent } from './tipoAnimal/components/tipoAnimal-form/tipoAnimal-form.component';
-import { UsuarioListComponent } from './usuario/components/usuario-list/usuario-list.component';
-import { UsuarioFormComponent } from './usuario/components/usuario-form/usuario-form.component';
-import { usuarioResolver } from './usuario/resolver/usuario-resolver';
+
 import { Estado } from './models/estado.model';
 import { Title } from '@angular/platform-browser';
+import { ConsultaFormComponent } from './component/consulta/component/consulta-form/consulta-form.component';
+import { ConsultaListComponent } from './component/consulta/component/consulta-list/consulta-list.component';
+import { ConsultaResolver } from './component/consulta/resolver/consulta-resolver';
+import { EstadoFormComponent } from './component/estado/components/estado-form/estado-form.component';
+import { EstadoListComponent } from './component/estado/components/estado-list/estado-list.component';
+import { estadoResolver } from './component/estado/resolver/estado-resolver';
+
+import { municipioResolver } from './component/municipio/resolver/municipio-resolver';
+import { PetFormComponent } from './component/pet/components/pet-form/pet-form.component';
+import { PetListComponent } from './component/pet/components/pet-list/pet-list.component';
+import { petResolver } from './component/pet/resolver/pet-resolver';
+import { RacaoFormComponent } from './component/racao/components/racao-form/racao-form.component';
+import { RacaoListComponent } from './component/racao/components/racao-list/racao-list.component';
+import { racaoResolver } from './component/racao/resolver/racao-resolver';
+import { TipoAnimalFormComponent } from './component/tipoAnimal/components/tipoAnimal-form/tipoAnimal-form.component';
+import { TipoAnimalListComponent } from './component/tipoAnimal/components/tipoAnimal-list/tipoAnimal-list.component';
+import { tipoAnimalResolver } from './component/tipoAnimal/resolver/tipoAnimal-resolver';
+import { UsuarioFormComponent } from './component/usuario/components/usuario-form/usuario-form.component';
+import { UsuarioListComponent } from './component/usuario/components/usuario-list/usuario-list.component';
+import { usuarioResolver } from './component/usuario/resolver/usuario-resolver';
+import { MunicipioFormComponent } from './component/municipio/components/municipio-form/municipio-form.component';
 
 export const routes: Routes = [
     { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
@@ -31,9 +32,11 @@ export const routes: Routes = [
     { path: 'estado/delete/:id', component: EstadoFormComponent,  resolve: {estado: estadoResolver}, data:{title: 'Deletar Estado'}},
 
     
-    { path: 'municipios', component: municipioListComponent, data: { title: 'Lista de municípios'} },
-    { path: 'municipios/new', component: municipioFormComponent, data: { title: 'Novo município'} },
-    { path: 'municipios/edit/:id', component: municipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
+    { path: 'municipios/all', component: MunicipioFormComponent, data: { title: 'Lista de municípios'} },
+    { path: 'municipios/new', component: MunicipioFormComponent, data: { title: 'Novo município'} },
+    { path: 'municipios/edit/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
+    { path: 'municipios/delete/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Deletar Município'} },
+
 
     { path: 'racoes/all', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
     { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },

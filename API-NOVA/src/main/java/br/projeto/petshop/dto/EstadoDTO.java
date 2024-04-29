@@ -2,9 +2,9 @@ package br.projeto.petshop.dto;
 
 import br.projeto.petshop.model.Estado;
 
-public record EstadoDTO(String nome, String sigla) {
+public record EstadoDTO(long id,String nome, String sigla) {
     public EstadoDTO(Estado estado) {
-        this(estado.getNome(), estado.getSigla());
+        this(estado.getId(), estado.getNome(), estado.getSigla());
     }
     
     public static EstadoDTO valueOf(Estado estado) {

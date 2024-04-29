@@ -23,13 +23,14 @@ export class EstadoService {
     return this.httpClient.post<Estado>(`${this.baseUrl}/insert`, estado);
   }
 
+  
   updateEstado(estado: Estado): Observable<Estado> {
     const url = `${this.baseUrl}/update/${estado.id}`;
     return this.httpClient.put<Estado>(url, estado);
 }
 
 deleteEstado(id: number): Observable<void> {
-  const url = `${this.baseUrl}/delete/${id}`;
+  const url = (`${this.baseUrl}/delete/${id}`);
   return this.httpClient.delete<void>(url);
 }
 }

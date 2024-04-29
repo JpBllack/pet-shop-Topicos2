@@ -35,7 +35,7 @@ export class RacaoService {
     return this.http.delete<void>(url);
   }
 
-  findById(id: string): Observable<Racao> {
+    findById(id: string): Observable<Racao> {
     return this.http.get<Racao>(`${this.apiUrl}/${id}`);
   }
 }
