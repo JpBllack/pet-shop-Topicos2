@@ -16,4 +16,6 @@ public interface RacaoService {
     void update(long id, RacaoDTO racaoDTO);
 
     void delete(long id);
+
+    public RacaoDTO changeImage(Long id, String ImageName);
 }

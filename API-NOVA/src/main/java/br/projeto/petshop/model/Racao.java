@@ -12,6 +12,7 @@ package br.projeto.petshop.model;
 
     
     private String sabor;
+    private String imagem;
 
     @ManyToOne
     private TipoAnimal animal;
@@ -52,4 +53,14 @@ package br.projeto.petshop.model;
     public void setAnimal(TipoAnimal animal) {
         this.animal = animal;
     }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    
 }

@@ -117,4 +117,11 @@ public class RacaoServiceImpl implements RacaoService {
         }
         LOG.info("Ração deletada com sucesso");
     }
+
+    @Override
+    public RacaoDTO changeImage(Long id, String ImageName) {
+        Racao racao = racaoRepository.findById(id);
+        racao.setImagem(ImageName);
+        return RacaoDTO.valueOf(racao);
+    }
 }

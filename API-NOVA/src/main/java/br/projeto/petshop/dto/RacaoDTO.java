@@ -8,8 +8,9 @@ public record RacaoDTO(
     long id,
     String sabor,
     TipoAnimalDTO animal,
-    Peso  peso,
-    Idade  idade
+    Peso peso,
+    Idade idade,
+    String imagem
 ) {
     public RacaoDTO {
         // Construtor vazio necessário para que o record funcione
@@ -21,7 +22,8 @@ public record RacaoDTO(
             racao.getSabor(),
             TipoAnimalDTO.valueOf(racao.getAnimal()),
             racao.getPeso(),
-            racao.getIdade()
+            racao.getIdade(),
+            racao.getImagem()
         );
     }
 }

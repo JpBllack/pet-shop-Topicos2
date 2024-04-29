@@ -1,6 +1,9 @@
 package br.projeto.petshop.resource;
 
+import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.RacaoDTO;
+import br.projeto.petshop.form.ProdutoImageForm;
+import br.projeto.petshop.service.ProdutoFileService;
 import br.projeto.petshop.service.RacaoService;
 import br.projeto.petshop.validation.ValidationException;
 import jakarta.inject.Inject;
@@ -10,7 +13,9 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
+import java.io.IOException;
 import java.util.List;
 
 @Path("/racoes")
@@ -22,6 +27,9 @@ public class RacaoResource {
 
     @Inject
     RacaoService racaoService;
+
+    @Inject
+    ProdutoFileService fileService;
 
     @GET
     @Path("/all")
@@ -100,4 +108,30 @@ public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) 
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }
+
+    //----------Imagem----------
+
+    @PATCH
+    @Path("/upload/image/{id}")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response saveimage(@PathParam("id") long id, @MultipartForm ProdutoImageForm form){{
+        String imageName;
+        try{
+            LOG.info("Inserindo imagem");
+            imageName = fileService.save(form.getNomeImagem(), form.getImagem());
+            LOG.info("Alterando imagem do usuario");
+
+            RacaoDTO dto = racaoService.getById(id);
+            dto = racaoService.changeImage(id, imageName);
+            LOG.info("Imagem alterada");
+            return Response.ok(dto).build();
+        } catch (IOException e){
+            LOG.error("Erro ao inserir imagem");
+            e.printStackTrace();
+            Error error = new Error("409", e.getMessage());
+            return Response.status(Response.Status.CONFLICT).entity(error).build();
+        }
+    }
+}
 }

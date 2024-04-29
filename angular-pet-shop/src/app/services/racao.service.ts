@@ -38,4 +38,8 @@ export class RacaoService {
     findById(id: string): Observable<Racao> {
     return this.http.get<Racao>(`${this.apiUrl}/${id}`);
   }
+
+  changeImage(id: number): Observable<Racao>{
+    return this.http.get<Racao>(`${this.apiUrl}/upload/image/${id}`)
+  }
 }

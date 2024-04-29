@@ -8,4 +8,5 @@ export class Racao {
   animal!: TipoAnimal;
   peso!: Peso;
   idade!: Idade;
+  imagem!: String
 }
