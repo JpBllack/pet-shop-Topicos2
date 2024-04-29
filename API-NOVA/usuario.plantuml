@@ -1,0 +1,30 @@
+@startuml
+class Pessoa {
+    -id : Long
+    -nome : String
+    -cpf : String
+}
+
+class Usuario {
+    -login : String
+    -senha : String
+}
+
+class Cliente {
+    -endereco : String
+    -pet : int
+}
+
+class Veterinario {
+    -crmv : String
+}
+
+class Administrador {
+    -nivelAcesso : String
+}
+
+Pessoa <|-- Usuario
+Usuario <|-- Cliente
+Usuario <|-- Veterinario
+Usuario <|-- Administrador
+@enduml
