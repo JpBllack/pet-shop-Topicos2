@@ -87,7 +87,6 @@ public class PetResource {
     }
 
     @GET
-    @Transactional
     @Path("/all")
     public Response findAll(){
         try{

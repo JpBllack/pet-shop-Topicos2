@@ -10,7 +10,7 @@ public record PetResponseDTO (
     TipoAnimal tipoAnimal,
     Sexo sexo
 ){
-    public static PetResponseDTO valueof(Pet pet){
+    public static PetResponseDTO valueOf(Pet pet){
         return new PetResponseDTO(pet.getNome(), pet.getAnoNascimento(), pet.getTipoAnimal(), pet.getSexo());
     }
 }

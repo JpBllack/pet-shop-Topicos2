@@ -41,7 +41,7 @@ public class PetServiceImpl implements PetService {
 
         petRepository.persist(pet);
 
-        return PetResponseDTO.valueof(pet);
+        return PetResponseDTO.valueOf(pet);
 
     }
 
@@ -66,7 +66,7 @@ public class PetServiceImpl implements PetService {
         pet.setTipoAnimal(tipoAnimalRepository.findById(dto.tipoAnimal().getId()));
         pet.setSexo(dto.sexo());
 
-        return PetResponseDTO.valueof(pet);
+        return PetResponseDTO.valueOf(pet);
     }
 
     @Override
@@ -78,10 +78,10 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public List<PetResponseDTO> buscarTodosPets() {
-        if(petRepository.listAll().stream().map(e -> PetResponseDTO.valueof(e)).toList().isEmpty()){
+        if(petRepository.listAll().stream().map(e -> PetResponseDTO.valueOf(e)).toList().isEmpty()){
             throw new NotFoundException("Pet não encontrado");
         }
-        return petRepository.listAll().stream().map(e -> PetResponseDTO.valueof(e)).toList();
+        return petRepository.listAll().stream().map(e -> PetResponseDTO.valueOf(e)).toList();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class PetServiceImpl implements PetService {
         if(petRepository.findByNome(nome) == null) {
             throw new NotFoundException("Pet não encontrado");
         }
-        return PetResponseDTO.valueof(petRepository.findByNome(nome));
+        return PetResponseDTO.valueOf(petRepository.findByNome(nome));
     }
 
     @Override
@@ -97,7 +97,7 @@ public class PetServiceImpl implements PetService {
         if(petRepository.findById(id) == null){
             throw new NotFoundException("Pet não encontrado");
         }
-        return PetResponseDTO.valueof(petRepository.findById(id));
+        return PetResponseDTO.valueOf(petRepository.findById(id));
     } 
 
     

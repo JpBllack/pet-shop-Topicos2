@@ -1,7 +1,11 @@
 @startuml
 
-    class Usuario{
+    class Pessoa{
         - nome: String
+        - cpf: String
+    }
+
+    class Usuario{
         - username: String
         - email: String
         - senha: String
@@ -15,6 +19,10 @@
         - crvm: String
     }
 
+    class Admin{
+        
+    }
+
     enum Perfil{
         - USER: int
         - AMIN: int
@@ -24,7 +32,6 @@
     class CompraRecorrente{
         - quantidade: int
         - dataCompra: Date
-
     }
 
     class Consulta{
@@ -39,6 +46,10 @@
 
     class Racao{
         - sabor: String
+    }
+
+    class Marca{
+        - nome: String
     }
 
     class Pet{
@@ -117,14 +128,16 @@
         - chave: String
     }
     
-    Cliente -up-> Usuario
-    Veterinario -up-> Usuario
+    Cliente "1" --> "1" Pessoa
+    Veterinario "1" --> "1" Pessoa
+    Admin "1" --> "1" Pessoa
 
-    Usuario "1" --> "1" Perfil
+    Pessoa "1" --> "1" Usuario
     
     Racao "*" --> "1" TipoAnimal
     Racao "*" --> "1" Peso
     Racao "*" --> "1" Idade
+    Racao "*" --> "1" Marca
 
     Cliente "1" --> "1" Telefone
     Cliente "1" --> "*" Endereco
