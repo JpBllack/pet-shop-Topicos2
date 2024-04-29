@@ -89,3 +89,6 @@ INSERT INTO Estado (nome, sigla) VALUES ('Rio de Janeiro', 'RJ');
 INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
 INSERT INTO Estado (nome, sigla) VALUES ('Para', 'PA');
 INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
+
+INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',4); 

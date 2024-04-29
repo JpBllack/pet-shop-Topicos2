@@ -24,6 +24,7 @@ import { UsuarioFormComponent } from './component/usuario/components/usuario-for
 import { UsuarioListComponent } from './component/usuario/components/usuario-list/usuario-list.component';
 import { usuarioResolver } from './component/usuario/resolver/usuario-resolver';
 import { MunicipioFormComponent } from './component/municipio/components/municipio-form/municipio-form.component';
+import { municipioListComponent } from './component/municipio/components/municipio-list/municipio-list.component';
 
 export const routes: Routes = [
     { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
@@ -32,7 +33,7 @@ export const routes: Routes = [
     { path: 'estado/delete/:id', component: EstadoFormComponent,  resolve: {estado: estadoResolver}, data:{title: 'Deletar Estado'}},
 
     
-    { path: 'municipios/all', component: MunicipioFormComponent, data: { title: 'Lista de municípios'} },
+    { path: 'municipios/all', component: municipioListComponent, data: { title: 'Lista de municípios'} },
     { path: 'municipios/new', component: MunicipioFormComponent, data: { title: 'Novo município'} },
     { path: 'municipios/edit/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
     { path: 'municipios/delete/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Deletar Município'} },

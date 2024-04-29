@@ -26,6 +26,7 @@ public class MunicipioResource {
 
     @GET
     @Path("/all")
+    @Transactional
     public Response getAllMunicipios() {
         LOG.info("Buscando todos os municípios");
         List<MunicipioResponseDTO> municipios = municipioService.getAll();
@@ -40,6 +41,7 @@ public class MunicipioResource {
 
     @GET
     @Path("/{id}")
+    @Transactional
     public Response getMunicipioById(@PathParam("id") long id) {
         LOG.info("Buscando município pelo ID: " + id);
         try {
@@ -54,6 +56,7 @@ public class MunicipioResource {
 
     @POST
     @Path("/insert")
+    @Transactional
     public Response insertMunicipio(@Valid MunicipioDTO municipioDTO) {
         LOG.info("Inserindo novo município: " + municipioDTO);
         municipioService.insertMunicipio(municipioDTO);
@@ -63,6 +66,7 @@ public class MunicipioResource {
 
     @PUT
     @Path("/update/{id}")
+    @Transactional
     public Response updateMunicipio(@PathParam("id") long id, @Valid MunicipioDTO municipioDTO) {
         LOG.info("Atualizando município com ID: " + id);
         try {
@@ -80,6 +84,7 @@ public class MunicipioResource {
 
     @DELETE
     @Path("/delete/{id}")
+    @Transactional
     public Response deleteMunicipio(@PathParam("id") long id) {
         LOG.info("Deletando município pelo ID: " + id);
         try {
