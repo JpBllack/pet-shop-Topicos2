@@ -21,7 +21,6 @@ public class PetRepository implements PanacheRepository<Pet> {
             petToUpdate.setUsuario(pet.getUsuario());
             petToUpdate.setAnoNascimento(pet.getAnoNascimento());
             petToUpdate.setTipoAnimal(pet.getTipoAnimal());
-            petToUpdate.setSexo(pet.getSexo());
             persist(petToUpdate);
         } else {
             throw new IllegalArgumentException("Animal não encontrado com ID: " + pet.getId());
@@ -46,7 +45,7 @@ public class PetRepository implements PanacheRepository<Pet> {
 
     public void atualizar(Pet pet) {
         update("nome = ?1, anoNascimento = ?2, tipoAnimal = ?3, sexo = ?4 where id = ?5",
-                pet.getNome(), pet.getAnoNascimento(), pet.getTipoAnimal(), pet.getSexo(), pet.getId());
+                pet.getNome(), pet.getAnoNascimento(), pet.getTipoAnimal(), pet.getId());
         // Atualiza os dados de um pet no banco de dados
     }
 

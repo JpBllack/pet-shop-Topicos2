@@ -89,9 +89,7 @@ public class PetServiceImpl implements PetService {
         if (Objects.isNull(dto.tipoAnimal())) {
             throw new ValidationException("400", "O tipo de animal deve ser informado");
         }
-        if (Objects.isNull(dto.sexo())) {
-            throw new ValidationException("400", "O sexo do animal deve ser informado");
-        }
+
     }
 
     private void mapearPet(Pet pet, PetDTO dto) {
@@ -99,6 +97,5 @@ public class PetServiceImpl implements PetService {
         pet.setAnoNascimento(dto.anoNascimento());
         pet.setUsuario(dto.usuario());
         pet.setTipoAnimal(tipoAnimalRepository.findById(dto.tipoAnimal().getId()));
-        pet.setSexo(dto.sexo());
     }
 }

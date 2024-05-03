@@ -20,7 +20,6 @@ import jakarta.persistence.ManyToOne;
     @JoinColumn(name = "TipoAnimalId")
     private TipoAnimal tipoAnimal;
 
-    private Sexo sexo;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -52,14 +51,7 @@ import jakarta.persistence.ManyToOne;
         this.anoNascimento = anoNascimento;
     }
 
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
-    }
-
+   
     public TipoAnimal getTipoAnimal() {
         return tipoAnimal;
     }

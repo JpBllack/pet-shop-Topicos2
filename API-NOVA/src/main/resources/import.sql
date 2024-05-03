@@ -49,16 +49,16 @@ INSERT INTO TipoAnimal (nome) VALUES
 
 
 -- Inserir um pet do tipo cachorro, macho
-INSERT INTO Pet (nome, anoNascimento, TipoAnimalId, sexo, usuario_id) 
-VALUES ('Rex', 2019, 1, 1,1);
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId, usuario_id) 
+VALUES ('Rex', 2019, 1,1);
 
 -- Inserir um pet do tipo gato, fêmea
-INSERT INTO Pet (nome, anoNascimento, TipoAnimalId, sexo, usuario_id) 
-VALUES ('Luna', 2018, 2, 2,2);
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Luna', 2018, 2,2);
 
 -- Inserir um pet do tipo pássaro, macho
-INSERT INTO Pet (nome, anoNascimento, TipoAnimalId, sexo, usuario_id) 
-VALUES ('Tweety', 2020, 3, 1,3);
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Tweety', 2020, 3,3);
 
 
 
