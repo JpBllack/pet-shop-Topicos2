@@ -22,7 +22,7 @@ import br.projeto.petshop.dto.LoginDTO;
 public class BasicRegistrationResource {
 
     @Inject
-    UsuarioService userService;
+    UsuarioService userService; 
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 

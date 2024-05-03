@@ -7,5 +7,5 @@ import { PetService } from "../../../services/pet.service";
 
 export const petResolver: ResolveFn<pet> = 
 (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    return inject(PetService).findById(route.paramMap.get('id')!);
+    return inject(PetService).findByIdPet(route.paramMap.get('id')!);
 }

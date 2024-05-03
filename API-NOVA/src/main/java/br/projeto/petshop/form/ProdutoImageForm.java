@@ -3,7 +3,6 @@ package br.projeto.petshop.form;
 import org.jboss.resteasy.annotations.providers.multipart.PartType;
 
 import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.PathParam;
 
 public class ProdutoImageForm {
 

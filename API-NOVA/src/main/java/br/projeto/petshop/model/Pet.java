@@ -3,6 +3,7 @@ package br.projeto.petshop.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 
@@ -13,12 +14,25 @@ import jakarta.persistence.ManyToOne;
     private String nome;
     private int anoNascimento;
 
+
     @ManyToOne
     private TipoAnimal tipoAnimal;
 
     private Sexo sexo;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     // Getters e Setters para nome, anoNascimento, tipoAnimal, sexo
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public String getNome() {
         return nome;

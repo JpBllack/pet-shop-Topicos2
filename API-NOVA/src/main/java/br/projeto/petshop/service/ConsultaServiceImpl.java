@@ -4,8 +4,6 @@ import java.util.List;
 
 import br.projeto.petshop.dto.ConsultaDTO;
 import br.projeto.petshop.dto.ConsultaResponseDTO;
-import br.projeto.petshop.dto.TipoAnimalDTO;
-import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.Consulta;
 import br.projeto.petshop.model.Usuario;
 import br.projeto.petshop.repository.ConsultaRepository;

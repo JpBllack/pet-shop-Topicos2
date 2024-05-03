@@ -35,7 +35,7 @@ public class PetResource {
 
     @POST
     @Transactional
-    @Path("/create")
+    @Path("/insert")
     public Response insert(PetDTO dto){
         try{
             return Response.status(Response.Status.CREATED).entity(petService.criarPet(dto)).build();

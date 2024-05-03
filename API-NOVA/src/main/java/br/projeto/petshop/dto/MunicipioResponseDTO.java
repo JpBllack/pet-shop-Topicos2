@@ -1,6 +1,6 @@
 package br.projeto.petshop.dto;
 
-import br.projeto.petshop.dto.EstadoResponseDTO;
+
 import br.projeto.petshop.model.Municipio;
 
 public record MunicipioResponseDTO(long id, String nome, EstadoResponseDTO estado) {

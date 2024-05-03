@@ -18,6 +18,7 @@ public class PetRepository implements PanacheRepository<Pet> {
         Pet petToUpdate = findById(pet.getId());
         if (petToUpdate != null) {
             petToUpdate.setNome(pet.getNome());
+            petToUpdate.setUsuario(pet.getUsuario());
             petToUpdate.setAnoNascimento(pet.getAnoNascimento());
             petToUpdate.setTipoAnimal(pet.getTipoAnimal());
             petToUpdate.setSexo(pet.getSexo());

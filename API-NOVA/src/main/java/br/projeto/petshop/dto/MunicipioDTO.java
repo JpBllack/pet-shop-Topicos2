@@ -1,7 +1,7 @@
 package br.projeto.petshop.dto;
 
 import br.projeto.petshop.model.Municipio;
-import br.projeto.petshop.model.Estado;
+
 
 public record MunicipioDTO(long id, String nome, EstadoDTO estado) {
     
