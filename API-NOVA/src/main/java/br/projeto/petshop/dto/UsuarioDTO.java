@@ -26,5 +26,6 @@ public record UsuarioDTO (
     @NotNull(message = "O perfil não pode ser nulo")
     Perfil perfil
 ){
-    
+
+   
 }

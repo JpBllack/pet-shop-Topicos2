@@ -12,10 +12,12 @@ import jakarta.persistence.ManyToOne;
     public class Pet extends DefaultEntity {
         
     private String nome;
+    
     private int anoNascimento;
 
 
     @ManyToOne
+    @JoinColumn(name = "TipoAnimalId")
     private TipoAnimal tipoAnimal;
 
     private Sexo sexo;
