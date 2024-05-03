@@ -47,6 +47,8 @@ export const routes: Routes = [
     { path: 'pets/all', component: PetListComponent, data: { title: 'Lista de Pets' } },
     { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },
     { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Editar Pet' } },
+    { path: 'pets/delete/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Deletar Pet' } },
+    
 
     { path: 'consultas/all', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
     { path: 'consultas/new', component: ConsultaFormComponent, data: { title: 'Nova Consulta' } },

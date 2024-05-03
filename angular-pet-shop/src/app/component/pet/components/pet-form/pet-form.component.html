@@ -63,7 +63,8 @@
                     *ngIf="formGroup?.get('id')?.value"
                     color="warn" 
                     (click)="excluir()"
-                    [disabled]="formGroup.invalid"> 
+                    [disabled]="formGroup.invalid"
+                    routerLink="/pets/all"> 
                 Excluir 
             </button>
             <button mat-raised-button  

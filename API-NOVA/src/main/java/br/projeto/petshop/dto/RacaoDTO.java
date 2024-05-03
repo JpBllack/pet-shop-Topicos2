@@ -17,6 +17,10 @@ public record RacaoDTO(
     }
 
     public static RacaoDTO valueOf(Racao racao) {
+        if (racao == null) {
+            // Você pode lançar uma exceção específica ou retornar um valor padrão aqui
+            throw new IllegalArgumentException("O objeto racao não pode ser nulo");
+        }
         return new RacaoDTO(
             racao.getId(),
             racao.getSabor(),

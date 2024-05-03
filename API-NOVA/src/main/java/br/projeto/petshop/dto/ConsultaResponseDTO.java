@@ -14,6 +14,10 @@ public record ConsultaResponseDTO(
     Pet pet
 ) {
     public static ConsultaResponseDTO valueOf(Consulta consulta){
+        if (consulta == null) {
+            // Você pode lançar uma exceção específica ou retornar um valor padrão aqui
+            throw new IllegalArgumentException("O objeto Consulta não pode ser nulo");
+        }
         return new ConsultaResponseDTO(consulta.getId(), consulta.getData(), consulta.getMotivo(), consulta.getVeterinario(), consulta.getPet());
     }
     

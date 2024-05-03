@@ -33,6 +33,38 @@ public class PetResource {
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
+
+    
+    @GET
+    @Path("/all")
+    public Response findAll(){
+        try{
+            List<PetResponseDTO> pets = petService.buscarTodosPets();
+            return Response.ok(pets).build();
+        } catch (NotFoundException e){
+            LOG.error("Pets não encontrados");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+
+    @GET
+    @Transactional
+    @Path("/{id}")
+    public Response findById(@PathParam("id") Long id){
+        try{
+            PetResponseDTO pet = petService.buscarPetPorId(id);
+            return Response.ok(pet).build();
+        } catch (NotFoundException e){
+            LOG.error("Pet não encontrado");
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
     @POST
     @Transactional
     @Path("/insert")
@@ -87,20 +119,6 @@ public class PetResource {
     }
 
     @GET
-    @Path("/all")
-    public Response findAll(){
-        try{
-            List<PetResponseDTO> pets = petService.buscarTodosPets();
-            return Response.ok(pets).build();
-        } catch (NotFoundException e){
-            LOG.error("Pets não encontrados");
-            e.printStackTrace();
-            Error error = new Error("404", e.getMessage());
-            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
-        }
-    }
-
-    @GET
     @Transactional
     @Path("/byName/{nome}")
     public Response findByName(@PathParam("nome") String nome){
@@ -115,18 +133,5 @@ public class PetResource {
         }
     }
 
-    @GET
-    @Transactional
-    @Path("/byId/{id}")
-    public Response findById(@PathParam("id") Long id){
-        try{
-            PetResponseDTO pet = petService.buscarPetPorId(id);
-            return Response.ok(pet).build();
-        } catch (NotFoundException e){
-            LOG.error("Pet não encontrado");
-            e.printStackTrace();
-            Error error = new Error("404", e.getMessage());
-            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
-        }
-    }
+
 }
