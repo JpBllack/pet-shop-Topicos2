@@ -28,7 +28,8 @@ import { HttpClient } from "@angular/common/http";
           MatToolbarModule, 
           CommonModule,
           RouterModule, 
-          MatSelectModule],
+          MatSelectModule,
+          MatOptionModule],
     templateUrl: './pet-form.component.html',
     styleUrl: './pet-form.component.css',
 })
@@ -47,7 +48,7 @@ export class PetFormComponent implements OnInit {
         this.formGroup = formBuilder.group({
             id: [null],
             nome: ['', Validators.required],
-            usuarioId: [null, Validators.required], // Nome do campo atualizado
+            usuario: [null, Validators.required], // Nome do campo atualizado
             animal: [null, Validators.required],
             anoNascimento: [null, Validators.required]
         });

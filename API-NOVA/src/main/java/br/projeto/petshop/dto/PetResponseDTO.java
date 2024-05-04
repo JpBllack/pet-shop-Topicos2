@@ -7,36 +7,13 @@ import br.projeto.petshop.model.TipoAnimal;
 import br.projeto.petshop.model.Usuario;
 
 public record PetResponseDTO(
-    long id,
+    Long id,
     String nome,
-    UsuarioResponseDTO usuario,
+    Usuario usuario,
     Integer anoNascimento,
-    TipoAnimalDTO tipoAnimal
+    String tipoAnimal
 ) {
     public static PetResponseDTO valueOf(Pet pet) {
-        Logger logger = Logger.getLogger(PetResponseDTO.class.getName());
-
-        if (pet == null) {
-            logger.log(Level.SEVERE, "Objeto Pet passado para valueOf é null.");
-            return null;
-        }
-
-        Usuario usuario = pet.getUsuario();
-        if (usuario == null) {
-            logger.log(Level.WARNING, "Usuário associado a Pet é null.");
-        }
-
-        TipoAnimal tipoAnimal = pet.getTipoAnimal();
-        if (tipoAnimal == null) {
-            logger.log(Level.WARNING, "TipoAnimal associado a Pet é null.");
-        }
-
-        return new PetResponseDTO(
-            pet.getId(),
-            pet.getNome(),
-            UsuarioResponseDTO.valueOf(usuario),
-            pet.getAnoNascimento(),
-            TipoAnimalDTO.valueOf(tipoAnimal)
-        );
+        return new PetResponseDTO(pet.getId(), pet.getNome(), pet.getUsuario(), pet.getAnoNascimento(), pet.getTipoAnimal().getNome());
     }
 }

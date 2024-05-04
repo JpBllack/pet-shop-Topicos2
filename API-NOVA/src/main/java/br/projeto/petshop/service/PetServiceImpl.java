@@ -6,10 +6,12 @@ import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.PetDTO;
 import br.projeto.petshop.dto.PetResponseDTO;
+import br.projeto.petshop.dto.TipoAnimalDTO;
 import br.projeto.petshop.model.Pet;
 import br.projeto.petshop.model.TipoAnimal;
 import br.projeto.petshop.repository.PetRepository;
 import br.projeto.petshop.repository.TipoAnimalRepository;
+import br.projeto.petshop.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -24,6 +26,9 @@ public class PetServiceImpl implements PetService {
     
     @Inject
     private TipoAnimalRepository tipoAnimalRepository;
+
+    @Inject
+    private UsuarioRepository usuarioRepository;
 
     private static final Logger LOG = Logger.getLogger(PetServiceImpl.class);
 
@@ -46,46 +51,38 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-public PetResponseDTO getByNome(String nome) {
-    Pet pet = petRepository.findByNome(nome);
-    if (pet == null) {
-        throw new NotFoundException("Pet não encontrado com o nome especificado");
-    }
-    return PetResponseDTO.valueOf(pet);
-}
-
-
-@Override
-@Transactional
-public PetResponseDTO insert(PetDTO petDTO) {
-    // Verifica se um pet com o mesmo nome já existe
-    Pet existingPet = petRepository.findByNome(petDTO.nome());
-    if (existingPet != null) {
-        throw new ValidationException("400", "Um pet com este nome já existe");
+    public PetResponseDTO getByNome(String nome) {
+        Pet pet = petRepository.findByNome(nome);
+        if (pet == null) {
+            throw new NotFoundException("Pet não encontrado com o nome especificado");
+        }
+        return PetResponseDTO.valueOf(pet);
     }
 
-    // Verifica se o TipoAnimal já existe no banco de dados
-    TipoAnimal tipoAnimal = tipoAnimalRepository.findById(petDTO.tipoAnimal().getId());
-    if (tipoAnimal == null) {
-        // Se o TipoAnimal não existir, cria uma nova instância e persiste
-        tipoAnimal = new TipoAnimal();
-        tipoAnimal.setNome(petDTO.tipoAnimal().getNome());
-        tipoAnimalRepository.persist(tipoAnimal);
-    }
 
-    // Cria um novo pet e mapeia os dados do DTO para a entidade Pet
-    Pet pet = new Pet();
-    pet.setNome(petDTO.nome());
-    pet.setUsuario(petDTO.usuario());
-    pet.setAnoNascimento(petDTO.anoNascimento());
-    
-    
-    // Persist o novo pet no banco de dados
-    petRepository.persist(pet);
-    
-    // Retorna o PetResponseDTO criado a partir do novo pet
-    return PetResponseDTO.valueOf(pet);
-}
+    @Override
+    @Transactional
+    public PetResponseDTO insert(PetDTO petDTO) {
+        // Verifica se um pet com o mesmo nome já existe
+        Pet existingPet = petRepository.findByNome(petDTO.nome());
+        if (existingPet != null) {
+            throw new ValidationException("400", "Um pet com este nome já existe");
+        }
+
+        // Cria um novo pet e mapeia os dados do DTO para a entidade Pet
+        Pet pet = new Pet();
+        pet.setNome(petDTO.nome());
+        pet.setUsuario(usuarioRepository.findById(petDTO.usuario()));
+        pet.setAnoNascimento(petDTO.anoNascimento());
+        pet.setTipoAnimal(tipoAnimalRepository.findById(petDTO.tipoAnimal()));
+        
+        
+        // Persist o novo pet no banco de dados
+        petRepository.persist(pet);
+        
+        // Retorna o PetResponseDTO criado a partir do novo pet
+        return PetResponseDTO.valueOf(pet);
+    }
 
     
 
@@ -101,7 +98,7 @@ public PetResponseDTO insert(PetDTO petDTO) {
         }
 
         // Verifica a existência do tipo de animal
-        TipoAnimal tipoAnimal = tipoAnimalRepository.findById(dto.tipoAnimal().getId());
+        TipoAnimal tipoAnimal = tipoAnimalRepository.findById(dto.tipoAnimal());
         if (tipoAnimal == null) {
             throw new ValidationException("400", "Tipo de animal não encontrado");
         }
@@ -140,7 +137,7 @@ public PetResponseDTO insert(PetDTO petDTO) {
 
     private void mapPetFromDTO(Pet pet, PetDTO dto, TipoAnimal tipoAnimal) {
         pet.setNome(dto.nome());
-        pet.setUsuario(dto.usuario());
+        pet.setUsuario(usuarioRepository.findById(dto.usuario()));
         pet.setAnoNascimento(dto.anoNascimento());
         pet.setTipoAnimal(tipoAnimal);
     }
