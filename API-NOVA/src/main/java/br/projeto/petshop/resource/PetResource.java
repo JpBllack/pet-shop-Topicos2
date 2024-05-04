@@ -39,7 +39,7 @@ public class PetResource {
     @Path("/all")
     public Response findAll(){
         try{
-            List<PetResponseDTO> pets = petService.buscarTodosPets();
+            List<PetResponseDTO> pets = petService.getAll();
             return Response.ok(pets).build();
         } catch (NotFoundException e){
             LOG.error("Pets não encontrados");
@@ -55,7 +55,7 @@ public class PetResource {
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         try{
-            PetResponseDTO pet = petService.buscarPetPorId(id);
+            PetResponseDTO pet = petService.getById(id);
             return Response.ok(pet).build();
         } catch (NotFoundException e){
             LOG.error("Pet não encontrado");
@@ -70,14 +70,14 @@ public class PetResource {
     @Path("/insert")
     public Response insert(PetDTO dto){
         try{
-            return Response.status(Response.Status.CREATED).entity(petService.criarPet(dto)).build();
+            return Response.status(Response.Status.CREATED).entity(petService.insert(dto)).build();
         } catch (ValidationException e){
-            LOG.error("Erro ao criar consulta");
+            LOG.error("Erro ao criar PET");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
         } catch (NotFoundException e){
-            LOG.error("Veterinario ou Pet não encontrados");
+            LOG.error(" Pet não encontrados");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
             return Response.status(Response.Status.NOT_FOUND).entity(error).build();
@@ -89,7 +89,7 @@ public class PetResource {
     @Path("/update/{id}")
     public Response update(@PathParam("id") Long id, PetDTO dto){
         try{
-            return Response.ok(petService.atualizarPet(id, dto)).build();
+            return Response.ok(petService.update(id, dto)).build();
         } catch (ValidationException e){
             LOG.error("Erro ao atualizar pet");
             e.printStackTrace();
@@ -108,7 +108,7 @@ public class PetResource {
     @Path("/delete/{id}")
     public Response delete(@PathParam("id") Long id){
         try{
-            petService.deletarPet(id);
+            petService.delete(id);
             return Response.noContent().build();
         } catch (NotFoundException e){
             LOG.error("Pet não encontrado");
@@ -123,7 +123,7 @@ public class PetResource {
     @Path("/byName/{nome}")
     public Response findByName(@PathParam("nome") String nome){
         try{
-            PetResponseDTO pet = petService.buscarPetPorNome(nome);
+            PetResponseDTO pet = petService.getByNome(nome);
             return Response.ok(pet).build();
         } catch (NotFoundException e){
             LOG.error("Pet não encontrado");

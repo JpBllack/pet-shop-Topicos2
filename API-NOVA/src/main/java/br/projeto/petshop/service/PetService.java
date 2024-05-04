@@ -1,26 +1,23 @@
 package br.projeto.petshop.service;
 
-import jakarta.ws.rs.core.Response;
-
-import java.util.Collection;
 import java.util.List;
 
 import br.projeto.petshop.dto.PetDTO;
 import br.projeto.petshop.dto.PetResponseDTO;
-import br.projeto.petshop.model.Pet;
 
 public interface PetService {
 
-    public PetResponseDTO criarPet(PetDTO dto);
+    PetResponseDTO insert(PetDTO dto);
 
-    public PetResponseDTO atualizarPet(Long id, PetDTO dto);
+    PetResponseDTO update(long id, PetDTO dto);
 
-    public void deletarPet(Long id);
+    void delete(long id);
 
-    public List<PetResponseDTO> buscarTodosPets();
+    List<PetResponseDTO> getAll();
 
-    public PetResponseDTO buscarPetPorNome(String nome);
+    PetResponseDTO getByNome(String nome);
 
-    public PetResponseDTO buscarPetPorId(Long id);
+    PetResponseDTO getById(long id);
 
+    /* PetResponseDTO changeImage(long id, String imageName); */
 }

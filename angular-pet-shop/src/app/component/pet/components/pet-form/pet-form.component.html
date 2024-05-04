@@ -4,7 +4,7 @@
         <mat-card-content>
             <form [formGroup]="formGroup">
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>nome</mat-label>
+                    <mat-label>Nome</mat-label>
                     <input matInput type="text" formControlName="nome">
                     <mat-error *ngIf="formGroup.get('nome') 
                                    && formGroup.get('nome')?.invalid
@@ -13,10 +13,10 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Tipo de Animal</mat-label>
                     <mat-select formControlName="animal" id="animal_id">
-                        <mat-option *ngFor="let tipoAnimal of tiposAnimais" [value]="tipoAnimal">
+                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal">
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
@@ -27,28 +27,24 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Usuario</mat-label>
-                    <mat-select formControlName="usuario" id="usuario">
-                        <mat-option *ngFor="let usuario of usuarios" [value]="usuario">
-                            {{ usuario.nome }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="formGroup.get('usuario') 
-                                   && formGroup.get('usuario')?.invalid
-                                   && formGroup.get('usuario')?.touched">
-                        O usuario é obrigatório.
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Usuário ID</mat-label>
+                    <input matInput type="number" formControlName="usuarioId">
+                    <mat-error *ngIf="formGroup.get('usuarioId') 
+                                   && formGroup.get('usuarioId')?.invalid
+                                   && formGroup.get('usuarioId')?.touched">
+                        O ID do usuário é obrigatório.
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Ano de nascimento</mat-label>
-                        <input matInput type="number" formControlName="anoNascimento">
-                        <mat-error *ngIf="formGroup.get('nome') 
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Ano de Nascimento</mat-label>
+                    <input matInput type="number" formControlName="anoNascimento">
+                    <mat-error *ngIf="formGroup.get('anoNascimento') 
                                    && formGroup.get('anoNascimento')?.invalid
                                    && formGroup.get('anoNascimento')?.touched">
-                        O ano de Nascimento é obrigatório.
-                        </mat-error>
+                        O ano de nascimento é obrigatório.
+                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card-content>

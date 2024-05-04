@@ -8,6 +8,7 @@ import { RouterModule } from "@angular/router";
 
 import { pet } from "../../../../models/pet";
 import { PetService } from "../../../../services/pet.service";
+import { TipoAnimal } from "../../../../models/tipoAnimal";
 
 
 
@@ -31,7 +32,7 @@ export class PetListComponent implements OnInit {
 
     // Lista de pets carregados
     pets: pet[] = [];
-
+    animals: TipoAnimal[] = [];
     // Injeção do serviço PetService para realizar operações com pets
     constructor(private petService: PetService) { }
 
@@ -43,7 +44,6 @@ export class PetListComponent implements OnInit {
     // Função para carregar todos os pets
     carregarPets(): void {
         this.petService.findAllPet().subscribe((data: pet[]) => {
-            // Armazena a lista de pets no componente
             this.pets = data;
         });
     }
