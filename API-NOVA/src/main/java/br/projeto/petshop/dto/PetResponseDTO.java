@@ -11,9 +11,9 @@ public record PetResponseDTO(
     String nome,
     Usuario usuario,
     Integer anoNascimento,
-    String tipoAnimal
+    TipoAnimal tipoAnimal
 ) {
     public static PetResponseDTO valueOf(Pet pet) {
-        return new PetResponseDTO(pet.getId(), pet.getNome(), pet.getUsuario(), pet.getAnoNascimento(), pet.getTipoAnimal().getNome());
+        return new PetResponseDTO(pet.getId(), pet.getNome(), pet.getUsuario(), pet.getAnoNascimento(), pet.getTipoAnimal());
     }
 }

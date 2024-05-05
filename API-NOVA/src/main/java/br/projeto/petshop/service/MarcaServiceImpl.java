@@ -71,9 +71,7 @@ public class MarcaServiceImpl implements MarcaService{
             throw new ValidationException("delete", "A marca não pode ser excluída porque está sendo referenciada por outra entidade.");
         }
     
-        // Tente deletar a marca pelo ID
         if (!marcaRepository.deleteById(id)) {
-            // Lança exceção caso o ID não seja encontrado
             throw new NotFoundException("Id não encontrado");
         }
     }
