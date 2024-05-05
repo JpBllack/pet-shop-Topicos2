@@ -13,6 +13,8 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
+
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
@@ -80,20 +82,20 @@ public class RacaoResource {
     @PUT
     @Path("/update/{id}")
     @Transactional
-public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) {
-    LOG.info("Atualizando ração com ID: " + id);
-    try {
-        racaoService.update(id, racaoDTO);
-        LOG.info("Ração atualizada com sucesso");
-        return Response.noContent().build();
-    } catch (NotFoundException e) {
-        LOG.error("Ração não encontrada para o ID: " + id, e);
-        return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
-    } catch (ValidationException e) {
-        LOG.error("Erro de validação ao atualizar a ração com ID: " + id, e);
-        return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+    public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) {
+        LOG.info("Atualizando ração com ID: " + id);
+        try {
+            racaoService.update(id, racaoDTO);
+            LOG.info("Ração atualizada com sucesso");
+            return Response.noContent().build();
+        } catch (NotFoundException e) {
+            LOG.error("Ração não encontrada para o ID: " + id, e);
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (ValidationException e) {
+            LOG.error("Erro de validação ao atualizar a ração com ID: " + id, e);
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
     }
-}
 
     @DELETE
     @Path("/delete/{id}")
@@ -133,6 +135,20 @@ public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) 
             Error error = new Error("409", e.getMessage());
             return Response.status(Response.Status.CONFLICT).entity(error).build();
         }
+    }}
+
+    @GET
+    @Path("/download/image/{id}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response downloadImage(@PathParam("id")Long id){
+
+        LOG.infof("Buscando imagem do usuario de id %s", id);
+        RacaoResponseDTO racao = racaoService.getById(id);
+        String imageName = racao.imagem();
+
+        ResponseBuilder response = Response.ok(fileService.getFile(imageName));
+        response.header("Content-Disposition", "attachment;filename="+imageName);
+        return response.build();
     }
-}
+
 }
