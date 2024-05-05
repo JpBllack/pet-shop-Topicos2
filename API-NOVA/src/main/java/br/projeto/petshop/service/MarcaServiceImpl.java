@@ -65,10 +65,21 @@ public class MarcaServiceImpl implements MarcaService{
     @Override
     @Transactional
     public void delete(Long id) {
-        if(!marcaRepository.deleteById(id)){
+        // Verifique se a marca está sendo referenciada por outra classe
+        if (marcaRepository.isBeingReferencedByAnotherEntity(id)) {
+            // Lança uma exceção caso a marca esteja sendo referenciada
+            throw new ValidationException("delete", "A marca não pode ser excluída porque está sendo referenciada por outra entidade.");
+        }
+    
+        // Tente deletar a marca pelo ID
+        if (!marcaRepository.deleteById(id)) {
+            // Lança exceção caso o ID não seja encontrado
             throw new NotFoundException("Id não encontrado");
         }
     }
+    
+    
+
 
     @Override
     public MarcaResponseDTO getByNome(String nome) {
