@@ -17,7 +17,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Tipo de Animal</mat-label>
                     <mat-select formControlName="animal" id="animal_id">
-                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal">
+                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal.id">
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
@@ -27,6 +27,21 @@
                         O tipo de animal é obrigatório.
                     </mat-error>
                 </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Marcas</mat-label>
+                    <mat-select formControlName="marca" id="marca_id">
+                        <mat-option *ngFor="let marca of marcas" [value]="marca.id">
+                            {{ marca.nome }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('marca') 
+                                   && formGroup.get('marca')?.invalid
+                                   && formGroup.get('marca')?.touched">
+                        A marca é obrigatória.
+                    </mat-error>
+                </mat-form-field>
+
                 <mat-form-field appearance="fill">
                     <mat-label>Peso</mat-label>
                     <mat-select formControlName="peso" id="peso_id">

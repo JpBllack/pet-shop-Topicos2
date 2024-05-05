@@ -2,6 +2,7 @@ package br.projeto.petshop.resource;
 
 import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.RacaoDTO;
+import br.projeto.petshop.dto.RacaoResponseDTO;
 import br.projeto.petshop.form.ProdutoImageForm;
 import br.projeto.petshop.service.ProdutoFileService;
 import br.projeto.petshop.service.RacaoService;
@@ -36,7 +37,7 @@ public class RacaoResource {
     @Transactional
     public Response getAllRacoes() {
         LOG.info("Buscando todas as rações");
-        List<RacaoDTO> racoes = racaoService.getAll();
+        List<RacaoResponseDTO> racoes = racaoService.getAll();
         if (racoes.isEmpty()) {
             LOG.info("Nenhuma ração encontrada");
             return Response.status(Response.Status.NOT_FOUND).entity("Nenhuma ração encontrada").build();
@@ -52,7 +53,7 @@ public class RacaoResource {
     public Response getRacaoById(@PathParam("id") long id) {
         LOG.info("Buscando ração pelo ID: " + id);
         try {
-            RacaoDTO racao = racaoService.getById(id);
+            RacaoResponseDTO racao = racaoService.getById(id);
             LOG.info("Ração encontrada: " + racao);
             return Response.ok(racao).build();
         } catch (NotFoundException e) {
@@ -122,7 +123,7 @@ public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) 
             imageName = fileService.save(form.getNomeImagem(), form.getImagem());
             LOG.info("Alterando imagem do usuario");
 
-            RacaoDTO dto = racaoService.getById(id);
+            RacaoResponseDTO dto = racaoService.getById(id);
             dto = racaoService.changeImage(id, imageName);
             LOG.info("Imagem alterada");
             return Response.ok(dto).build();

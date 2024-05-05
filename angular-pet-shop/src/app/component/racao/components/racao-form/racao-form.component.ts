@@ -20,6 +20,8 @@ import { Racao } from '../../../../models/racao.model';
 import { TipoAnimal } from '../../../../models/tipoAnimal';
 import { TipoAnimalService } from '../../../../services/TipoAnimal.service';
 import { RacaoService } from '../../../../services/racao.service';
+import { Marca } from '../../../../models/marca';
+import { MarcaService } from '../../../../services/marca.service';
 
 
 
@@ -35,12 +37,14 @@ export class RacaoFormComponent implements OnInit {
 
   formGroup: FormGroup;
   animais: TipoAnimal[] = [];
+  marcas: Marca[] = [];
   pesos = Object.values(Peso).filter(value => isNaN(Number(value)));
   idades = Object.values(Idade).filter(value => isNaN(Number(value)));
 
   constructor(formBuilder: FormBuilder,
               private racaoService: RacaoService,
               private tipoAnimalService: TipoAnimalService,
+              private marcaService: MarcaService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private http: HttpClient) {
@@ -53,12 +57,14 @@ export class RacaoFormComponent implements OnInit {
       animal: [null, Validators.required],
       peso: [null, Validators.required],
       idade: [null, Validators.required],
+      marca: [null, Validators.required]
     });
   }
 
   ngOnInit(): void {
     const racao: Racao = this.activatedRoute.snapshot.data['racao'];
     this.carregarTipos();
+    this.carregarMarcas();
     if (racao) {
       this.formGroup.patchValue(racao);
     };
@@ -115,7 +121,21 @@ export class RacaoFormComponent implements OnInit {
       }
     )
   }
+
+  carregarMarcas(){
+    this.marcaService.findAll().subscribe(
+      (marca: Marca[]) => {
+        this.marcas = marca;
+      },
+      (error) => {
+        console.error('Erro ao carregar marcas', error);
+      }
+    )
+  }
+
 }
+
+
 
 @NgModule({
   declarations: [],

@@ -77,10 +77,19 @@ VALUES ('2024-04-06', 'Tratamento de ferimento', 3, 2);
 
 
 
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('carne', 1, 1, 1);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('frango', 1, 1, 2);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('pistaxe', 5, 2, 2);
-INSERT INTO Racao (sabor, animal_id, peso, idade) VALUES ('atum', 2, 1, 1);
+insert into Marca(nome) values('Whiskas');
+insert into Marca(nome) values('Gran Plus');
+insert into Marca(nome) values('Friskies');
+insert into Marca(nome) values('Pedigree');
+insert into Marca(nome) values('Royal Canin');
+insert into Marca(nome) values('FinoTrato');
+
+
+
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('carne', 1, 1, 1, 6);
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('frango', 1, 1, 2, 5);
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('pistaxe', 5, 2, 2, 2);
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('atum', 2, 1, 1, 1);
 
 
 
@@ -92,11 +101,3 @@ INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
 
 INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
 INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',4); 
-
-insert into Marca(nome) values('Whiskas');
-insert into Marca(nome) values('Gran Plus');
-insert into Marca(nome) values('Friskies');
-insert into Marca(nome) values('Pedigree');
-insert into Marca(nome) values('Royal Canin');
-insert into Marca(nome) values('FinoTrato');
-

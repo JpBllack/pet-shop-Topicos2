@@ -20,6 +20,12 @@
     <td mat-cell *matCellDef="let racao"> {{ racao.sabor }} </td>
   </ng-container>
 
+  <!-- Marca Column -->
+  <ng-container matColumnDef="marca">
+    <th mat-header-cell *matHeaderCellDef> Marca </th>
+    <td mat-cell *matCellDef="let racao"> {{ racao.marca.nome }} </td>
+  </ng-container>
+
   <!-- Animal Column -->
   <ng-container matColumnDef="animal">
     <th mat-header-cell *matHeaderCellDef> Animal </th>

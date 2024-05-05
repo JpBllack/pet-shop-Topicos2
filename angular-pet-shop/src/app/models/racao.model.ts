@@ -1,6 +1,7 @@
 import { TipoAnimal } from './tipoAnimal';
 import { Peso } from './peso';
 import { Idade } from './idade';
+import { Marca } from './marca';
 
 export class Racao {
   id!: number;
@@ -8,5 +9,6 @@ export class Racao {
   animal!: TipoAnimal;
   peso!: Peso;
   idade!: Idade;
-  imagem!: String
+  imagem!: String;
+  marca!: Marca;
 }

@@ -5,29 +5,12 @@ import br.projeto.petshop.model.Racao;
 import br.projeto.petshop.model.Idade;
 
 public record RacaoDTO(
-    long id,
     String sabor,
-    TipoAnimalDTO animal,
+    Long animal,
     Peso peso,
     Idade idade,
-    String imagem
+    String imagem,
+    Long marca
 ) {
-    public RacaoDTO {
-        // Construtor vazio necessário para que o record funcione
-    }
-
-    public static RacaoDTO valueOf(Racao racao) {
-        if (racao == null) {
-            // Você pode lançar uma exceção específica ou retornar um valor padrão aqui
-            throw new IllegalArgumentException("O objeto racao não pode ser nulo");
-        }
-        return new RacaoDTO(
-            racao.getId(),
-            racao.getSabor(),
-            TipoAnimalDTO.valueOf(racao.getAnimal()),
-            racao.getPeso(),
-            racao.getIdade(),
-            racao.getImagem()
-        );
-    }
+    
 }

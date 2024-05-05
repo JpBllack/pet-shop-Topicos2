@@ -1,21 +1,23 @@
 package br.projeto.petshop.service;
 
 import br.projeto.petshop.dto.RacaoDTO;
+import br.projeto.petshop.dto.RacaoResponseDTO;
+
 import java.util.List;
 
 public interface RacaoService {
 
-    List<RacaoDTO> getAll();
+    public List<RacaoResponseDTO> getAll();
 
-    RacaoDTO getById(long id);
+    public RacaoResponseDTO getById(long id);
 
-    List<RacaoDTO> getBySabor(String sabor);
+    public List<RacaoResponseDTO> getBySabor(String sabor);
 
-    void insert(RacaoDTO racaoDTO);
+    public RacaoResponseDTO insert(RacaoDTO racaoDTO);
 
-    void update(long id, RacaoDTO racaoDTO);
+    public RacaoResponseDTO update(long id, RacaoDTO racaoDTO);
 
-    void delete(long id);
+    public void delete(long id);
 
-    public RacaoDTO changeImage(Long id, String ImageName);
+    public RacaoResponseDTO changeImage(Long id, String ImageName);
 }

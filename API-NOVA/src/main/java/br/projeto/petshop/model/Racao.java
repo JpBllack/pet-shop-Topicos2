@@ -1,21 +1,24 @@
 package br.projeto.petshop.model;
 
-    import jakarta.persistence.ManyToOne;
-    import jakarta.persistence.Entity;
-    import jakarta.persistence.Inheritance;
-    import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Racao extends DefaultEntity {
 
-    @Entity
-    @Inheritance(strategy = InheritanceType.JOINED)
-    public class Racao extends DefaultEntity {
-
-    
     private String sabor;
     private String imagem;
 
     @ManyToOne
     private TipoAnimal animal;
+
+    @ManyToOne
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
 
     private Peso peso;
     private Idade idade;
@@ -62,5 +65,12 @@ package br.projeto.petshop.model;
         this.imagem = imagem;
     }
 
-    
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
 }
