@@ -81,7 +81,7 @@ public class MarcaResource {
 
     @POST
     @Transactional
-    @Path("/create")
+    @Path("/insert")
     public Response insert(MarcaDTO dto){
         try{
             return Response.status(Response.Status.CREATED).entity(marcaService.insert(dto)).build();

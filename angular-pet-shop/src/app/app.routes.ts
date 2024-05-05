@@ -25,6 +25,9 @@ import { UsuarioListComponent } from './component/usuario/components/usuario-lis
 import { usuarioResolver } from './component/usuario/resolver/usuario-resolver';
 import { MunicipioFormComponent } from './component/municipio/components/municipio-form/municipio-form.component';
 import { municipioListComponent } from './component/municipio/components/municipio-list/municipio-list.component';
+import { MarcaListComponent } from './component/marca/component/marca-list/marca-list.component';
+import { MarcaFormComponent } from './component/marca/component/marca-form/marca-form.component';
+import { marcaResolver } from './component/marca/resolver/marca-resolver';
 
 export const routes: Routes = [
     { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
@@ -63,6 +66,11 @@ export const routes: Routes = [
     { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
     { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
     { path: 'usuarios/delete/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Deleter Usuario'} },
+
+    { path: 'marcas/all', component: MarcaListComponent, data: { title: 'Lista de marcas'} },
+    { path: 'marcas/new', component: MarcaFormComponent, data: { title: 'Nova marca'} },
+    { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Editar marca'} },
+    { path: 'marcas/delete/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Deletar marca'} },
     
 
 ];

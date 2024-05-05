@@ -1,0 +1,34 @@
+/* Estilos para o componente de listagem de rações */
+/* Estilo para a barra de ferramentas */
+.mat-toolbar {
+    background-color: #1976D2; /* Cor de fundo da barra de ferramentas */
+    color: white; /* Cor do texto na barra de ferramentas */
+  }
+  
+  /* Estilo para o título da barra de ferramentas */
+  .toolbar-title {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    font-weight: bold; /* Peso da fonte */
+  }
+  
+  /* Estilo para o botão de adicionar */
+  .mat-fab {
+    margin-left: 10px; /* Margem à esquerda para separar do título */
+  }
+  
+  /* Estilo para a tabela */
+  .mat-table {
+    width: 100%; /* Largura total da tabela */
+    margin-top: 20px; /* Margem superior para separar da barra de ferramentas */
+  }
+  
+  /* Estilo para as células da tabela */
+  .mat-cell, .mat-header-cell {
+    padding: 10px; /* Preenchimento interno das células */
+    text-align: center; /* Alinhamento centralizado do texto */
+  }
+  
+  /* Estilo para as linhas de cabeçalho */
+  .mat-header-row {
+    background-color: #f5f5f5; 
+  }
