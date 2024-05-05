@@ -28,6 +28,7 @@ import { municipioListComponent } from './component/municipio/components/municip
 import { MarcaListComponent } from './component/marca/component/marca-list/marca-list.component';
 import { MarcaFormComponent } from './component/marca/component/marca-form/marca-form.component';
 import { marcaResolver } from './component/marca/resolver/marca-resolver';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
     { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
@@ -71,6 +72,8 @@ export const routes: Routes = [
     { path: 'marcas/new', component: MarcaFormComponent, data: { title: 'Nova marca'} },
     { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Editar marca'} },
     { path: 'marcas/delete/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Deletar marca'} },
+
+    { path: 'login', component: LoginComponent, data: {title: 'Login'}},
     
 
 ];

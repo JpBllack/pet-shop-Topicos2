@@ -33,6 +33,7 @@ public class AuthResource {
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @POST
+    @Path("/login")
     public Response login(@Valid LoginDTO dto) {
 
         LOG.infof("Iniciando a autenticação do %s", dto.email());
