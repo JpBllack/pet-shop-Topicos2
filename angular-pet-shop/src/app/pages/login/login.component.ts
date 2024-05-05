@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit{
                 this.loginService.login(login).subscribe(
                     response => {
                         alert("Login bem sucedido");
-                        // Você pode adicionar outras ações aqui, como redirecionar para outra página
+                        // adicionar outras ações e redirecionamento para outra página
                     },
                     error => {
                         alert("Erro ao logar");
-                        // Aqui você pode tratar o erro de login, por exemplo, exibir uma mensagem de erro para o usuário
+                        // tratar o erro de login, mensagem de erro
                     }
                 );
         }
