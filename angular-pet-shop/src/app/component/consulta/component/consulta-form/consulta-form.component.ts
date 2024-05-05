@@ -4,7 +4,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -12,6 +12,10 @@ import { Usuario } from '../../../../models/Usuario';
 import { Consulta } from '../../../../models/consulta.model';
 import { ConsultaService } from '../../../../services/consulta.service';
 import { UsuarioService } from '../../../../services/usuario.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';;
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 
 
 @Component({
@@ -19,10 +23,12 @@ import { UsuarioService } from '../../../../services/usuario.service';
   standalone : true,
   templateUrl: './consulta-form.component.html',
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule],
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatInput, MatDatepickerModule, MatDatepickerModule,
+    MatNativeDateModule],
   styleUrls: ['./consulta-form.component.css']
 })
 export class ConsultaFormComponent implements OnInit {
+  picker: any;
   veterinarios: Usuario[] = [];
   formGroup: FormGroup;
 
