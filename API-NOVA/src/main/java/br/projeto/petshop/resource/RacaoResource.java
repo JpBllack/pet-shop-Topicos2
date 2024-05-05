@@ -115,20 +115,21 @@ public class RacaoResource {
     //----------Imagem----------
 
     @PATCH
-    @Path("/upload/image/{id}")
+    @Path("/upload/image/")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response saveimage(@PathParam("id") long id, @MultipartForm ProdutoImageForm form){{
-        String imageName;
+    public Response saveimage(@MultipartForm ProdutoImageForm form){{
+        //String imageName;
+        Long id = form.getId();
         try{
             LOG.info("Inserindo imagem");
-            imageName = fileService.save(form.getNomeImagem(), form.getImagem());
+            String imageName = fileService.save(form.getNomeImagem(), form.getImagem());
             LOG.info("Alterando imagem do usuario");
 
-            RacaoResponseDTO dto = racaoService.getById(id);
-            dto = racaoService.changeImage(id, imageName);
+            //RacaoResponseDTO dto = racaoService.getById(id);
+            racaoService.changeImage(id, imageName);
             LOG.info("Imagem alterada");
-            return Response.ok(dto).build();
+            return Response.ok("Imagem = "+ imageName).build();
         } catch (IOException e){
             LOG.error("Erro ao inserir imagem");
             e.printStackTrace();

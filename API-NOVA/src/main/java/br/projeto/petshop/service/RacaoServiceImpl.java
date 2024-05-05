@@ -109,6 +109,7 @@ public class RacaoServiceImpl implements RacaoService {
     }
 
     @Override
+    @Transactional
     public RacaoResponseDTO changeImage(Long id, String ImageName) {
         Racao racao = racaoRepository.findById(id);
         racao.setImagem(ImageName);

@@ -42,4 +42,5 @@ export class RacaoService {
   changeImage(id: number): Observable<Racao>{
     return this.http.get<Racao>(`${this.apiUrl}/upload/image/${id}`)
   }
+
 }
