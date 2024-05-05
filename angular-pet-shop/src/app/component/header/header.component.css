@@ -44,6 +44,11 @@ margin-left: 26px;
     transition: 0.4s ease-in-out;
 }
 
+#botao_logar {
+    float: right;
+}
+
+
 
 .menu-icon
 {
