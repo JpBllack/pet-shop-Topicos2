@@ -92,3 +92,11 @@ INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
 
 INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
 INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',4); 
+
+insert into Marca(nome) values('Whiskas');
+insert into Marca(nome) values('Gran Plus');
+insert into Marca(nome) values('Friskies');
+insert into Marca(nome) values('Pedigree');
+insert into Marca(nome) values('Royal Canin');
+insert into Marca(nome) values('FinoTrato');
+
