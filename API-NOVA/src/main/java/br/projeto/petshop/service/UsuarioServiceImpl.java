@@ -32,9 +32,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public LoginResponseDTO inserirUsuarioBasico(LoginDTO dto) {
         if(dto.email() == null || dto.email().isEmpty()){
-            throw new ValidationException("400", "O email não pode estar em branco");
+            throw new ValidationException("email", "O email não pode estar em branco");
         } else if(dto.senha() == null || dto.senha().isEmpty()){
-            throw new ValidationException("400", "A senha não pode estar em branco");
+            throw new ValidationException("senha", "A senha não pode estar em branco");
         }
 
         if(repository.existsByEmail(dto.email())){
@@ -47,7 +47,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         newUsuario.setSenha(hashService.getHashSenha(dto.senha()));
 
-        newUsuario.setPerfil(Perfil.valueOf(1));
+        newUsuario.setPerfil(Perfil.valueOf(2));
 
         repository.persist(newUsuario);
 
