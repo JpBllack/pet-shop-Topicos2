@@ -12,17 +12,19 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
     selector: 'app-login',
     standalone: true,
     imports: [FormsModule, HttpClientModule, NgIf, ReactiveFormsModule, MatFormFieldModule,
-        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule],
+        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatIcon],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
 
+    senhaVisivel: boolean = false;
     formGroup: FormGroup;
 
     constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private loginService: LoginService, private activatedRoute: ActivatedRoute){
@@ -54,6 +56,10 @@ export class LoginComponent implements OnInit{
                 );
         }
         
+    }
+
+    toggleSenhaVisivel() {
+        this.senhaVisivel = !this.senhaVisivel;
     }
     
 }

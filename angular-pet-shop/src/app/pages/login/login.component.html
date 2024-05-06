@@ -6,7 +6,7 @@
                 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>email</mat-label>
-                    <input matInput type="text" formControlName="email">
+                    <input matInput type="email" formControlName="email">
                     <mat-error *ngIf="formGroup.get('email') 
                                    && formGroup.get('email')?.invalid
                                    && formGroup.get('email')?.touched">
@@ -15,14 +15,18 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>senha</mat-label>
-                    <input matInput type="text" formControlName="senha">
+                    <mat-label>Senha</mat-label>
+                    <input matInput [type]="senhaVisivel ? 'text' : 'password'" formControlName="senha" autocomplete="off">
+                    <button mat-icon-button matSuffix (click)="toggleSenhaVisivel()">
+                        <mat-icon>{{ senhaVisivel ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
                     <mat-error *ngIf="formGroup.get('senha') 
                                    && formGroup.get('senha')?.invalid
                                    && formGroup.get('senha')?.touched">
-                        A senha é obrigatório.
+                        A senha é obrigatória.
                     </mat-error>
                 </mat-form-field>
+                
 
             </form>
         </mat-card-content>
