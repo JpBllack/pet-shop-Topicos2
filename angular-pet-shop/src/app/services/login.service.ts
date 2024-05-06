@@ -30,8 +30,16 @@ export class LoginService {
         return localStorage.getItem(this.jwtTokenKey);
     }
 
-    logout(): void {
-        // Remover o token JWT do armazenamento local ao fazer logout
-        localStorage.removeItem(this.jwtTokenKey);
-    }
+    isLoggedIn(): boolean {
+        // Lógica para verificar se o usuário está autenticado
+        // Por exemplo, verificar se há um token JWT armazenado no localStorage
+        const token = localStorage.getItem('jwt_token');
+        return token !== null; // Retorna true se houver um token, caso contrário, retorna false
+      }
+
+      logout(): void {
+        // Lógica para fazer logout
+        // Por exemplo, remover o token JWT do localStorage
+        localStorage.removeItem('jwt_token');
+      }
 }
