@@ -8,22 +8,22 @@
 -- senha padrão: 12345
 -- Inserção de um usuário veterinário
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
-VALUES ('Teste', '123456', 'Testizinho', 'teste@mail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
+VALUES ('Teste', '123456', 'Testizinho', 'teste@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
-VALUES ('Son Goku', '12345678900', 'goku', 'goku@example.com', '12345', 'ADMIN');
+VALUES ('Son Goku', '12345678900', 'goku', 'goku@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
-VALUES ('Vegeta', '12345678901', 'vegeta', 'vegeta@example.com', '12345', 'VET');
+VALUES ('Vegeta', '12345678901', 'vegeta', 'vegeta@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET');
 
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
-VALUES ('Son Gohan', '12345678902', 'gohan', 'gohan@example.com', '12345', 'VET');
+VALUES ('Son Gohan', '12345678902', 'gohan', 'gohan@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET');
 
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
-VALUES ('Piccolo', '12345678903', 'piccolo', 'piccolo@example.com', '12345', 'USER');
+VALUES ('Piccolo', '12345678903', 'piccolo', 'piccolo@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
 
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
-VALUES ('Trunks', '12345678904', 'trunks', 'trunks@example.com', '12345', 'USER');
+VALUES ('Trunks', '12345678904', 'trunks', 'trunks@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
 
 
 
