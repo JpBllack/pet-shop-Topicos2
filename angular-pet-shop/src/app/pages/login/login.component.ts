@@ -41,22 +41,22 @@ export class LoginComponent implements OnInit{
         }
     }
 
-    login(){
-        if(this.formGroup.valid){
-            const login = this.formGroup.value;
-                this.loginService.login(login).subscribe(
-                    response => {
-                        alert("Login bem sucedido");
-                        // adicionar outras ações e redirecionamento para outra página
-                    },
-                    error => {
-                        alert("Erro ao logar");
-                        // tratar o erro de login, mensagem de erro
-                    }
-                );
+    login() {
+        if (this.formGroup.valid) {
+          const login = this.formGroup.value;
+          this.loginService.login(login).subscribe(
+            (response) => {
+              alert("Login bem sucedido");
+              // Redireciona para a página de dados do usuário logado
+              this.router.navigate(['/usuarios/meus-dados']);
+            },
+            (error) => {
+              alert("Erro ao logar");
+              // Tratar o erro de login, exibir mensagem de erro
+            }
+          );
         }
-        
-    }
+      }
 
     toggleSenhaVisivel() {
         this.senhaVisivel = !this.senhaVisivel;

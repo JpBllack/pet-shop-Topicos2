@@ -37,8 +37,6 @@ export class UsuarioFormComponent implements OnInit{
             email:['', Validators.required],
             senha:['', Validators.required],
             perfil:['', Validators.required]
-            
-
         })
     }
     ngOnInit(): void {
