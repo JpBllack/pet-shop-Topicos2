@@ -20,7 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-consulta-form',
-  standalone : true,
+  standalone: true,
   templateUrl: './consulta-form.component.html',
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
     MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatInput, MatDatepickerModule, MatDatepickerModule,
@@ -47,20 +47,36 @@ export class ConsultaFormComponent implements OnInit {
       pet: ['null', Validators.required]
     });
   }
+
   
+
   ngOnInit(): void {
-    const consulta: Consulta = this.activatedRoute.snapshot.data['consulta'];
+    const consultaId = this.activatedRoute.snapshot.params['id'];
     this.carregarVeterinarios();
-    if(consulta){
-      this.formGroup.patchValue(consulta);
+    
+    if (consultaId) {
+      this.consultaService.buscarConsultaPorId(consultaId).subscribe(
+        (consulta) => {
+          this.formGroup.patchValue({
+            id: consulta.id,
+            data: consulta.data,
+            motivo: consulta.motivo,
+            veterinario: consulta.veterinario.id,
+            pet: consulta.pet.id
+          });
+        },
+        (error) => {
+          console.error('Erro ao buscar consulta:', error);
+        }
+      );
     }
   }
 
 
-  salvar(){
-    if(this.formGroup.valid){
+  salvar() {
+    if (this.formGroup.valid) {
       const consulta = this.formGroup.value;
-      if(consulta.id == null){
+      if (consulta.id == null) {
         this.consultaService.criarConsulta(consulta).subscribe({
           next: () => {
             this.router.navigateByUrl('/consultas/all');
@@ -69,23 +85,23 @@ export class ConsultaFormComponent implements OnInit {
             console.log('Erro ao criar consulta' + JSON.stringify(err));
           }
         });
-      } else{
-          this.consultaService.atualizarConsulta(consulta.id, consulta).subscribe({
-            next: () => {
-              this.router.navigateByUrl('/consultas/all');
-            },
-            error: (err) => {
-              console.log('Erro ao atualizar consulta' + JSON.stringify(err));
-            }
-          });
+      } else {
+        this.consultaService.atualizarConsulta(consulta.id, consulta).subscribe({
+          next: () => {
+            this.router.navigateByUrl('/consultas/all');
+          },
+          error: (err) => {
+            console.log('Erro ao atualizar consulta' + JSON.stringify(err));
+          }
+        });
       }
     }
   }
 
-  excluir(){
-    if(this.formGroup.valid){
+  excluir() {
+    if (this.formGroup.valid) {
       const consulta = this.formGroup.value;
-      if(consulta.id != null){
+      if (consulta.id != null) {
         this.consultaService.excluirConsulta(consulta.id).subscribe({
           next: () => {
             this.router.navigateByUrl('/consultas/all');
@@ -108,6 +124,6 @@ export class ConsultaFormComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
 }

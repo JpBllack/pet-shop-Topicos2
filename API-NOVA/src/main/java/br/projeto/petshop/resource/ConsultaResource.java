@@ -77,16 +77,15 @@ public class ConsultaResource {
     @GET
     //@PermitAll
     @Path("/search/{id}")
-    public Response buscarConsultaPorId(@PathParam("id") long id, ConsultaDTO dto) {
+    public Response buscarConsultaPorId(@PathParam("id") long id) {
         try {
-            LOG.infof("Update em consulta");
-            consultaService.atualizarConsulta(id, dto);
-            return Response.noContent().build();
+            ConsultaResponseDTO consulta = consultaService.buscarConsultaPorId(id);
+            return Response.ok(consulta).build();
         } catch (NotFoundException e) {
-            LOG.error("Update não concluido");
+            LOG.error("Consulta não encontrada");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
-            return Response.status(Status.NOT_FOUND).entity(error).build();
+            return Response.status(Response.Status.NOT_FOUND).entity(error).build();
         }
     }
 

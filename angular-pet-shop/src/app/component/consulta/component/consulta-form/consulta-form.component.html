@@ -29,16 +29,16 @@
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Veterinário</mat-label>
                     <mat-select formControlName="veterinario">
-                      <mat-option *ngFor="let veterinario of veterinarios" [value]="veterinario.id">
-                        {{ veterinario.nome }}
-                      </mat-option>
+                        <mat-option *ngFor="let veterinario of veterinarios" [value]="veterinario.id">
+                            {{ veterinario.nome }}
+                        </mat-option>
                     </mat-select>
                     <mat-error *ngIf="formGroup.get('veterinario')?.invalid && formGroup.get('veterinario')?.touched">
-                      O veterinário é obrigatório.
+                        O veterinário é obrigatório.
                     </mat-error>
-                  </mat-form-field>
-                  
-                
+                </mat-form-field>
+
+
 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Pet</mat-label>
@@ -49,28 +49,20 @@
                         O pet é obrigatório.
                     </mat-error>
                 </mat-form-field>
-                
+
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button 
-                    color="primary" 
-                    (click)="salvar()"
-                    [disabled]="formGroup.invalid"> 
-                Salvar 
+            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+                Salvar
             </button>
-            <button mat-raised-button 
-                    *ngIf="formGroup?.get('id')?.value"
-                    color="warn" 
-                    (click)="excluir()"
-                    [disabled]="formGroup.invalid"> 
-                Excluir 
+            <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"
+                [disabled]="formGroup.invalid">
+                Excluir
             </button>
-            <button mat-raised-button  
-                    routerLink="/consultas/all"> 
-                Cancelar 
+            <button mat-raised-button routerLink="/consultas/all">
+                Cancelar
             </button>
         </mat-card-actions>
     </mat-card>
 </div>
-

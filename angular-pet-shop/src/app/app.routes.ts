@@ -57,6 +57,7 @@ export const routes: Routes = [
     { path: 'consultas/all', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
     { path: 'consultas/new', component: ConsultaFormComponent, data: { title: 'Nova Consulta' } },
     { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
+    { path: 'consultas/delete/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
 
     { path: 'tipos/all', component: TipoAnimalListComponent, data: { title: 'Lista de tipos de animal'} },
     { path: 'tipos/new', component: TipoAnimalFormComponent, data: { title: 'Novo tipo animal'} },

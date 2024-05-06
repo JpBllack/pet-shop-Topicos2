@@ -8,7 +8,7 @@ import { NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -29,7 +29,7 @@ import { MarcaService } from '../../../../services/marca.service';
   selector: 'app-racao-form',
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, MatOptionModule, CommonModule],
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, MatOptionModule, CommonModule, MatInput],
   templateUrl: './racao-form.component.html',
   styleUrls: ['./racao-form.component.css']
 })
@@ -62,13 +62,30 @@ export class RacaoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const racao: Racao = this.activatedRoute.snapshot.data['racao'];
-    this.carregarTipos();
+    const racaoId = this.activatedRoute.snapshot.params['id'];
     this.carregarMarcas();
-    if (racao) {
-      this.formGroup.patchValue(racao);
-    };
+    this.carregarTipos();
+  
+    if (racaoId) {
+      this.racaoService.findById(racaoId).subscribe(
+        (racao) => {
+          this.formGroup.patchValue({
+            id: racao.id,
+            sabor: racao.sabor,
+            animal: racao.animal.id,
+            marca: racao.marca.id,
+            peso: racao.peso,
+            idade: racao.idade
+          });
+        },
+        (error) => {
+          console.error('Erro ao buscar ração:', error);
+        }
+      );
+    }
   }
+  
+
 
   salvar() {
     if (this.formGroup.valid) {

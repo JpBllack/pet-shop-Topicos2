@@ -1,33 +1,35 @@
 .toolbar-title {
-    margin-bottom: 20px;
-}
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.mat-card {
-    width: 400px; /* Altere conforme necessário para se ajustar ao design responsivo */
-    padding: 20px; /* Adicione padding para um layout mais espaçado */
+    flex: 1;
+    text-align: center;
 }
 
 .full-width-input {
-    width: 100%; /* Mantém a largura total */
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.mat-form-field {
-    margin-bottom: 15px; /* Espaçamento entre os campos de formulário */
+mat-card {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: #f0f0f0; /* Cor de fundo do card */
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-.mat-card-actions {
+mat-card-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px; /* Espaçamento superior para os botões */
+    margin-top: 20px;
 }
 
-button {
-    margin-right: 10px; /* Espaçamento entre botões */
+.form-container {
+    padding: 2rem; 
+}
+
+button[mat-raised-button] {
+    width: 120px;
+}
+
+button[mat-raised-button]:not(:last-child) {
+    margin-right: 1rem;
 }

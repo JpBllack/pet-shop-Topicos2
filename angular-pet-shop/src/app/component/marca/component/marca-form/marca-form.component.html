@@ -16,22 +16,15 @@
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button 
-                    color="primary" 
-                    (click)="salvar()"
-                    [disabled]="formGroup.invalid"> 
-                Salvar 
+            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+                Salvar
             </button>
-            <button mat-raised-button 
-                    *ngIf="formGroup?.get('id')?.value"
-                    color="warn" 
-                    (click)="excluir()"
-                    [disabled]="formGroup.invalid"> 
-                Excluir 
+            <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"
+                [disabled]="formGroup.invalid">
+                Excluir
             </button>
-            <button mat-raised-button  
-                    routerLink="/marcas/all"> 
-                Cancelar 
+            <button mat-raised-button routerLink="/marcas/all">
+                Cancelar
             </button>
         </mat-card-actions>
     </mat-card>
