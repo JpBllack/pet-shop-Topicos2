@@ -60,4 +60,8 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         return find("username", username).count() > 0;
     }
 
+    public boolean existsByCpf(String cpf){
+        return find("cpf", cpf).count() > 0;
+    }
+
 }

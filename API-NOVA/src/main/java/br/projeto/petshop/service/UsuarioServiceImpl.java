@@ -5,8 +5,14 @@ import java.util.stream.Collectors;
 
 import br.projeto.petshop.repository.UsuarioRepository;
 import br.projeto.petshop.validation.ValidationException;
+import io.quarkus.security.ForbiddenException;
+import br.projeto.petshop.dto.CpfDTO;
+import br.projeto.petshop.dto.EmailDTO;
 import br.projeto.petshop.dto.LoginDTO;
 import br.projeto.petshop.dto.LoginResponseDTO;
+import br.projeto.petshop.dto.NomeDTO;
+import br.projeto.petshop.dto.UpdateSenhaDTO;
+import br.projeto.petshop.dto.UsernameDTO;
 import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.Perfil;
@@ -137,11 +143,12 @@ public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
     @Override
     public UsuarioResponseDTO findByEmail(String email) {
         Usuario usuario = repository.findByEmail(email);
-        if(email == null){
-            throw new ValidationException("email", "Email invalido");
+        if(usuario == null){
+            throw new NotFoundException("Usuário não encontrado para o e-mail fornecido");
         }
         return UsuarioResponseDTO.valueOf(usuario);
     }
+    
 
     @Override
     public UsuarioResponseDTO findByEmailSenha(String email, String senha) {
@@ -165,6 +172,95 @@ public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
         List<Usuario> veterinarios = repository.listAll().stream().filter(usuario -> usuario.getPerfil().getId() == 3).collect(Collectors.toList());
 
         return veterinarios.stream().map(usuario -> UsuarioResponseDTO.valueOf(usuario)).toList();
+    }
+
+    //------------------------------------------
+
+    @Override
+    @Transactional
+    public UsuarioResponseDTO updateNome(String login, NomeDTO nomeDTO){
+
+        Usuario user = repository.findByEmail(login);
+        user.setNome(nomeDTO.nome());
+
+        return UsuarioResponseDTO.valueOf(user);
+    }
+
+    @Override
+    @Transactional
+    public UsuarioResponseDTO updateCPF(String login, CpfDTO cpfDTO){
+        if(repository.existsByCpf(cpfDTO.cpf())){
+            throw new ValidationException("cpf", "O cpf já está cadastrado");
+        }
+
+        Usuario user = repository.findByEmail(login);
+        user.setCpf(cpfDTO.cpf());
+
+        return UsuarioResponseDTO.valueOf(user);
+    }
+
+    @Override
+    @Transactional
+    public UsuarioResponseDTO updateUsername(String login, UsernameDTO newUsername) {
+        
+        if(repository.existsByUsername(newUsername.username())){
+            throw new ValidationException("400", "O nome de usuario já existe");
+        }
+
+        Usuario user = repository.findByEmail(login);
+
+        user.setUsername(newUsername.username());
+
+        return UsuarioResponseDTO.valueOf(user);
+    }
+
+    @Override
+    @Transactional
+    public UsuarioResponseDTO updateEmail(String login, EmailDTO newEmail) {
+
+        if(newEmail.email() == null|| newEmail.email().isEmpty()){
+            throw new ValidationException("400", "O valor fornecido é invalido");
+        }
+
+        if(repository.existsByEmail(newEmail.email())){
+            throw new ValidationException("400", "O email já existe");
+        }
+        
+
+        Usuario user = repository.findByEmail(login);
+
+        if(user != null){
+            user.setEmail(newEmail.email().replaceAll("^\"|\"$", ""));
+        } else{
+        }
+
+        return UsuarioResponseDTO.valueOf(user);
+    }
+
+    @Override
+    @Transactional
+    public UsuarioResponseDTO updateSenha(String login, UpdateSenhaDTO updateSenha) {
+
+        if(updateSenha.novaSenha() == null || updateSenha.novaSenha().isEmpty()){
+            throw new ValidationException("400", "O valor fornecido é invalido");
+        }
+
+
+        Usuario user = repository.findByEmail(login);
+
+        if(!hashService.getHashSenha(updateSenha.senhaAtual()).equals(user.getSenha())){
+            throw new ForbiddenException("Acesso negado. A senha informada é incorreta");
+        }
+
+        if(user != null) {
+
+            if(hashService.getHashSenha(updateSenha.senhaAtual()).equals(user.getSenha())){
+                user.setSenha(hashService.getHashSenha(updateSenha.novaSenha()));
+            }
+
+        }
+
+        return UsuarioResponseDTO.valueOf(user);
     }
 
 }
