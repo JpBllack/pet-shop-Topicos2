@@ -3,8 +3,12 @@ package br.projeto.petshop.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.jboss.logging.Logger;
+
 import br.projeto.petshop.repository.UsuarioRepository;
+import br.projeto.petshop.resource.AuthResource;
 import br.projeto.petshop.validation.ValidationException;
+import io.quarkus.logging.Log;
 import io.quarkus.security.ForbiddenException;
 import br.projeto.petshop.dto.CpfDTO;
 import br.projeto.petshop.dto.EmailDTO;
@@ -33,6 +37,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Inject
     JwtService jwtService;
+
+    private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @Override
     @Transactional
@@ -146,6 +152,7 @@ public UsuarioResponseDTO update(Long id, UsuarioDTO dto) {
         if(usuario == null){
             throw new NotFoundException("Usuário não encontrado para o e-mail fornecido");
         }
+        
         return UsuarioResponseDTO.valueOf(usuario);
     }
     

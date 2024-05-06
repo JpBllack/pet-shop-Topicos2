@@ -64,4 +64,5 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         return find("cpf", cpf).count() > 0;
     }
 
+
 }

@@ -43,11 +43,12 @@ public class UsuarioLogadoResource {
 
     @GET
     @Path("/user")
-    //@RolesAllowed({ "User", "Admin" })
+    @RolesAllowed({ "User", "Admin" })
     public Response getUser() {
         try{
             String login = jwt.getSubject();
-            
+            LOG.info("E-mail extraído do token JWT: " + login);
+
             UsuarioResponseDTO user = userService.findByEmail(login);
             return Response.ok(user).build();
         } catch(Exception e){
@@ -70,6 +71,7 @@ public class UsuarioLogadoResource {
     public Response updateCpf(CpfDTO cpfDTO){
 
         String login = jwt.getSubject();
+        
 
         try{
             LOG.info("Inserindo CPF");
