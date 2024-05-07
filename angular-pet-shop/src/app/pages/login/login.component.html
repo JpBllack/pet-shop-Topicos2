@@ -2,14 +2,14 @@
 <div class="form-container">
     <mat-card>
         <mat-card-content>
-            <form [formGroup]="loginForm">
+            <form [formGroup]="formGroup">
                 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>email</mat-label>
                     <input matInput type="email" formControlName="email">
-                    <mat-error *ngIf="loginForm.get('email') 
-                                   && loginForm.get('email')?.invalid
-                                   && loginForm.get('email')?.touched">
+                    <mat-error *ngIf="formGroup.get('email') 
+                                   && formGroup.get('email')?.invalid
+                                   && formGroup.get('email')?.touched">
                         O email é obrigatório.
                     </mat-error>
                 </mat-form-field>
@@ -20,9 +20,9 @@
                     <button mat-icon-button matSuffix (click)="toggleSenhaVisivel()">
                         <mat-icon>{{ senhaVisivel ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
-                    <mat-error *ngIf="loginForm.get('senha') 
-                                   && loginForm.get('senha')?.invalid
-                                   && loginForm.get('senha')?.touched">
+                    <mat-error *ngIf="formGroup.get('senha') 
+                                   && formGroup.get('senha')?.invalid
+                                   && formGroup.get('senha')?.touched">
                         A senha é obrigatória.
                     </mat-error>
                 </mat-form-field>
@@ -34,7 +34,7 @@
             <button mat-raised-button 
                     color="primary" 
                     (click)="login()"
-                    [disabled]="loginForm.invalid"
+                    [disabled]="formGroup.invalid"
                     routerLink="/usuarios/all"> 
                 Logar 
             </button>
