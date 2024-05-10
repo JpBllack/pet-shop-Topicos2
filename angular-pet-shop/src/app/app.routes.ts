@@ -29,7 +29,6 @@ import { MarcaListComponent } from './component/marca/component/marca-list/marca
 import { MarcaFormComponent } from './component/marca/component/marca-form/marca-form.component';
 import { marcaResolver } from './component/marca/resolver/marca-resolver';
 import { LoginComponent } from './pages/login/login.component';
-import { SignUpComponent } from './pages/sign-up/signup.component';
 
 export const routes: Routes = [
     { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
@@ -76,8 +75,6 @@ export const routes: Routes = [
     { path: 'marcas/delete/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Deletar marca'} },
 
     { path: 'login', component: LoginComponent, data: {title: 'Login'}},
-
-    { path: 'signup', component: SignUpComponent, data: {Title: 'Sign Up'}}
     
 
 ];
