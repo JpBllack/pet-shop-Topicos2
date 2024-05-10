@@ -34,12 +34,10 @@
             <button mat-raised-button 
                     color="primary" 
                     (click)="onSubmit()"
-                    [disabled]="loginForm.invalid"
-                    routerLink="/usuarios/all"> 
+                    [disabled]="loginForm.invalid"> 
                 Logar 
             </button>
-            <button mat-raised-button  
-                    routerLink="/usuarios/all"> 
+            <button mat-raised-button>
                 Cancelar 
             </button>
         </mat-card-actions>
