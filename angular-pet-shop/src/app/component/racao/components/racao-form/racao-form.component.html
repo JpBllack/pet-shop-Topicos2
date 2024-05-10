@@ -1,4 +1,3 @@
- 
 <mat-toolbar color="primary" class="toolbar-title">Cadastro de ração</mat-toolbar>
 <div class="form-container">
     <mat-card>
@@ -7,10 +6,7 @@
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Sabor</mat-label>
                     <input matInput type="text" formControlName="sabor">
-                    <mat-error *ngIf="formGroup.get('sabor') 
-                                   && formGroup.get('sabor')?.invalid
-                                   && formGroup.get('sabor')?.touched">
-                        O sabor é obrigatório.
+                    <mat-error *ngIf="formGroup.get('sabor')?.invalid && formGroup.get('sabor')?.touched"> <!-- adicionado no ultimo commit -->                        O sabor é obrigatório.
                     </mat-error>
                 </mat-form-field>
 
@@ -21,9 +17,7 @@
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('animal') 
-                                   && formGroup.get('animal')?.invalid
-                                   && formGroup.get('animal')?.touched">
+                    <mat-error *ngIf="formGroup.get('animal')?.invalid && formGroup.get('animal')?.touched"> <!-- adicionado no ultimo commit -->
                         O tipo de animal é obrigatório.
                     </mat-error>
                 </mat-form-field>
@@ -35,9 +29,7 @@
                             {{ marca.nome }}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('marca') 
-                                   && formGroup.get('marca')?.invalid
-                                   && formGroup.get('marca')?.touched">
+                    <mat-error *ngIf="formGroup.get('marca')?.invalid && formGroup.get('marca')?.touched">  <!-- adicionado no ultimo commit -->
                         A marca é obrigatória.
                     </mat-error>
                 </mat-form-field>
@@ -49,9 +41,7 @@
                             {{ peso }}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('peso') 
-                                   && formGroup.get('peso')?.invalid
-                                   && formGroup.get('peso')?.touched">
+                    <mat-error *ngIf="formGroup.get('peso')?.invalid && formGroup.get('peso')?.touched"> <!--  adicionado no ultimo commit -->
                         O peso é obrigatório.
                     </mat-error>
                 </mat-form-field>
@@ -63,14 +53,38 @@
                             {{ idade }}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('idade') 
-                                   && formGroup.get('idade')?.invalid
-                                   && formGroup.get('idade')?.touched">
+                    <mat-error *ngIf="formGroup.get('idade')?.invalid && formGroup.get('idade')?.touched">
                         A idade é obrigatória.
                     </mat-error>
                 </mat-form-field>
             </form>
+           <!--  adicionado no ultimo commit      -->
+           <!-- Adicionando seção para upload e download -->
+    <div class="file-actions" *ngIf="formGroup.get('id')?.value">
+    <!-- Botão para abrir seletor de arquivos para upload -->
+    <button mat-raised-button 
+            color="accent" 
+            (click)="openFileInput()">
+        Enviar Imagem
+    </button>
+    
+    <!-- Input de arquivo oculto -->
+    <input type="file" #fileInput hidden (change)="fileInput.files && fileInput.files.length > 0 ? uploadImage(fileInput.files[0]) : null" accept="image/*" />
+
+    <!-- Div para baixar imagem -->
+<div class="button" data-tooltip="Size: 20Mb" (click)="downloadImage()">
+    <div class="button-wrapper">
+      <div class="text">Baixar imgem</div>
+      <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+      </span>
+    </div>
+  </div>
+  
+    </div>
+
         </mat-card-content>
+      <!--  adicionado no ultimo commit      -->
         <mat-card-actions>
             <button mat-raised-button 
                     color="primary" 
@@ -78,8 +92,10 @@
                     [disabled]="formGroup.invalid"> 
                 Salvar 
             </button>
+                  <!--  adicionado no ultimo commit      -->
+                  <!-- *ngIf="formGroup?.get('id')?.value" -->
             <button mat-raised-button 
-                    *ngIf="formGroup?.get('id')?.value"
+                    *ngIf="formGroup.get('id')?.value"  
                     color="warn" 
                     (click)="excluir()"
                     [disabled]="formGroup.invalid" 

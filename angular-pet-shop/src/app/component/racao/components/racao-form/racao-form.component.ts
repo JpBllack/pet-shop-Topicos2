@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -35,11 +35,13 @@ import { MarcaService } from '../../../../services/marca.service';
 })
 export class RacaoFormComponent implements OnInit {
 
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; /* adicionado no ultimo commit */
   formGroup: FormGroup;
   animais: TipoAnimal[] = [];
   marcas: Marca[] = [];
   pesos = Object.values(Peso).filter(value => isNaN(Number(value)));
   idades = Object.values(Idade).filter(value => isNaN(Number(value)));
+  racaoId: number | null = null; /* adicionado no ultimo commit */
 
   constructor(formBuilder: FormBuilder,
               private racaoService: RacaoService,
@@ -67,6 +69,7 @@ export class RacaoFormComponent implements OnInit {
     this.carregarTipos();
   
     if (racaoId) {
+      this.racaoId = racaoId; /* adicionado ultimo commit */
       this.racaoService.findById(racaoId).subscribe(
         (racao) => {
           this.formGroup.patchValue({
@@ -150,9 +153,74 @@ export class RacaoFormComponent implements OnInit {
     )
   }
 
+  openFileInput() {
+    // Abre o seletor de arquivo
+    if (this.fileInput) {
+        this.fileInput.nativeElement.click();
+    }
+}
+
+uploadImage(file: File | null) {
+  console.log('uploadImage chamado com file:', file);
+
+  if (file && this.racaoId !== null) {
+      console.log('Ração ID:', this.racaoId);
+
+      const formData = new FormData();
+      formData.append('id', this.racaoId.toString());
+      console.log('ID da ração adicionado ao FormData:', this.racaoId.toString());
+      
+      formData.append('name', file.name);
+      console.log('Nome do arquivo de imagem adicionado ao FormData:', file.name);
+      
+      formData.append('imagem', file);
+      console.log('Arquivo de imagem adicionado ao FormData:', file);
+
+
+      formData.forEach((value, key) => {
+        console.log(`FormData Key: ${key}, Value: ${value}`);
+    });
+      // Use formData como argumento para o método uploadImage
+      this.racaoService.uploadImage(formData).subscribe({
+          next: (response) => {
+              console.log('Imagem enviada com sucesso! Resposta:', response);
+          },
+          error: (error) => {
+              console.error('Erro ao enviar a imagem:', error);
+          }
+      });
+  } else {
+      console.log('Arquivo ou ração ID ausente.');
+  }
 }
 
 
+downloadImage() {
+  console.log('downloadImage chamado com racaoId:', this.racaoId);
+
+  if (this.racaoId !== null) {
+      this.racaoService.downloadImage(this.racaoId).subscribe({
+          next: (blob) => {
+              console.log('Imagem baixada com sucesso! Blob:', blob);
+
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = `racao-imagem-${this.racaoId}.jpg`; // Nome do arquivo com ID da ração
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+          },
+          error: (error) => {
+              console.error('Erro ao baixar a imagem:', error);
+          }
+      });
+  } else {
+      console.log('Ração ID ausente.');
+  }
+}
+
+}
 
 @NgModule({
   declarations: [],

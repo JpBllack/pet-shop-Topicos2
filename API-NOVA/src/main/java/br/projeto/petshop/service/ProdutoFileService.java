@@ -26,6 +26,7 @@ public class ProdutoFileService implements FileService {
 
     @Override
     public String save(String fileName, byte[] file) throws IOException {
+        
         verifyImageSize(file);
         verifyImageType(fileName);
 

@@ -39,8 +39,23 @@ export class RacaoService {
     return this.http.get<Racao>(`${this.apiUrl}/${id}`);
   }
 
-  changeImage(id: number): Observable<Racao>{
-    return this.http.get<Racao>(`${this.apiUrl}/upload/image/${id}`)
+  
+  changeImage(id: number, imageFile: File): Observable<Racao> {
+    const url = `${this.apiUrl}/upload/image/`;
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('imagem', imageFile);
+    return this.http.patch<Racao>(url, formData);
   }
 
+  uploadImage(formData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/upload/image`;
+    return this.http.patch<any>(url, formData);
+}
+
+
+  downloadImage(id: number): Observable<Blob> {
+    const url = `${this.apiUrl}/download/image/${id}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }
