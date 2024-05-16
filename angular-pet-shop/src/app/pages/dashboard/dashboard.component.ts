@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit{
   novoEmail: string = '';
   novaSenha: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private usuarioLogadoService: UsuarioLogadoService) { }
 
   ngOnInit(): void {
     // Inicializa os dados do usuário ao carregar o componente
@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit{
 
   // Métodos para atualizar os dados do usuário
   atualizarCpf() {
-    this.authService.updateCpf(this.novoCpf).subscribe(
+    this.usuarioLogadoService.updateCpf(this.novoCpf).subscribe(
       (usuario) => {
         this.usuario = usuario;
         this.novoCpf = ''; // Limpa o campo após a atualização

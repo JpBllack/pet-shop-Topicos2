@@ -1,7 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Usuario } from "../models/Usuario";
+import { AuthService } from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -9,11 +10,7 @@ import { Usuario } from "../models/Usuario";
 export class UsuarioLogadoService{
     private apiUrl = 'http://localhost:8080/usuariologado';
 
-    constructor(private http: HttpClient) {}
-
-    getUsuario(): Observable<Usuario>{
-        return this.http.get<Usuario>(`${this.apiUrl}/user`);
-    }
+    constructor(private http: HttpClient, private authService: AuthService) {}
 
     updateCpf(cpf: String): Observable <Usuario>{
         return this.http.patch<Usuario>(`${this.apiUrl}/update/cpf`, cpf);

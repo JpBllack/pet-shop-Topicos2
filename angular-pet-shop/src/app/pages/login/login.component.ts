@@ -14,6 +14,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
+import { UsuarioService } from "../../services/usuario.service";
+import { BasicUserService } from "../../services/basicUser.service";
 
 @Component({
   selector: 'app-login',
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
         next: (resp) => {
           // redirecionar para a página principal
           this.router.navigateByUrl('/dashboard');
-          alert("Logado com sucesso! token: "+ resp.authToken)
+          alert("Logado com sucesso!")
         },
         error: (err) => {
           console.log(err);
@@ -57,11 +59,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
     }
+
   }
 
-  onRegister() {
-    // criar usuário
-  }
 
   showSnackbarTopPosition(content: any, action: any, duration: any) {
     this.snackBar.open(content, action, {

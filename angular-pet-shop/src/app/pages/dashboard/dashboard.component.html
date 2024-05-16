@@ -9,6 +9,13 @@
         <p><strong>Email:</strong> {{ usuario.email }}</p>
       </div>
 
+      <!-- Formulário para atualizar o CPF -->
+      <form (ngSubmit)="atualizarCpf()" #cpfForm="ngForm">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Novo CPF" [(ngModel)]="novoCpf" name="novoCpf" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Atualizar CPF</button>
+      </form>
 
       <!-- Adicione formulários similares para Nome, Username, Email e Senha -->
     </mat-card-content>

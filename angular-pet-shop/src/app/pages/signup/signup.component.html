@@ -1,7 +1,7 @@
 <div class="login-container">
     <div class="login-box">
         <h2 class="login-title">Bem-vindo</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="onRegister()">
             <mat-form-field class="login-input">
                 <input matInput placeholder="Email" formControlName="email" required>
                 <mat-error *ngIf="loginForm.get('email')!.hasError('required')">O email é obrigatório</mat-error>
@@ -14,7 +14,7 @@
                 <mat-error *ngIf="loginForm.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
             </mat-form-field>
             
-            <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
+            <button mat-raised-button class="login-button" color="primary" type="submit">Cadastrar</button>
         </form>
     </div>
 </div>

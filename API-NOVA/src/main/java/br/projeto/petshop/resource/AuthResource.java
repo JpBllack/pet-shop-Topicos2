@@ -42,7 +42,7 @@ public class AuthResource {
 
         LOG.info("Hash da senha gerado.");
 
-        LOG.info(hashSenha);
+        LOG.debug(hashSenha);
 
         UsuarioResponseDTO result = service.findByEmailSenha(dto.email(), hashSenha);
 

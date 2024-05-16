@@ -11,7 +11,6 @@ import { LocalStorageService } from "./local-storage.service";
 })
 export class AuthService {
   private baseURL: string = 'http://localhost:8080/auth';
-  private usuarioLogadoURL = 'http://localhost:8080/usuariologado';
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
   private usuarioLogadoSubject = new BehaviorSubject<Usuario | null>(null);
@@ -87,29 +86,5 @@ export class AuthService {
     // Verifica se o token é nulo ou está expirado
     return !token || this.jwtHelper.isTokenExpired(token);
     // npm install @auth0/angular-jwt
-  }
-
-  getUsuarioLogado2() {
-    return this.http.get<Usuario>(`${this.usuarioLogadoURL}`);
-  }
-
-  updateCpf(cpf: String): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.usuarioLogadoURL}/update/cpf`, cpf);
-  }
-
-  updateNome(nome: String): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.usuarioLogadoURL}/update/nome`, nome);
-  }
-
-  updateUsername(username: String): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.usuarioLogadoURL}/update/username`, username);
-  }
-
-  updateEmail(email: String): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.usuarioLogadoURL}/update/email`, email);
-  }
-
-  updateSenha(senha: String): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.usuarioLogadoURL}/update/senha`, senha);
   }
 }
