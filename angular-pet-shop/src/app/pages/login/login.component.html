@@ -1,45 +1,16 @@
-<mat-toolbar color="primary" class="toolbar-title">Login</mat-toolbar>
-<div class="form-container">
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="loginForm">
-                
-                <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>email</mat-label>
-                    <input matInput type="email" formControlName="email">
-                    <mat-error *ngIf="loginForm.get('email') 
-                                   && loginForm.get('email')?.invalid
-                                   && loginForm.get('email')?.touched">
-                        O email é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Senha</mat-label>
-                    <input matInput [type]="senhaVisivel ? 'text' : 'password'" formControlName="senha" autocomplete="off">
-                    <button mat-icon-button matSuffix (click)="toggleSenhaVisivel()">
-                        <mat-icon>{{ senhaVisivel ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="loginForm.get('senha') 
-                                   && loginForm.get('senha')?.invalid
-                                   && loginForm.get('senha')?.touched">
-                        A senha é obrigatória.
-                    </mat-error>
-                </mat-form-field>
-                
-
-            </form>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button 
-                    color="primary" 
-                    (click)="onSubmit()"
-                    [disabled]="loginForm.invalid"> 
-                Logar 
-            </button>
-            <button mat-raised-button>
-                Cancelar 
-            </button>
-        </mat-card-actions>
-    </mat-card>
+<div class="login-container">
+    <div class="login-box">
+        <h2 class="login-title">Bem-vindo</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="loginForm.get('email')!.hasError('required')">O email é obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login-input">
+                <input matInput type="password" placeholder="Senha" formControlName="senha" required>
+                <mat-error *ngIf="loginForm.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
+        </form>
+    </div>
 </div>

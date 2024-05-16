@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="toolbar-title">Dashboard do Usuário</mat-toolbar>
+<div class="form-container">
+  <mat-card>
+    <mat-card-content>
+      <div *ngIf="usuario">
+        <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+        <p><strong>CPF:</strong> {{ usuario.cpf }}</p>
+        <p><strong>Username:</strong> {{ usuario.username }}</p>
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
+      </div>
+
+
+      <!-- Adicione formulários similares para Nome, Username, Email e Senha -->
+    </mat-card-content>
+  </mat-card>
+</div>

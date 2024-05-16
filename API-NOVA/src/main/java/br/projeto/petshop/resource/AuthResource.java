@@ -7,6 +7,7 @@ import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.service.HashService;
 import br.projeto.petshop.service.JwtService;
 import br.projeto.petshop.service.UsuarioService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -33,7 +34,6 @@ public class AuthResource {
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @POST
-    @Path("/login")
     public Response login(@Valid LoginDTO dto) {
 
         LOG.infof("Iniciando a autenticação do %s", dto.email());
@@ -42,7 +42,7 @@ public class AuthResource {
 
         LOG.info("Hash da senha gerado.");
 
-        LOG.debug(hashSenha);
+        LOG.info(hashSenha);
 
         UsuarioResponseDTO result = service.findByEmailSenha(dto.email(), hashSenha);
 
@@ -52,11 +52,9 @@ public class AuthResource {
             LOG.info("Login ou senha incorretos.");
         }
 
-        String token = jwtService.generateJwt(result);
-
         LOG.info("Finalizando o processo de login");
 
-        return Response.ok().header("Authorization", token).build();
+        return Response.ok(result).header("Authorization", jwtService.generateJwt(result)).build();
     }
   
 }

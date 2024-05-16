@@ -1,7 +1,7 @@
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router, RouterModule } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Login } from "../../models/login";
@@ -13,46 +13,43 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatIcon } from "@angular/material/icon";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatIcon],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
+  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatIconModule],
 })
 export class LoginComponent implements OnInit {
 
   senhaVisivel: boolean = false;
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute, private snackBar: MatSnackBar) {
-    this.loginForm = formBuilder.group({
-      email: ['', Validators.required],
-      senha: ['', Validators.required]
-    })
-  }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const login = this.loginForm.value;
-      this.authService.login(login).subscribe({
+      const loginData: Login = {
+        email: this.loginForm.get('email')!.value,
+        senha: this.loginForm.get('senha')!.value
+      };
+      
+      this.authService.login(loginData).subscribe({
         next: (resp) => {
           // redirecionar para a página principal
-          alert("Logado com sucesso")
-          this.router.navigateByUrl('/usuarios/all');
+          this.router.navigateByUrl('/dashboard');
+          alert("Logado com sucesso! token: "+ resp.authToken)
         },
         error: (err) => {
-          alert("Erro ao logar")
           console.log(err);
           this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
         }
@@ -78,4 +75,3 @@ export class LoginComponent implements OnInit {
     this.senhaVisivel = !this.senhaVisivel;
   }
 }
-

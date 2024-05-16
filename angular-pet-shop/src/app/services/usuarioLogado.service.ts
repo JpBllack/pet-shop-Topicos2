@@ -11,12 +11,12 @@ export class UsuarioLogadoService{
 
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<Usuario>{
+    getUsuario(): Observable<Usuario>{
         return this.http.get<Usuario>(`${this.apiUrl}/user`);
     }
 
-    updateCpf(usuario: Usuario): Observable <Usuario>{
-        return this.http.patch<Usuario>(`${this.apiUrl}/update/cpf`, usuario);
+    updateCpf(cpf: String): Observable <Usuario>{
+        return this.http.patch<Usuario>(`${this.apiUrl}/update/cpf`, cpf);
     }
 
     updateNome(usuario: Usuario): Observable <Usuario>{

@@ -42,9 +42,8 @@ public class UsuarioLogadoResource {
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @GET
-    @Path("/user")
     @RolesAllowed({ "User", "Admin" })
-    public Response getUser() {
+    public Response getUsuario() {
         try{
             String login = jwt.getSubject();
             LOG.info("E-mail extraído do token JWT: " + login);
