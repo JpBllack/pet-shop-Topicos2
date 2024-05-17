@@ -167,10 +167,10 @@ uploadImage(file: File | null) {
       console.log('Ração ID:', this.racaoId);
 
       const formData = new FormData();
-      formData.append('id', this.racaoId.toString());
+      formData.append('idProduto', this.racaoId.toString());
       console.log('ID da ração adicionado ao FormData:', this.racaoId.toString());
       
-      formData.append('name', file.name);
+      formData.append('nomeImagem', file.name);
       console.log('Nome do arquivo de imagem adicionado ao FormData:', file.name);
       
       formData.append('imagem', file);
