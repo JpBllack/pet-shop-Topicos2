@@ -31,58 +31,69 @@ import { marcaResolver } from './component/marca/resolver/marca-resolver';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { UserTemplateComponent } from './pages/template/user-template/user-template.component';
+import { RacaoCardListComponent } from './component/racao-card-list/racao-card-list.component';
+import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { AdminTemplateComponent } from './pages/template/admin-template/admin-template.component';
 
 export const routes: Routes = [
-    { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
-    { path: 'estado/new', component: EstadoFormComponent, data: { title: 'Novo Estado'} },
-    { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}, data: { title: 'Editar Estado'} },
-    { path: 'estado/delete/:id', component: EstadoFormComponent,  resolve: {estado: estadoResolver}, data:{title: 'Deletar Estado'}},
 
-    
-    { path: 'municipios/all', component: municipioListComponent, data: { title: 'Lista de municípios'} },
-    { path: 'municipios/new', component: MunicipioFormComponent, data: { title: 'Novo município'} },
-    { path: 'municipios/edit/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
-    { path: 'municipios/delete/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Deletar Município'} },
+    { 
+        path: '', 
+        component: UserTemplateComponent, 
+        title: 'e-commerce',
+        children: [
+            {path: '', pathMatch: 'full', redirectTo: 'produtos'},
 
+            { path: 'produtos', component: RacaoCardListComponent, title: 'Produtos à Venda'},
+            { path: 'login', component: LoginComponent, title: 'Login'},
+            { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
+            { path: 'signup', component: SignupComponent, data: {Title: 'Sign Up'}},
+            { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+        ]
 
-    { path: 'racoes/all', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
-    { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },
-    { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Editar Ração' } },
-    { path: 'racoes/delete/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Deletar Ração' } },
+    },
 
-    { path: 'pets/all', component: PetListComponent, data: { title: 'Lista de Pets' } },
-    { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },
-    { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Editar Pet' } },
-    { path: 'pets/delete/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Deletar Pet' } },
-    
+    { 
+        path: 'admin', 
+        component: AdminTemplateComponent, 
+        title: 'e-commerce',
+        children: [
+            {path: '', pathMatch: 'full', redirectTo: 'estados'},
+        
+            { path: 'estado/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
+            { path: 'estado/new', component: EstadoFormComponent, data: { title: 'Novo Estado'} },
+            { path: 'estado/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}, data: { title: 'Editar Estado'} },
+                
+            { path: 'municipios/all', component: municipioListComponent, data: { title: 'Lista de municípios'} },
+            { path: 'municipios/new', component: MunicipioFormComponent, data: { title: 'Novo município'} },
+            { path: 'municipios/edit/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
+                
+            { path: 'racoes/all', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
+            { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },
+            { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Editar Ração' } },
 
-    { path: 'consultas/all', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
-    { path: 'consultas/new', component: ConsultaFormComponent, data: { title: 'Nova Consulta' } },
-    { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
-    { path: 'consultas/delete/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
+            { path: 'pets/all', component: PetListComponent, data: { title: 'Lista de Pets' } },
+            { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },
+            { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Editar Pet' } },
 
-    { path: 'tipos/all', component: TipoAnimalListComponent, data: { title: 'Lista de tipos de animal'} },
-    { path: 'tipos/new', component: TipoAnimalFormComponent, data: { title: 'Novo tipo animal'} },
-    { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Editar Tipo de Animal'} },
-    { path: 'tipos/delete/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Deletar Tipo de Animal'} },
+            { path: 'consultas/all', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
+            { path: 'consultas/new', component: ConsultaFormComponent, data: { title: 'Nova Consulta' } },
+            { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
+            
+            { path: 'tipos/all', component: TipoAnimalListComponent, data: { title: 'Lista de tipos de animal'} },
+            { path: 'tipos/new', component: TipoAnimalFormComponent, data: { title: 'Novo tipo animal'} },
+            { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Editar Tipo de Animal'} },
 
-    { path: 'usuarios/all', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
-    { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
-    { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
-    { path: 'usuarios/delete/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Deleter Usuario'} },
+            { path: 'usuarios/all', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
+            { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
+            { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
 
-    { path: 'marcas/all', component: MarcaListComponent, data: { title: 'Lista de marcas'} },
-    { path: 'marcas/new', component: MarcaFormComponent, data: { title: 'Nova marca'} },
-    { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Editar marca'} },
-    { path: 'marcas/delete/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Deletar marca'} },
+            { path: 'marcas/all', component: MarcaListComponent, data: { title: 'Lista de marcas'} },
+            { path: 'marcas/new', component: MarcaFormComponent, data: { title: 'Nova marca'} },
+            { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Editar marca'} },
+        ]
 
-    { path: 'login', component: LoginComponent, data: {title: 'Login'}},
-
-    { path: 'signup', component: SignupComponent, data: {Title: 'Sign Up'}},
-
-    { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
-
-
-    
+    },
 
 ];
