@@ -115,28 +115,36 @@ public class RacaoResource {
     //----------Imagem----------
 
     @PATCH
-    @Path("/upload/image/")
+    @Path("/upload/image")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response saveimage(@MultipartForm ProdutoImageForm form){{
+    public Response saveimage(@MultipartForm ProdutoImageForm form) {
         //String imageName;
         Long id = form.getId();
-        try{
+        String nomeImagem = form.getNomeImagem();
+        byte[] imagem = form.getImagem();
+        
+        if (id == null || nomeImagem == null || imagem == null) {
+            LOG.error("Parâmetros inválidos");
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    
+        try {
             LOG.info("Inserindo imagem");
-            String imageName = fileService.save(form.getNomeImagem(), form.getImagem());
-            LOG.info("Alterando imagem do usuario");
-
-            //RacaoResponseDTO dto = racaoService.getById(id);
+            String imageName = fileService.save(nomeImagem, imagem);
+            LOG.info("Alterando imagem do usuário");
+    
             racaoService.changeImage(id, imageName);
             LOG.info("Imagem alterada");
-            return Response.ok("Imagem = "+ imageName).build();
-        } catch (IOException e){
+            return Response.ok("Imagem = " + imageName).build();
+        } catch (IOException e) {
             LOG.error("Erro ao inserir imagem");
             e.printStackTrace();
             Error error = new Error("409", e.getMessage());
             return Response.status(Response.Status.CONFLICT).entity(error).build();
         }
-    }}
+    }
+    
 
     @GET
     @Path("/download/image/{id}")

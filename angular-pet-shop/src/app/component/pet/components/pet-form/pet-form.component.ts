@@ -65,16 +65,19 @@ export class PetFormComponent implements OnInit {
 
     
 
-    salvar() {
+      salvar() {
         if (this.formGroup.valid) {
             const pet = this.formGroup.value;
+            console.log('ID do tipo de animal selecionado:', pet.animal);
+    
             if (pet.id == null) {
                 this.petService.insertPet(pet).subscribe({
                     next: () => {
                         this.router.navigateByUrl('/pets/all');
                     },
                     error: (err) => {
-                        console.log('Erro ao incluir' + JSON.stringify(err));
+                        console.log('Erro ao incluir', err);
+                        console.log('Detalhes do erro:', err.error); // Adiciona este log para imprimir os detalhes do erro
                     }
                 });
             } else {
@@ -89,7 +92,7 @@ export class PetFormComponent implements OnInit {
             }
         }
     }
-
+    
     excluir() {
         if (this.formGroup.valid) {
             const pet = this.formGroup.value;

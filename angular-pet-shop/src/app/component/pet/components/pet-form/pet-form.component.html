@@ -12,30 +12,33 @@
                         O nome é obrigatório.
                     </mat-error>
                 </mat-form-field>
-
-                <mat-form-field appearance="fill">
+                
+                <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Tipo de Animal</mat-label>
-                    <mat-select formControlName="animal" id="animal_id">
-                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal">
+                    <mat-select formControlName="animal" id="tipoAnimal">
+                        <mat-option *ngFor="let tipoAnimal of animais" [value]="tipoAnimal.id">
                             {{ tipoAnimal.nome }}
                         </mat-option>
                     </mat-select>
+                    
                     <mat-error *ngIf="formGroup.get('animal') 
                                    && formGroup.get('animal')?.invalid
                                    && formGroup.get('animal')?.touched">
                         O tipo de animal é obrigatório.
                     </mat-error>
                 </mat-form-field>
-
+                
+                
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Usuário</mat-label>
                     <input matInput type="number" formControlName="usuario">
-                    <mat-error *ngIf="formGroup.get('usuarioId') 
-                                   && formGroup.get('usuarioId')?.invalid
-                                   && formGroup.get('usuarioId')?.touched">
+                    <mat-error *ngIf="formGroup.get('usuario') 
+                                   && formGroup.get('usuario')?.invalid
+                                   && formGroup.get('usuario')?.touched">
                         O usuário é obrigatório.
                     </mat-error>
                 </mat-form-field>
+                
 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Ano de Nascimento</mat-label>
