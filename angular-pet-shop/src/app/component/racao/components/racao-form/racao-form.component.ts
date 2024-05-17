@@ -187,6 +187,7 @@ uploadImage(file: File | null) {
           },
           error: (error) => {
               console.error('Erro ao enviar a imagem:', error);
+              
           }
       });
   } else {
