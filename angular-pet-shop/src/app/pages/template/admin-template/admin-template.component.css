@@ -1,0 +1,10 @@
+app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0; /* Cor de fundo do footer */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centralizar o conteúdo */
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
