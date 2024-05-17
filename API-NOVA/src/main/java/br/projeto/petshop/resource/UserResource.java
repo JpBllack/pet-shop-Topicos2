@@ -10,6 +10,7 @@ import br.projeto.petshop.validation.ValidationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -39,7 +40,7 @@ public class UserResource {
 
     @POST
     @Path("/insert/user/")
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     public Response insert(UsuarioDTO dto){
         try{
             LOG.info("Inserindo um usuario");
@@ -55,7 +56,7 @@ public class UserResource {
     @PUT
     @Transactional
     @Path("/update/user/{id}")
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, UsuarioDTO dto){
 
         try{
@@ -73,7 +74,7 @@ public class UserResource {
     @DELETE
     @Transactional
     @Path("/delete/user/{id}")
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id){
 
         try{
@@ -89,7 +90,7 @@ public class UserResource {
     }
     
     @GET
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     public Response findAll() {
         try {
             LOG.info("Buscando todos os usuarios");
@@ -112,7 +113,7 @@ public class UserResource {
 
 
     @GET
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         try{
@@ -127,7 +128,7 @@ public class UserResource {
     }
 
     @GET
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     @Path("/search/name/{username}")
     public Response findByUsername(@PathParam("username") String username){
         try{
@@ -142,7 +143,7 @@ public class UserResource {
     }
 
     @GET
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     @Path("/search/veterinarios")
     public Response findAllVeterinario() {
         try {

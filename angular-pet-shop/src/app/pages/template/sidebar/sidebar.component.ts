@@ -19,10 +19,11 @@ export class SidebarComponent implements OnInit {
   constructor(private sideBarService: SidebarService) { }
 
   ngOnInit(): void {
-    this.sideBarService.sideNavToggleSubject.subscribe(
-      () => {
+    this.sideBarService.sideNavToggleSubject.subscribe(() => {
+      if (this.drawer) {
         this.drawer.toggle();
       }
-    )
+    });
   }
+  
 }
