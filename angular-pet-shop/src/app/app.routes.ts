@@ -73,7 +73,7 @@ export const routes: Routes = [
       { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },
       { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Editar Pet' } },
 
-      { path: 'consultas/all', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
+      { path: 'consultas', component: ConsultaListComponent, data: { title: 'Lista de Consultas' } },
       { path: 'consultas/new', component: ConsultaFormComponent, data: { title: 'Nova Consulta' } },
       { path: 'consultas/edit/:id', component: ConsultaFormComponent, resolve: { consulta: ConsultaResolver }, data: { title: 'Editar Consulta' } },
           

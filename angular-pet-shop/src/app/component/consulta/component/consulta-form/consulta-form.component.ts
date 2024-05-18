@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgIf,  Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,7 +37,8 @@ export class ConsultaFormComponent implements OnInit {
     private consultaService: ConsultaService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private location: Location
   ) {
     this.formGroup = this.formBuilder.group({
       id: [null],
@@ -49,6 +50,10 @@ export class ConsultaFormComponent implements OnInit {
   }
 
   
+  voltarPagina() {
+    this.location.back();
+  }
+
 
   ngOnInit(): void {
     const consultaId = this.activatedRoute.snapshot.params['id'];
@@ -79,7 +84,7 @@ export class ConsultaFormComponent implements OnInit {
       if (consulta.id == null) {
         this.consultaService.criarConsulta(consulta).subscribe({
           next: () => {
-            this.router.navigateByUrl('/consultas/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao criar consulta' + JSON.stringify(err));
@@ -88,7 +93,7 @@ export class ConsultaFormComponent implements OnInit {
       } else {
         this.consultaService.atualizarConsulta(consulta.id, consulta).subscribe({
           next: () => {
-            this.router.navigateByUrl('/consultas/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao atualizar consulta' + JSON.stringify(err));
@@ -104,7 +109,7 @@ export class ConsultaFormComponent implements OnInit {
       if (consulta.id != null) {
         this.consultaService.excluirConsulta(consulta.id).subscribe({
           next: () => {
-            this.router.navigateByUrl('/consultas/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao excluir' + JSON.stringify(err));
