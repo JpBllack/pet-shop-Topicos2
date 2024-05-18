@@ -37,7 +37,6 @@ public class RacaoResource {
     ProdutoFileService fileService;
 
     @GET
-    @Path("/all")
     @PermitAll
     @Transactional
     public Response getAllRacoes() {

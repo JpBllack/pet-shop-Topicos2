@@ -12,7 +12,7 @@ export class RacaoService {
   constructor(private http: HttpClient) { }
 
   getAllRacoes(): Observable<Racao[]> {
-    return this.http.get<Racao[]>(`${this.apiUrl}/all`);
+    return this.http.get<Racao[]>(`${this.apiUrl}`);
   }
 
   getRacaoById(id: number): Observable<Racao> {

@@ -65,7 +65,7 @@ export const routes: Routes = [
       { path: 'municipios/new', component: MunicipioFormComponent, data: { title: 'Novo município'} },
       { path: 'municipios/edit/:id', component: MunicipioFormComponent, resolve: {municipio: municipioResolver}, data: { title: 'Editar Município'} },
           
-      { path: 'racoes/all', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
+      { path: 'racoes', component: RacaoListComponent, data: { title: 'Lista de Rações' } },
       { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },
       { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Editar Ração' } },
 

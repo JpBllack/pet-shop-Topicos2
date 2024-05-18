@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgIf } from '@angular/common';
+import { NgIf, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -49,7 +49,9 @@ export class RacaoFormComponent implements OnInit {
               private marcaService: MarcaService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private location: Location
+            ) {
 
                 
 
@@ -88,6 +90,10 @@ export class RacaoFormComponent implements OnInit {
     }
   }
   
+  
+  voltarPagina() {
+    this.location.back();
+  }
 
 
   salvar() {
@@ -96,7 +102,7 @@ export class RacaoFormComponent implements OnInit {
       if (racao.id == null) {
         this.racaoService.createRacao(racao).subscribe({
           next: () => {
-            this.router.navigateByUrl('/racoes/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -105,7 +111,7 @@ export class RacaoFormComponent implements OnInit {
       } else {
         this.racaoService.updateRacao(racao).subscribe({
           next: () => {
-            this.router.navigateByUrl('/racoes/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -121,7 +127,7 @@ export class RacaoFormComponent implements OnInit {
       if (racao.id != null) {
         this.racaoService.deleteRacao(racao.id).subscribe({
           next: () => {
-            this.router.navigateByUrl('/racoes/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
