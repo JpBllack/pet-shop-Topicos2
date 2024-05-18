@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+import { NgIf , Location} from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -28,7 +28,8 @@ export class TipoAnimalFormComponent implements OnInit {
         private formBuilder: FormBuilder,
         private tipoAnimalService: TipoAnimalService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private location: Location
     ) {
         this.formGroup = formBuilder.group({
             id: [null],
@@ -43,13 +44,19 @@ export class TipoAnimalFormComponent implements OnInit {
         }
     }
 
+    
+  voltarPagina() {
+    this.location.back();
+  }
+
+
     salvar() {
         if (this.formGroup.valid) {
             const tipoAnimal = this.formGroup.value;
             if (tipoAnimal.id == null) {
                 this.tipoAnimalService.insert(tipoAnimal).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/tipos/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao incluir' + JSON.stringify(err));
@@ -74,7 +81,7 @@ export class TipoAnimalFormComponent implements OnInit {
             if (tipoAnimal.id != null) {
                 this.tipoAnimalService.delete(tipoAnimal.id).subscribe({
                     next: () => {
-                        this.router.navigateByUrl(`/tipos/all`);
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao Excluir' + JSON.stringify(err));
