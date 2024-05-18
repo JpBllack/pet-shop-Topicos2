@@ -4,6 +4,7 @@ import org.jboss.logging.Logger;
 
 import br.projeto.petshop.service.PetService;
 import br.projeto.petshop.validation.ValidationException;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -31,12 +32,11 @@ public class PetResource {
     @Inject
     PetService petService;
 
-    private static final Logger LOG = Logger.getLogger(AuthResource.class);
+    private static final Logger LOG = Logger.getLogger(PetResource.class);
 
-
-    
     @GET
     @Path("/all")
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     public Response findAll(){
         try{
             List<PetResponseDTO> pets = petService.getAll();
@@ -49,10 +49,10 @@ public class PetResource {
         }
     }
 
-
     @GET
     @Transactional
     @Path("/{id}")
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     public Response findById(@PathParam("id") Long id){
         try{
             PetResponseDTO pet = petService.getById(id);
@@ -68,6 +68,7 @@ public class PetResource {
     @POST
     @Transactional
     @Path("/insert")
+    @RolesAllowed("Admin")
     public Response insert(PetDTO dto){
         try{
             return Response.status(Response.Status.CREATED).entity(petService.insert(dto)).build();
@@ -77,7 +78,7 @@ public class PetResource {
             Error error = new Error("400", e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
         } catch (NotFoundException e){
-            LOG.error(" Pet não encontrados");
+            LOG.error("Pet não encontrado");
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
             return Response.status(Response.Status.NOT_FOUND).entity(error).build();
@@ -87,6 +88,7 @@ public class PetResource {
     @PUT
     @Transactional
     @Path("/update/{id}")
+    @RolesAllowed("Admin")
     public Response update(@PathParam("id") Long id, PetDTO dto){
         try{
             return Response.ok(petService.update(id, dto)).build();
@@ -106,6 +108,7 @@ public class PetResource {
     @DELETE
     @Transactional
     @Path("/delete/{id}")
+    @RolesAllowed("Admin")
     public Response delete(@PathParam("id") Long id){
         try{
             petService.delete(id);
@@ -121,6 +124,7 @@ public class PetResource {
     @GET
     @Transactional
     @Path("/byName/{nome}")
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     public Response findByName(@PathParam("nome") String nome){
         try{
             PetResponseDTO pet = petService.getByNome(nome);
@@ -132,6 +136,4 @@ public class PetResource {
             return Response.status(Response.Status.NOT_FOUND).entity(error).build();
         }
     }
-
-
 }

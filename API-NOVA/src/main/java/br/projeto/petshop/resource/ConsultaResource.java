@@ -40,7 +40,7 @@ public class ConsultaResource {
     @POST
     @Transactional
     @Path("/create")
-    //@PermitAll
+    @PermitAll
     public Response criarConsulta(ConsultaDTO consultaDTO) {
         try{
             return Response.status(Status.CREATED).entity(consultaService.criarConsulta(consultaDTO)).build();
@@ -59,7 +59,7 @@ public class ConsultaResource {
 
     @PUT
     @Transactional
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     @Path("/atualizar/{id}")
     public Response atualizarConsulta(@PathParam("id") long id, ConsultaDTO consultaDTO) {
         try{
@@ -75,7 +75,7 @@ public class ConsultaResource {
     }
 
     @GET
-    //@PermitAll
+    @PermitAll
     @Path("/search/{id}")
     public Response buscarConsultaPorId(@PathParam("id") long id) {
         try {
@@ -90,7 +90,7 @@ public class ConsultaResource {
     }
 
     @GET
-    //@PermitAll
+    @PermitAll
     public Response buscarTodasConsultas() {
         try{
             LOG.info("Buscando todas as consultas");
@@ -112,7 +112,7 @@ public class ConsultaResource {
 
     @DELETE
     @Transactional
-    //@RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin"})
     @Path("/delete/{id}")
     public Response deletarConsulta(@PathParam("id") long id) {
         try {

@@ -5,6 +5,7 @@ import org.jboss.logging.Logger;
 import br.projeto.petshop.dto.TipoAnimalDTO;
 import br.projeto.petshop.service.TipoAnimalService;
 import br.projeto.petshop.validation.ValidationException;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -35,6 +36,7 @@ public class TipoAnimalResource {
     @POST
     @Transactional
     @Path("/insert")
+    @RolesAllowed({"Admin"})
     public Response insert(TipoAnimalDTO dto) {
         try {
             LOG.info("Inserindo um tipo");
@@ -51,6 +53,7 @@ public class TipoAnimalResource {
     @PUT
     @Transactional
     @Path("/update/{id}")
+    @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, TipoAnimalDTO dto) {
         try {
             LOG.infof("Update em %s", dto.nome());
@@ -67,6 +70,7 @@ public class TipoAnimalResource {
     @DELETE
     @Transactional
     @Path("/delete/{id}")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando tipo");
@@ -81,6 +85,7 @@ public class TipoAnimalResource {
     }
 
     @GET
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     public Response findAll() {
         try {
             LOG.info("Buscando todos os tipos");
@@ -101,6 +106,7 @@ public class TipoAnimalResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         try{
@@ -115,6 +121,7 @@ public class TipoAnimalResource {
     }
 
     @GET
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     @Path("/search/{nome}")
     public Response findByNome(@PathParam("nome") String nome){
         try{

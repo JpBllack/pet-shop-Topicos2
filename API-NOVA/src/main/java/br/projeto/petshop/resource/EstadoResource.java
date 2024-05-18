@@ -3,6 +3,7 @@ package br.projeto.petshop.resource;
 import br.projeto.petshop.dto.EstadoDTO;
 import br.projeto.petshop.service.EstadoService;
 import br.projeto.petshop.validation.ValidationException;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -24,6 +25,7 @@ public class EstadoResource {
     EstadoService estadoService;
 
     @GET
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     @Path("/all")
     @Transactional
     public Response getAllEstados() {
@@ -39,6 +41,7 @@ public class EstadoResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     @Transactional
     public Response getEstadoById(@PathParam("id") long id) {
@@ -54,6 +57,7 @@ public class EstadoResource {
     }
 
     @POST
+    @RolesAllowed({"Admin"})
     @Path("/insert")
     @Transactional
     public Response insertEstado(@Valid EstadoDTO estadoDTO) {
@@ -69,6 +73,7 @@ public class EstadoResource {
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Path("/update/{id}")
     @Transactional
     public Response updateEstado(@PathParam("id") long id, @Valid EstadoDTO estadoDTO) {
@@ -87,6 +92,7 @@ public class EstadoResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Path("/delete/{id}")
     @Transactional
     public Response deleteEstado(@PathParam("id") long id) {

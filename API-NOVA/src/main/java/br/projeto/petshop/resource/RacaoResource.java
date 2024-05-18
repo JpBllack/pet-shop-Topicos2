@@ -7,6 +7,8 @@ import br.projeto.petshop.form.ProdutoImageForm;
 import br.projeto.petshop.service.ProdutoFileService;
 import br.projeto.petshop.service.RacaoService;
 import br.projeto.petshop.validation.ValidationException;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -36,6 +38,7 @@ public class RacaoResource {
 
     @GET
     @Path("/all")
+    @PermitAll
     @Transactional
     public Response getAllRacoes() {
         LOG.info("Buscando todas as rações");
@@ -51,6 +54,7 @@ public class RacaoResource {
 
     @GET
     @Path("/{id}")
+    @PermitAll
     @Transactional
     public Response getRacaoById(@PathParam("id") long id) {
         LOG.info("Buscando ração pelo ID: " + id);
@@ -66,6 +70,7 @@ public class RacaoResource {
 
     @POST
     @Path("/insert")
+    @RolesAllowed("Admin")
     @Transactional
     public Response insertRacao(@Valid RacaoDTO racaoDTO) {
         LOG.info("Inserindo nova ração: " + racaoDTO);
@@ -81,6 +86,7 @@ public class RacaoResource {
 
     @PUT
     @Path("/update/{id}")
+    @RolesAllowed("Admin")
     @Transactional
     public Response updateRacao(@PathParam("id") long id, @Valid RacaoDTO racaoDTO) {
         LOG.info("Atualizando ração com ID: " + id);
@@ -99,6 +105,7 @@ public class RacaoResource {
 
     @DELETE
     @Path("/delete/{id}")
+    @RolesAllowed("Admin")
     @Transactional
     public Response deleteRacao(@PathParam("id") long id) {
         LOG.info("Deletando ração pelo ID: " + id);
@@ -116,10 +123,10 @@ public class RacaoResource {
 
     @PATCH
     @Path("/upload/image")
+    @RolesAllowed({"Admin"})
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
     public Response saveimage(@MultipartForm ProdutoImageForm form) {
-        //String imageName;
         Long id = form.getId();
         String nomeImagem = form.getNomeImagem();
         byte[] imagem = form.getImagem();
@@ -144,19 +151,18 @@ public class RacaoResource {
             return Response.status(Response.Status.CONFLICT).entity(error).build();
         }
     }
-    
 
     @GET
     @Path("/download/image/{id}")
+    @RolesAllowed({"Admin"})
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response downloadImage(@PathParam("id")Long id){
-
+    public Response downloadImage(@PathParam("id") Long id) {
         LOG.infof("Buscando imagem do usuario de id %s", id);
         RacaoResponseDTO racao = racaoService.getById(id);
         String imageName = racao.imagem();
 
         ResponseBuilder response = Response.ok(fileService.getFile(imageName));
-        response.header("Content-Disposition", "attachment;filename="+imageName);
+        response.header("Content-Disposition", "attachment;filename=" + imageName);
         return response.build();
     }
 
