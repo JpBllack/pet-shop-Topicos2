@@ -20,10 +20,12 @@
                 Salvar
             </button>
             <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"
-                [disabled]="formGroup.invalid">
+                [disabled]="formGroup.invalid" (click)="voltarPagina()">
                 Excluir
             </button>
-            <button mat-raised-button routerLink="/marcas/all">
+            <button 
+            mat-raised-button
+            (click)="voltarPagina()">
                 Cancelar
             </button>
         </mat-card-actions>

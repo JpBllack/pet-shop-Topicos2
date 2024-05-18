@@ -12,7 +12,7 @@ export class MarcaService{
     constructor(private httpClient: HttpClient){}
 
     findAll(): Observable<Marca[]> {
-        return this.httpClient.get<Marca[]>(`${this.baseUrl}/all`);
+        return this.httpClient.get<Marca[]>(`${this.baseUrl}`);
     }
 
     findById(id: string): Observable<Marca>{

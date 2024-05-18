@@ -38,7 +38,6 @@ public class MarcaResource {
 
 
     @GET
-    @Path("/all")
     public Response findAll(){
         try{
             List<MarcaResponseDTO> marcas = marcaService.getAll();

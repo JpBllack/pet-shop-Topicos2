@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <div class="flex-container">
       <span class="toolbar-title">Controle de marcas</span>
-      <button mat-fab color="accent" routerLink="/marcas/new">
+      <button mat-fab color="accent" routerLink="./new">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -26,12 +26,12 @@
         <td mat-cell *matCellDef="let marca"> 
           <button mat-icon-button 
                   color="primary"   
-                  routerLink="/marcas/edit/{{marca.id}}">
+                  routerLink="./edit/{{marca.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button 
                   color="warn"
-                  routerLink="/marcas/delete/{{marca.id}}">
+                  routerLink="./delete/{{marca.id}}">
                   <mat-icon>delete</mat-icon>
           </button>        
         </td>

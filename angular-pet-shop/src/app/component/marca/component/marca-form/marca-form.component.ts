@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+import { Location ,NgIf } from '@angular/common';
 import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -27,7 +27,8 @@ export class MarcaFormComponent implements OnInit {
         private formBuilder: FormBuilder,
         private marcaService: MarcaService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private location: Location
     ) {
         this.formGroup = formBuilder.group({
             id: [null],
@@ -42,13 +43,17 @@ export class MarcaFormComponent implements OnInit {
         }
     }
 
+    voltarPagina() {
+        this.location.back();
+      }
+
     salvar() {
         if (this.formGroup.valid) {
             const marca = this.formGroup.value;
             if (marca.id == null) {
                 this.marcaService.insert(marca).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/marcas/all');
+                        this.voltarPagina();;
                     },
                     error: (err) => {
                         console.log('Erro ao incluir' + JSON.stringify(err));
@@ -57,7 +62,7 @@ export class MarcaFormComponent implements OnInit {
             } else {
                 this.marcaService.update(marca).subscribe({
                     next: () => {
-                        this.router.navigateByUrl(`/marcas/all`);
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao editar' + JSON.stringify(err));
@@ -73,7 +78,7 @@ export class MarcaFormComponent implements OnInit {
             if (marca.id != null) {
                 this.marcaService.delete(marca.id).subscribe({
                     next: () => {
-                        this.router.navigateByUrl(`/marcas/all`);
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao Excluir' + JSON.stringify(err));

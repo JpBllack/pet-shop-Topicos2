@@ -85,7 +85,7 @@ export const routes: Routes = [
       { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
       { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
 
-      { path: 'marcas/all', component: MarcaListComponent, data: { title: 'Lista de marcas'} },
+      { path: 'marcas', component: MarcaListComponent, data: { title: 'Lista de marcas'} },
       { path: 'marcas/new', component: MarcaFormComponent, data: { title: 'Nova marca'} },
       { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {marca: marcaResolver}, data: { title: 'Editar marca'} },
   ]
