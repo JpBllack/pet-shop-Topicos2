@@ -3,6 +3,8 @@ package br.projeto.petshop.resource;
 import br.projeto.petshop.dto.MunicipioDTO;
 import br.projeto.petshop.dto.MunicipioResponseDTO;
 import br.projeto.petshop.service.MunicipioService;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -25,7 +27,7 @@ public class MunicipioResource {
     MunicipioService municipioService;
 
     @GET
-    @Path("/all")
+    @PermitAll
     @Transactional
     public Response getAllMunicipios() {
         LOG.info("Buscando todos os municípios");
@@ -40,6 +42,7 @@ public class MunicipioResource {
     }
 
     @GET
+    @PermitAll
     @Path("/{id}")
     @Transactional
     public Response getMunicipioById(@PathParam("id") long id) {
@@ -55,6 +58,7 @@ public class MunicipioResource {
     }
 
     @POST
+    @RolesAllowed({"Admin"})
     @Path("/insert")
     @Transactional
     public Response insertMunicipio(@Valid MunicipioDTO municipioDTO) {
@@ -65,6 +69,7 @@ public class MunicipioResource {
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Path("/update/{id}")
     @Transactional
     public Response updateMunicipio(@PathParam("id") long id, @Valid MunicipioDTO municipioDTO) {
@@ -83,6 +88,7 @@ public class MunicipioResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Path("/delete/{id}")
     @Transactional
     public Response deleteMunicipio(@PathParam("id") long id) {

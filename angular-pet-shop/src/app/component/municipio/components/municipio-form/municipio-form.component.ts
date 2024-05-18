@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { Location ,NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
@@ -33,7 +33,8 @@ export class MunicipioFormComponent implements OnInit {
     private municipioService: municipioService,
     private estadoService: EstadoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
   ) {
     this.formGroup = this.formBuilder.group({
       id: [null],
@@ -46,6 +47,13 @@ export class MunicipioFormComponent implements OnInit {
     this.loadEstados();
     this.initializeForm();
   }
+
+  
+
+  voltarPagina() {
+    this.location.back();
+  }
+
 
   loadEstados() {
     this.estadoService.findAll().subscribe(
@@ -75,7 +83,7 @@ export class MunicipioFormComponent implements OnInit {
         this.municipioService.insertMunicipio(municipio).subscribe({
           next: () => {
             console.log('Município inserido com sucesso.');
-            this.router.navigateByUrl('/municipios/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao incluir município:', err);
@@ -85,7 +93,7 @@ export class MunicipioFormComponent implements OnInit {
         this.municipioService.updateMunicipio(municipio).subscribe({
           next: () => {
             console.log('Município atualizado com sucesso.');
-            this.router.navigateByUrl('/municipios/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao editar município:', err);
@@ -101,7 +109,7 @@ export class MunicipioFormComponent implements OnInit {
         this.municipioService.deleteMunicipio(municipio.id).subscribe({
           next: () => {
             console.log('Município excluído com sucesso.');
-            this.router.navigateByUrl('/municipios/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.log('Erro ao excluir município:', err);

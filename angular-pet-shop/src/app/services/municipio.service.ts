@@ -12,7 +12,7 @@ export class municipioService {
   constructor(private httpClient: HttpClient) {  }
 
   findAll(): Observable<municipio[]> {
-    return this.httpClient.get<municipio[]>(`${this.baseUrl}/all`);
+    return this.httpClient.get<municipio[]>(`${this.baseUrl}`);
   }
 
   findById(id: string): Observable<municipio> {
