@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ItemCarrinho } from '../../models/itemcarrinho.model';
 import { CarrinhoService } from '../../services/carrinho.service';
@@ -6,7 +6,7 @@ import { CarrinhoService } from '../../services/carrinho.service';
 @Component({
   selector: 'app-carrinho',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, CommonModule],
   templateUrl: './carrinho.component.html',
   styleUrl: './carrinho.component.css'
 })
