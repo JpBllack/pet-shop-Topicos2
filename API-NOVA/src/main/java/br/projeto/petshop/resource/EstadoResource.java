@@ -26,7 +26,6 @@ public class EstadoResource {
 
     @GET
     @RolesAllowed({"Admin", "User", "Veterinario"})
-    @Path("/all")
     @Transactional
     public Response getAllEstados() {
         LOG.info("Buscando todos os estados");

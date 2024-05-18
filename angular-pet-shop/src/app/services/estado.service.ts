@@ -12,7 +12,7 @@ export class EstadoService {
   constructor(private httpClient: HttpClient) {}
 
   findAll(): Observable<Estado[]> {
-    return this.httpClient.get<Estado[]>(`${this.baseUrl}/all`);
+    return this.httpClient.get<Estado[]>(`${this.baseUrl}`);
   }
 
   findById(id: string): Observable<Estado> {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { Location ,NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,7 +27,8 @@ export class EstadoFormComponent {
     private formBuilder: FormBuilder,
     private estadoService: EstadoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
   ) {
     const estado: Estado = activatedRoute.snapshot.data['estado'];
 
@@ -38,13 +39,18 @@ export class EstadoFormComponent {
     });
   }
 
+
+  voltarPagina() {
+    this.location.back();
+  }
+
   createEstado() {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
       if (estado.id == null) {
         this.estadoService.createEstado(estado).subscribe({
           next: () => {
-            this.router.navigateByUrl('/estado/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.error('Erro ao incluir estado:', err);
@@ -53,7 +59,7 @@ export class EstadoFormComponent {
       } else {
         this.estadoService.updateEstado(estado).subscribe({
           next: () => {
-            this.router.navigateByUrl('/estado/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.error('Erro ao editar estado:', err);
@@ -70,7 +76,7 @@ export class EstadoFormComponent {
         console.log ('excluindo  o estado');
         this.estadoService.deleteEstado(estado.id).subscribe({
           next: () => {
-            this.router.navigateByUrl('/estado/all');
+            this.voltarPagina();
           },
           error: (err) => {
             console.error('Erro ao excluir estado:', err);

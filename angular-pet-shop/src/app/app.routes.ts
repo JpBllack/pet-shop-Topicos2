@@ -57,7 +57,7 @@ export const routes: Routes = [
   children: [
       {path: '', pathMatch: 'full', redirectTo: 'estados'},
       
-      { path: 'estados/all', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
+      { path: 'estados', component: EstadoListComponent, data: { title: 'Lista de Estados'} },
       { path: 'estados/new', component: EstadoFormComponent, data: { title: 'Novo Estado'} },
       { path: 'estados/edit/:id', component: EstadoFormComponent, resolve: {estado: estadoResolver}, data: { title: 'Editar Estado'} },
           
