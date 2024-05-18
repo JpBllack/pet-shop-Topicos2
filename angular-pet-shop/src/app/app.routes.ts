@@ -81,7 +81,7 @@ export const routes: Routes = [
       { path: 'tipos/new', component: TipoAnimalFormComponent, data: { title: 'Novo tipo animal'} },
       { path: 'tipos/edit/:id', component: TipoAnimalFormComponent, resolve: {tipoAnimal: tipoAnimalResolver}, data: { title: 'Editar Tipo de Animal'} },
 
-      { path: 'usuarios/all', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
+      { path: 'usuarios', component: UsuarioListComponent, data: { title: "Lista de usuarios"} },
       { path: 'usuarios/new', component: UsuarioFormComponent, data: { title: 'Novo usuario'} },
       { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: usuarioResolver}, data: { title: 'Editar Usuario'} },
 

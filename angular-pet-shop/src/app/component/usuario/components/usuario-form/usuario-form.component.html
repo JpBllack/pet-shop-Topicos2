@@ -82,11 +82,12 @@
                     *ngIf="formGroup?.get('id')?.value"
                     color="warn" 
                     (click)="excluir()"
-                    [disabled]="formGroup.invalid"> 
+                    [disabled]="formGroup.invalid"
+                    (click)="voltarPagina()"> 
                 Excluir 
             </button>
             <button mat-raised-button  
-                    routerLink="/usuarios/all"> 
+                    (click)="voltarPagina()"> 
                 Cancelar 
             </button>
         </mat-card-actions>

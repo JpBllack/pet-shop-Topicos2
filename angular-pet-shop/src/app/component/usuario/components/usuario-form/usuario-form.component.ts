@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from "@angular/common";
+import { CommonModule, NgIf, Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -27,7 +27,13 @@ export class UsuarioFormComponent implements OnInit{
     formGroup: FormGroup;
     perfis = Object.values(Perfil).filter(value => isNaN(Number(value)));
 
-    constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute){
+    constructor(
+        private formBuilder: FormBuilder, 
+        private usuarioService: UsuarioService, 
+        private router: Router, 
+        private activatedRoute: ActivatedRoute,
+        private location: Location
+    ){
 
         this.formGroup = formBuilder.group({
             id: [null],
@@ -46,13 +52,19 @@ export class UsuarioFormComponent implements OnInit{
         }
     }
 
+    
+  voltarPagina() {
+    this.location.back();
+  }
+
+
     salvar(){
         if(this.formGroup.valid){
             const usuario = this.formGroup.value;
             if(usuario.id == null){
                 this.usuarioService.insertUser(usuario).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/usuarios/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao incluir' + JSON.stringify(err));
@@ -61,7 +73,7 @@ export class UsuarioFormComponent implements OnInit{
             } else{
                 this.usuarioService.updateUser(usuario).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/usuarios/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao editar' + JSON.stringify(err));
@@ -77,7 +89,7 @@ export class UsuarioFormComponent implements OnInit{
             if(usuario.id != null){
                 this.usuarioService.deleteUser(usuario.id).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/usuarios/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao Excluir' + JSON.stringify(err));
