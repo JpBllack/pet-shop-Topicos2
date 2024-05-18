@@ -69,7 +69,7 @@ export const routes: Routes = [
       { path: 'racoes/new', component: RacaoFormComponent, data: { title: 'Nova Ração' } },
       { path: 'racoes/edit/:id', component: RacaoFormComponent, resolve: { racao: racaoResolver }, data: { title: 'Editar Ração' } },
 
-      { path: 'pets/all', component: PetListComponent, data: { title: 'Lista de Pets' } },
+      { path: 'pets', component: PetListComponent, data: { title: 'Lista de Pets' } },
       { path: 'pets/new', component: PetFormComponent, data: { title: 'Novo Pet' } },
       { path: 'pets/edit/:id', component: PetFormComponent, resolve: { pet: petResolver }, data: { title: 'Editar Pet' } },
 

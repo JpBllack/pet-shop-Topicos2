@@ -15,7 +15,7 @@ export class PetService{
     constructor(private httpClient: HttpClient){}
 
     findAllPet(): Observable<pet[]>{
-        return this.httpClient.get<pet[]>(`${this.baseUrl}/all`);
+        return this.httpClient.get<pet[]>(`${this.baseUrl}`);
     }
 
     findByIdPet(id: string): Observable<pet>{

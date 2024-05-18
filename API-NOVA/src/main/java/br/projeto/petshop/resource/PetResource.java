@@ -35,7 +35,6 @@ public class PetResource {
     private static final Logger LOG = Logger.getLogger(PetResource.class);
 
     @GET
-    @Path("/all")
     @RolesAllowed({"Admin", "User", "Veterinario"})
     public Response findAll(){
         try{

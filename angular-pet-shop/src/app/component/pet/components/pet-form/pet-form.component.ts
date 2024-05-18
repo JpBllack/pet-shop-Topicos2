@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angula
 import { PetService } from "../../../../services/pet.service";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { pet } from "../../../../models/pet";
-import { CommonModule, NgIf } from "@angular/common";
+import { CommonModule, NgIf, Location  } from "@angular/common";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
@@ -43,7 +43,8 @@ export class PetFormComponent implements OnInit {
         private tipoAnimalService: TipoAnimalService,
         private router: Router, 
         private activatedRoute: ActivatedRoute,
-        private http: HttpClient)
+        private http: HttpClient,
+        private location: Location)
          {
         this.formGroup = formBuilder.group({
             id: [null],
@@ -62,6 +63,11 @@ export class PetFormComponent implements OnInit {
         };
       }
     
+      
+  voltarPagina() {
+    this.location.back();
+  }
+
 
     
 
@@ -73,7 +79,7 @@ export class PetFormComponent implements OnInit {
             if (pet.id == null) {
                 this.petService.insertPet(pet).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/pets/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao incluir', err);
@@ -83,7 +89,7 @@ export class PetFormComponent implements OnInit {
             } else {
                 this.petService.updatePet(pet).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/pets/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao editar' + JSON.stringify(err));
@@ -99,7 +105,7 @@ export class PetFormComponent implements OnInit {
             if (pet.id != null) {
                 this.petService.deletePet(pet).subscribe({
                     next: () => {
-                        this.router.navigateByUrl('/pets/all');
+                        this.voltarPagina();
                     },
                     error: (err) => {
                         console.log('Erro ao excluir' + JSON.stringify(err));

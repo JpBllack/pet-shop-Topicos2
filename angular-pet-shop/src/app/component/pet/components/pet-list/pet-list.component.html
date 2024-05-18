@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <div class="flex-container">
       <span class="toolbar-title">Controle de Pets</span>
-      <button mat-fab color="accent" routerLink="/pets/new">
+      <button mat-fab color="accent" routerLink="./new">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -44,7 +44,7 @@
         <td mat-cell *matCellDef="let pet"> 
           <button mat-icon-button 
                   color="primary"   
-                  routerLink="/pets/edit/{{pet.id}}">
+                  routerLink="./edit/{{pet.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
         </td>

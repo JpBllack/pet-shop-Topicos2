@@ -63,11 +63,11 @@
                     color="warn" 
                     (click)="excluir()"
                     [disabled]="formGroup.invalid"
-                    routerLink="/pets/all"> 
+                    (click)="voltarPagina()"> 
                 Excluir 
             </button>
             <button mat-raised-button  
-                    routerLink="/pets/all"> 
+                (click)="voltarPagina()"> 
                 Cancelar 
             </button>
         </mat-card-actions>
