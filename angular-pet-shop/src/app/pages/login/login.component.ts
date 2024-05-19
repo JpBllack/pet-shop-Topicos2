@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginData).subscribe({
         next: (resp) => {
           // redirecionar para a página principal
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/produtos');
           alert("Logado com sucesso!")
         },
         error: (err) => {

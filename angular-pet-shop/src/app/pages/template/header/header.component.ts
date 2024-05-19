@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   usuarioLogado: Usuario | null = null;
   private subscription = new Subscription();
-
+  showLoginOptions: boolean = false;
   qtdItensCarrinho: number = 0;
 
   constructor(private sidebarService: SidebarService,

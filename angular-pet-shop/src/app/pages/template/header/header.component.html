@@ -16,21 +16,27 @@
         <mat-icon [matBadge]="qtdItensCarrinho" matBadgeColor="warn" matBadgePosition="after" matBadgeOverlap="false">shopping_cart</mat-icon>
     </button>
 
-    <!-- Verificação de login e exibição condicional -->
-    <ng-container *ngIf="usuarioLogado; else loginButton">
-        <!-- Botão de deslogar -->
-        <button mat-icon-button (click)="deslogar()">
-            <mat-icon>exit_to_app</mat-icon>
-        </button>
-        
-        <!-- Nome do usuário logado -->
-        <span>{{usuarioLogado.nome}}</span>
-    </ng-container>
+    <!-- Área de login -->
+    <div class="login-container" (mouseenter)="showLoginOptions = true" (mouseleave)="showLoginOptions = false">
+        <!-- Verificação de login e exibição condicional -->
+        <ng-container *ngIf="usuarioLogado; else loginButton">
+            <!-- Nome do usuário logado -->
+            <span>{{usuarioLogado.nome}}</span>
+            
+            <!-- Barra com a opção de deslogar (exibida no hover) -->
+            <div *ngIf="showLoginOptions" class="login-options">
+                <button mat-button (click)="deslogar()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    Deslogar
+                </button>
+            </div>
+        </ng-container>
 
-    <!-- Botão de logar (exibido quando o usuário não está logado) -->
-    <ng-template #loginButton>
-        <button mat-button routerLink="/login">
-            Logar
-        </button>
-    </ng-template>
+        <!-- Botão de logar (exibido quando o usuário não está logado) -->
+        <ng-template #loginButton>
+            <button mat-button routerLink="/login">
+                Logar
+            </button>
+        </ng-template>
+    </div>
 </mat-toolbar>

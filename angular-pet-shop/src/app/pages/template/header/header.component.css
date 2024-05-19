@@ -5,3 +5,35 @@
 .demo-section + .demo-section {
     margin-top: 16px;
   }
+
+  .login-container {
+    position: relative;
+}
+
+.login-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: grey;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.login-options button {
+    display: flex;
+    align-items: center;
+}
+
+.login-options mat-icon {
+    margin-right: 5px;
+}
+
+
+/* Adiciona padding ao conteúdo da toolbar */
+mat-toolbar {
+    padding-left: 100px;
+    padding-right: 100px;
+}
