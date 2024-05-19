@@ -14,6 +14,7 @@ type Card = {
   idConsulta: number;
   sabor: string;
   preco: number;
+  imagem: String;
 }
 
 @Component({
@@ -27,6 +28,7 @@ export class RacaoCardListComponent implements OnInit {
 
   cards = signal<Card[]> ([]);
   racoes: Racao[] = [];
+
 
   constructor(private racaoService: RacaoService, 
               private carrinhoService: CarrinhoService,
@@ -47,14 +49,19 @@ export class RacaoCardListComponent implements OnInit {
   carregarCards() {
     const cards: Card[] = [];
     this.racoes.forEach(racao => {
+      const caminhoImagem = `assets/${racao.imagem}`;
+      console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
       cards.push({
         idConsulta: racao.id,
         sabor: racao.sabor,
-        preco: racao.preco
+        preco: racao.preco,
+        imagem: caminhoImagem
       });
     });
+    console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
     this.cards.set(cards);
   }
+ 
 
   adicionarAoCarrinho(card: Card) {
     this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
@@ -66,6 +73,8 @@ export class RacaoCardListComponent implements OnInit {
     })
 
   }
+
+  
 
   showSnackbarTopPosition(content:any, action:any) {
     this.snackBar.open(content, action, {

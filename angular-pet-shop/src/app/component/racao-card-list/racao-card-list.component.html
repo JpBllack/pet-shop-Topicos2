@@ -1,8 +1,8 @@
 <div class="container responsive-grid">
     <mat-card *ngFor="let card of cards()">
 
-        <!-- <img mat-card-image [src]="card.urlImagem" > -->
-       
+        <img mat-card-image [src]="card.imagem ? card.imagem : 'assets/imageNotfound.jpg' " (error)="card.imagem = 'assets/imageNotfound.jpg' ">
+
         <mat-card-title class="centered-text"> {{card.sabor}} </mat-card-title>
         
         <!-- <mat-card-content class="centered-text"> {{card.modalidade}} </mat-card-content> -->
