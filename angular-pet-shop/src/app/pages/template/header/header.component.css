@@ -19,6 +19,9 @@
     padding: 8px;
     display: flex;
     align-items: center;
+    flex-direction: column; /* Alterado para organizar verticalmente */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    width: 120px; /* Ajusta a largura conforme necessário */
     
 }
 

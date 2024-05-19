@@ -9,7 +9,7 @@ import { SidebarService } from '../../../services/sidebar.service';
 import { CarrinhoService } from '../../../services/carrinho.service';
 import { Subscription } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Usuario } from '../../../models/Usuario';
 import { CommonModule } from '@angular/common';
 
@@ -30,7 +30,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: SidebarService,
     private carrinhoService: CarrinhoService,
     private authService: AuthService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {
 
   }
 
@@ -59,8 +61,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ));
   }
 
+
+
   deslogar() {
     this.authService.removeToken()
     this.authService.removeUsuarioLogado();
+  }
+
+  dashboard() {
+    this.router.navigate(['/dashboard']);
   }
 }

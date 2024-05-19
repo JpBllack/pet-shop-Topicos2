@@ -25,6 +25,12 @@
             
             <!-- Barra com a opção de deslogar (exibida no hover) -->
             <div *ngIf="showLoginOptions" class="login-options">
+
+                <button mat-button (click)="dashboard()">
+                    <mat-icon>dashboard</mat-icon>
+                    Dashboard
+                </button>
+
                 <button mat-button (click)="deslogar()">
                     <mat-icon>exit_to_app</mat-icon>
                     Deslogar
