@@ -11,11 +11,12 @@ import { Subscription } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Usuario } from '../../../models/Usuario';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule],
+  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

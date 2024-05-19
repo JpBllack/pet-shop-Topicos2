@@ -1,19 +1,36 @@
 <mat-toolbar color="primary">
+    <!-- Botão de menu -->
     <button (click)="clickMenu()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
+    
+    <!-- Nome do aplicativo -->
     <span>
         <a routerLink="/" style="text-decoration: none; color: inherit;">Pet Shop</a>
     </span>
 
     <span class="example-spacer"></span>
-    <button routerLink="/carrinho" mat-icon-button class="demo-section example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon [matBadge]="qtdItensCarrinho"  matBadgeColor="warn" matBadgePosition="after" matBadgeOverlap="false">shopping_cart</mat-icon>
+    
+    <!-- Botão do carrinho de compras -->
+    <button routerLink="/carrinho" mat-icon-button class="demo-section example-icon favorite-icon" aria-label="Example icon-button with shopping cart icon">
+        <mat-icon [matBadge]="qtdItensCarrinho" matBadgeColor="warn" matBadgePosition="after" matBadgeOverlap="false">shopping_cart</mat-icon>
     </button>
 
-    <button  mat-icon-button (click)="deslogar()">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
-    <span>{{usuarioLogado?.nome}}</span>
-    
+    <!-- Verificação de login e exibição condicional -->
+    <ng-container *ngIf="usuarioLogado; else loginButton">
+        <!-- Botão de deslogar -->
+        <button mat-icon-button (click)="deslogar()">
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
+        
+        <!-- Nome do usuário logado -->
+        <span>{{usuarioLogado.nome}}</span>
+    </ng-container>
+
+    <!-- Botão de logar (exibido quando o usuário não está logado) -->
+    <ng-template #loginButton>
+        <button mat-button routerLink="/login">
+            Logar
+        </button>
+    </ng-template>
 </mat-toolbar>
