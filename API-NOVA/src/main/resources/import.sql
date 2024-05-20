@@ -84,13 +84,10 @@ insert into Marca(nome) values('Pedigree');
 insert into Marca(nome) values('Royal Canin');
 insert into Marca(nome) values('FinoTrato');
 
-
-
-INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('carne', 1, 1, 1, 6);
-INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('frango', 1, 1, 2, 5);
-INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('pistaxe', 5, 2, 2, 2);
-INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id) VALUES ('atum', 2, 1, 1, 1);
-
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id, preco, estoque) VALUES ('carne', 1, 1, 1, 6, 10.00, 100);
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id, preco, estoque) VALUES ('frango', 1, 1, 2, 5, 10.00, 100);
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id, preco, estoque) VALUES ('pistaxe', 5, 2, 2, 2, 10.00, 100);
+INSERT INTO Racao (sabor, animal_id, peso, idade, marca_id, preco, estoque) VALUES ('atum', 2, 1, 1, 1, 10.00, 100);
 
 
 INSERT INTO Estado (nome, sigla) VALUES ('Tocantins', 'TO');

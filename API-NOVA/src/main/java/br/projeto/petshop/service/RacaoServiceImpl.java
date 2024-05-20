@@ -74,6 +74,7 @@ public class RacaoServiceImpl implements RacaoService {
         racao.setIdade(Idade.valueOf(racaoDTO.idade().getId()));
         racao.setMarca(marcaRepository.findById(racaoDTO.marca()));
         racao.setPreco(racaoDTO.preco());
+        racao.setEstoque(racaoDTO.estoque());
         
         racaoRepository.persist(racao);
 
@@ -95,6 +96,8 @@ public class RacaoServiceImpl implements RacaoService {
         racao.setIdade(Idade.valueOf(racaoDTO.idade().getId()));;
         racao.setMarca(marcaRepository.findById(racaoDTO.marca()));
         racao.setPreco(racaoDTO.preco());
+        racao.setEstoque(racaoDTO.estoque());
+    
 
         return RacaoResponseDTO.valueOf(racao);
     }

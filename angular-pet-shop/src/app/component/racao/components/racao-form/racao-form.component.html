@@ -69,6 +69,15 @@
                     </mat-error>
                 </mat-form-field>
 
+
+                <!-- Estoque -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Estoque</mat-label>
+                    <input matInput formControlName="estoque" type="number">
+                    <mat-error *ngIf="formGroup.get('estoque')?.invalid && formGroup.get('estoque')?.touched">
+                    O estoque é obrigatório.
+                    </mat-error>
+                </mat-form-field>
             </form>
            <!--  adicionado no ultimo commit      -->
            <!-- Adicionando seção para upload e download -->

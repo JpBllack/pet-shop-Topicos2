@@ -14,11 +14,21 @@ public record RacaoResponseDTO(
     Idade idade,
     String imagem,
     Marca marca,
-    Double preco
+    Double preco,
+    Double estoque
 ) {
 
     public static RacaoResponseDTO valueOf(Racao racao){
-        return new RacaoResponseDTO(racao.getId(), racao.getSabor(), racao.getAnimal(), racao.getPeso(), racao.getIdade(), racao.getImagem(), racao.getMarca(),racao.getPreco());
+        return new RacaoResponseDTO(
+            racao.getId(),
+            racao.getSabor(),
+             racao.getAnimal(), 
+             racao.getPeso(), 
+             racao.getIdade(), 
+             racao.getImagem(), 
+             racao.getMarca(),
+             racao.getPreco(),
+             racao.getEstoque());
     }
 }
  

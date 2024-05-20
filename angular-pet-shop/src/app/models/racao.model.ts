@@ -12,4 +12,5 @@ export class Racao {
   idade!: Idade;
   imagem!: String;
   marca!: Marca;
+  estoque!: number;
 }

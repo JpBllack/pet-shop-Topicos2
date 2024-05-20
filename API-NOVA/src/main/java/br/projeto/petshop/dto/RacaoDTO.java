@@ -11,7 +11,8 @@ public record RacaoDTO(
     Idade idade,
     String imagem,
     Long marca,
-    Double preco
+    Double preco,
+    Double estoque
 ) {
     
 }

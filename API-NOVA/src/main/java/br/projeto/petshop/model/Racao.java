@@ -23,8 +23,17 @@ public class Racao extends DefaultEntity {
     private Peso peso;
     private Idade idade;
     private Double preco;
+    private Double estoque;
 
     // Getters e Setters para sabor, animal, peso e idade
+
+    public Double getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Double estoque) {
+        this.estoque = estoque;
+    }
 
     public Double getPreco() {
         return preco;
