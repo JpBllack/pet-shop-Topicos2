@@ -10,6 +10,8 @@
                     </mat-error>
                 </mat-form-field>
 
+                
+
                 <mat-form-field appearance="fill">
                     <mat-label>Tipo de Animal</mat-label>
                     <mat-select formControlName="animal" id="animal_id">
@@ -57,6 +59,16 @@
                         A idade é obrigatória.
                     </mat-error>
                 </mat-form-field>
+
+                  <!-- Campo para Preço -->
+                  <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Preço</mat-label>
+                    <input matInput type="number" formControlName="preco">
+                    <mat-error *ngIf="formGroup.get('preco')?.invalid && formGroup.get('preco')?.touched">
+                        O preço é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
             </form>
            <!--  adicionado no ultimo commit      -->
            <!-- Adicionando seção para upload e download -->

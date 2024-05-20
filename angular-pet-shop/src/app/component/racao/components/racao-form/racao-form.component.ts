@@ -61,7 +61,8 @@ export class RacaoFormComponent implements OnInit {
       animal: [null, Validators.required],
       peso: [null, Validators.required],
       idade: [null, Validators.required],
-      marca: [null, Validators.required]
+      marca: [null, Validators.required],
+      preco: [null, [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -80,7 +81,8 @@ export class RacaoFormComponent implements OnInit {
             animal: racao.animal.id,
             marca: racao.marca.id,
             peso: racao.peso,
-            idade: racao.idade
+            idade: racao.idade,
+            preco: racao.preco
           });
         },
         (error) => {

@@ -21,7 +21,7 @@
     align-items: center;
     flex-direction: column; /* Alterado para organizar verticalmente */
     align-items: flex-start; /* Alinha os itens à esquerda */
-    width: 230px; /* Largura desejada */
+    width: 150px; /* Largura desejada */
     height: 80px; /* Altura desejada */
     z-index: 999;
     

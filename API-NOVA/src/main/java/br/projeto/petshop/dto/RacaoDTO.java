@@ -10,7 +10,8 @@ public record RacaoDTO(
     Peso peso,
     Idade idade,
     String imagem,
-    Long marca
+    Long marca,
+    Double preco
 ) {
     
 }
