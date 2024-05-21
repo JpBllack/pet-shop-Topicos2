@@ -48,10 +48,14 @@ export class RacaoCardListComponent implements OnInit {
     });
   }
 
+  getImagemPath(imagem: string): string {
+    return `http://localhost:8080/quarkus/images/produto/${imagem}`;
+  }
+
   carregarCards() {
     const cards: Card[] = [];
     this.racoes.forEach(racao => {
-      const caminhoImagem = `${this.PATH_USER}${racao.imagem}`;
+      const caminhoImagem = this.getImagemPath(racao.imagem);
       console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
       cards.push({
         idConsulta: racao.id,
