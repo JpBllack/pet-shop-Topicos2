@@ -37,20 +37,40 @@ VALUES ('João', '123456', 'joao', 'joao@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86F
 
 
 INSERT INTO TipoAnimal (nome) VALUES
-('cachorro');
+('Cachorro');
 
 INSERT INTO TipoAnimal (nome) VALUES
-('gato');
+('Gato');
 
 INSERT INTO TipoAnimal (nome) VALUES
-('cavalo');
+('Cavalo');
 
 INSERT INTO TipoAnimal (nome) VALUES
-('peixe');
+('Peixe');
 
 INSERT INTO TipoAnimal (nome) VALUES
-('calopsita');
+('Calopsita');
 
+INSERT INTO TipoAnimal (nome) VALUES
+('Papagaio');
+
+INSERT INTO TipoAnimal (nome) VALUES
+('Canário');
+
+INSERT INTO TipoAnimal (nome) VALUES
+('Sabiá');
+
+INSERT INTO TipoAnimal (nome) VALUES
+('Coelho');
+
+INSERT INTO TipoAnimal (nome) VALUES
+('Hamster');
+
+INSERT INTO TipoAnimal (nome) VALUES
+('Iguana');
+
+INSERT INTO TipoAnimal (nome) VALUES
+('Tartaruga');
 
 
 
