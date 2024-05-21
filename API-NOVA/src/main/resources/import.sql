@@ -25,6 +25,13 @@ VALUES ('Piccolo', '12345678903', 'piccolo', 'piccolo@gmail.com', 'NuCgY6/GPMQTM
 INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
 VALUES ('Trunks', '12345678904', 'trunks', 'trunks@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
 
+INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
+VALUES ('Alisson', '123456', 'alisson', 'alisson@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
+
+INSERT INTO Usuario (nome, cpf, username, email, senha, perfil) 
+VALUES ('João', '123456', 'joao', 'joao@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
+
+
 
 
 
@@ -60,8 +67,20 @@ VALUES ('Luna', 2018, 2,2);
 INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
 VALUES ('Tweety', 2020, 3,3);
 
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Titan', 2022, 1,5);
 
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Sweet', 2024, 2,3);
 
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Todd', 2021, 3,6);
+
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Sib', 2019, 2,7);
+
+INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
+VALUES ('Gina', 2023, 1,8);
 
 -- Inserir uma consulta para um pet, agendada com um veterinário
 INSERT INTO Consulta (data, motivo, veterinario_id, pet_id) 
@@ -107,10 +126,22 @@ INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque
 
 
 INSERT INTO Estado (nome, sigla) VALUES ('Tocantins', 'TO');
+INSERT INTO Estado (nome, sigla) VALUES ('São Paulo', 'SP');
 INSERT INTO Estado (nome, sigla) VALUES ('Rio de Janeiro', 'RJ');
 INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
 INSERT INTO Estado (nome, sigla) VALUES ('Para', 'PA');
 INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
+INSERT INTO Estado (nome, sigla) VALUES ('Sergipe', 'SE');
+INSERT INTO Estado (nome, sigla) VALUES ('Minas Gerais', 'MG');
+INSERT INTO Estado (nome, sigla) VALUES ('Maranhão', 'MA');
+INSERT INTO Estado (nome, sigla) VALUES ('Amazonas', 'AM');
+INSERT INTO Estado (nome, sigla) VALUES ('Amapa', 'AP');
+INSERT INTO Estado (nome, sigla) VALUES ('Acre', 'AC');
+INSERT INTO Estado (nome, sigla) VALUES ('Alagoas', 'AL');
+INSERT INTO Estado (nome, sigla) VALUES ('Espirito Santo', 'ES');
+INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
+INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso do Sul', 'MS');
+
 
 INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',4); 
+INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',5); 
