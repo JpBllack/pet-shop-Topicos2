@@ -27,6 +27,12 @@
     
 }
 
+a img{
+    height: 50px;
+    filter: brightness(800%);
+    margin: 10px;
+}
+
 .login-options button {
     display: flex;
     align-items: center;
