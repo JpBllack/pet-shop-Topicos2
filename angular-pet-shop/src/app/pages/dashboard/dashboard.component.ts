@@ -2,9 +2,17 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UsuarioLogadoService } from "../../services/usuarioLogado.service";
 import { AuthService } from "../../services/auth.service";
+import { CommonModule } from "@angular/common";
+import { MatBadge } from "@angular/material/badge";
+import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { MatToolbar } from "@angular/material/toolbar";
+import { RouterModule } from "@angular/router";
 
 @Component({
     selector: 'app-dashboard',
+    standalone: true,
+  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule, CommonModule],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
