@@ -31,9 +31,9 @@
                     Meus Dados
                 </button>
 
-                <button mat-button (click)="deslogar()">
+                <button mat-button routerLink="" (click)="deslogar()">
                     <mat-icon>exit_to_app</mat-icon>
-                    Deslogar
+                    Sair
                 </button>
             </div>
         </ng-container>
@@ -41,7 +41,7 @@
         <!-- Botão de logar (exibido quando o usuário não está logado) -->
         <ng-template #loginButton>
             <button mat-button routerLink="/login">
-                Logar
+                Entrar
             </button>
         </ng-template>
     </div>

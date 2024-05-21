@@ -14,7 +14,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: grey;
+    background: rgb(84, 108, 143);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 8px;
     display: flex;

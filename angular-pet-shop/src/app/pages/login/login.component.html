@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="login-box">
-        <h2 class="login-title">Bem-vindo</h2>
+        <h2 class="login-title">Entrar</h2>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="login-input">
                 <input matInput placeholder="Email" formControlName="email" required>
@@ -15,6 +15,9 @@
             </mat-form-field>
             
             <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
+
+            <!-- Adicionando o link para cadastro -->
+            <p>Não possui uma conta? <a routerLink="/signup">Cadastre-se agora</a></p>
         </form>
     </div>
 </div>
