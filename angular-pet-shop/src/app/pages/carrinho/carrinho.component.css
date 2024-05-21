@@ -64,4 +64,13 @@
     font-size: 1.2em;
     color: #666;
   }
-  
+
+  /* carrinho.component.css */
+.carrinho-item .mat-form-field {
+  width: 100%; /* Define a largura como 100% para ocupar toda a largura do carrinho-item */
+}
+
+.carrinho-item .mat-select {
+  width: 100%; /* Define a largura como 100% para ocupar toda a largura do carrinho-item */
+}
+

@@ -30,9 +30,11 @@ import { RacaoService } from '../../../../services/racao.service';
 
 
 export class RacaoListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'sabor', 'marca','preco', 'estoque', 'animal', 'peso', 'idade', 'acao'];
+  displayedColumns: string[] = ['id','imagem', 'sabor', 'marca','preco', 'estoque', 'animal', 'peso', 'idade', 'acao'];
   racoes: Racao[] = [];
   animals: TipoAnimal[] = [];
+
+  
 
   constructor(
     private racaoService: RacaoService,
@@ -41,6 +43,14 @@ export class RacaoListComponent implements OnInit {
   ngOnInit(): void {
     this.racaoService.getAllRacoes().subscribe((data: Racao[]) => {
       this.racoes = data;
+    
     });
+  }
+
+  
+
+  // Método para obter o caminho da imagem
+  getImagemPath(imagem: string): string {
+    return `http://localhost:8080/quarkus/images/produto/${imagem}`;
   }
 }

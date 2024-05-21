@@ -20,6 +20,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -164,5 +165,19 @@ public class RacaoResource {
         response.header("Content-Disposition", "attachment;filename=" + imageName);
         return response.build();
     }
+
+    @Path("/quarkus/images/produto")
+    public class ImageResource {
+    @GET
+    @Path("/{imageName}")
+    @Produces("image/jpeg")
+    public Response getImage(@PathParam("imageName") String imageName) {
+        File file = new File(System.getProperty("user.home") + "/quarkus/images/produto/" + imageName);
+        if (!file.exists()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(file).build();
+    }
+}
 
 }

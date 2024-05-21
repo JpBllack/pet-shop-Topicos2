@@ -38,6 +38,8 @@ export class RacaoCardListComponent implements OnInit {
     this.carregarConsultas();
   }
 
+  PATH_USER = 'Users/Micro/quarkus/images/produto';
+
   carregarConsultas() {
     // buscando todos as consultas
     this.racaoService.getAllRacoes().subscribe(data => {
@@ -49,7 +51,7 @@ export class RacaoCardListComponent implements OnInit {
   carregarCards() {
     const cards: Card[] = [];
     this.racoes.forEach(racao => {
-      const caminhoImagem = `assets/${racao.imagem}`;
+      const caminhoImagem = `${this.PATH_USER}${racao.imagem}`;
       console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
       cards.push({
         idConsulta: racao.id,

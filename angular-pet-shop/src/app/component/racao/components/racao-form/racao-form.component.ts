@@ -43,6 +43,7 @@ export class RacaoFormComponent implements OnInit {
   idades = Object.values(Idade).filter(value => isNaN(Number(value)));
   racaoId: number | null = null; /* adicionado no ultimo commit */
 
+  
   constructor(formBuilder: FormBuilder,
               private racaoService: RacaoService,
               private tipoAnimalService: TipoAnimalService,
@@ -93,6 +94,7 @@ export class RacaoFormComponent implements OnInit {
       );
     }
   }
+  
   
   
   voltarPagina() {

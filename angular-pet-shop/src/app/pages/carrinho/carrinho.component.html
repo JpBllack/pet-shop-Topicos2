@@ -7,6 +7,23 @@
         <p>Preço: {{ item.preco | currency:'BRL' }}</p>
         <p>Quantidade: {{ item.quantidade }}</p>
         <p>Total: {{ item.quantidade * item.preco | currency:'BRL' }}</p>
+        <!-- Adicione o mat-select para a frequência de compra -->
+        <!-- Seletor de semanas -->
+<mat-form-field appearance="fill" class="semana-field">
+  <mat-label>Selecione a frequência de entrega</mat-label>
+  <mat-select formControlName="frequencia" placeholder="Frequência">
+      <mat-option value="1">Receber só uma vez</mat-option>
+      <mat-option value="2">Receber a cada 2 semanas</mat-option>
+      <mat-option value="3">Receber a cada 3 semanas</mat-option>
+      <mat-option value="4">Receber a cada 1 mês</mat-option>
+      <mat-option value="5">Receber a cada 5 semanas</mat-option>
+      <mat-option value="6">Receber a cada 6 semanas</mat-option>
+      <mat-option value="7">Receber a cada 7 semanas</mat-option>
+      <mat-option value="8">Receber a cada 2 meses</mat-option>
+      <mat-option value="9">Receber a cada 3 meses</mat-option>
+  </mat-select>
+</mat-form-field>
+
       </div>
       <div class="item-actions">
         <button mat-raised-button color="warn" (click)="removerItem(item)">Remover</button>

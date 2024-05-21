@@ -49,4 +49,9 @@ export class RacaoService {
     const url = `${this.apiUrl}/download/image/${id}`;
     return this.http.get(url, { responseType: 'blob' });
   }
+
+    GetImage(imageName: string): Observable<Blob> {
+    const url = `http://localhost:8080/quarkus/images/produto/${imageName}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }

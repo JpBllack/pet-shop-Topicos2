@@ -14,6 +14,14 @@
     <td mat-cell *matCellDef="let racao"> {{ racao.id }} </td>
   </ng-container>
 
+   <!-- Imagem Column -->
+   <ng-container matColumnDef="imagem">
+    <th mat-header-cell *matHeaderCellDef> Imagem </th>
+    <td mat-cell *matCellDef="let racao">
+      <img [src]="getImagemPath(racao.imagem)" alt="Imagem da ração" width="50" height="50">
+    </td>
+  </ng-container>
+
   <!-- Sabor Column -->
   <ng-container matColumnDef="sabor">
     <th mat-header-cell *matHeaderCellDef> Sabor </th>
