@@ -1,32 +1,89 @@
-/* Estilo para o componente Dashboard */
-
-.toolbar-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.form-container {
-  margin-top: 20px;
-}
-
-mat-card {
-  width: 400px;
-  margin: auto;
+.dashboard-container {
+  max-width: 800px;
+  margin: auto; /* Centraliza horizontalmente */
   padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f0f8ff; /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  display: flex; /* Usando flexbox */
+  flex-direction: column; /* Empilha os itens verticalmente */
 }
 
-mat-card-content {
-  text-align: left;
-}
-
-/* Estilo para os campos de formulário */
-mat-form-field {
-  width: 100%;
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007BFF; /* Blue color */
+  color: #fff;
+  border-radius: 10px 10px 0 0;
   margin-bottom: 20px;
 }
 
-/* Estilo para o botão */
-button[type="submit"] {
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  text-align: center;
+  flex: 1; /* Ocupa todo o espaço disponível */
+}
+
+h1 {
+  color: #007BFF; /* Blue color */
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-item label {
+  font-weight: bold;
+  color: #555;
+  margin-right: 10px;
+}
+
+.info-item span {
+  color: #333;
+}
+
+.dashboard-container::before {
+  
+  display: block;
+  height: 200px;
   width: 100%;
+  background: url('https://example.com/banner.jpg') no-repeat center center;
+  background-size: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
 }

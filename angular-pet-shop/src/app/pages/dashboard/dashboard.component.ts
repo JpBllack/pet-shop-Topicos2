@@ -1,27 +1,14 @@
-import { CommonModule, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UsuarioLogadoService } from "../../services/usuarioLogado.service";
-import { Usuario } from "../../models/Usuario";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
     selector: 'app-dashboard',
-    standalone: true,
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, FormsModule],
-        templateUrl: './dashboard.component.html',
-        styleUrl: './dashboard.component.css'
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit{
-
+export class DashboardComponent implements OnInit {
   usuario: any;
 
   // Propriedades para atualizar os dados do usuário
@@ -52,13 +39,61 @@ export class DashboardComponent implements OnInit{
 
   // Métodos para atualizar os dados do usuário
   atualizarCpf() {
-    this.usuarioLogadoService.updateCpf(this.novoCpf).subscribe(
+    this.usuarioLogadoService.updateCpf({ cpf: this.novoCpf }).subscribe(
       (usuario) => {
         this.usuario = usuario;
         this.novoCpf = ''; // Limpa o campo após a atualização
       },
       (error) => {
         console.error('Erro ao atualizar CPF:', error);
+      }
+    );
+  }
+
+  atualizarNome() {
+    this.usuarioLogadoService.updateNome({ nome: this.novoNome }).subscribe(
+      (usuario) => {
+        this.usuario = usuario;
+        this.novoNome = ''; // Limpa o campo após a atualização
+      },
+      (error) => {
+        console.error('Erro ao atualizar nome:', error);
+      }
+    );
+  }
+
+  atualizarUsername() {
+    this.usuarioLogadoService.updateUsername({ username: this.novoUsername }).subscribe(
+      (usuario) => {
+        this.usuario = usuario;
+        this.novoUsername = ''; // Limpa o campo após a atualização
+      },
+      (error) => {
+        console.error('Erro ao atualizar username:', error);
+      }
+    );
+  }
+
+  atualizarEmail() {
+    this.usuarioLogadoService.updateEmail({ email: this.novoEmail }).subscribe(
+      (usuario) => {
+        this.usuario = usuario;
+        this.novoEmail = ''; // Limpa o campo após a atualização
+      },
+      (error) => {
+        console.error('Erro ao atualizar email:', error);
+      }
+    );
+  }
+
+  atualizarSenha() {
+    this.usuarioLogadoService.updateSenha({ senha: this.novaSenha }).subscribe(
+      (usuario) => {
+        this.usuario = usuario;
+        this.novaSenha = ''; // Limpa o campo após a atualização
+      },
+      (error) => {
+        console.error('Erro ao atualizar senha:', error);
       }
     );
   }

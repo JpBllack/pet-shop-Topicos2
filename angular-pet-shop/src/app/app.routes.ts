@@ -32,6 +32,7 @@ import { UserTemplateComponent } from './pages/template/user-template/user-templ
 import { RacaoCardListComponent } from './component/racao-card-list/racao-card-list.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 import { AdminTemplateComponent } from './pages/template/admin-template/admin-template.component';
+import { AlterarInformacoesComponent } from './pages/update-user-info/alterar-informacoes.component';
 
 export const routes: Routes = [
 
@@ -47,6 +48,7 @@ export const routes: Routes = [
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
             { path: 'signup', component: SignupComponent, data: {Title: 'Sign Up'}},
             { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+            { path: 'alterar-info', component: AlterarInformacoesComponent, data: {title: 'Alterar informações de usuario'}}
         ]
 
     },

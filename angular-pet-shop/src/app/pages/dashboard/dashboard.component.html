@@ -1,23 +1,33 @@
-<mat-toolbar color="primary" class="toolbar-title">Dashboard do Usuário</mat-toolbar>
-<div class="form-container">
-  <mat-card>
-    <mat-card-content>
-      <div *ngIf="usuario">
-        <p><strong>Nome:</strong> {{ usuario.nome }}</p>
-        <p><strong>CPF:</strong> {{ usuario.cpf }}</p>
-        <p><strong>Username:</strong> {{ usuario.username }}</p>
-        <p><strong>Email:</strong> {{ usuario.email }}</p>
+<div class="dashboard-container">
+  <div class="navbar">
+    <div class="navbar-links">
+      <a routerLink="/meus-dados">Meus Dados</a>
+      <a routerLink="/alterar-info">Alterar Informações</a>
+      <a routerLink="/seguranca">Segurança</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Meus Dados</h1>
+    <h2>{{usuario.nome}}</h2>
+  
+    <div class="user-info">
+      <div class="info-item">
+        <label>Email:</label>
+        <span>{{ usuario.email }}</span>
       </div>
-
-      <!-- Formulário para atualizar o CPF -->
-      <form (ngSubmit)="atualizarCpf()" #cpfForm="ngForm">
-        <mat-form-field>
-          <input matInput type="text" placeholder="Novo CPF" [(ngModel)]="novoCpf" name="novoCpf" required>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Atualizar CPF</button>
-      </form>
-
-      <!-- Adicione formulários similares para Nome, Username, Email e Senha -->
-    </mat-card-content>
-  </mat-card>
+      <div class="info-item">
+        <label>Nome:</label>
+        <span>{{ usuario.nome }}</span>
+      </div>
+      <div class="info-item">
+        <label>Username:</label>
+        <span>{{ usuario.username }}</span>
+      </div>
+      <div class="info-item">
+        <label>CPF:</label>
+        <span>{{ usuario.cpf }}</span>
+      </div>
+    </div>
+  </div>
 </div>
