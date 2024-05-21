@@ -3,7 +3,7 @@
 
         <img mat-card-image [src]="card.imagem ? card.imagem : 'assets/imageNotfound.jpg' " (error)="card.imagem = 'assets/imageNotfound.jpg' ">
 
-        <mat-card-title class="centered-text"> {{card.sabor}} </mat-card-title>
+        <mat-card-title class="centered-text"> {{card.nome}} </mat-card-title>
         
         <!-- <mat-card-content class="centered-text"> {{card.modalidade}} </mat-card-content> -->
         <br/>
@@ -16,7 +16,7 @@
         <mat-card-footer>
             <button mat-flat-button color="accent"
                 (click)="adicionarAoCarrinho(card)"
-                style="width: 100%; padding: 16px;">Adicionar ao carrinho</button>
+                style="width: 100%; padding: 16px;" id="addCard">Adicionar ao carrinho</button>
         </mat-card-footer>
     </mat-card>
 </div>

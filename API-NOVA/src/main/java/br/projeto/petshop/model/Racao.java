@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Racao extends DefaultEntity {
 
+    private String nome;
     private String sabor;
     private String imagem;
 
@@ -89,6 +90,14 @@ public class Racao extends DefaultEntity {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

@@ -8,6 +8,7 @@ import br.projeto.petshop.model.TipoAnimal;
 
 public record RacaoResponseDTO(
     Long id,
+    String nome,
     String sabor,
     TipoAnimal animal,
     Peso peso,
@@ -21,6 +22,7 @@ public record RacaoResponseDTO(
     public static RacaoResponseDTO valueOf(Racao racao){
         return new RacaoResponseDTO(
             racao.getId(),
+            racao.getNome(),
             racao.getSabor(),
              racao.getAnimal(), 
              racao.getPeso(), 

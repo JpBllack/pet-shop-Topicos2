@@ -58,6 +58,7 @@ export class RacaoFormComponent implements OnInit {
 
     this.formGroup = formBuilder.group({
       id: [null],
+      nome: ['', Validators.required],
       sabor: ['', Validators.required],
       animal: [null, Validators.required],
       peso: [null, Validators.required],
@@ -79,6 +80,7 @@ export class RacaoFormComponent implements OnInit {
         (racao) => {
           this.formGroup.patchValue({
             id: racao.id,
+            nome: racao.nome,
             sabor: racao.sabor,
             animal: racao.animal.id,
             marca: racao.marca.id,

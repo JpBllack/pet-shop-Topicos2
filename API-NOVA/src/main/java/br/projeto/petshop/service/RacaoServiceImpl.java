@@ -68,6 +68,7 @@ public class RacaoServiceImpl implements RacaoService {
         TipoAnimalRepository tipoAnimalRepository = new TipoAnimalRepository();
     
         Racao racao = new Racao();
+        racao.setNome(racaoDTO.nome());
         racao.setSabor(racaoDTO.sabor());
         racao.setAnimal(tipoAnimalRepository.findById(racaoDTO.animal()));
         racao.setPeso(Peso.valueOf(racaoDTO.peso().getId()));
@@ -90,6 +91,7 @@ public class RacaoServiceImpl implements RacaoService {
             LOG.warn("Ração não encontrada para o ID: " + id);
             throw new NotFoundException("Ração não encontrada");
         }
+        racao.setNome(racaoDTO.nome());
         racao.setSabor(racaoDTO.sabor());
         racao.setAnimal(tipoAnimalRepository.findById(racaoDTO.animal()));
         racao.setPeso(Peso.valueOf(racaoDTO.peso().getId()));

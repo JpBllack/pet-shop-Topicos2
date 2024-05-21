@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Peso {
-    _500G(1, "500g"),
-    _1KG(2, "1kg"),
-    _2KG(3, "2kg"),
-    _5KG(4, "5kg"),
-    _10KG(5, "10kg");
+    G500(1, "500g"),
+    KG1(2, "1kg"),
+    KG2(3, "2kg"),
+    KG5(4, "5kg"),
+    KG10(5, "10kg"),
+    NDEFINIFO(6, "Não Definido");
 
     private final Integer id;
     private final String label;

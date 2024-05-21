@@ -5,6 +5,7 @@ import { Marca } from './marca';
 
 export class Racao {
   id!: number;
+  nome!: string;
   sabor!: string;
   preco!: number;
   animal!: TipoAnimal;

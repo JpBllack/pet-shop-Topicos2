@@ -22,6 +22,12 @@
     </td>
   </ng-container>
 
+  <!-- Nome Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let racao"> {{ racao.nome }} </td>
+  </ng-container>
+
   <!-- Sabor Column -->
   <ng-container matColumnDef="sabor">
     <th mat-header-cell *matHeaderCellDef> Sabor </th>

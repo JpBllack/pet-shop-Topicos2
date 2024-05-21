@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Idade {
     FILHOTE(1, "Filhote"),
-    ADULTO(2, "Adulto");
+    ADULTO(2, "Adulto"),
+    IDOSO(3, "Idoso"),
+    NDEFINIFO(4, "Não Definido");
 
     private final Integer id;
     private final String label;
@@ -33,4 +35,5 @@ public enum Idade {
 
         throw new IllegalArgumentException("ID inválido para Idade: " + id);
     }
+
 }

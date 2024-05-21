@@ -12,7 +12,7 @@ import { Racao } from '../../models/racao.model';
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
   idConsulta: number;
-  sabor: string;
+  nome: string;
   preco: number;
   imagem: String;
 }
@@ -59,7 +59,7 @@ export class RacaoCardListComponent implements OnInit {
       console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
       cards.push({
         idConsulta: racao.id,
-        sabor: racao.sabor,
+        nome: racao.nome,
         preco: racao.preco,
         imagem: caminhoImagem
       });
@@ -73,7 +73,7 @@ export class RacaoCardListComponent implements OnInit {
     this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
     this.carrinhoService.adicionar({
       id: card.idConsulta,
-      nome: card.sabor,
+      nome: card.nome,
       preco: card.preco,
       quantidade: 1
     })
