@@ -20,7 +20,7 @@ export class UsuarioLogadoService {
   }
 
   getUsuarioLogado(): Observable<Usuario> {
-    return this.http.get<Usuario>(this.apiUrl, { headers: this.getHeaders() });
+    return this.http.get<Usuario>(this.apiUrl);
   }
 
   updateCPF(cpf: { cpf: string }): Observable<Usuario> {
