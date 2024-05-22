@@ -48,6 +48,10 @@ export class CarrinhoService {
     
   }
 
+  atualizarCarrinho(itens: ItemCarrinho[]): void {
+    this.carrinhoSubject.next(itens);
+  }
+
   private atualizarArmazenamentoLocal(): void {
     localStorage.setItem('carrinho', JSON.stringify(this.carrinhoSubject.value));
   }

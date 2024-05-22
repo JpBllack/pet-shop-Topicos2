@@ -36,6 +36,20 @@
   color: #555;
 }
 
+.item-info .quantity-button {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.item-info .quantity-button:hover {
+  background-color: #ccc;
+}
+
 .item-actions {
   flex: 1;
   text-align: right;

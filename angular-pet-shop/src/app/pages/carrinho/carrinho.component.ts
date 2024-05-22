@@ -29,6 +29,18 @@ export class CarrinhoComponent implements OnInit {
   removerItem(item: ItemCarrinho): void {
     this.carrinhoService.remover(item);
   }
+
+  aumentarQuantidade(item: ItemCarrinho): void {
+    item.quantidade += 1;
+    this.carrinhoService.atualizarCarrinho(this.carrinhoItens);
+  }
+
+  diminuirQuantidade(item: ItemCarrinho): void {
+    if (item.quantidade > 1) {
+      item.quantidade -= 1;
+      this.carrinhoService.atualizarCarrinho(this.carrinhoItens);
+    }
+  }
   
   finalizarCompra(): void {
 
