@@ -116,5 +116,21 @@ export class AlterarInformacoesComponent implements OnInit {
       );
     }
     this.fecharModal(); // Fechar o modal após salvar as alterações
+    this.atualizarUsuarioEToken();
   }
+
+  atualizarUsuarioEToken() {
+    this.usuarioLogadoService.getUsuarioLogado().subscribe(novoUsuario => {
+      const novoToken = this.authService.getToken();
+      if (novoToken) {
+        this.authService.updateUsuarioLogado(novoUsuario);
+        this.authService.updateToken(novoToken);
+      } else {
+        console.error('Erro: Token é nulo.');
+      }
+    });
+  }
+  
+  
+  
 }

@@ -83,8 +83,15 @@ export class AuthService {
 
   isTokenExpired(): boolean {
     const token = this.getToken();
-    // Verifica se o token é nulo ou está expirado
     return !token || this.jwtHelper.isTokenExpired(token);
-    // npm install @auth0/angular-jwt
+  }
+
+  updateUsuarioLogado(novoUsuario: Usuario): void {
+    this.setUsuarioLogado(novoUsuario);
+    this.usuarioLogadoSubject.next(novoUsuario);
+  }
+
+  updateToken(novoToken: string): void {
+    this.setToken(novoToken);
   }
 }
