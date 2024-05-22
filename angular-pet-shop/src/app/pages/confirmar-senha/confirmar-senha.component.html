@@ -1,0 +1,17 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Confirme sua senha</h2>
+      <form (ngSubmit)="confirmarSenha()" [formGroup]="formConfirmarSenha">
+        <div class="form-group">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" formControlName="senha">
+        </div>
+        <div class="modal-buttons">
+            <button type="button" (click)="onFechar()">Cancelar</button>
+          <button type="submit">Confirmar</button>
+        </div>
+      </form>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </div>
+  </div>
+  

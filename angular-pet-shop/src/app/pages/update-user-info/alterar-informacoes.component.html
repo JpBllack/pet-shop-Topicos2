@@ -2,13 +2,14 @@
   <div class="navbar">
     <div class="navbar-links">
       <a routerLink="/dashboard">Meus Dados</a>
+      <a routerLink="/pedidos">Meus Pedidos</a>
       <a routerLink="/alterar-info">Alterar Informações</a>
       <a routerLink="/seguranca">Segurança</a>
     </div>
   </div>
 
   <h1>Alterar Informações</h1>
-  <form (ngSubmit)="salvarAlteracoes()" [formGroup]="formAlterarInformacoes">
+  <form (ngSubmit)="abrirModalConfirmacao()" [formGroup]="formAlterarInformacoes">
     <div class="form-group">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" formControlName="nome">
@@ -27,4 +28,6 @@
     </div>
     <button type="submit">Salvar Alterações</button>
   </form>
+
+  <app-confirmar-senha *ngIf="modalAberto" (fechar)="fecharModal()" (confirmar)="salvarAlteracoes()"></app-confirmar-senha>
 </div>
