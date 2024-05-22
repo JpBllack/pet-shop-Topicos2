@@ -37,3 +37,30 @@ button:hover {
   background-color: #0056b3;
 }
 
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007BFF; /* Blue color */
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+

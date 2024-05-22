@@ -1,4 +1,12 @@
 <div class="alterar-informacoes-container">
+  <div class="navbar">
+    <div class="navbar-links">
+      <a routerLink="/dashboard">Meus Dados</a>
+      <a routerLink="/alterar-info">Alterar Informações</a>
+      <a routerLink="/seguranca">Segurança</a>
+    </div>
+  </div>
+
   <h1>Alterar Informações</h1>
   <form (ngSubmit)="salvarAlteracoes()" [formGroup]="formAlterarInformacoes">
     <div class="form-group">

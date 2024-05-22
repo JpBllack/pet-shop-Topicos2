@@ -14,7 +14,7 @@ mat-toolbar {
     bottom: 0; /* Posiciona no fundo da página */
     left: 0; /* Alinha à esquerda */
     width: 100%; /* Ocupa toda a largura da página */
-    z-index: 1000; /* Garante que o rodapé fique acima de outros elementos */
+    z-index: 999;
   }
   
   .toolbar-title {

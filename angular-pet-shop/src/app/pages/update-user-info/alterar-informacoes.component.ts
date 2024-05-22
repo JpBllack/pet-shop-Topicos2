@@ -4,13 +4,14 @@ import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
 import { Usuario } from '../../models/Usuario';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-alterar-informacoes',
   templateUrl: './alterar-informacoes.component.html',
   styleUrls: ['./alterar-informacoes.component.css'],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule,RouterModule]
 })
 export class AlterarInformacoesComponent implements OnInit {
   novoCpf: string = '';

@@ -1,22 +1,27 @@
-img {
+/* Define o estilo da imagem do card para garantir tamanho e ajuste */
+.card-image {
     width: 100%;
     height: 240px;
     object-fit: cover;
-}
-
-.container {
+  }
+  
+  /* Estilo para a container */
+  .container {
     padding: 20px;
-}
-
-.responsive-grid {
+  }
+  
+  /* Define a grade responsiva para os cards */
+  .responsive-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-}
-
-.centered-text {
+  }
+  
+  /* Centraliza o texto dentro dos elementos */
+  .centered-text {
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
+  

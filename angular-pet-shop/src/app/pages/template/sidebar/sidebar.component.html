@@ -1,11 +1,9 @@
-<mat-drawer-container class="container">
-
-    <mat-drawer #drawer  mode="side" opened>
+<mat-drawer-container class="full-screen-container">
+    <mat-drawer #drawer mode="side" opened>
         <mat-toolbar>
             <span>Menu</span>
         </mat-toolbar>
         <mat-nav-list>
-            <mat-list-item>Home</mat-list-item>
             <mat-list-item routerLink="/admin/estados">Controle de Estado</mat-list-item>
             <mat-list-item routerLink="/admin/municipios">Controle de Municípios</mat-list-item>
             <mat-list-item routerLink="/admin/racoes">Controle de Raçoes</mat-list-item>
@@ -16,8 +14,11 @@
             <mat-list-item routerLink="/admin/usuarios">Controle de Usuarios</mat-list-item>
         </mat-nav-list>
     </mat-drawer>
-
+    
     <mat-drawer-content>
-        <router-outlet></router-outlet>
+        <div class="router-outlet-container">
+            <router-outlet></router-outlet>
+        </div>
     </mat-drawer-content>
-</mat-drawer-container>
+</mat-drawer-container> 
+<app-footer></app-footer>
