@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
 
   // Método para carregar os dados do usuário
   carregarUsuario() {
-    this.authService.getUsuarioLogado().subscribe(
+    this.usuarioLogadoService.getUsuarioLogado().subscribe(
       (usuario) => {
         this.usuario = usuario;
       },

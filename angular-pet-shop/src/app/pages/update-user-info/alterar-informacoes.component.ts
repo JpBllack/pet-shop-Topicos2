@@ -4,7 +4,7 @@ import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
 import { Usuario } from '../../models/Usuario';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
