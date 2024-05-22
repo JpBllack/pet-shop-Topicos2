@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   // Métodos para atualizar os dados do usuário
   atualizarCpf() {
-    this.usuarioLogadoService.updateCpf({ cpf: this.novoCpf }).subscribe(
+    this.usuarioLogadoService.updateCPF({ cpf: this.novoCpf }).subscribe(
       (usuario) => {
         this.usuario = usuario;
         this.novoCpf = ''; // Limpa o campo após a atualização

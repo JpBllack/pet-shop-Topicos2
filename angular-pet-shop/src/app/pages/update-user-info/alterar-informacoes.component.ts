@@ -54,44 +54,52 @@ export class AlterarInformacoesComponent implements OnInit {
 
   salvarAlteracoes() {
     if (this.formAlterarInformacoes.valid) {
-      // Obtém os valores do formulário
       const { username, email, cpf } = this.formAlterarInformacoes.value;
-
-      // Atualiza as informações do usuário
-      this.usuarioLogadoService.updateUsername({ username }).subscribe(
-        () => {
-          console.log('Username atualizado com sucesso!');
-        },
-        (error) => {
-          console.error('Erro ao atualizar username:', error);
-        }
-      );
-
-      this.usuarioLogadoService.updateEmail({ email }).subscribe(
-        () => {
-          console.log('Email atualizado com sucesso!');
-        },
-        (error) => {
-          console.error('Erro ao atualizar email:', error);
-        }
-      );
-
-      this.usuarioLogadoService.updateCpf({ cpf }).subscribe(
-        () => {
-          console.log('CPF atualizado com sucesso!');
-        },
-        (error) => {
-          console.error('Erro ao atualizar CPF:', error);
-        }
-      );
+  
+      if (username !== this.usuario.username) {
+        this.usuarioLogadoService.updateUsername({ username }).subscribe(
+          () => {
+            console.log('Username atualizado com sucesso!');
+            this.usuario.username = username; 
+          },
+          (error) => {
+            console.error('Erro ao atualizar username:', error);
+          }
+        );
+      }
+  
+      if (email !== this.usuario.email) {
+        this.usuarioLogadoService.updateEmail({ email }).subscribe(
+          () => {
+            console.log('Email atualizado com sucesso!');
+            this.usuario.email = email; 
+          },
+          (error) => {
+            console.error('Erro ao atualizar email:', error);
+          }
+        );
+      }
+  
+      if (cpf !== this.usuario.cpf) {
+        this.usuarioLogadoService.updateCPF({ cpf }).subscribe(
+          () => {
+            console.log('CPF atualizado com sucesso!');
+            this.usuario.cpf = cpf; 
+          },
+          (error) => {
+            console.error('Erro ao atualizar CPF:', error);
+          }
+        );
+      }
     } else {
       console.error('Formulário inválido.');
     }
   }
+  
 
   // Métodos para atualizar os dados do usuário
   atualizarCpf() {
-    this.usuarioLogadoService.updateCpf({ cpf: this.novoCpf }).subscribe(
+    this.usuarioLogadoService.updateCPF({ cpf: this.novoCpf }).subscribe(
       (usuario) => {
         this.usuario = usuario;
         this.novoCpf = ''; // Limpa o campo após a atualização
