@@ -36,11 +36,9 @@ export class AuthService {
 
   login(loginData: Login): Observable<any> {
 
-    //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
     return this.http.post(`${this.baseURL}`, loginData, {observe: 'response'}).pipe(
       tap((res: any) => {
         const authToken = res.headers.get('Authorization') ?? '';
-        console.log('Valor do authToken:', authToken); // <--- Aqui você imprime o valor de authToken
         if (authToken) {
           this.setToken(authToken);
           const usuarioLogado = res.body;

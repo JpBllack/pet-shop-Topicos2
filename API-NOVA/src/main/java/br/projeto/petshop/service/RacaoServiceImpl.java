@@ -61,6 +61,15 @@ public class RacaoServiceImpl implements RacaoService {
     }
 
     @Override
+    public List<RacaoResponseDTO> getByNome(String nome) {
+        List<Racao> racoes = racaoRepository.findByNome(nome);
+        if (racoes.isEmpty()) {
+            throw new NotFoundException("Nenhuma ração encontrada com o nome especificado");
+        }
+        return racoes.stream().map(RacaoResponseDTO::valueOf).toList();
+    }
+
+    @Override
     @Transactional
     public RacaoResponseDTO insert(RacaoDTO racaoDTO) {
     

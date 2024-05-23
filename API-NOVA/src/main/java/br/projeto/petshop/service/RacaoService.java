@@ -11,6 +11,8 @@ public interface RacaoService {
 
     public RacaoResponseDTO getById(long id);
 
+    public List<RacaoResponseDTO> getByNome(String nome);
+
     public List<RacaoResponseDTO> getBySabor(String sabor);
 
     public RacaoResponseDTO insert(RacaoDTO racaoDTO);

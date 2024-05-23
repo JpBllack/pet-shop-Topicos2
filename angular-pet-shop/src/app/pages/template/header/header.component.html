@@ -9,6 +9,13 @@
         <a routerLink="/" style="text-decoration: none; color: inherit;"><img src="assets/pet-shop-logo.png"></a>
     </span>
 
+    <div class="search-container">
+        <input matInput [(ngModel)]="searchQuery" placeholder="Buscar ração..." />
+        <button mat-icon-button (click)="buscarRacao()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+
     <span class="example-spacer"></span>
     
     <!-- Botão do carrinho de compras -->

@@ -4,6 +4,7 @@ import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.RacaoDTO;
 import br.projeto.petshop.dto.RacaoResponseDTO;
 import br.projeto.petshop.form.ProdutoImageForm;
+import br.projeto.petshop.repository.RacaoRepository;
 import br.projeto.petshop.service.ProdutoFileService;
 import br.projeto.petshop.service.RacaoService;
 import br.projeto.petshop.validation.ValidationException;
@@ -35,6 +36,9 @@ public class RacaoResource {
     RacaoService racaoService;
 
     @Inject
+    RacaoRepository racaoRepository;
+
+    @Inject
     ProdutoFileService fileService;
 
     @GET
@@ -62,6 +66,22 @@ public class RacaoResource {
             RacaoResponseDTO racao = racaoService.getById(id);
             LOG.info("Ração encontrada: " + racao);
             return Response.ok(racao).build();
+        } catch (NotFoundException e) {
+            LOG.error("Ração não encontrada", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/search/{nome}")
+    @PermitAll
+    @Transactional
+    public Response getRacaoByNome(@PathParam("nome") String nome) {
+        LOG.info("Buscando ração pelo Nome: " + nome);
+        try {
+            List<RacaoResponseDTO> racoes = racaoService.getByNome(nome);
+            LOG.info("Ração encontrada: ");
+            return Response.ok(racoes).build();
         } catch (NotFoundException e) {
             LOG.error("Ração não encontrada", e);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();

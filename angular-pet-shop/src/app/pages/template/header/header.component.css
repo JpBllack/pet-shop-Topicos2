@@ -4,9 +4,9 @@
 
 .demo-section + .demo-section {
     margin-top: 16px;
-  }
+}
 
-  .login-container {
+.login-container {
     position: relative;
 }
 
@@ -24,10 +24,9 @@
     width: 150px; /* Largura desejada */
     height: 80px; /* Altura desejada */
     z-index: 999;
-    
 }
 
-a img{
+a img {
     height: 50px;
     filter: brightness(800%);
     margin: 10px;
@@ -42,9 +41,46 @@ a img{
     margin-right: 5px;
 }
 
-
 /* Adiciona padding ao conteúdo da toolbar */
 mat-toolbar {
     padding-left: 100px;
     padding-right: 100px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 3px 8px; /* Espaçamento interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra leve */
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 5px;
+    border-radius: 10px; /* Bordas arredondadas */
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+.search-container button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.search-container button mat-icon {
+    color: #3f51b5; /* Cor do ícone */
+}
+
+.search-container input::placeholder {
+    color: #a0a0a0; /* Cor do placeholder */
+    font-size: 14px;
 }

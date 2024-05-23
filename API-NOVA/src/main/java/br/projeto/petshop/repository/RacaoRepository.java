@@ -22,6 +22,12 @@ public class RacaoRepository {
         return entityManager.createQuery("SELECT r FROM Racao r", Racao.class).getResultList();
     }
 
+    public List<Racao> findByNome(String nome) {
+        return entityManager.createQuery("SELECT r FROM Racao r WHERE r.nome LIKE :nome", Racao.class)
+                            .setParameter("nome", "%" + nome + "%")
+                            .getResultList();
+    }
+    
     public List<Racao> findBySabor(String sabor) {
         return entityManager.createQuery("SELECT r FROM Racao r WHERE r.sabor = :sabor", Racao.class)
                             .setParameter("sabor", sabor)
