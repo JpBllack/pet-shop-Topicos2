@@ -14,7 +14,7 @@
     <div class="user-info">
       <div class="info-item">
         <label>Nome:</label>
-        <span>{{ usuario.nome + ' ' + usuario.sobrenome}}</span>
+        <span>{{ usuario.nome + ' ' + usuario.sobrenome }}</span>
       </div>
       <div class="info-item">
         <label>Email:</label>
@@ -26,7 +26,7 @@
       </div>
       <div class="info-item">
         <label>CPF:</label>
-        <span>{{ usuario.cpf }}</span>
+        <span>{{ formatarCPF(usuario.cpf) }}</span>
       </div>
     </div>
   </div>

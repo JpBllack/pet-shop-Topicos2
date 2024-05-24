@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UsuarioLogadoService } from "../../services/usuarioLogado.service";
 import { AuthService } from "../../services/auth.service";
 import { CommonModule } from "@angular/common";
@@ -12,7 +11,7 @@ import { RouterModule } from "@angular/router";
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule, CommonModule],
+    imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule, CommonModule],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -22,11 +21,9 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService, private usuarioLogadoService: UsuarioLogadoService) { }
 
   ngOnInit(): void {
-    // Inicializa os dados do usuário ao carregar o componente
     this.carregarUsuario();
   }
 
-  // Método para carregar os dados do usuário
   carregarUsuario() {
     this.usuarioLogadoService.getUsuarioLogado().subscribe(
       (usuario) => {
@@ -36,5 +33,10 @@ export class DashboardComponent implements OnInit {
         console.error('Erro ao carregar dados do usuário:', error);
       }
     );
+  }
+
+  formatarCPF(cpf: string): string {
+    if (!cpf) return '';
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   }
 }

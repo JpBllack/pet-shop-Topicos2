@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
 import { Usuario } from '../../models/Usuario';
 import { CommonModule } from '@angular/common';
@@ -7,20 +7,17 @@ import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { ConfirmarSenhaComponent } from '../confirmar-senha/confirmar-senha.component';
 import { Nome } from '../../models/nome';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   standalone: true,
   selector: 'app-alterar-informacoes',
   templateUrl: './alterar-informacoes.component.html',
   styleUrls: ['./alterar-informacoes.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, ConfirmarSenhaComponent]
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ConfirmarSenhaComponent, NgxMaskDirective],
+  providers: [provideNgxMask()]
 })
 export class AlterarInformacoesComponent implements OnInit {
-  novoCpf: string = '';
-  novoNome: string = '';
-  novoSobrenome: string = '';
-  novoUsername: string = '';
-  novoEmail: string = '';
   formAlterarInformacoes!: FormGroup;
   usuario!: Usuario;
   modalAberto: boolean = false;
@@ -37,7 +34,7 @@ export class AlterarInformacoesComponent implements OnInit {
       sobrenome: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      cpf: ['', Validators.required],
+      cpf: ['', [Validators.required, this.cpfValidator]]
     });
 
     this.carregarInformacoesUsuario();
@@ -71,7 +68,8 @@ export class AlterarInformacoesComponent implements OnInit {
 
   salvarAlteracoes() {
     const { username, email, cpf, nome, sobrenome } = this.formAlterarInformacoes.value;
-  
+    const cpfSemFormatacao = cpf.replace(/\D/g, ''); // Remove pontos e traço
+
     if (username !== this.usuario.username) {
       this.usuarioLogadoService.updateUsername({ username }).subscribe(
         () => {
@@ -83,7 +81,7 @@ export class AlterarInformacoesComponent implements OnInit {
         }
       );
     }
-  
+
     if (email !== this.usuario.email) {
       this.usuarioLogadoService.updateEmail({ email }).subscribe(
         () => {
@@ -95,12 +93,12 @@ export class AlterarInformacoesComponent implements OnInit {
         }
       );
     }
-  
-    if (cpf !== this.usuario.cpf) {
-      this.usuarioLogadoService.updateCPF({ cpf }).subscribe(
+
+    if (cpfSemFormatacao !== this.usuario.cpf) {
+      this.usuarioLogadoService.updateCPF({ cpf: cpfSemFormatacao }).subscribe(
         () => {
           console.log('CPF atualizado com sucesso!');
-          this.usuario.cpf = cpf; 
+          this.usuario.cpf = cpfSemFormatacao; 
         },
         (error) => {
           console.error('Erro ao atualizar CPF:', error);
@@ -109,13 +107,12 @@ export class AlterarInformacoesComponent implements OnInit {
     }
 
     if (nome !== this.usuario.nome || sobrenome !== this.usuario.sobrenome) {
-
-      const nomeCompleto: Nome ={
+      const nomeCompleto: Nome = {
         nome: nome,
         sobrenome: sobrenome,
-      }
+      };
 
-      this.usuarioLogadoService.updateNome( nomeCompleto ).subscribe(
+      this.usuarioLogadoService.updateNome(nomeCompleto).subscribe(
         () => {
           console.log('Nome atualizado com sucesso!');
           this.usuario.nome = nome; 
@@ -141,7 +138,9 @@ export class AlterarInformacoesComponent implements OnInit {
       }
     });
   }
-  
-  
-  
+
+  cpfValidator(control: AbstractControl): ValidationErrors | null {
+    const cpf = control.value.replace(/\D/g, ''); // Remove pontos e traço
+    return cpf.length === 11 ? null : { 'invalidCpf': true };
+  }
 }

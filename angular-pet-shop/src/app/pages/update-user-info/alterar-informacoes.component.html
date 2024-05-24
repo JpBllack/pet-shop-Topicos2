@@ -28,9 +28,12 @@
     </div>
     <div class="form-group">
       <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" formControlName="cpf">
+      <input type="text" id="cpf" formControlName="cpf" mask="000.000.000-00">
+      <div *ngIf="formAlterarInformacoes.get('cpf')?.errors?.['invalidCpf'] && formAlterarInformacoes.get('cpf')?.touched">
+        <small class="error">O CPF deve ter 11 dígitos.</small>
+      </div>
     </div>
-    <button type="submit">Salvar Alterações</button>
+    <button type="submit" [disabled]="formAlterarInformacoes.invalid">Salvar Alterações</button>
   </form>
 
   <app-confirmar-senha *ngIf="modalAberto" (fechar)="fecharModal()" (confirmar)="salvarAlteracoes()"></app-confirmar-senha>
