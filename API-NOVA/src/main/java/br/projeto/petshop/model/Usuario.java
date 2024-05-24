@@ -7,6 +7,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -17,6 +18,7 @@ public class Usuario extends DefaultEntity {
     private String nome;
     private String sobrenome;
 
+    @Pattern(regexp = "\\d{11}", message = "O CPF deve ter 11 dígitos")
     private String cpf;
 
     // @NotBlank(message = "O campo 'username' não pode estar em branco")
