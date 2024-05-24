@@ -14,6 +14,7 @@ import { Router, RouterModule } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { BasicUserService } from "../../services/basicUser.service";
 import { Login } from "../../models/login";
+import { UsuarioBasico } from "../../models/usuarioBasico";
 
 @Component({
     selector: 'app-signup',
@@ -30,6 +31,8 @@ export class SignupComponent implements OnInit{
 
     ngOnInit(): void {
         this.loginForm = this.formBuilder.group({
+          nome: ['', [Validators.required]],
+          sobrenome: ['', [Validators.required]],
           email: ['', [Validators.required, Validators.email]],
           senha: ['', [Validators.required, Validators.minLength(3)]]
         });
@@ -37,17 +40,25 @@ export class SignupComponent implements OnInit{
 
     onRegister() {
         if (this.loginForm.valid) {
-          const loginData: Login = {
+          const loginData: UsuarioBasico = {
+            nome: this.loginForm.get('nome')!.value,
+            sobrenome: this.loginForm.get('sobrenome')!.value,
             email: this.loginForm.get('email')!.value,
             senha: this.loginForm.get('senha')!.value
           };
+
+          const logar: Login = {
+            email: this.loginForm.get('email')!.value,
+            senha: this.loginForm.get('senha')!.value
+          }
     
           this.signup.insert(loginData).subscribe({
             next: (resp) => {
-                this.authService.login(loginData);
               // redirecionar para a página principal
-              this.router.navigateByUrl('/dashboard');
               alert("Cadastrado com sucesso!")
+              this.router.navigateByUrl('/dashboard');
+              console.log(logar);
+              this.authService.login(logar);
             },
             error: (err) => {
               console.log(err);

@@ -19,13 +19,6 @@ import { RouterModule } from "@angular/router";
 export class DashboardComponent implements OnInit {
   usuario: any;
 
-  // Propriedades para atualizar os dados do usuário
-  novoCpf: string = '';
-  novoNome: string = '';
-  novoUsername: string = '';
-  novoEmail: string = '';
-  novaSenha: string = '';
-
   constructor(private authService: AuthService, private usuarioLogadoService: UsuarioLogadoService) { }
 
   ngOnInit(): void {
@@ -41,67 +34,6 @@ export class DashboardComponent implements OnInit {
       },
       (error) => {
         console.error('Erro ao carregar dados do usuário:', error);
-      }
-    );
-  }
-
-  // Métodos para atualizar os dados do usuário
-  atualizarCpf() {
-    this.usuarioLogadoService.updateCPF({ cpf: this.novoCpf }).subscribe(
-      (usuario) => {
-        this.usuario = usuario;
-        this.novoCpf = ''; // Limpa o campo após a atualização
-      },
-      (error) => {
-        console.error('Erro ao atualizar CPF:', error);
-      }
-    );
-  }
-
-  atualizarNome() {
-    this.usuarioLogadoService.updateNome({ nome: this.novoNome }).subscribe(
-      (usuario) => {
-        this.usuario = usuario;
-        this.novoNome = ''; // Limpa o campo após a atualização
-      },
-      (error) => {
-        console.error('Erro ao atualizar nome:', error);
-      }
-    );
-  }
-
-  atualizarUsername() {
-    this.usuarioLogadoService.updateUsername({ username: this.novoUsername }).subscribe(
-      (usuario) => {
-        this.usuario = usuario;
-        this.novoUsername = ''; // Limpa o campo após a atualização
-      },
-      (error) => {
-        console.error('Erro ao atualizar username:', error);
-      }
-    );
-  }
-
-  atualizarEmail() {
-    this.usuarioLogadoService.updateEmail({ email: this.novoEmail }).subscribe(
-      (usuario) => {
-        this.usuario = usuario;
-        this.novoEmail = ''; // Limpa o campo após a atualização
-      },
-      (error) => {
-        console.error('Erro ao atualizar email:', error);
-      }
-    );
-  }
-
-  atualizarSenha() {
-    this.usuarioLogadoService.updateSenha({ senha: this.novaSenha }).subscribe(
-      (usuario) => {
-        this.usuario = usuario;
-        this.novaSenha = ''; // Limpa o campo após a atualização
-      },
-      (error) => {
-        console.error('Erro ao atualizar senha:', error);
       }
     );
   }

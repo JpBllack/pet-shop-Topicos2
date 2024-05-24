@@ -9,12 +9,14 @@ import br.projeto.petshop.dto.LoginResponseDTO;
 import br.projeto.petshop.dto.NomeDTO;
 import br.projeto.petshop.dto.UpdateSenhaDTO;
 import br.projeto.petshop.dto.UsernameDTO;
+import br.projeto.petshop.dto.UsuarioBasicoDTO;
+import br.projeto.petshop.dto.UsuarioBasicoResponseDTO;
 import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 
 public interface UsuarioService {
 
-    public LoginResponseDTO inserirUsuarioBasico(LoginDTO dto);
+    public UsuarioBasicoResponseDTO inserirUsuarioBasico(UsuarioBasicoDTO dto);
 
     public UsuarioResponseDTO insert(UsuarioDTO dto);
 

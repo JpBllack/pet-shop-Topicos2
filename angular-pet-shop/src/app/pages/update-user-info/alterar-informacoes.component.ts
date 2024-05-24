@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { ConfirmarSenhaComponent } from '../confirmar-senha/confirmar-senha.component';
+import { Nome } from '../../models/nome';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import { ConfirmarSenhaComponent } from '../confirmar-senha/confirmar-senha.comp
 export class AlterarInformacoesComponent implements OnInit {
   novoCpf: string = '';
   novoNome: string = '';
+  novoSobrenome: string = '';
   novoUsername: string = '';
   novoEmail: string = '';
   formAlterarInformacoes!: FormGroup;
@@ -31,10 +33,11 @@ export class AlterarInformacoesComponent implements OnInit {
 
   ngOnInit(): void {
     this.formAlterarInformacoes = this.formBuilder.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       cpf: ['', Validators.required],
-      nome: ['', Validators.required]
     });
 
     this.carregarInformacoesUsuario();
@@ -45,10 +48,11 @@ export class AlterarInformacoesComponent implements OnInit {
       (usuario) => {
         this.usuario = usuario;
         this.formAlterarInformacoes.patchValue({
+          nome: usuario.nome,
+          sobrenome: usuario.sobrenome,
           username: usuario.username,
           email: usuario.email,
           cpf: usuario.cpf,
-          nome: usuario.nome
         });
       },
       (error) => {
@@ -66,7 +70,7 @@ export class AlterarInformacoesComponent implements OnInit {
   }
 
   salvarAlteracoes() {
-    const { username, email, cpf, nome } = this.formAlterarInformacoes.value;
+    const { username, email, cpf, nome, sobrenome } = this.formAlterarInformacoes.value;
   
     if (username !== this.usuario.username) {
       this.usuarioLogadoService.updateUsername({ username }).subscribe(
@@ -104,11 +108,18 @@ export class AlterarInformacoesComponent implements OnInit {
       );
     }
 
-    if (nome !== this.usuario.nome) {
-      this.usuarioLogadoService.updateNome({ nome }).subscribe(
+    if (nome !== this.usuario.nome || sobrenome !== this.usuario.sobrenome) {
+
+      const nomeCompleto: Nome ={
+        nome: nome,
+        sobrenome: sobrenome,
+      }
+
+      this.usuarioLogadoService.updateNome( nomeCompleto ).subscribe(
         () => {
           console.log('Nome atualizado com sucesso!');
           this.usuario.nome = nome; 
+          this.usuario.sobrenome = sobrenome;
         },
         (error) => {
           console.error('Erro ao atualizar nome:', error);

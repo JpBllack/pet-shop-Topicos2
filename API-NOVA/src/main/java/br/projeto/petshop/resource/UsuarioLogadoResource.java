@@ -1,6 +1,5 @@
 package br.projeto.petshop.resource;
 
-
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
@@ -38,64 +37,40 @@ public class UsuarioLogadoResource {
     @Inject
     UsuarioService userService;
 
-
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @GET
     @RolesAllowed({ "User", "Admin" })
     public Response getUsuario() {
-        try{
+        try {
             String login = jwt.getSubject();
             LOG.info("E-mail extraído do token JWT: " + login);
 
             UsuarioResponseDTO user = userService.findByEmail(login);
             return Response.ok(user).build();
-        } catch(Exception e){
+        } catch (Exception e) {
             LOG.error("Erro ao buscar usuario");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
         }
 
-       
     }
-
 
     // ---------- completar dados ----------
 
-    
     @PATCH
     @Path("/update/cpf")
-    @RolesAllowed({"User", "Admin"})
-    public Response updateCpf(CpfDTO cpfDTO){
+    @RolesAllowed({ "User", "Admin" })
+    public Response updateCpf(CpfDTO cpfDTO) {
 
         String login = jwt.getSubject();
-        
 
-        try{
+        try {
             LOG.info("Inserindo CPF");
             userService.updateCPF(login, cpfDTO);
             return Response.noContent().build();
-        } catch(Exception e){
-            LOG.error("Erro ao inserir cpf");
-            e.printStackTrace();
-            Error error = new Error("400", e.getMessage());
-            return Response.status(Status.BAD_REQUEST).entity(error).build();
-        }
-    }
-
-    @PATCH
-    @Path("/update/nome")
-    @RolesAllowed({"User", "Admin"})
-    public Response updateNome(NomeDTO nomeDTO){
-
-        String login = jwt.getSubject();
-
-        try{
-            LOG.info("Inserindo CPF");
-            userService.updateNome(login, nomeDTO);
-            return Response.noContent().build();
-        } catch(Exception e){
+        } catch (Exception e) {
             LOG.error("Erro ao inserir cpf");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
@@ -106,17 +81,36 @@ public class UsuarioLogadoResource {
     // ---------- Updates ----------
 
     @PATCH
-    @Path("/update/email/")
-    @RolesAllowed({"User", "Admin"})
-    public Response updateEmail(EmailDTO newEmail){
+    @Path("/update/nome")
+    @RolesAllowed({ "User", "Admin" })
+    public Response updateNome(NomeDTO nomeDTO) {
 
         String login = jwt.getSubject();
 
-        try{
+        try {
+            LOG.info("Inserindo CPF");
+            userService.updateNome(login, nomeDTO);
+            return Response.noContent().build();
+        } catch (Exception e) {
+            LOG.error("Erro ao inserir cpf");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+    @PATCH
+    @Path("/update/email/")
+    @RolesAllowed({ "User", "Admin" })
+    public Response updateEmail(EmailDTO newEmail) {
+
+        String login = jwt.getSubject();
+
+        try {
             LOG.info("Alterando o email");
             userService.updateEmail(login, newEmail);
             return Response.noContent().build();
-        } catch(ValidationException e){
+        } catch (ValidationException e) {
             LOG.error("Email.não alterado");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
@@ -126,16 +120,16 @@ public class UsuarioLogadoResource {
 
     @PATCH
     @Path("/update/username/")
-    @RolesAllowed({"User", "Admin"})
-    public Response updateUsername(UsernameDTO newUsername){
+    @RolesAllowed({ "User", "Admin" })
+    public Response updateUsername(UsernameDTO newUsername) {
 
         String login = jwt.getSubject();
 
-        try{
+        try {
             LOG.info("Alterando o username");
             userService.updateUsername(login, newUsername);
             return Response.noContent().build();
-        } catch(ValidationException e){
+        } catch (ValidationException e) {
             LOG.error("Username não alterado");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
@@ -145,21 +139,21 @@ public class UsuarioLogadoResource {
 
     @PATCH
     @Path("/update/password/")
-    @RolesAllowed({"User", "Admin"})
-    public Response updateSenha(UpdateSenhaDTO updateSenha){
+    @RolesAllowed({ "User", "Admin" })
+    public Response updateSenha(UpdateSenhaDTO updateSenha) {
 
         String login = jwt.getSubject();
 
-        try{
+        try {
             LOG.info("Alterando a senha");
             userService.updateSenha(login, updateSenha);
             return Response.noContent().build();
-        } catch(ValidationException e){
+        } catch (ValidationException e) {
             LOG.info("Valor invalido");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
-        } catch(ForbiddenException e){
+        } catch (ForbiddenException e) {
             LOG.info("Acesso negado");
             e.printStackTrace();
             Error error = new Error("403", e.getMessage());

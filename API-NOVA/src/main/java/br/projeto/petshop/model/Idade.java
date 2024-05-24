@@ -7,7 +7,7 @@ public enum Idade {
     FILHOTE(1, "Filhote"),
     ADULTO(2, "Adulto"),
     IDOSO(3, "Idoso"),
-    NDEFINIFO(4, "Não Definido");
+    NAO_DEFINIFO(4, "Não Definido");
 
     private final Integer id;
     private final String label;

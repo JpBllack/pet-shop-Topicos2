@@ -14,6 +14,16 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>sobrenome</mat-label>
+                    <input matInput type="text" formControlName="sobrenome">
+                    <mat-error *ngIf="formGroup.get('sobrenome') 
+                                   && formGroup.get('sobrenome')?.invalid
+                                   && formGroup.get('sobrenome')?.touched">
+                        O sobrenome é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>cpf</mat-label>
                     <input matInput type="text" formControlName="cpf">
                     <mat-error *ngIf="formGroup.get('cpf') 

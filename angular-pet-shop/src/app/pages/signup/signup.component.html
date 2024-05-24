@@ -3,6 +3,14 @@
         <h2 class="login-title">Cadastrar</h2>
         <form [formGroup]="loginForm" (ngSubmit)="onRegister()">
             <mat-form-field class="login-input">
+                <input matInput placeholder="Nome" formControlName="nome" required>
+                <mat-error *ngIf="loginForm.get('nome')!.hasError('required')">O nome é obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Sobrenome" formControlName="sobrenome" required>
+                <mat-error *ngIf="loginForm.get('sobrenome')!.hasError('required')">O sobrenome é obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login-input">
                 <input matInput placeholder="Email" formControlName="email" required>
                 <mat-error *ngIf="loginForm.get('email')!.hasError('required')">O email é obrigatório</mat-error>
             </mat-form-field>

@@ -38,6 +38,7 @@ export class UsuarioFormComponent implements OnInit{
         this.formGroup = formBuilder.group({
             id: [null],
             nome:['', Validators.required],
+            sobrenome: ['', Validators.required],
             cpf:['', Validators.required],
             username:['', Validators.required],
             email:['', Validators.required],

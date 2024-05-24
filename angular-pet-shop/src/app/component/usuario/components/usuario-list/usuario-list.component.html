@@ -17,8 +17,9 @@
     <!-- Nome Column -->
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let usuario"> {{ usuario.nome }} </td>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.nome + ' ' + usuario.sobrenome }} </td>
     </ng-container>
+
 
     <!-- Cpf Column -->
     <ng-container matColumnDef="cpf">

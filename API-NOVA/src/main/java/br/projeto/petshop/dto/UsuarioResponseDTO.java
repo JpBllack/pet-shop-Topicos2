@@ -7,13 +7,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public record UsuarioResponseDTO(
-    Long id,
-    String nome,
-    String cpf,
-    String username,
-    String email,
-    Perfil perfil
-) {
+        Long id,
+        String nome,
+        String sobrenome,
+        String cpf,
+        String username,
+        String email,
+        Perfil perfil) {
+
     // Criando um objeto Logger para a classe UsuarioResponseDTO
     private static final Logger logger = Logger.getLogger(UsuarioResponseDTO.class.getName());
 
@@ -26,15 +27,15 @@ public record UsuarioResponseDTO(
         }
         // Verificando se o objeto Usuario é null
 
-        
-        // Retornando uma nova instância de UsuarioResponseDTO com base nos atributos de Usuario
+        // Retornando uma nova instância de UsuarioResponseDTO com base nos atributos de
+        // Usuario
         return new UsuarioResponseDTO(
-            user.getId(),
-            user.getNome(),
-            user.getCpf(),
-            user.getUsername(),
-            user.getEmail(),
-            user.getPerfil()
-        );
+                user.getId(),
+                user.getNome(),
+                user.getSobrenome(),
+                user.getCpf(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getPerfil());
     }
 }

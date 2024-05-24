@@ -12,14 +12,14 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Usuario extends DefaultEntity {
 
-    //@NotBlank(message = "O campo 'nome' não pode estar em branco")
+    // @NotBlank(message = "O campo 'nome' não pode estar em branco")
     @Size(max = 100, message = "O campo 'nome' deve ter no máximo 100 caracteres")
-    @Size(min = 3, message = "O campo 'nome' deve ter no mínimo 3 caracteres")
     private String nome;
+    private String sobrenome;
 
     private String cpf;
 
-    //@NotBlank(message = "O campo 'username' não pode estar em branco")
+    // @NotBlank(message = "O campo 'username' não pode estar em branco")
     @Size(max = 50, message = "O campo 'username' deve ter no máximo 50 caracteres")
     private String username;
 
@@ -33,8 +33,6 @@ public class Usuario extends DefaultEntity {
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private Perfil perfil;
 
-    
-    
     public String getCpf() {
         return cpf;
     }
@@ -81,6 +79,14 @@ public class Usuario extends DefaultEntity {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
 }

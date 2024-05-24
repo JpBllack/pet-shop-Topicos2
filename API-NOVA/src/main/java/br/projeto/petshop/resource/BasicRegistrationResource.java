@@ -15,6 +15,7 @@ import org.jboss.logging.Logger;
 
 import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.LoginDTO;
+import br.projeto.petshop.dto.UsuarioBasicoDTO;
 
 @Path("/basicUsers")
 @Produces(MediaType.APPLICATION_JSON)
@@ -22,22 +23,22 @@ import br.projeto.petshop.dto.LoginDTO;
 public class BasicRegistrationResource {
 
     @Inject
-    UsuarioService userService; 
+    UsuarioService userService;
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @POST
     @Path("/insert/")
-    public Response insertBasicUser(LoginDTO dto){
-        try{
+    public Response insertBasicUser(UsuarioBasicoDTO dto) {
+        try {
             LOG.info("Inserindo um usuario basico");
             return Response.status(Status.CREATED).entity(userService.inserirUsuarioBasico(dto)).build();
-        } catch(ValidationException e){
+        } catch (ValidationException e) {
             LOG.error("Erro ao inserir o usuario basico");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
         }
     }
-    
+
 }

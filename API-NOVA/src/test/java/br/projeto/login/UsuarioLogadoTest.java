@@ -7,8 +7,6 @@ import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
-
 import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.Perfil;
@@ -35,12 +33,12 @@ public class UsuarioLogadoTest {
     @Inject
     JwtService jwtService;
 
-    
     @Test
-    public void testGetUsuario(){
-        //Inserindo o novo usuario
+    public void testGetUsuario() {
+        // Inserindo o novo usuario
 
-        UsuarioDTO dto = new UsuarioDTO("Fulano", "77733399984", "fulaninho_br", "fulaninho@gmail.com", hashService.getHashSenha("12345"), Perfil.valueOf(1));
+        UsuarioDTO dto = new UsuarioDTO("Fulano", "de tal", "77733399984", "fulaninho_br", "fulaninho@gmail.com",
+                hashService.getHashSenha("12345"), Perfil.valueOf(1));
         usuarioService.insert(dto);
 
         String token = jwtService.generateJwt(usuarioService.findByEmail("fulaninho@gmail.com"));
@@ -48,5 +46,4 @@ public class UsuarioLogadoTest {
         given().header("Authorization", "Bearer " + token).when().get("/usuarioLogado").then().statusCode(200);
     }
 
-    
 }

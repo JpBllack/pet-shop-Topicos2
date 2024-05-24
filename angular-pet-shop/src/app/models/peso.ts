@@ -3,7 +3,8 @@ export enum Peso {
     _1KG = 2,
     _2KG = 3,
     _5KG = 4,
-    _10KG = 5
+    _10KG = 5,
+    NAO_DEFINIDO = 6,
   }
   
   export const PesoLabel = {
@@ -11,6 +12,7 @@ export enum Peso {
     [Peso._1KG]: '1kg',
     [Peso._2KG]: '2kg',
     [Peso._5KG]: '5kg',
-    [Peso._10KG]: '10kg'
+    [Peso._10KG]: '10kg',
+    [Peso.NAO_DEFINIDO]: 'Não Definido',
   };
   
