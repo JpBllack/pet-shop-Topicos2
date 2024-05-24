@@ -61,32 +61,26 @@ public class PetServiceImpl implements PetService {
 
 
     @Override
-@Transactional
-public PetResponseDTO insert(PetDTO petDTO) {
-    
-    Pet existingPet = petRepository.findByNome(petDTO.nome());
-    if (existingPet != null) {
-        throw new ValidationException("400", "Um pet com este nome já existe");
+    @Transactional
+    public PetResponseDTO insert(PetDTO petDTO, Long userId) {
+        Pet existingPet = petRepository.findByNome(petDTO.nome());
+        if (existingPet != null) {
+            throw new ValidationException("400", "Um pet com este nome já existe");
+        }
+
+        if (petDTO.tipoAnimal() == null) {
+            throw new ValidationException("400", "O ID de TipoAnimal é obrigatório e não pode ser nulo");
+        }
+
+        Pet pet = new Pet();
+        pet.setNome(petDTO.nome());
+        pet.setUsuario(usuarioRepository.findById(userId));
+        pet.setAnoNascimento(petDTO.anoNascimento());
+        pet.setTipoAnimal(tipoAnimalRepository.findById(petDTO.tipoAnimal()));
+
+        petRepository.persist(pet);
+        return PetResponseDTO.valueOf(pet);
     }
-
-    
-    if (petDTO.tipoAnimal() == null) {
-        throw new ValidationException("400", "O ID de TipoAnimal é obrigatório e não pode ser nulo");
-    }
-
-
-
-    Pet pet = new Pet();
-    pet.setNome(petDTO.nome());
-    pet.setUsuario(usuarioRepository.findById(petDTO.usuario()));
-    pet.setAnoNascimento(petDTO.anoNascimento());
-    pet.setTipoAnimal(tipoAnimalRepository.findById(petDTO.tipoAnimal()));
-
-
-    petRepository.persist(pet);
-    
-    return PetResponseDTO.valueOf(pet);
-}
 
 
     

@@ -3,12 +3,15 @@ package br.projeto.petshop.resource;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
+import br.projeto.petshop.service.PetService;
 import br.projeto.petshop.service.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
@@ -23,6 +26,8 @@ import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.CpfDTO;
 import br.projeto.petshop.dto.EmailDTO;
 import br.projeto.petshop.dto.NomeDTO;
+import br.projeto.petshop.dto.PetDTO;
+import br.projeto.petshop.dto.PetResponseDTO;
 import br.projeto.petshop.dto.UpdateSenhaDTO;
 import br.projeto.petshop.dto.UsernameDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
@@ -36,6 +41,10 @@ public class UsuarioLogadoResource {
 
     @Inject
     UsuarioService userService;
+    
+    @Inject
+    PetService petService;
+
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -160,4 +169,32 @@ public class UsuarioLogadoResource {
             return Response.status(Status.FORBIDDEN).entity(error).build();
         }
     }
+
+    @POST
+    @Path("/pets")
+    @RolesAllowed({"User", "Admin"})
+    @Transactional
+    public Response insertPet(PetDTO dto) {
+        try {
+            // Extrair email do token JWT
+            String email = jwt.getSubject();
+            
+            // Buscar usuário pelo email
+            UsuarioResponseDTO user = userService.findByEmail(email);
+            if (user == null) {
+                throw new ValidationException("400", "Usuário não encontrado");
+            }
+            
+            Long userId = user.id(); // Supondo que UsuarioResponseDTO tenha um método getId()
+            PetResponseDTO petResponseDTO = petService.insert(dto, userId);
+            return Response.status(Status.CREATED).entity(petResponseDTO).build();
+        } catch (ValidationException e) {
+            LOG.error("Erro ao inserir o pet");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+
 }

@@ -24,6 +24,8 @@ export class PetService{
     }
 
     insertPet(pet: pet): Observable<pet>{
+        
+        console.log('Dados do pet que estão sendo enviados para o insert:', pet);
         return this.httpClient.post<pet>(`${this.baseUrl}/insert`, pet);
     }
 
