@@ -82,7 +82,6 @@ export class PetFormComponent implements OnInit {
                         this.voltarPagina();
                     },
                     error: (err) => {
-                        console.log('Erro ao incluir', err);
                         console.log('Detalhes do erro:', err.error); // Adiciona este log para imprimir os detalhes do erro
                     }
                 });

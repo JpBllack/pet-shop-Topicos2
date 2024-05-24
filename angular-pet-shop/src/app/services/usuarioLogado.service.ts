@@ -42,4 +42,8 @@ export class UsuarioLogadoService {
   updateSenha(senha: { senha: string }): Observable<Usuario> {
     return this.http.patch<Usuario>(`${this.apiUrl}/update/password`, senha);
   }
+
+  getPets(): Observable<Usuario[]> {
+    return this.http.post<Usuario[]>(`${this.apiUrl}/pets`, { headers: this.getHeaders() });
+  }
 }

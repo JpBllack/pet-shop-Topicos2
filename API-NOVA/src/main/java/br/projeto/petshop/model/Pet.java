@@ -1,5 +1,7 @@
 package br.projeto.petshop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -21,8 +23,10 @@ import jakarta.persistence.ManyToOne;
     private TipoAnimal tipoAnimal;
 
 
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonBackReference
     private Usuario usuario;
 
     // Getters e Setters para nome, anoNascimento, tipoAnimal, sexo

@@ -9,11 +9,16 @@ import br.projeto.petshop.model.Usuario;
 public record PetResponseDTO(
     Long id,
     String nome,
+    TipoAnimal tipoAnimal,
     Usuario usuario,
-    Integer anoNascimento,
-    TipoAnimal tipoAnimal
+    Integer anoNascimento
 ) {
     public static PetResponseDTO valueOf(Pet pet) {
-        return new PetResponseDTO(pet.getId(), pet.getNome(), pet.getUsuario(), pet.getAnoNascimento(), pet.getTipoAnimal());
+        return new PetResponseDTO(
+            pet.getId(), 
+            pet.getNome(),
+            pet.getTipoAnimal(), 
+            pet.getUsuario(), 
+            pet.getAnoNascimento());
     }
 }

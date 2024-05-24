@@ -64,7 +64,7 @@ public class PetResource {
         }
     }
 
-    @POST
+  /*   @POST
     @Transactional
     @Path("/insert")
     @RolesAllowed("Admin")
@@ -82,7 +82,7 @@ public class PetResource {
             Error error = new Error("404", e.getMessage());
             return Response.status(Response.Status.NOT_FOUND).entity(error).build();
         }
-    }
+    } */
 
     @PUT
     @Transactional

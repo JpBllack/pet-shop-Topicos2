@@ -7,7 +7,7 @@ import br.projeto.petshop.dto.PetResponseDTO;
 
 public interface PetService {
 
-    PetResponseDTO insert(PetDTO dto);
+    PetResponseDTO insert(PetDTO petDTO, Long userId);
 
     PetResponseDTO update(long id, PetDTO dto);
 
