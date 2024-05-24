@@ -17,8 +17,8 @@ import { UsuarioService } from "../../../../services/usuario.service";
 @Component({
     selector: 'app-usuario-form',
     standalone: true,
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule],
+    imports: [NgIf, MatFormFieldModule,
+        MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, ReactiveFormsModule],
         templateUrl: './usuario-form.component.html',
         styleUrl: './usuario-form.component.css'
 })

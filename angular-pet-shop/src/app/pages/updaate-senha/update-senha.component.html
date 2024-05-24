@@ -1,0 +1,25 @@
+<div class="alterar-senha">
+    <div class="navbar">
+        <div class="navbar-links">
+          <a routerLink="/dashboard">Meus Dados</a>
+          <a routerLink="/pedidos">Meus Pedidos</a>
+          <a routerLink="/pets">Meus Pets</a>
+          <a routerLink="/alterar-info">Alterar Informações</a>
+          <a routerLink="/seguranca">Segurança</a>
+        </div>
+      </div>
+  
+    <h2>Alterar Senha</h2>
+    <form [formGroup]="formGroup" (ngSubmit)="alterarSenha()">
+      <div class="form-group">
+        <label for="senhaAtual">Senha Atual</label>
+        <input type="password" id="senhaAtual" formControlName="senhaAtual" required>
+      </div>
+      <div class="form-group">
+        <label for="novaSenha">Nova Senha</label>
+        <input type="password" id="novaSenha" formControlName="novaSenha" required>
+      </div>
+      <button type="submit">Alterar Senha</button>
+    </form>
+  </div>
+  

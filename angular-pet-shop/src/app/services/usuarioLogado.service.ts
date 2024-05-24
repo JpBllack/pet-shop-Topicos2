@@ -39,7 +39,8 @@ export class UsuarioLogadoService {
     return this.http.patch<Usuario>(`${this.apiUrl}/update/email`, email);
   }
 
-  updateSenha(senha: { senha: string }): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.apiUrl}/update/password`, senha);
+  updateSenha(senhas: { senhaAtual: string, novaSenha: string }): Observable<Usuario> {
+    return this.http.patch<Usuario>(`${this.apiUrl}/update/password`, senhas);
   }
+  
 }
