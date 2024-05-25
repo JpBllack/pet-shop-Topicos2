@@ -43,11 +43,17 @@ export class CarrinhoComponent implements OnInit {
   }
   
   finalizarCompra(): void {
-
+    this.carrinhoService.concluirCompra(this.carrinhoItens);
   }
 
   calcularTotal(): number {
-    return this.carrinhoItens.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+    return this.carrinhoItens.reduce((total, item) => {
+      if (item.preco !== null && item.quantidade !== null) {
+        total += item.preco * item.quantidade;
+      }
+      return total;
+    }, 0);
   }
+  
 
 }
