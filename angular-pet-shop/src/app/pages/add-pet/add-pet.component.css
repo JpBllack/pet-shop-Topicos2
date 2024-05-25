@@ -60,38 +60,40 @@ select {
   margin-bottom: 10px;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  font-size: 16px;
-  margin-right: 10px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-button:disabled {
-  background-color: grey;
-  cursor: not-allowed;
-}
-
 .error {
   color: red;
   font-size: 0.9em;
 }
 
-.ver-pets-btn {
-  margin-top: 10px;
-  background-color: #28a745;
+.button-group {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Space between buttons */
+  margin-top: 20px;
 }
 
-.ver-pets-btn:hover {
-  background-color: #218838;
+.button-group button {
+  padding: 10px 20px; /* Larger buttons */
+  font-size: 1em; /* Adjust font size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
 }

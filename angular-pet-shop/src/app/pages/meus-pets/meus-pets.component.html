@@ -9,6 +9,7 @@
   <div class="ver-pets">
     <h2>Todos os Pets</h2>
 
+    <button class="add-pet-button" routerLink="/add-pet">Adicionar Pet</button>
     
     <div class="lista-pets" *ngIf="petsUsuario && petsUsuario.length > 0">
         <div class="pet-card" *ngFor="let pet of petsUsuario">

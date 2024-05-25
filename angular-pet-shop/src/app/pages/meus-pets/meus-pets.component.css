@@ -79,3 +79,20 @@ html, body {
     background-color: #0056b3;
   }
   
+  .add-pet-button {
+    display: block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.add-pet-button:hover {
+    background-color: #0056b3;
+}

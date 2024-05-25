@@ -44,7 +44,7 @@ export class UsuarioLogadoService {
   }
 
   insertPets(petData: any): Observable<Usuario[]> {
-    return this.http.post<Usuario[]>(`${this.apiUrl}/pets`, petData, { headers: this.getHeaders() });
+    return this.http.post<Usuario[]>(`${this.apiUrl}/insert/pet`, petData, { headers: this.getHeaders() });
   }
   
   getPetsUsuario(): Observable<Usuario[]> {

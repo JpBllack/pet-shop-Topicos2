@@ -1,36 +1,34 @@
 <div class="meus-pets">
-    <div class="navbar">
-      <div class="navbar-links">
-        <a routerLink="/dashboard">Meus Dados</a>
-        <a routerLink="/pedidos">Meus Pedidos</a>
-        <a routerLink="/meus-pets">Meus Pets</a>
-        <a routerLink="/alterar-info">Alterar Informações</a>
-        <a routerLink="/seguranca">Segurança</a>
-      </div>
+  <div class="navbar">
+    <div class="navbar-links">
+      <a routerLink="/dashboard">Meus Dados</a>
+      <a routerLink="/pedidos">Meus Pedidos</a>
+      <a routerLink="/meus-pets">Meus Pets</a>
+      <a routerLink="/alterar-info">Alterar Informações</a>
+      <a routerLink="/seguranca">Segurança</a>
     </div>
-  
-    <h2>Meus Pets</h2>
-  
-    <form [formGroup]="petForm" (ngSubmit)="adicionarPet()">
-      <div class="form-group">
-        <label for="nome">Nome do Pet</label>
-        <input type="text" id="nome" formControlName="nome" required>
-      </div>
-      <div class="form-group">
-        <label for="tipoAnimal">Tipo de Animal</label>
-        <select id="tipoAnimal" formControlName="tipoAnimal" required>
-          <option *ngFor="let tipo of tiposAnimais" [value]="tipo.id">{{ tipo.nome }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="anoNascimento">Ano de Nascimento</label>
-        <input type="number" id="anoNascimento" formControlName="anoNascimento" required>
-      </div>
-      <button type="submit">Adicionar Pet</button>
-      <button type="button" (click)="verPets()">Ver Pets</button>
-    </form>
   </div>
-  
 
- 
-  
+  <h2>Adicionar Pet</h2>
+
+  <form [formGroup]="petForm" (ngSubmit)="adicionarPet()">
+    <div class="form-group">
+      <label for="nome">Nome do Pet</label>
+      <input type="text" id="nome" formControlName="nome" required>
+    </div>
+    <div class="form-group">
+      <label for="tipoAnimal">Tipo de Animal</label>
+      <select id="tipoAnimal" formControlName="tipoAnimal" required>
+        <option *ngFor="let tipo of tiposAnimais" [value]="tipo.id">{{ tipo.nome }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="anoNascimento">Ano de Nascimento</label>
+      <input type="number" id="anoNascimento" formControlName="anoNascimento" required>
+    </div>
+    <div class="button-group">
+      <button type="button" class="cancel-button" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="add-button">Adicionar Pet</button>
+    </div>
+  </form>
+</div>
