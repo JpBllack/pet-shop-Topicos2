@@ -19,5 +19,7 @@ public interface PetService {
 
     PetResponseDTO getById(long id);
 
+    public List<PetResponseDTO> getByUser(Long userId);
+
     /* PetResponseDTO changeImage(long id, String imageName); */
 }

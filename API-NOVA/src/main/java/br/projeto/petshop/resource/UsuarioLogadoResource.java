@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -171,7 +172,7 @@ public class UsuarioLogadoResource {
     }
 
     @POST
-    @Path("/pets")
+    @Path("/insert/pet")
     @RolesAllowed({"User", "Admin"})
     @Transactional
     public Response insertPet(PetDTO dto) {
@@ -193,6 +194,23 @@ public class UsuarioLogadoResource {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+    @GET
+    @Path("/search/pet")
+    @RolesAllowed({"User", "Admin", "Vet"})
+    public Response getPets(){
+        try{
+            String email = jwt.getSubject();
+
+            UsuarioResponseDTO user = userService.findByEmail(email);
+            Long userId = user.id();
+            return  Response.ok(petService.getByUser(userId)).build();
+        } catch(NotFoundException e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
 

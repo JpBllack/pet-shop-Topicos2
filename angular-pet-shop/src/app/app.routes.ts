@@ -33,10 +33,10 @@ import { RacaoCardListComponent } from './component/racao-card-list/racao-card-l
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 import { AdminTemplateComponent } from './pages/template/admin-template/admin-template.component';
 import { AlterarInformacoesComponent } from './pages/update-user-info/alterar-informacoes.component';
-import { ConfirmarSenhaComponent } from './pages/confirmar-senha/confirmar-senha.component';
 import { AlterarSenhaComponent } from './pages/update-senha/update-senha.component';
+import { AddPetComponent } from './pages/add-pet/add-pet.component';
 import { MeusPetsComponent } from './pages/meus-pets/meus-pets.component';
-import { TodosMeusPetsComponent } from './pages/todos-meus-pets/todos-meus-pets.component';
+
 
 export const routes: Routes = [
 
@@ -53,8 +53,8 @@ export const routes: Routes = [
             { path: 'signup', component: SignupComponent, data: {Title: 'Sign Up'}},
             { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
             { path: 'alterar-info', component: AlterarInformacoesComponent, data: {title: 'Alterar informações de usuario'}},
-            { path: 'pets', component: MeusPetsComponent, data: {Title: 'Meus Pets'}},
-            { path: 'ver-pets', component: TodosMeusPetsComponent, data: {Title: 'Todos Meus Pets'}},
+            { path: 'add-pet', component: AddPetComponent, data: {Title: 'Add Pet'}},
+            { path: 'meus-pets', component: MeusPetsComponent, title: 'Meus Pets'},
             { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'}
         ]
 

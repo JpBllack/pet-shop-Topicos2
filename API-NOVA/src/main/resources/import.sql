@@ -85,7 +85,7 @@ VALUES ('Luna', 2018, 2,2);
 
 -- Inserir um pet do tipo pássaro, macho
 INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
-VALUES ('Tweety', 2020, 3,3);
+VALUES ('Tweety', 2020, 3,1);
 
 INSERT INTO Pet (nome, anoNascimento, TipoAnimalId,  usuario_id) 
 VALUES ('Titan', 2022, 1,5);

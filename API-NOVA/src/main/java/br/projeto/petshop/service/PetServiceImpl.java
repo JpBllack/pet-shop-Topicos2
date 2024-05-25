@@ -59,6 +59,11 @@ public class PetServiceImpl implements PetService {
         return PetResponseDTO.valueOf(pet);
     }
 
+    @Override
+    public List<PetResponseDTO> getByUser(Long userId){
+        return petRepository.findByUsuario(userId).stream().map(e -> PetResponseDTO.valueOf(e)).toList();
+    }
+
 
     @Override
     @Transactional
