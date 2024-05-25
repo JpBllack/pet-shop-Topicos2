@@ -26,6 +26,10 @@ export class CarrinhoComponent implements OnInit {
     })
   }
 
+  getImagemPath(imagem: string): string {
+    return `http://localhost:8080/quarkus/images/produto/${imagem}`;
+  }
+
   removerItem(item: ItemCarrinho): void {
     this.carrinhoService.remover(item);
   }
