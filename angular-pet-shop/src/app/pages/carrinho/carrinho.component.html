@@ -1,6 +1,9 @@
-<div *ngIf="carrinhoItens.length > 0; else carrinhoVazio" class="carrinho-container">
+<div class="carrinho-container">
   <div *ngFor="let item of carrinhoItens" class="carrinho-item">
     <div class="item-info">
+      <div class="item-image">
+        <img [src]="item.image" alt="Imagem do Produto">
+      </div>
       <h3>{{ item.nome }}</h3>
       <p>Preço: {{ item.preco | currency:'BRL' }}</p>
       <p>Quantidade: 
@@ -33,9 +36,3 @@
     <button mat-raised-button class="button-finalizar" (click)="finalizarCompra()">Finalizar Compra</button>
   </div>
 </div>
-
-<ng-template #carrinhoVazio>
-  <div class="carrinho-vazio">
-    <p>O carrinho está vazio.</p>
-  </div>
-</ng-template>

@@ -74,6 +74,7 @@ export class RacaoCardListComponent implements OnInit {
     this.carrinhoService.adicionar({
       id: card.idConsulta,
       nome: card.nome,
+      image:card.imagem,
       preco: card.preco,
       quantidade: 1
     })

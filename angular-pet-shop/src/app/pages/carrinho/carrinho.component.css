@@ -1,5 +1,3 @@
-/* estilos.component.css */
-
 .carrinho-container {
   max-width: 800px;
   margin: 0 auto;
@@ -23,6 +21,9 @@
 
 .item-info {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
 }
 
 .item-info h3 {
@@ -101,10 +102,25 @@
   width: 100%;
 }
 
+.item-image {
+  flex-shrink: 0;
+}
+
+.item-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 @media (max-width: 600px) {
   .carrinho-item {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .item-info {
+    margin-left: 0;
+    margin-top: 10px;
   }
 
   .item-actions {
@@ -114,5 +130,10 @@
 
   .item-actions button {
     width: 100%;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: auto;
   }
 }
