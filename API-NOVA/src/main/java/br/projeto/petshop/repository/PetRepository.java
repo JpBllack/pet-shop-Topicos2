@@ -23,6 +23,8 @@ public class PetRepository implements PanacheRepository{
         return entityManager.createQuery("SELECT p FROM Pet p", Pet.class).getResultList();
     }
 
+
+    
     public List<Pet> findByUsuario(Long idUsuario) {
         return entityManager.createQuery("SELECT p FROM Pet p WHERE p.usuario.id = :idUsuario", Pet.class)
                             .setParameter("idUsuario", idUsuario)

@@ -1,7 +1,9 @@
 <div class="carrinho-container">
   <div *ngFor="let item of carrinhoItens" class="carrinho-item">
     <div class="item-info">
-      <img [src]="item.image" alt="Imagem do Produto">
+      <div class="item-image">
+        <img [src]="item.image" alt="Imagem do Produto">
+      </div>
       <h3>{{ item.nome }}</h3>
       <p>Preço: {{ item.preco | currency:'BRL' }}</p>
       <p>Quantidade: 
