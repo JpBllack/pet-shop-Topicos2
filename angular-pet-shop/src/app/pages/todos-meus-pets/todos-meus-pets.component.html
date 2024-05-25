@@ -8,19 +8,21 @@
   
   <div class="ver-pets">
     <h2>Todos os Pets</h2>
+
     
     <div class="lista-pets" *ngIf="petsUsuario && petsUsuario.length > 0">
-      <div class="pet-card" *ngFor="let pet of petsUsuario">
-        <div class="pet-info">
+        <div class="pet-card" *ngFor="let pet of petsUsuario">
+            <div class="pet-info">
+            <img [src]="pet.foto ? pet.foto : 'assets/imageNotfound.jpg'" alt="Foto do Pet">
           <h3>{{ pet.nome }}</h3>
-          <img [src]="pet.foto ? pet.foto : 'assets/imageNotfound.jpg'" alt="Foto do Pet">
-        </div>
-        <button routerLink="/meus-pets/{{ pet.id }}">Ver Detalhes</button>
-      </div>
+          <p>Tipo: {{ pet.tipoAnimal.nome }}</p>
+          <p>Idade: {{ calcularIdade(pet.anoNascimento) }} anos</p>
+          <!-- Adicione mais informações aqui conforme necessário -->
     </div>
   
     <div *ngIf="!petsUsuario || petsUsuario.length === 0">
       <p>Nenhum pet encontrado.</p>
     </div>
   </div>
-  
+
+ 

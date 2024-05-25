@@ -26,4 +26,11 @@ export class TodosMeusPetsComponent implements OnInit {
       console.error('Erro ao carregar os pets do usuário:', error);
     });
   }
+
+  calcularIdade(anoNascimento: number): number {
+    const hoje = new Date();
+    const anoAtual = hoje.getFullYear();
+    const idade = anoAtual - anoNascimento;
+    return idade;
+  }
 }
