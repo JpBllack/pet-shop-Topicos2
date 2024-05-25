@@ -47,4 +47,7 @@ export class UsuarioLogadoService {
     return this.http.post<Usuario[]>(`${this.apiUrl}/pets`, petData, { headers: this.getHeaders() });
   }
   
+  getPetsUsuario(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/pets/all`, { headers: this.getHeaders() });
+  }
 }

@@ -1,0 +1,26 @@
+<div class="navbar">
+    <a routerLink="/dashboard">Meus Dados</a>
+    <a routerLink="/pedidos">Meus Pedidos</a>
+    <a routerLink="/pets">Meus Pets</a>
+    <a routerLink="/alterar-info">Alterar Informações</a>
+    <a routerLink="/seguranca">Segurança</a>
+  </div>
+  
+  <div class="ver-pets">
+    <h2>Todos os Pets</h2>
+    
+    <div class="lista-pets" *ngIf="petsUsuario && petsUsuario.length > 0">
+      <div class="pet-card" *ngFor="let pet of petsUsuario">
+        <div class="pet-info">
+          <h3>{{ pet.nome }}</h3>
+          <img [src]="pet.foto ? pet.foto : 'assets/imageNotfound.jpg'" alt="Foto do Pet">
+        </div>
+        <button routerLink="/meus-pets/{{ pet.id }}">Ver Detalhes</button>
+      </div>
+    </div>
+  
+    <div *ngIf="!petsUsuario || petsUsuario.length === 0">
+      <p>Nenhum pet encontrado.</p>
+    </div>
+  </div>
+  
