@@ -41,15 +41,12 @@ public class CompraServiceImpl implements CompraService {
         compra.setDataCompra(new Date());
 
         double precoTotal = calcularTotal(itensCompra);
-        LOG.info(itensCompra);
         compra.setPrecoTotal(precoTotal);
 
-        // Associa os itens de compra à compra antes de persistir
         for (ItemCompra itemCompra : itensCompra) {
-            itemCompra.setCompra(compra);
+            compra.addItemCompra(itemCompra);
         }
 
-        // Persiste a compra e os itens associados
         compraRepository.persist(compra);
     }
 

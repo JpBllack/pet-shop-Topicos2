@@ -1,5 +1,6 @@
 package br.projeto.petshop.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +16,12 @@ public class Compra extends DefaultEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCompra;
 
-    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
-    private List<ItemCompra> itensCompra;
+    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemCompra> itensCompra = new ArrayList<>();
 
     private Double precoTotal;
+
+    // Getters and Setters
 
     public Date getDataCompra() {
         return dataCompra;
@@ -33,7 +36,23 @@ public class Compra extends DefaultEntity {
     }
 
     public void setItensCompra(List<ItemCompra> itensCompra) {
-        this.itensCompra = itensCompra;
+        this.itensCompra.clear();
+        if (itensCompra != null) {
+            this.itensCompra.addAll(itensCompra);
+            for (ItemCompra item : itensCompra) {
+                item.setCompra(this);
+            }
+        }
+    }
+
+    public void addItemCompra(ItemCompra itemCompra) {
+        this.itensCompra.add(itemCompra);
+        itemCompra.setCompra(this);
+    }
+
+    public void removeItemCompra(ItemCompra itemCompra) {
+        this.itensCompra.remove(itemCompra);
+        itemCompra.setCompra(null);
     }
 
     public Double getPrecoTotal() {
@@ -43,5 +62,4 @@ public class Compra extends DefaultEntity {
     public void setPrecoTotal(Double precoTotal) {
         this.precoTotal = precoTotal;
     }
-
 }
