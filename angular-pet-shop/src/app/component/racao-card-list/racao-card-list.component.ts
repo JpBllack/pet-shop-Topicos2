@@ -4,7 +4,7 @@ import { Consulta } from '../../models/consulta.model';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsultaService } from '../../services/consulta.service';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { RacaoService } from '../../services/racao.service';
 import { Racao } from '../../models/racao.model';
@@ -20,7 +20,7 @@ type Card = {
 @Component({
   selector: 'app-consulta-card-list',
   standalone: true,
-  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton],
+  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton,CommonModule],
   templateUrl: './racao-card-list.component.html',
   styleUrl: './racao-card-list.component.css'
 })

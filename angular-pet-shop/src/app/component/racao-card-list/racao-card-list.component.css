@@ -1,27 +1,91 @@
 /* Define o estilo da imagem do card para garantir tamanho e ajuste */
 .card-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+/* Estilo para a container */
+.container {
+  padding: 20px;
+}
+
+/* Define a grade responsiva para os cards */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Estilo para o card */
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 60px; /* Espaço para o botão de adicionar */
+  max-height: 400px; /* Altura máxima do card */
+}
+
+/* Estilo para o conteúdo do card */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilo para o nome da ração */
+.nome {
+  text-align: center;
+  font-size: 1.2em; /* Tamanho da fonte do nome */
+  font-weight: bold; /* Negrito */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncar com reticências */
+  white-space: nowrap; /* Não quebrar linha */
+  max-width: 100%; /* Largura máxima */
+}
+
+/* Estilo para o preço no card */
+.preco {
+  font-weight: bold;
+  font-size: 1.5em; /* Aumenta o tamanho da fonte */
+  color: #007BFF; /* Opcional: alterar a cor do texto */
+  margin-top: auto; /* Empurra o preço para o final do espaço disponível */
+}
+
+/* Estilo para o botão de adicionar ao carrinho */
+.add-to-cart-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Background com transparência */
+  transform: translateY(100%);
+  transition: transform 0.3s, opacity 0.3s;
+  display: flex;
+  justify-content: center;
+  opacity: 0; /* Inicialmente invisível */
+}
+
+.mat-card-hover:hover .add-to-cart-footer {
+  transform: translateY(0);
+  opacity: 1; /* Torna o botão visível quando o mouse está sobre o card */
+}
+
+.add-to-cart-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #ff4081; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 0; /* Remova a borda arredondada */
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .mat-card {
     width: 100%;
-    height: 240px;
-    object-fit: cover;
   }
-  
-  /* Estilo para a container */
-  .container {
-    padding: 20px;
-  }
-  
-  /* Define a grade responsiva para os cards */
-  .responsive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  /* Centraliza o texto dentro dos elementos */
-  .centered-text {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+}

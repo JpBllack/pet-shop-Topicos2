@@ -1,11 +1,28 @@
 .carrinho-container {
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 40px auto; /* Ajuste aqui para adicionar margem inferior */
   padding: 20px;
-  padding-bottom: 5%;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.carrinho-itens-container {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.finalizar-compra-container {
+  flex: 1;
+  min-width: 300px;
+  max-height: 400px;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .carrinho-item {
@@ -62,44 +79,14 @@
 }
 
 .button-remover {
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #f44336;
   color: white;
 }
 
 .button-remover:hover {
+  border-radius: 10px;
   background-color: #d32f2f;
-}
-
-.carrinho-total {
-  text-align: right;
-  margin-top: 20px;
-  font-size: 1.2em;
-  color: #333;
-}
-
-.carrinho-total button {
-  margin-top: 10px;
-}
-
-.button-finalizar {
-  background-color: #2196f3;
-  color: white;
-}
-
-.button-finalizar:hover {
-  background-color: #1976d2;
-}
-
-.carrinho-vazio {
-  text-align: center;
-  padding: 20px;
-  background-color: #fff3e0;
-  border: 1px solid #ffcc80;
-  border-radius: 8px;
-  color: #ff9800;
-  font-size: 1.2em;
-  margin-top: 20px;
 }
 
 .semana-field {
@@ -115,6 +102,38 @@
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+.finalizar-compra-container p {
+  margin: 10px 0;
+}
+
+.button-finalizar {
+  border-radius: 10px;
+  background-color: #2196f3;
+  color: white;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 1em;
+}
+
+.button-finalizar:hover {
+  border-radius: 10px;
+  background-color: #1976d2;
+}
+
+@media (max-width: 800px) {
+  .carrinho-container {
+    flex-direction: column;
+  }
+
+  .carrinho-itens-container {
+    margin-right: 0;
+  }
+
+  .finalizar-compra-container {
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -141,4 +160,5 @@
     width: 100%;
     height: auto;
   }
+  
 }

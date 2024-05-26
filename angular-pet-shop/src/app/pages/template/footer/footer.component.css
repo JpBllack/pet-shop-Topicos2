@@ -4,18 +4,19 @@
     font-size: small;
 }
 
-/* Estiliza o rodapé */
 mat-toolbar {
-    background-color: #3f51b5; /* Exemplo de cor de fundo, ajuste conforme necessário */
-    color: white; /* Cor do texto */
-    text-align: center; /* Centraliza o texto */
-    padding: 1em 0; /* Espaçamento interno */
-    position: fixed; /* Fixa o rodapé */
-    bottom: 0; /* Posiciona no fundo da página */
-    left: 0; /* Alinha à esquerda */
-    width: 100%; /* Ocupa toda a largura da página */
-    z-index: 999;
-  }
+  background-color: #3f51b5; /* Cor de fundo do toolbar */
+  color: white; /* Cor do texto */
+  text-align: center; /* Centralizar o texto */
+  padding: 1em 0; /* Espaçamento interno */
+  position: fixed; /* Fixar o toolbar */
+  bottom: 0; /* Posicionar no fundo da página */
+  left: 0; /* Alinhar à esquerda */
+  width: 100%; /* Ocupar toda a largura da página */
+  z-index: 999; /* Z-index para garantir que fique acima de outros elementos */
+  margin-top: 20px; /* Adicionar margem superior para evitar que encoste em outros elementos */
+}
+
   
   .toolbar-title {
     font-size: 14px; /* Ajuste o tamanho da fonte conforme necessário */
