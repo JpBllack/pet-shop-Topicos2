@@ -57,7 +57,6 @@ mat-toolbar {
     
     padding-left: 100px;
     padding-right: 100px;
-    position: fixed;
     top: 0;
     z-index: 9999;
 }
