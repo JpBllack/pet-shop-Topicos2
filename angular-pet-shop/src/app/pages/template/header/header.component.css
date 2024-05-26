@@ -1,3 +1,13 @@
+
+
+
+
+/* Adiciona margem ao conteúdo principal para evitar que fique obscurecido pelo cabeçalho */
+.main-content {
+    margin-top: 80px; /* Ajuste conforme necessário para a altura do cabeçalho */
+}
+
+
 .example-spacer {
     flex: 1 1 auto;
 }
@@ -41,11 +51,15 @@ a img {
     margin-right: 5px;
 }
 
+
 /* Adiciona padding ao conteúdo da toolbar */
 mat-toolbar {
     
     padding-left: 100px;
     padding-right: 100px;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
 }
 
 .search-container {
