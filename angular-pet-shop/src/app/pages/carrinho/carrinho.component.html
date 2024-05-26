@@ -34,11 +34,11 @@
     </div>
   </div>
   <div class="finalizar-compra-container">
-    <div class="resumo-pedido">
-      <!-- Adicione aqui o resumo do pedido, subtotal, descontos, etc. -->
-      <p>Resumo do Pedido</p>
-    
-    </div>
-    <button mat-raised-button class="button-finalizar" (click)="finalizarCompra()">Finalizar Compra</button>
+  <div class="resumo-pedido">
+    <p>Resumo do Pedido</p>
+    <p>Preço Total: {{ calcularTotal() | currency:'BRL' }}</p>
   </div>
+  <button mat-raised-button class="button-finalizar" (click)="finalizarCompra()">Finalizar Compra</button>
+</div>
+
 </div>
