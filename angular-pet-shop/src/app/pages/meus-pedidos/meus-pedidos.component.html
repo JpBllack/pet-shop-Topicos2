@@ -6,8 +6,9 @@
         <p>Preço Total: R$ {{ compra.precoTotal | number:'1.2-2' }}</p>
       </div>
       <div class="compra-details">
-        <h3>Itens da Compra:</h3>
-        <ul class="compra-item-list">
+        <button (click)="toggleItens(compra)">Expandir/Recolher</button>
+        <ul class="compra-item-list" *ngIf="compra.itens && itensExpandidos[compra.id]">
+          <h3>Itens da Compra:</h3>
             <li *ngFor="let item of compra.itens" class="compra-item">
                 <p>{{ item.nome }} - Preço: R$ {{ item.preco | number:'1.2-2' }} - Quantidade: {{ item.quantidade }}</p>
             </li>

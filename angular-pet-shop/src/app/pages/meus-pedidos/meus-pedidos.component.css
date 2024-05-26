@@ -12,8 +12,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 10px;
   padding: 20px;
-  min-width: 400px; /* Reduzi a largura mínima para melhor adaptabilidade */
-  max-width: 800px;
+  width: 800px;
 }
 
 .compra-header, .compra-details, .compra-footer {
@@ -47,4 +46,34 @@
   background-color: #f0f0f0;
   padding: 10px;
   border-radius: 0 0 5px 5px;
+}
+
+/* Adicione classes de estilo para itens expandidos e recolhidos */
+.compra-details.expandido {
+  max-height: none; /* Remove a altura máxima para mostrar todos os itens */
+  overflow: visible; /* Permite que os itens sejam mostrados além dos limites do contêiner */
+}
+
+.compra-details.recolhido {
+  max-height: 0; /* Oculta os itens recolhidos definindo a altura máxima como zero */
+  overflow: hidden; /* Esconde qualquer conteúdo além dos limites do contêiner */
+}
+
+/* Estilos para o botão de expandir/recuperar */
+.compra-details button {
+  margin-bottom: 10px; /* Espaço entre o botão e a lista de itens */
+  display: block; /* Garante que o botão ocupe toda a largura do contêiner */
+  width: calc(100% - 40px); /* Largura total menos a largura dos espaçamentos (20px de cada lado) */
+  max-width: calc(100% - 40px); /* Largura máxima para evitar esticar além do contêiner */
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branco */
+  border: none; /* Remove a borda */
+  border-radius: 20px; /* Borda arredondada */
+  padding: 10px; /* Preenchimento interno */
+  cursor: pointer; /* Mostra o cursor como ponteiro ao passar sobre o botão */
+  transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+.compra-details button:hover {
+  background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
 }

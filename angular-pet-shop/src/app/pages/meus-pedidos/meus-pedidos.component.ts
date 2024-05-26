@@ -13,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class MeusPedidosComponent implements OnInit {
   compras: Compra[] = [];
+  itensExpandidos: { [key: number]: boolean } = {};
 
   constructor(private compraService: CompraService, private router: Router) {}
 
@@ -54,5 +55,14 @@ export class MeusPedidosComponent implements OnInit {
         console.error(`Erro ao carregar itens da compra ${compra.id}:`, error);
       }
     );
+  }
+
+  // Método para alternar entre expandir e recolher os itens
+  toggleItens(compra: Compra): void {
+    if (this.itensExpandidos[compra.id]) {
+      this.itensExpandidos[compra.id] = false; // Recolher os itens
+    } else {
+      this.itensExpandidos[compra.id] = true; // Expandir os itens
+    }
   }
 }
