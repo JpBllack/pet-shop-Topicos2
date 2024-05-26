@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -20,6 +21,9 @@ public class Compra extends DefaultEntity {
     private List<ItemCompra> itensCompra = new ArrayList<>();
 
     private Double precoTotal;
+
+    @Column(name = "usuario_id")
+    private Long usuarioId;
 
     // Getters and Setters
 
@@ -62,4 +66,14 @@ public class Compra extends DefaultEntity {
     public void setPrecoTotal(Double precoTotal) {
         this.precoTotal = precoTotal;
     }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    
 }

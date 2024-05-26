@@ -10,7 +10,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class CompraRepository implements PanacheRepository<Compra> {
 
     public List<Compra> findByUserId(Long id){
-        return find("usuario_id = ?1", id).list();
+        return find("usuarioId", id).list();
     }
     
 }

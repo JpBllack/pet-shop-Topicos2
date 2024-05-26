@@ -13,6 +13,7 @@ import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
 
@@ -30,8 +31,14 @@ public class CompraServiceImpl implements CompraService {
     }
 
     @Override
+    public List<CompraResponseDTO> getComprasByUserId(Long userId) {
+        List<Compra> compras = compraRepository.findByUserId(userId);
+        return compras.stream().map(CompraResponseDTO::valueOf).collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
-    public void concluirCompra(List<ItemCompra> itensCompra) {
+    public void concluirCompra(List<ItemCompra> itensCompra, Long userId) {
 
         if (itensCompra.isEmpty()) {
             throw new IllegalStateException("O carrinho está vazio");
@@ -46,6 +53,8 @@ public class CompraServiceImpl implements CompraService {
         for (ItemCompra itemCompra : itensCompra) {
             compra.addItemCompra(itemCompra);
         }
+
+        compra.setUsuarioId(userId);
 
         compraRepository.persist(compra);
     }

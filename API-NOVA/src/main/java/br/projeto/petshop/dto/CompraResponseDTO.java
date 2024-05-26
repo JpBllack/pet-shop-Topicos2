@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record CompraResponseDTO (
+    Long id,
     List<ItemCompraResponseDTO> itemCompra,
     Double precoTotal
 ){
@@ -14,6 +15,6 @@ public record CompraResponseDTO (
                 .map(ItemCompraResponseDTO::valueOf)
                 .collect(Collectors.toList());
 
-        return new CompraResponseDTO(itemCompraDTOs, compra.getPrecoTotal());
+        return new CompraResponseDTO(compra.getId(), itemCompraDTOs, compra.getPrecoTotal());
     }
 }

@@ -9,7 +9,9 @@ public interface CompraService {
 
     public List<CompraResponseDTO> getAllCompras();
 
-    public void concluirCompra(List<ItemCompra> itensCompra);
+    public List<CompraResponseDTO> getComprasByUserId(Long userId);
+
+    public void concluirCompra(List<ItemCompra> itensCompra, Long userId);
 
     
 }
