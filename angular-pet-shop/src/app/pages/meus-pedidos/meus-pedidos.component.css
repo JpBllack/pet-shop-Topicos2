@@ -1,22 +1,50 @@
-/* meus-pedidos.component.css */
+.compra-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
 
 .compra-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .compra-card h3 {
-    margin-top: 0;
-  }
-  
-  .compra-card ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .compra-card li {
-    margin-bottom: 5px;
-  }
-  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  min-width: 400px; /* Reduzi a largura mínima para melhor adaptabilidade */
+  max-width: 800px;
+}
+
+.compra-header, .compra-details, .compra-footer {
+  margin-bottom: 15px;
+}
+
+.compra-header p, .compra-details h3, .compra-item p {
+  margin: 5px 0;
+}
+
+.compra-item {
+  list-style-type: none;
+}
+
+.compra-item p {
+  margin: 5px 0;
+}
+
+.compra-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
+.compra-details {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.compra-footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
+}

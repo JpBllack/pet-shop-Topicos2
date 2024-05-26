@@ -1,19 +1,24 @@
-<!-- meus-pedidos.component.html -->
-
-<div *ngIf="compras.length > 0; else noCompras">
-    <h2>Minhas Compras</h2>
-    <div *ngFor="let compra of compras" class="compra-card">
-        <p>Data da Compra: {{ compra.dataCompra }}</p>
-      <p>Preço Total: R$ {{ compra.precoTotal }}</p>
-      <ul>
-        <li *ngFor="let item of compra.itens">
-          {{ item.nome }} - {{ item.preco }} - Quantidade: {{ item.quantidade }}
-        </li>
-      </ul>
-    </div>
+<div *ngIf="compras.length > 0; else noCompras" class="compra-container">
+  <h2>Minhas Compras</h2>
+  <div *ngFor="let compra of compras" class="compra-card">
+      <div class="compra-header">
+        <p>Data da Compra: {{ compra.dataCompra | date:'dd/MM/yyyy' }}</p>
+        <p>Preço Total: R$ {{ compra.precoTotal | number:'1.2-2' }}</p>
+      </div>
+      <div class="compra-details">
+        <h3>Itens da Compra:</h3>
+        <ul class="compra-item-list">
+            <li *ngFor="let item of compra.itens" class="compra-item">
+                <p>{{ item.nome }} - Preço: R$ {{ item.preco | number:'1.2-2' }} - Quantidade: {{ item.quantidade }}</p>
+            </li>
+        </ul>
+      </div>
+      <div class="compra-footer">
+        <!-- Adicione qualquer conteúdo adicional para o rodapé aqui -->
+      </div>
   </div>
-  
-  <ng-template #noCompras>
-    <p>Nenhuma compra encontrada.</p>
-  </ng-template>
-  
+</div>
+
+<ng-template #noCompras>
+  <p>Nenhuma compra encontrada.</p>
+</ng-template>

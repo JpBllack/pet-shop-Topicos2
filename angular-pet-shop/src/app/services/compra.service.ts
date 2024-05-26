@@ -18,6 +18,11 @@ export class CompraService {
         return this.http.get<Compra[]>(url);
     }
 
+    getItensByCompraId(compraId: number): Observable<ItemCompra[]> {
+        const url = `${this.apiUrl}/${compraId}/itens`;
+        return this.http.get<ItemCompra[]>(url);
+    }
+
 }
 
 export interface Compra {
@@ -28,7 +33,8 @@ export interface Compra {
 }
 
 export interface ItemCompra {
+    id: number;
     nome: string;
-    precoUnitario: number;
+    preco: number;
     quantidade: number;
 }

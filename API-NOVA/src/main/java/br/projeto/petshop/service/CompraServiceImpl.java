@@ -37,6 +37,11 @@ public class CompraServiceImpl implements CompraService {
     }
 
     @Override
+    public List<ItemCompra> getItensCompraByCompraId(Long compraId){
+        return compraRepository.findItensByCompraId(compraId);
+    }
+
+    @Override
     @Transactional
     public void concluirCompra(List<ItemCompra> itensCompra, Long userId) {
 

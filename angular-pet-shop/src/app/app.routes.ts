@@ -58,7 +58,7 @@ export const routes: Routes = [
             { path: 'add-pet', component: AddPetComponent, data: {Title: 'Add Pet'}},
             { path: 'meus-pets', component: MeusPetsComponent, title: 'Meus Pets'},
             { path: 'pedidos', component: MeusPedidosComponent, title: 'Meus Pedidos'},
-            //{ path: 'detalhes-pedido/:id', component: DetalhesPedidoComponent },
+            { path: 'detalhes-pedido/:id', component: MeusPedidosComponent },
             { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'},
 
         ]

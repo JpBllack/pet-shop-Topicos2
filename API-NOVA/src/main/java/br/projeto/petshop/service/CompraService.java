@@ -11,6 +11,8 @@ public interface CompraService {
 
     public List<CompraResponseDTO> getComprasByUserId(Long userId);
 
+    public List<ItemCompra> getItensCompraByCompraId(Long compraId);
+
     public void concluirCompra(List<ItemCompra> itensCompra, Long userId);
 
     

@@ -1,11 +1,13 @@
 package br.projeto.petshop.resource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.CompraResponseDTO;
+import br.projeto.petshop.dto.ItemCompraResponseDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.ItemCompra;
 import br.projeto.petshop.service.CompraService;
@@ -90,6 +92,22 @@ public class CompraResource {
         } catch (Exception e) {
             LOG.error("Erro ao concluir compra", e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/{compraId}/itens")
+    @RolesAllowed({"User", "Admin", "Vet"})
+    public Response getItensCompraByCompraId(@PathParam("compraId") Long compraId) {
+        try {
+            List<ItemCompra> itensCompra = compraService.getItensCompraByCompraId(compraId);
+            List<ItemCompraResponseDTO> itensCompraResponse = itensCompra.stream()
+                    .map(ItemCompraResponseDTO::valueOf)
+                    .collect(Collectors.toList());
+            return Response.ok(itensCompraResponse).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao obter itens de compra").build();
         }
     }
 
