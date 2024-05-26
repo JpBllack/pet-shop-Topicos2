@@ -81,4 +81,5 @@ export class CarrinhoService {
     this.carrinhoSubject.next([]);
     localStorage.removeItem('carrinho');
   }
+
 }

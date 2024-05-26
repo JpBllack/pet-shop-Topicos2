@@ -1,0 +1,22 @@
+/* meus-pedidos.component.css */
+
+.compra-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .compra-card h3 {
+    margin-top: 0;
+  }
+  
+  .compra-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .compra-card li {
+    margin-bottom: 5px;
+  }
+  

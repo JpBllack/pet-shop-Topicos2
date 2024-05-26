@@ -36,6 +36,7 @@ import { AlterarInformacoesComponent } from './pages/update-user-info/alterar-in
 import { AlterarSenhaComponent } from './pages/update-senha/update-senha.component';
 import { AddPetComponent } from './pages/add-pet/add-pet.component';
 import { MeusPetsComponent } from './pages/meus-pets/meus-pets.component';
+import { MeusPedidosComponent } from './pages/meus-pedidos/meus-pedidos.component';
 
 
 export const routes: Routes = [
@@ -51,11 +52,15 @@ export const routes: Routes = [
             { path: 'login', component: LoginComponent, title: 'Login'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
             { path: 'signup', component: SignupComponent, data: {Title: 'Sign Up'}},
+
             { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
             { path: 'alterar-info', component: AlterarInformacoesComponent, data: {title: 'Alterar informações de usuario'}},
             { path: 'add-pet', component: AddPetComponent, data: {Title: 'Add Pet'}},
             { path: 'meus-pets', component: MeusPetsComponent, title: 'Meus Pets'},
-            { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'}
+            { path: 'pedidos', component: MeusPedidosComponent, title: 'Meus Pedidos'},
+            //{ path: 'detalhes-pedido/:id', component: DetalhesPedidoComponent },
+            { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'},
+
         ]
 
     },

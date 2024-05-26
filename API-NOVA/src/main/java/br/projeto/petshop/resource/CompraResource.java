@@ -56,11 +56,16 @@ public class CompraResource {
     }
 
     @GET
-    @Path("/usuario/{userId}")
+    @Path("/usuario/compras")
     @RolesAllowed({"User", "Admin", "Vet"})
-    public Response getComprasByUserId(@PathParam("userId") Long userId) {
+    public Response getComprasUsuarioLogado() {
         try {
-            List<CompraResponseDTO> compras = compraService.getComprasByUserId(userId);
+
+
+            String login = jwt.getSubject();
+            UsuarioResponseDTO user = usuarioService.findByEmail(login);
+
+            List<CompraResponseDTO> compras = compraService.getComprasByUserId(user.id());
             return Response.ok(compras).build();
         } catch(Exception e){
             e.printStackTrace();
