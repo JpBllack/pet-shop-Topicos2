@@ -59,10 +59,16 @@ export class CarrinhoService {
   }
 
   concluirCompra(itens: ItemCarrinho[]): void {
-    this.http.post(`${this.apiUrl}/concluir`, itens).subscribe(() => {
-      this.limparCarrinho();
-    });
+    this.http.post(`${this.apiUrl}/concluir`, itens).subscribe(
+      () => {
+        this.limparCarrinho();
+      },
+      (error) => {
+        console.error('Erro ao concluir compra:', error);
+      }
+    );
   }
+  
   
 
   private limparCarrinho(): void {

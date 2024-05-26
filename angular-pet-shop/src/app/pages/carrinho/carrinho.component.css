@@ -2,6 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 5%;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -61,6 +62,7 @@
 }
 
 .button-remover {
+  border-radius: 5px;
   background-color: #f44336;
   color: white;
 }
@@ -95,6 +97,9 @@
   background-color: #fff3e0;
   border: 1px solid #ffcc80;
   border-radius: 8px;
+  color: #ff9800;
+  font-size: 1.2em;
+  margin-top: 20px;
 }
 
 .semana-field {

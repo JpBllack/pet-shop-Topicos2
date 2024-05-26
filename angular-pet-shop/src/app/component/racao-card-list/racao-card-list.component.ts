@@ -14,7 +14,7 @@ type Card = {
   idConsulta: number;
   nome: string;
   preco: number;
-  imagem: String;
+  imagem: string;
 }
 
 @Component({
@@ -74,7 +74,7 @@ export class RacaoCardListComponent implements OnInit {
     this.carrinhoService.adicionar({
       id: card.idConsulta,
       nome: card.nome,
-      image:card.imagem,
+      imagem: card.imagem,
       preco: card.preco,
       quantidade: 1
     })

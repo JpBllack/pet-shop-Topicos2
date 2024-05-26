@@ -4,34 +4,35 @@ import jakarta.persistence.ManyToOne;
 
 public class ItemCompra extends DefaultEntity {
 
-    @ManyToOne
-    private Racao racao;
-
-    private Double precoUnitario;
-    private Integer quantidade;
-
-    public Racao getRacao() {
-        return racao;
+    private String nome;
+    private double precoUnitario;
+    private int quantidade;
+    private String imagem;
+    
+    public String getNome() {
+        return nome;
     }
-
-    public void setRacao(Racao racao) {
-        this.racao = racao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-
-    public Double getPrecoUnitario() {
+    public double getPrecoUnitario() {
         return precoUnitario;
     }
-
-    public void setPrecoUnitario(Double precoUnitario) {
+    public void setPrecoUnitario(double precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
-
-    public Integer getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
-
-    public void setQuantidade(Integer quantidade) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+    public String getImagem() {
+        return imagem;
+    }
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
 
+    
 }
