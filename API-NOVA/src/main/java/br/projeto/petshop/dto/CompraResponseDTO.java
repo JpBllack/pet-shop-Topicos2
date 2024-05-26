@@ -1,16 +1,19 @@
 package br.projeto.petshop.dto;
 
-import java.util.List;
-
 import br.projeto.petshop.model.Compra;
-import br.projeto.petshop.model.ItemCompra;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public record CompraResponseDTO (
-    List<ItemCompra> itemCompra,
+    List<ItemCompraResponseDTO> itemCompra,
     Double precoTotal
 ){
     public static CompraResponseDTO valueOf(Compra compra){
-        return new CompraResponseDTO(compra.getItensCompra(), compra.getPrecoTotal());
+        List<ItemCompraResponseDTO> itemCompraDTOs = compra.getItensCompra().stream()
+                .map(ItemCompraResponseDTO::valueOf)
+                .collect(Collectors.toList());
+
+        return new CompraResponseDTO(itemCompraDTOs, compra.getPrecoTotal());
     }
-    
 }
