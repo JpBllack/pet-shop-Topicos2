@@ -9,7 +9,6 @@ mat-toolbar {
   color: white; /* Cor do texto */
   text-align: center; /* Centralizar o texto */
   padding: 1em 0; /* Espaçamento interno */
-  position: fixed; /* Fixar o toolbar */
   bottom: 0; /* Posicionar no fundo da página */
   left: 0; /* Alinhar à esquerda */
   width: 100%; /* Ocupar toda a largura da página */

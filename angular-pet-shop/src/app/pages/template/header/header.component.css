@@ -43,6 +43,7 @@ a img {
 
 /* Adiciona padding ao conteúdo da toolbar */
 mat-toolbar {
+    
     padding-left: 100px;
     padding-right: 100px;
 }
