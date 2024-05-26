@@ -58,8 +58,14 @@ export class CarrinhoService {
     localStorage.setItem('carrinho', JSON.stringify(this.carrinhoSubject.value));
   }
 
-  concluirCompra(itens: ItemCarrinho[]): void {
-    this.http.post(`${this.apiUrl}/concluir`, itens).subscribe(
+  concluirCompra(itensCarrinho: ItemCarrinho[]): void {
+    const itensCompra = itensCarrinho.map(itemCarrinho => ({
+      nome: itemCarrinho.nome,
+      precoUnitario: itemCarrinho.preco,
+      quantidade: itemCarrinho.quantidade
+    }));
+
+    this.http.post(`${this.apiUrl}/concluir`, itensCompra).subscribe(
       () => {
         this.limparCarrinho();
       },

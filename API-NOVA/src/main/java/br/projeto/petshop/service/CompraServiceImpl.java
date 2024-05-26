@@ -1,5 +1,6 @@
 package br.projeto.petshop.service;
 
+import br.projeto.petshop.dto.CompraResponseDTO;
 import br.projeto.petshop.model.Compra;
 import br.projeto.petshop.model.ItemCompra;
 import br.projeto.petshop.repository.CompraRepository;
@@ -8,6 +9,8 @@ import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +25,18 @@ public class CompraServiceImpl implements CompraService {
     private static final Logger LOG = Logger.getLogger(PetResource.class);
 
     @Override
+    public List<CompraResponseDTO> getAllCompras() {
+        return compraRepository.listAll().stream().map(e -> CompraResponseDTO.valueOf(e)).toList();
+    }
+
+    @Override
     @Transactional
     public void concluirCompra(List<ItemCompra> itensCompra) {
+
+        if (itensCompra.isEmpty()) {
+            throw new IllegalStateException("O carrinho está vazio");
+        }
+
         Compra compra = new Compra();
         compra.setDataCompra(new Date());
 
@@ -31,8 +44,12 @@ public class CompraServiceImpl implements CompraService {
         LOG.info(itensCompra);
         compra.setPrecoTotal(precoTotal);
 
-        compra.setItensCompra(itensCompra);
+        // Associa os itens de compra à compra antes de persistir
+        for (ItemCompra itemCompra : itensCompra) {
+            itemCompra.setCompra(compra);
+        }
 
+        // Persiste a compra e os itens associados
         compraRepository.persist(compra);
     }
 

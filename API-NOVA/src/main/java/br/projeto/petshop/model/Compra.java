@@ -4,17 +4,18 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
+@Entity
 public class Compra extends DefaultEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCompra;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "compra_id")
+    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
     private List<ItemCompra> itensCompra;
 
     private Double precoTotal;

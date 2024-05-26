@@ -1,14 +1,20 @@
 package br.projeto.petshop.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+@Entity
 public class ItemCompra extends DefaultEntity {
 
     private String nome;
     private double precoUnitario;
     private int quantidade;
-    private String imagem;
     
+    @ManyToOne
+    @JoinColumn(name = "compra_id")
+    private Compra compra;
+
     public String getNome() {
         return nome;
     }
@@ -27,12 +33,12 @@ public class ItemCompra extends DefaultEntity {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    public String getImagem() {
-        return imagem;
+    public Compra getCompra() {
+        return compra;
     }
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
-
+    
     
 }
