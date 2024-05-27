@@ -63,11 +63,19 @@ export class MeusPedidosComponent implements OnInit {
     console.log('Status Compra:', statusCompra);
     if (statusCompra && statusCompra.length > 0) {
       const ultimoStatus = statusCompra[statusCompra.length - 1].status;
-      return StatusLabel[ultimoStatus] || 'Status desconhecido';
+      // Verifica se é uma string ou um objeto com a propriedade 'label'
+      if (typeof ultimoStatus === 'string') {
+        return ultimoStatus; // Se for uma string, retorna diretamente
+      } else if (typeof ultimoStatus === 'object' && 'label' in ultimoStatus) {
+        return ultimoStatus; // Se for um objeto com 'label', retorna o valor de 'label'
+      } else {
+        return 'Status desconhecido'; // Se não for uma string nem um objeto com 'label', retorna 'Status desconhecido'
+      }
     } else {
       return 'Status desconhecido';
     }
   }
+
 
 
   // Método para alternar entre expandir e recolher os itens

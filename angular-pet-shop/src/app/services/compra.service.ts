@@ -43,5 +43,5 @@ export interface ItemCompra {
 
 export class StatusCompra{
     dataStatus!: Date;
-    status!: Status;
+    status!: string;
 }
