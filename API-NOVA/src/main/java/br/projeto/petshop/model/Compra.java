@@ -20,6 +20,9 @@ public class Compra extends DefaultEntity {
     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemCompra> itensCompra = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StatusCompra> statusCompra = new ArrayList<>();
+
     private Double precoTotal;
 
     @Column(name = "usuario_id")
@@ -75,5 +78,23 @@ public class Compra extends DefaultEntity {
         this.usuarioId = usuarioId;
     }
 
+    public List<StatusCompra> getStatusCompra() {
+        return statusCompra;
+    }
+
+    public void setStatusCompra(List<StatusCompra> statusCompra) {
+        this.statusCompra.clear();
+        if (statusCompra != null) {
+            this.statusCompra.addAll(statusCompra);
+        }
+    }
+
+    public void addStatusCompra(StatusCompra statusCompra) {
+        this.statusCompra.add(statusCompra);
+    }
+
+    public void removeStatusCompra(StatusCompra statusCompra) {
+        this.statusCompra.remove(statusCompra);
+    }
     
 }

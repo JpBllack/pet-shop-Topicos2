@@ -3,6 +3,8 @@ package br.projeto.petshop.service;
 import br.projeto.petshop.dto.CompraResponseDTO;
 import br.projeto.petshop.model.Compra;
 import br.projeto.petshop.model.ItemCompra;
+import br.projeto.petshop.model.Status;
+import br.projeto.petshop.model.StatusCompra;
 import br.projeto.petshop.repository.CompraRepository;
 import br.projeto.petshop.resource.PetResource;
 import io.quarkus.logging.Log;
@@ -60,6 +62,10 @@ public class CompraServiceImpl implements CompraService {
         }
 
         compra.setUsuarioId(userId);
+
+        StatusCompra primeiroStatus = new StatusCompra();
+        primeiroStatus.setStatus(Status.valueOf(1)); // Defina o status inicial aqui
+        compra.addStatusCompra(primeiroStatus);
 
         compraRepository.persist(compra);
     }
