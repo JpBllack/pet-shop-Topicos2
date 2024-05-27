@@ -8,6 +8,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { RacaoService } from '../../services/racao.service';
 import { Racao } from '../../models/racao.model';
+import { Router } from '@angular/router';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
@@ -32,7 +33,10 @@ export class RacaoCardListComponent implements OnInit {
 
   constructor(private racaoService: RacaoService, 
               private carrinhoService: CarrinhoService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private route: Router
+            )
+               {}
 
   ngOnInit(): void {
     this.carregarConsultas();
@@ -82,7 +86,9 @@ export class RacaoCardListComponent implements OnInit {
 
   }
 
-  
+  navegarParaProduto(id: number) {
+    this.route.navigate(['/ver-produto', id]); 
+  }
 
   showSnackbarTopPosition(content:any, action:any) {
     this.snackBar.open(content, action, {

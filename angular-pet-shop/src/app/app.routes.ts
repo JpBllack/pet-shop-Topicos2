@@ -37,6 +37,7 @@ import { AlterarSenhaComponent } from './pages/update-senha/update-senha.compone
 import { AddPetComponent } from './pages/add-pet/add-pet.component';
 import { MeusPetsComponent } from './pages/meus-pets/meus-pets.component';
 import { MeusPedidosComponent } from './pages/meus-pedidos/meus-pedidos.component';
+import { VerProdutoComponent } from './pages/ver-produto/ver-produto.component';
 
 
 export const routes: Routes = [
@@ -49,6 +50,7 @@ export const routes: Routes = [
             {path: '', pathMatch: 'full', redirectTo: 'produtos'},
 
             { path: 'produtos', component: RacaoCardListComponent, title: 'Produtos à Venda'},
+            { path: 'ver-produto/:id', component: VerProdutoComponent },
             { path: 'login', component: LoginComponent, title: 'Login'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
             { path: 'signup', component: SignupComponent, data: {Title: 'Sign Up'}},

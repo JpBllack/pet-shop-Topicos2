@@ -1,0 +1,36 @@
+.produto-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 20px;
+  }
+  
+  .produto-imagem-nome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .produto-imagem {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .produto-preco-carrinho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .produto-preco {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .adicionar-carrinho-button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
