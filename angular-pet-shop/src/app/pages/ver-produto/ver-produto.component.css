@@ -82,3 +82,10 @@
   margin-right: 10px;
   font-size: 1.5em;
 }
+
+.produto-descricao {
+  font-size: 1em;
+  margin-top: 10px;
+  text-align: center;
+  color: #555; /* Cor do texto */
+}

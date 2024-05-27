@@ -3,6 +3,7 @@
       <div class="produto-imagem-nome">
           <h1>{{ produto.nome }}</h1>
           <img [src]="getImagemPath(produto.imagem)" alt="{{ produto.nome }}" class="produto-imagem">
+          <p class="produto-descricao">{{ produto.descricao }}</p> 
       </div>
   </div>
   <div class="adicionar-carrinho-card">

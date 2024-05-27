@@ -7,6 +7,7 @@ export class Racao {
   id!: number;
   nome!: string;
   sabor!: string;
+  descricao!: string;
   preco!: number;
   animal!: TipoAnimal;
   peso!: Peso;

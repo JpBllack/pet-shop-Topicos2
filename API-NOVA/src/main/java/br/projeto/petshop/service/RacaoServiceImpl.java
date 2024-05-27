@@ -79,6 +79,7 @@ public class RacaoServiceImpl implements RacaoService {
         Racao racao = new Racao();
         racao.setNome(racaoDTO.nome());
         racao.setSabor(racaoDTO.sabor());
+        racao.setDescricao(racaoDTO.descricao());
         racao.setAnimal(tipoAnimalRepository.findById(racaoDTO.animal()));
         racao.setPeso(Peso.valueOf(racaoDTO.peso().getId()));
         racao.setIdade(Idade.valueOf(racaoDTO.idade().getId()));
@@ -102,6 +103,7 @@ public class RacaoServiceImpl implements RacaoService {
         }
         racao.setNome(racaoDTO.nome());
         racao.setSabor(racaoDTO.sabor());
+        racao.setDescricao(racaoDTO.descricao());
         racao.setAnimal(tipoAnimalRepository.findById(racaoDTO.animal()));
         racao.setPeso(Peso.valueOf(racaoDTO.peso().getId()));
         racao.setIdade(Idade.valueOf(racaoDTO.idade().getId()));;

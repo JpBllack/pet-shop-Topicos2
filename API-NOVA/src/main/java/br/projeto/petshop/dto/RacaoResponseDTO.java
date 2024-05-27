@@ -16,7 +16,8 @@ public record RacaoResponseDTO(
     String imagem,
     Marca marca,
     Double preco,
-    Double estoque
+    Double estoque,
+    String descricao
 ) {
 
     public static RacaoResponseDTO valueOf(Racao racao){
@@ -30,7 +31,9 @@ public record RacaoResponseDTO(
              racao.getImagem(), 
              racao.getMarca(),
              racao.getPreco(),
-             racao.getEstoque());
+             racao.getEstoque(),
+             racao.getDescricao()
+             );
     }
 }
  

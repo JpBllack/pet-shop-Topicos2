@@ -18,7 +18,14 @@
                     </mat-error>
                 </mat-form-field>
 
-                
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Descrição</mat-label>
+                    <input matInput type="text" formControlName="descricao">
+                    <mat-error *ngIf="formGroup.get('descricao')?.invalid && formGroup.get('descricao')?.touched">
+                      A descrição é obrigatória.
+                    </mat-error>
+                  </mat-form-field>
+                  
 
                 <mat-form-field appearance="fill">
                     <mat-label>Tipo de Animal</mat-label>

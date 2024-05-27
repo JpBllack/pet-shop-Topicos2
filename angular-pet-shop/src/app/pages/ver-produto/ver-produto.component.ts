@@ -76,4 +76,6 @@ export class VerProdutoComponent implements OnInit {
       this.quantidade -= 1;
     }
   }
+
+  
 }

@@ -30,7 +30,7 @@ import { RacaoService } from '../../../../services/racao.service';
 
 
 export class RacaoListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nome', 'imagem', 'sabor', 'marca','preco', 'estoque', 'animal', 'peso', 'idade', 'acao'];
+  displayedColumns: string[] = ['id', 'nome', 'imagem', 'sabor', 'marca','preco', 'descricao', 'estoque', 'animal', 'peso', 'idade', 'acao'];
   racoes: Racao[] = [];
   animals: TipoAnimal[] = [];
 
