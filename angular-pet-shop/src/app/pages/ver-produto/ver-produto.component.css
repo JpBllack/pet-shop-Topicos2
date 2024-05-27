@@ -66,5 +66,19 @@
 
 .adicionar-carrinho-button {
   width: 100%;
-  max-width: 200px;
+  max-width: 300px;
+  margin-top: 20px;
+  background-color: #150ab8; /* Cor de fundo */
+  color: #ffffff; /* Cor do texto */
+  border-radius: 25px; /* Borda arredondada */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 1.0em;
+}
+
+.adicionar-carrinho-button mat-icon {
+  margin-right: 10px;
+  font-size: 1.5em;
 }

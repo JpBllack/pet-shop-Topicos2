@@ -8,11 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ItemCarrinho } from '../../models/itemcarrinho.model';
 import { FooterComponent } from '../template/footer/footer.component';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-ver-produto',
   standalone: true,
-  imports: [FormsModule, CommonModule, FooterComponent],
+  imports: [FormsModule, CommonModule, FooterComponent,MatIcon,MatIconModule],
   templateUrl: './ver-produto.component.html',
   styleUrls: ['./ver-produto.component.css']
 })

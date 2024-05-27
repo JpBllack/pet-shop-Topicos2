@@ -15,14 +15,13 @@
           <input type="number" id="quantidade" [(ngModel)]="quantidade" min="1" class="quantidade-input" readonly>
           <button (click)="aumentarQuantidade()" class="quantity-button">+</button>
       </div>
-      <div class="produto-preco-carrinho">
-          <p class="produto-preco-total">Preço Total: {{ produto.preco * quantidade | currency:'BRL' }}</p>
-      </div>
-      <button mat-raised-button color="primary" (click)="adicionarAoCarrinho()" class="adicionar-carrinho-button">Adicionar ao carrinho</button>
+      <button mat-raised-button color="primary" (click)="adicionarAoCarrinho()" class="adicionar-carrinho-button">
+          <mat-icon>shopping_cart</mat-icon>
+          Adicionar ao carrinho por {{ produto.preco * quantidade | currency:'BRL' }}
+      </button>
   </div>
 </div>
 <div *ngIf="!produto">
   <p>Carregando produto...</p>
 </div>
-
 
