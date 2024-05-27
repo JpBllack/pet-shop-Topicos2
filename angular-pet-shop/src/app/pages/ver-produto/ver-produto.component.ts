@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ItemCarrinho } from '../../models/itemcarrinho.model';
+import { FooterComponent } from '../template/footer/footer.component';
 
 type Card = {
   idConsulta: number;
@@ -18,7 +19,7 @@ type Card = {
 @Component({
   selector: 'app-ver-produto',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,FooterComponent],
   templateUrl: './ver-produto.component.html',
   styleUrls: ['./ver-produto.component.css']
 })
