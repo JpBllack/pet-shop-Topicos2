@@ -31,15 +31,15 @@ export interface Compra {
     dataCompra: Date;
     statusCompra: StatusCompra[];
     precoTotal: number;
-    itens: ItemCarrinho[];
+    itens: ItemCompra[];
 }
 
 export interface ItemCompra {
-    id: number;
     nome: string;
-    preco: number;
+    precoUnitario: number; // Renomeando para corresponder ao modelo do backend
     quantidade: number;
 }
+
 
 export class StatusCompra{
     dataStatus!: Date;

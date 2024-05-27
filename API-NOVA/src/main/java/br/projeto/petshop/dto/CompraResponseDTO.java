@@ -3,6 +3,7 @@ package br.projeto.petshop.dto;
 import br.projeto.petshop.model.Compra;
 import br.projeto.petshop.model.StatusCompra;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,8 @@ public record CompraResponseDTO (
     Long id,
     List<ItemCompraResponseDTO> itemCompra,
     List<StatusCompraDTO> statusCompra,
-    Double precoTotal
+    Double precoTotal,
+    Date dataCompra // Adicionando a data da compra ao DTO
 ){
     public static CompraResponseDTO valueOf(Compra compra){
         List<ItemCompraResponseDTO> itemCompraDTOs = compra.getItensCompra().stream()
@@ -21,6 +23,6 @@ public record CompraResponseDTO (
                 .map(StatusCompraDTO::valueOf)
                 .collect(Collectors.toList());
 
-        return new CompraResponseDTO(compra.getId(), itemCompraDTOs, statusCompraDTOs, compra.getPrecoTotal());
+        return new CompraResponseDTO(compra.getId(), itemCompraDTOs, statusCompraDTOs, compra.getPrecoTotal(), compra.getDataCompra());
     }
 }

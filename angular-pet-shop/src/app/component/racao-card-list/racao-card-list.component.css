@@ -8,7 +8,9 @@
 /* Estilo para a container */
 .container {
   padding: 20px;
+  padding-bottom: 5%; 
 }
+
 
 /* Define a grade responsiva para os cards */
 .responsive-grid {
@@ -37,7 +39,7 @@
 }
 
 /* Estilo para o nome da ração */
-.nome {
+.mat-card-title {
   text-align: center;
   font-size: 1.2em; /* Tamanho da fonte do nome */
   font-weight: bold; /* Negrito */

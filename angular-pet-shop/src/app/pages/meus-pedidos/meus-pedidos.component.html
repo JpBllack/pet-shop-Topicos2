@@ -2,7 +2,7 @@
   <h2>Minhas Compras</h2>
   <div *ngFor="let compra of compras" class="compra-card">
       <div class="compra-header">
-        <p>Status: {{ getStatusLabel(compra.statusCompra) }}</p>
+        <p id="status">Status: {{ getStatusLabel(compra.statusCompra) }}</p>
         <p>Data da Compra: {{ compra.dataCompra | date:'dd/MM/yyyy' }}</p>
         <p>Preço Total: R$ {{ compra.precoTotal | number:'1.2-2' }}</p>
       </div>
@@ -11,7 +11,9 @@
         <ul class="compra-item-list" *ngIf="compra.itens && itensExpandidos[compra.id]">
           <h3>Itens da Compra:</h3>
             <li *ngFor="let item of compra.itens" class="compra-item">
-                <p>{{ item.nome }} - Preço: R$ {{ item.preco | number:'1.2-2' }} - Quantidade: {{ item.quantidade }}</p>
+                <p>Produto: {{ item.nome }}</p>
+                <p>Preço: R$ {{ item.precoUnitario | number:'1.2-2' }}</p>
+                <p>Quantidade: {{ item.quantidade }}</p>
             </li>
         </ul>
       </div>

@@ -27,7 +27,6 @@ export class MeusPedidosComponent implements OnInit {
       (compras: Compra[]) => {
         this.compras = compras;
         console.log('Compras carregadas:', this.compras);
-        // Para cada compra, carrega os itens
         this.compras.forEach(compra => {
           this.loadItensCompra(compra);
         });
@@ -42,16 +41,8 @@ export class MeusPedidosComponent implements OnInit {
   loadItensCompra(compra: Compra): void {
     this.compraService.getItensByCompraId(compra.id).subscribe(
       (itensCompra: ItemCompra[]) => {
-        // Mapeia os itens de compra para itens de carrinho
-        const itensCarrinho = itensCompra.map(itemCompra => ({
-          id: 0, // Preencha com o valor apropriado se houver um ID disponível
-          nome: itemCompra.nome,
-          preco: itemCompra.preco,
-          quantidade: itemCompra.quantidade,
-          imagem: '', // Preencha com a imagem apropriada, se estiver disponível
-          frequencia: 0
-        }));
-        compra.itens = itensCarrinho;
+        console.log(compra.itens)
+        compra.itens = itensCompra;
       },
       (error) => {
         console.error(`Erro ao carregar itens da compra ${compra.id}:`, error);
@@ -60,23 +51,20 @@ export class MeusPedidosComponent implements OnInit {
   }
 
   getStatusLabel(statusCompra: StatusCompra[]): string {
-    console.log('Status Compra:', statusCompra);
+    //console.log('Status Compra:', statusCompra);
     if (statusCompra && statusCompra.length > 0) {
       const ultimoStatus = statusCompra[statusCompra.length - 1].status;
-      // Verifica se é uma string ou um objeto com a propriedade 'label'
       if (typeof ultimoStatus === 'string') {
-        return ultimoStatus; // Se for uma string, retorna diretamente
+        return ultimoStatus;
       } else if (typeof ultimoStatus === 'object' && 'label' in ultimoStatus) {
-        return ultimoStatus; // Se for um objeto com 'label', retorna o valor de 'label'
+        return ultimoStatus;
       } else {
-        return 'Status desconhecido'; // Se não for uma string nem um objeto com 'label', retorna 'Status desconhecido'
+        return 'Status desconhecido';
       }
     } else {
       return 'Status desconhecido';
     }
   }
-
-
 
   // Método para alternar entre expandir e recolher os itens
   toggleItens(compra: Compra): void {

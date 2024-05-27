@@ -4,13 +4,13 @@ import br.projeto.petshop.model.ItemCompra;
 
 public record ItemCompraResponseDTO (
     String nome,
-    double precoUnitario,
+    double preco, 
     int quantidade
 ) {
     public static ItemCompraResponseDTO valueOf(ItemCompra itemCompra) {
         return new ItemCompraResponseDTO(
             itemCompra.getNome(),
-            itemCompra.getPrecoUnitario(),
+            itemCompra.getPrecoUnitario(), 
             itemCompra.getQuantidade()
         );
     }

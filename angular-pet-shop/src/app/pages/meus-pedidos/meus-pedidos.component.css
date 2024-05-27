@@ -15,20 +15,10 @@
   width: 800px;
 }
 
-.compra-header, .compra-details, .compra-footer {
-  margin-bottom: 15px;
-}
-
-.compra-header p, .compra-details h3, .compra-item p {
+.compra-header #status {
   margin: 5px 0;
-}
-
-.compra-item {
-  list-style-type: none;
-}
-
-.compra-item p {
-  margin: 5px 0;
+  font-size: 18px; /* Tamanho da fonte maior */
+  font-weight: bold; /* Texto em negrito */
 }
 
 .compra-header {
@@ -48,7 +38,6 @@
   border-radius: 0 0 5px 5px;
 }
 
-/* Adicione classes de estilo para itens expandidos e recolhidos */
 .compra-details.expandido {
   max-height: none; /* Remove a altura máxima para mostrar todos os itens */
   overflow: visible; /* Permite que os itens sejam mostrados além dos limites do contêiner */
@@ -59,7 +48,6 @@
   overflow: hidden; /* Esconde qualquer conteúdo além dos limites do contêiner */
 }
 
-/* Estilos para o botão de expandir/recuperar */
 .compra-details button {
   margin-bottom: 10px; /* Espaço entre o botão e a lista de itens */
   display: block; /* Garante que o botão ocupe toda a largura do contêiner */
