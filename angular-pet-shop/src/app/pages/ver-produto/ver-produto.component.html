@@ -1,24 +1,28 @@
 <div class="produto-container" *ngIf="produto">
-    <div class="produto-details">
+  <div class="produto-details">
       <div class="produto-imagem-nome">
-        <h1>{{ produto.nome }}</h1>
-        <img [src]="getImagemPath(produto.imagem)" alt="{{ produto.nome }}" class="produto-imagem">
+          <h1>{{ produto.nome }}</h1>
+          <img [src]="getImagemPath(produto.imagem)" alt="{{ produto.nome }}" class="produto-imagem">
       </div>
-    </div>
-    <div class="adicionar-carrinho-card">
-        <div class="quantidade-container">
-          <div class="produto-preco-carrinho">
-            <p class="produto-preco">Preço: {{ produto.preco | currency:'BRL' }}</p>
-          </div>
-        <label for="quantidade">Quantidade:</label>
-        <button (click)="diminuirQuantidade()" class="quantity-button">-</button>
-        <input type="number" id="quantidade" [(ngModel)]="quantidade" min="1" class="quantidade-input" readonly>
-        <button (click)="aumentarQuantidade()" class="quantity-button">+</button>
+  </div>
+  <div class="adicionar-carrinho-card">
+      <div class="produto-preco-carrinho">
+          <p class="produto-preco">Preço Base: {{ produto.preco | currency:'BRL' }}</p>
+      </div>
+      <div class="quantidade-container">
+          <label for="quantidade">Quantidade:</label>
+          <button (click)="diminuirQuantidade()" class="quantity-button">-</button>
+          <input type="number" id="quantidade" [(ngModel)]="quantidade" min="1" class="quantidade-input" readonly>
+          <button (click)="aumentarQuantidade()" class="quantity-button">+</button>
+      </div>
+      <div class="produto-preco-carrinho">
+          <p class="produto-preco-total">Preço Total: {{ produto.preco * quantidade | currency:'BRL' }}</p>
       </div>
       <button mat-raised-button color="primary" (click)="adicionarAoCarrinho()" class="adicionar-carrinho-button">Adicionar ao carrinho</button>
-    </div>
   </div>
-  <div *ngIf="!produto">
-    <p>Carregando produto...</p>
-  </div>
-  
+</div>
+<div *ngIf="!produto">
+  <p>Carregando produto...</p>
+</div>
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RacaoService } from '../../services/racao.service';
 import { Racao } from '../../models/racao.model';
@@ -9,17 +9,10 @@ import { CommonModule } from '@angular/common';
 import { ItemCarrinho } from '../../models/itemcarrinho.model';
 import { FooterComponent } from '../template/footer/footer.component';
 
-type Card = {
-  idConsulta: number;
-  nome: string;
-  preco: number;
-  imagem: string;
-}
-
 @Component({
   selector: 'app-ver-produto',
   standalone: true,
-  imports: [FormsModule, CommonModule,FooterComponent],
+  imports: [FormsModule, CommonModule, FooterComponent],
   templateUrl: './ver-produto.component.html',
   styleUrls: ['./ver-produto.component.css']
 })
@@ -81,9 +74,4 @@ export class VerProdutoComponent implements OnInit {
       this.quantidade -= 1;
     }
   }
-
-
-  
-
- 
 }
