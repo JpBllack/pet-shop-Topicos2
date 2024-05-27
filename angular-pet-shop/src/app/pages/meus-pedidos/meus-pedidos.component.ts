@@ -48,6 +48,7 @@ export class MeusPedidosComponent implements OnInit {
           preco: itemCompra.preco,
           quantidade: itemCompra.quantidade,
           imagem: '', // Preencha com a imagem apropriada, se estiver disponível
+          frequencia:0
         }));
         compra.itens = itensCarrinho;
       },

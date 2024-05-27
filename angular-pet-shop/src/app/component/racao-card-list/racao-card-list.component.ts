@@ -76,7 +76,8 @@ export class RacaoCardListComponent implements OnInit {
       nome: card.nome,
       imagem: card.imagem,
       preco: card.preco,
-      quantidade: 1
+      quantidade: 1,
+      frequencia: 0
     })
 
   }

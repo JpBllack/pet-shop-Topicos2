@@ -3,5 +3,6 @@ export interface ItemCarrinho {
   nome: string;
   preco: number;
   quantidade: number;
+  frequencia:number;
   imagem: string;
 }

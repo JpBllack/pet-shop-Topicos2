@@ -1,44 +1,48 @@
 <div class="carrinho-container">
-  <div class="carrinho-itens-container">
-    <div *ngFor="let item of carrinhoItens" class="carrinho-item">
-      <div class="item-info">
-        <div class="item-image">
-          <img [src]="item.imagem" alt="Imagem do Produto">
+  <ng-container *ngIf="carrinhoItens.length > 0; else carrinhoVazio">
+    <div class="carrinho-itens-container">
+      <div *ngFor="let item of carrinhoItens" class="carrinho-item">
+        <div class="item-info">
+          <div class="item-image">
+            <img [src]="item.imagem" alt="Imagem do Produto">
+          </div>
+          <h3>{{ item.nome }}</h3>
+          <p>Preço: {{ item.preco | currency:'BRL' }}</p>
+          <p>Quantidade: 
+            <button (click)="diminuirQuantidade(item)" class="quantity-button">-</button>
+            {{ item.quantidade }}
+            <button (click)="aumentarQuantidade(item)" class="quantity-button">+</button>
+          </p>
+          <p>Total: {{ item.quantidade * item.preco | currency:'BRL' }}</p>
+          <mat-form-field appearance="fill" class="semana-field">
+            <mat-label>Selecione a frequência de entrega</mat-label>
+            <mat-select formControlName="frequencia" placeholder="Frequência">
+              <mat-option value="1">Receber só uma vez</mat-option>
+              <mat-option value="2">Receber a cada 2 semanas</mat-option>
+              <mat-option value="3">Receber a cada 3 semanas</mat-option>
+              <mat-option value="4">Receber a cada 1 mês</mat-option>
+              <mat-option value="5">Receber a cada 5 semanas</mat-option>
+              <mat-option value="6">Receber a cada 6 semanas</mat-option>
+              <mat-option value="7">Receber a cada 7 semanas</mat-option>
+              <mat-option value="8">Receber a cada 2 meses</mat-option>
+              <mat-option value="9">Receber a cada 3 meses</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <h3>{{ item.nome }}</h3>
-        <p>Preço: {{ item.preco | currency:'BRL' }}</p>
-        <p>Quantidade: 
-          <button (click)="diminuirQuantidade(item)" class="quantity-button">-</button>
-          {{ item.quantidade }}
-          <button (click)="aumentarQuantidade(item)" class="quantity-button">+</button>
-        </p>
-        <p>Total: {{ item.quantidade * item.preco | currency:'BRL' }}</p>
-        <mat-form-field appearance="fill" class="semana-field">
-          <mat-label>Selecione a frequência de entrega</mat-label>
-          <mat-select formControlName="frequencia" placeholder="Frequência">
-            <mat-option value="1">Receber só uma vez</mat-option>
-            <mat-option value="2">Receber a cada 2 semanas</mat-option>
-            <mat-option value="3">Receber a cada 3 semanas</mat-option>
-            <mat-option value="4">Receber a cada 1 mês</mat-option>
-            <mat-option value="5">Receber a cada 5 semanas</mat-option>
-            <mat-option value="6">Receber a cada 6 semanas</mat-option>
-            <mat-option value="7">Receber a cada 7 semanas</mat-option>
-            <mat-option value="8">Receber a cada 2 meses</mat-option>
-            <mat-option value="9">Receber a cada 3 meses</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="item-actions">
-        <button mat-raised-button class="button-remover" (click)="removerItem(item)">Remover</button>
+        <div class="item-actions">
+          <button mat-raised-button class="button-remover" (click)="removerItem(item)">Remover</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="finalizar-compra-container">
-  <div class="resumo-pedido">
-    <p>Resumo do Pedido</p>
-    <p>Preço Total: {{ calcularTotal() | currency:'BRL' }}</p>
-  </div>
-  <button mat-raised-button class="button-finalizar" (click)="finalizarCompra()">Finalizar Compra</button>
-</div>
-
+    <div class="finalizar-compra-container">
+      <div class="resumo-pedido">
+        <p>Resumo do Pedido</p>
+        <p>Preço Total: {{ calcularTotal() | currency:'BRL' }}</p>
+      </div>
+      <button mat-raised-button class="button-finalizar" (click)="finalizarCompra()">Finalizar Compra</button>
+    </div>
+  </ng-container>
+  <ng-template #carrinhoVazio>
+    <p class="empty-cart-message">Carrinho vazio</p>
+  </ng-template>
 </div>
