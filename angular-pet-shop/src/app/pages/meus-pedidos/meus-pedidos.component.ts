@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Compra, CompraService, ItemCompra } from '../../services/compra.service';
+import { Compra, CompraService, ItemCompra, StatusCompra } from '../../services/compra.service';
 
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { Status, StatusLabel } from '../../models/status';
 
 @Component({
   selector: 'app-compras-usuario',
@@ -15,7 +16,7 @@ export class MeusPedidosComponent implements OnInit {
   compras: Compra[] = [];
   itensExpandidos: { [key: number]: boolean } = {};
 
-  constructor(private compraService: CompraService, private router: Router) {}
+  constructor(private compraService: CompraService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadComprasByUserId();
@@ -25,7 +26,7 @@ export class MeusPedidosComponent implements OnInit {
     this.compraService.getComprasByUserId().subscribe(
       (compras: Compra[]) => {
         this.compras = compras;
-
+        console.log('Compras carregadas:', this.compras);
         // Para cada compra, carrega os itens
         this.compras.forEach(compra => {
           this.loadItensCompra(compra);
@@ -48,7 +49,7 @@ export class MeusPedidosComponent implements OnInit {
           preco: itemCompra.preco,
           quantidade: itemCompra.quantidade,
           imagem: '', // Preencha com a imagem apropriada, se estiver disponível
-          frequencia:0
+          frequencia: 0
         }));
         compra.itens = itensCarrinho;
       },
@@ -57,6 +58,17 @@ export class MeusPedidosComponent implements OnInit {
       }
     );
   }
+
+  getStatusLabel(statusCompra: StatusCompra[]): string {
+    console.log('Status Compra:', statusCompra);
+    if (statusCompra && statusCompra.length > 0) {
+      const ultimoStatus = statusCompra[statusCompra.length - 1].status;
+      return StatusLabel[ultimoStatus] || 'Status desconhecido';
+    } else {
+      return 'Status desconhecido';
+    }
+  }
+
 
   // Método para alternar entre expandir e recolher os itens
   toggleItens(compra: Compra): void {

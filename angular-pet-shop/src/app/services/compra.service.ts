@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ItemCarrinho } from "../models/itemcarrinho.model";
+import { Status } from "../models/status";
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,7 @@ export class CompraService {
 export interface Compra {
     id: number;
     dataCompra: Date;
+    statusCompra: StatusCompra[];
     precoTotal: number;
     itens: ItemCarrinho[];
 }
@@ -37,4 +39,9 @@ export interface ItemCompra {
     nome: string;
     preco: number;
     quantidade: number;
+}
+
+export class StatusCompra{
+    dataStatus!: Date;
+    status!: Status;
 }

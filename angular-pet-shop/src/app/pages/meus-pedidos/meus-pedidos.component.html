@@ -2,6 +2,7 @@
   <h2>Minhas Compras</h2>
   <div *ngFor="let compra of compras" class="compra-card">
       <div class="compra-header">
+        <p>Status: {{ getStatusLabel(compra.statusCompra) }}</p>
         <p>Data da Compra: {{ compra.dataCompra | date:'dd/MM/yyyy' }}</p>
         <p>Preço Total: R$ {{ compra.precoTotal | number:'1.2-2' }}</p>
       </div>
