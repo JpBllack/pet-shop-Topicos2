@@ -1,3 +1,11 @@
+<div class="navbar">
+  <a routerLink="/dashboard">Meus Dados</a>
+  <a routerLink="/pedidos">Meus Pedidos</a>
+  <a routerLink="/meus-pets">Meus Pets</a>
+  <a routerLink="/alterar-info">Alterar Informações</a>
+  <a routerLink="/seguranca">Segurança</a>
+</div>
+
 <div *ngIf="compras.length > 0; else noCompras" class="compra-container">
   <h2>Minhas Compras</h2>
   <div *ngFor="let compra of compras" class="compra-card">

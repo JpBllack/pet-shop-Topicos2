@@ -65,3 +65,22 @@
 .compra-details button:hover {
   background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
 }
+
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #007BFF;
+  padding: 15px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 15px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
