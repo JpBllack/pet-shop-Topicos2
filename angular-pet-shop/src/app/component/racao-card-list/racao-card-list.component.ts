@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardTitle } from '@angular/material/card';
 import { Consulta } from '../../models/consulta.model';
 import { CarrinhoService } from '../../services/carrinho.service';
@@ -51,6 +51,7 @@ export class RacaoCardListComponent implements OnInit {
       this.carregarCards();
     });
   }
+
 
   getImagemPath(imagem: string): string {
     return `http://localhost:8080/quarkus/images/produto/${imagem}`;

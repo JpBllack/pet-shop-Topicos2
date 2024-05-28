@@ -39,6 +39,7 @@ import { MeusPetsComponent } from './pages/meus-pets/meus-pets.component';
 import { MeusPedidosComponent } from './pages/meus-pedidos/meus-pedidos.component';
 import { VerProdutoComponent } from './pages/ver-produto/ver-produto.component';
 import { EnderecoComponent } from './pages/endereco/endereco.component';
+import { BuscaComponent } from './pages/busca/busca.component';
 
 
 export const routes: Routes = [
@@ -63,7 +64,7 @@ export const routes: Routes = [
             { path: 'pedidos', component: MeusPedidosComponent, title: 'Meus Pedidos'},
             { path: 'detalhes-pedido/:id', component: MeusPedidosComponent },
             { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'},
-            { path: 'endereco', component: EnderecoComponent, title: 'Endereço'},
+            { path: 'busca', component: BuscaComponent},
 
         ]
 

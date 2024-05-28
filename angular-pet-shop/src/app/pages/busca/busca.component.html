@@ -1,0 +1,13 @@
+<div class="container responsive-grid">
+    <div *ngFor="let card of cards" class="mat-card-hover" (click)="navegarParaProduto(card.idConsulta)">
+      <img [src]="card.imagem ? card.imagem : 'assets/imageNotfound.jpg'" (error)="card.imagem = 'assets/imageNotfound.jpg'" class="card-image">
+      <div class="card-content">
+        <h2 class="centered-text">{{ card.nome }}</h2>
+        <p class="preco">{{ card.preco | currency:'BRL':'symbol':'1.2-2' }}</p>
+      </div>
+      <div class="add-to-cart-footer" (click)="$event.stopPropagation()">
+        <button mat-flat-button color="accent" (click)="adicionarAoCarrinho(card)" class="add-to-cart-button">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+  
