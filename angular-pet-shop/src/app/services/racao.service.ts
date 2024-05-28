@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Racao } from '../models/racao.model';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class RacaoService {
   updateRacao(racao: Racao): Observable<Racao> {
     const url = `${this.apiUrl}/update/${racao.id}`;
     return this.http.put<Racao>(url, racao);
-}
+  }
 
 
   deleteRacao(id: number): Observable<void> {
@@ -39,14 +39,19 @@ export class RacaoService {
     return this.http.get<Racao>(`${this.apiUrl}/${id}`);
   }
 
-  findByNome(nome: string): Observable<Racao> {
-    return this.http.get<Racao>(`${this.apiUrl}/search/${nome}`);
+  findByNome(nome: string): Observable<Racao[]> {
+    return this.http.get<Racao[]>(`${this.apiUrl}?nome=${nome}`).pipe(
+      catchError(error => {
+        console.error('Erro na requisição:', error);
+        return of([]); // Retorna um array vazio em caso de erro
+      })
+    );
   }
 
   uploadImage(formData: FormData): Observable<any> {
     const url = `${this.apiUrl}/upload/image`;
     return this.http.patch<any>(url, formData);
-}
+  }
 
 
   downloadImage(id: number): Observable<Blob> {
@@ -54,7 +59,7 @@ export class RacaoService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
-    GetImage(imageName: string): Observable<Blob> {
+  GetImage(imageName: string): Observable<Blob> {
     const url = `http://localhost:8080/quarkus/images/produto/${imageName}`;
     return this.http.get(url, { responseType: 'blob' });
   }
