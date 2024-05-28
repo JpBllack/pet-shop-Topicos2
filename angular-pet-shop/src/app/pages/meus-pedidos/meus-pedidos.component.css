@@ -66,7 +66,6 @@
   background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
 }
 
-
 .navbar {
   display: flex;
   justify-content: center;
@@ -83,4 +82,11 @@
 
 .navbar a:hover {
   text-decoration: underline;
+}
+
+.no-compras {
+  font-size: 20px; /* Aumenta o tamanho da fonte */
+  color: #ff0000; /* Muda a cor do texto para vermelho */
+  text-align: center; /* Centraliza o texto */
+  margin-top: 50px; /* Adiciona espaço acima do texto */
 }

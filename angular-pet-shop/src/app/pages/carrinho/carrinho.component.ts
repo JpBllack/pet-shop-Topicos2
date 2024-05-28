@@ -5,6 +5,7 @@ import { CarrinhoService } from '../../services/carrinho.service';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -17,8 +18,7 @@ export class CarrinhoComponent implements OnInit {
 
   carrinhoItens: ItemCarrinho[] = [];
 
-  constructor(private carrinhoService: CarrinhoService
-  ) { }
+  constructor(private carrinhoService: CarrinhoService, private route: Router) { }
 
   ngOnInit(): void {
     this.carrinhoService.carrinho$.subscribe( itens => {
@@ -48,6 +48,10 @@ export class CarrinhoComponent implements OnInit {
   
   finalizarCompra(): void {
     this.carrinhoService.concluirCompra(this.carrinhoItens);
+  }
+
+  navegarParaProduto(id: number) {
+    this.route.navigate(['/ver-produto', id]); 
   }
 
   calcularTotal(): number {
