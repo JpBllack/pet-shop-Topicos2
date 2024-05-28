@@ -17,7 +17,7 @@
 .finalizar-compra-container {
   flex: 1;
   min-width: 300px;
-  max-height: 400px;
+  min-height: 200px;
   background-color: #ffffff;
   padding: 20px;
   border: 1px solid #ddd;
@@ -97,6 +97,7 @@
 .item-image {
   flex-shrink: 0;
 }
+
 
 .item-image img {
   width: 100px;

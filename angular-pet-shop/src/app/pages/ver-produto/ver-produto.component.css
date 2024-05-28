@@ -1,91 +1,123 @@
 .produto-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: start;
+  display: flex;
+  justify-content: center;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px; /* Limita a largura da página */
+  margin: 0 auto; /* Centraliza a página */
+  align-items: flex-start; /* Alinha os itens no topo */
 }
 
 .produto-details {
-  background-color: #ffffff; /* Cor de fundo do card */
-  border-radius: 10px; /* Borda arredondada */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do card */
-  padding: 20px;
+  flex: 1;
+  margin-right: 20px;
 }
 
-.produto-imagem-nome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.produto-imagem {
-  max-width: 100%;
+.produto-imagem img{
+  max-width: 90%;
   height: auto;
-  max-height: 300px; /* Altura máxima da imagem */
-  object-fit: cover; /* Redimensionar a imagem para preencher o contêiner */
-  border-radius: 10px; /* Borda arredondada */
+  margin-bottom: 10px;
+  padding: 5px; /* Adiciona padding para centralizar a borda */
+  border: 1px solid #ddd; /* Adiciona o estilo da borda */
+  text-align: center;
+}
+
+
+
+.produto-descricao {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
 }
 
 .adicionar-carrinho-card {
-  background-color: #ffffff; /* Cor de fundo do card */
-  border-radius: 10px; /* Borda arredondada */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do card */
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px; /* Limita a largura do cartão */
+  flex-shrink: 0; /* Evita que o cartão encolha */
+  padding: 2%;
+}
+
+.produto-nome {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.produto-nome h1 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
 }
 
 .produto-preco-carrinho {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .produto-preco {
-  font-size: 1.5em;
-}
-
-.produto-preco-total {
-  font-size: 1.5em;
-  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 .quantidade-container {
   display: flex;
-  align-items: center; /* Alinha os itens horizontalmente */
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 20px;
+  width: 100%;
+}
+
+.quantidade-container label {
+  margin-right: 10px;
 }
 
 .quantity-button {
-  margin: 0 5px; /* Adiciona margem entre os botões de quantidade */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quantity-button:hover {
+  background-color: #e0e0e0;
 }
 
 .quantidade-input {
+  width: 50px;
   text-align: center;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
 }
 
 .adicionar-carrinho-button {
-  width: 100%;
-  max-width: 300px;
-  margin-top: 20px;
-  background-color: #150ab8; /* Cor de fundo */
-  color: #ffffff; /* Cor do texto */
-  border-radius: 25px; /* Borda arredondada */
+  background-color: #2196f3; /* Azul */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  font-size: 1.0em;
+  width: 100%; /* Ajusta a largura do botão */
 }
 
 .adicionar-carrinho-button mat-icon {
-  margin-right: 10px;
-  font-size: 1.5em;
+  margin-right: 5px;
 }
 
-.produto-descricao {
-  font-size: 1em;
-  margin-top: 10px;
-  text-align: center;
-  color: #555; /* Cor do texto */
+.adicionar-carrinho-button:hover {
+  background-color: #1976d2; /* Tom mais escuro de azul */
 }
