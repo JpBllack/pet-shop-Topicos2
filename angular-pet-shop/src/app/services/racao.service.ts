@@ -58,4 +58,8 @@ export class RacaoService {
     const url = `http://localhost:8080/quarkus/images/produto/${imageName}`;
     return this.http.get(url, { responseType: 'blob' });
   }
+
 }
+
+
+

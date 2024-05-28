@@ -32,6 +32,7 @@ import br.projeto.petshop.dto.PetResponseDTO;
 import br.projeto.petshop.dto.UpdateSenhaDTO;
 import br.projeto.petshop.dto.UsernameDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
+import br.projeto.petshop.model.Endereco;
 
 @Path("/usuarioLogado")
 @Produces(MediaType.APPLICATION_JSON)
@@ -46,6 +47,8 @@ public class UsuarioLogadoResource {
     @Inject
     PetService petService;
 
+    /* @Inject
+    EnderecoService enderecoService; */
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -214,6 +217,32 @@ public class UsuarioLogadoResource {
         }
     }
 
+
+   /*  @POST
+    @Path("/insert/endereco")
+    @RolesAllowed({"User", "Admin"})
+    @Transactional
+    public Response insertEndereco(Endereco endereco) {
+        try {
+            // Extrair email do token JWT
+            String email = jwt.getSubject();
+            
+            // Buscar usuário pelo email
+            UsuarioResponseDTO user = userService.findByEmail(email);
+            if (user == null) {
+                throw new ValidationException("400", "Usuário não encontrado");
+            }
+            
+            Long userId = user.id(); // Supondo que UsuarioResponseDTO tenha um método getId()
+            PetResponseDTO petResponseDTO = enderecoService.insert(endereco, userId);
+            return Response.status(Status.CREATED).entity(petResponseDTO).build();
+        } catch (ValidationException e) {
+            LOG.error("Erro ao inserir o pet");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    } */
 
     
 

@@ -10,6 +10,10 @@ import { ItemCarrinho } from '../../models/itemcarrinho.model';
 import { FooterComponent } from '../template/footer/footer.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Peso, PesoLabel } from '../../models/peso';
+import { Idade } from '../../models/idade';
+
+
 
 @Component({
   selector: 'app-ver-produto',
@@ -77,5 +81,54 @@ export class VerProdutoComponent implements OnInit {
     }
   }
 
+  /* getPesoLabel(peso: Peso): string {
+  console.log('Valor de entrada (peso):', peso);
   
+  // Verifica se o valor de Peso está dentro do intervalo esperado
+  if (peso >= 1 && peso <= 6) {
+    const label = PesoLabel[peso];
+
+    console.log('Label encontrada:', label);
+    return label;
+  } else {
+    console.log('Peso desconhecido');
+    return 'Peso desconhecido';
+  }
+} */
+
+getPesoLabel(peso: Peso | { label: string }): string {
+  console.log('Peso:', peso);
+  
+  // Verifica se peso é uma string diretamente
+  if (typeof peso === 'string') {
+    return peso;
+  } 
+  // Verifica se peso é um objeto e se possui a propriedade 'label'
+  else if (typeof peso === 'object' && 'label' in peso) {
+    return peso.label;
+  } 
+  // Se nenhum dos casos acima for verdadeiro, retorna 'Status desconhecido'
+  else {
+    return 'Status desconhecido';
+  }
 }
+
+
+getIdadeLabel(idade: Idade | { label: string }): string {
+  console.log('Idade', idade);
+  
+  // Verifica se idade é uma string diretamente
+  if (typeof idade === 'string') {
+    return idade;
+  } 
+  // Verifica se idade é um objeto e se possui a propriedade 'label'
+  else if (typeof idade === 'object' && 'label' in idade) {
+    return idade.label;
+  } 
+  // Se nenhum dos casos acima for verdadeiro, retorna 'Status desconhecido'
+  else {
+    return 'Status desconhecido';
+  }
+}
+}
+

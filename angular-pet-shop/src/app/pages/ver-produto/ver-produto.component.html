@@ -12,6 +12,10 @@
         </div>
         <div class="produto-preco-carrinho">
             <p class="produto-preco">Preço: {{ produto.preco | currency:'BRL' }}</p>
+        <div class="tags"> 
+            <p class="produto-peso">Peso: {{ getPesoLabel(produto.peso) }}</p>
+            <p class="produto-idade">Idade: {{ getIdadeLabel(produto.idade) }}</p>
+        </div> 
         </div>
         <div class="quantidade-container">
             <label for="quantidade">Quantidade:</label>

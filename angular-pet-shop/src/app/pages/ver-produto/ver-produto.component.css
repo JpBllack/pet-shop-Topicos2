@@ -20,6 +20,7 @@
   padding: 5px; /* Adiciona padding para centralizar a borda */
   border: 1px solid #ddd; /* Adiciona o estilo da borda */
   text-align: center;
+  display: flex;
 }
 
 
@@ -28,6 +29,7 @@
   margin-top: 10px;
   font-size: 16px;
   color: #555;
+  
 }
 
 .adicionar-carrinho-card {
@@ -120,4 +122,11 @@
 
 .adicionar-carrinho-button:hover {
   background-color: #1976d2; /* Tom mais escuro de azul */
+}
+
+.tags{
+  display: flex;
+  color: gray;
+  font-size: 13px;
+  justify-content: space-around
 }
