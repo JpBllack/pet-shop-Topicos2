@@ -3,6 +3,7 @@ package br.projeto.petshop.resource;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
+import br.projeto.petshop.service.EnderecoService;
 import br.projeto.petshop.service.PetService;
 import br.projeto.petshop.service.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
@@ -26,6 +27,8 @@ import br.projeto.petshop.validation.ValidationException;
 import br.projeto.petshop.application.Error;
 import br.projeto.petshop.dto.CpfDTO;
 import br.projeto.petshop.dto.EmailDTO;
+import br.projeto.petshop.dto.EnderecoDTO;
+import br.projeto.petshop.dto.EnderecoResponseDTO;
 import br.projeto.petshop.dto.NomeDTO;
 import br.projeto.petshop.dto.PetDTO;
 import br.projeto.petshop.dto.PetResponseDTO;
@@ -47,8 +50,8 @@ public class UsuarioLogadoResource {
     @Inject
     PetService petService;
 
-    /* @Inject
-    EnderecoService enderecoService; */
+    @Inject
+    EnderecoService enderecoService;
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -218,11 +221,11 @@ public class UsuarioLogadoResource {
     }
 
 
-   /*  @POST
+    @POST
     @Path("/insert/endereco")
     @RolesAllowed({"User", "Admin"})
     @Transactional
-    public Response insertEndereco(Endereco endereco) {
+    public Response insertEndereco(EnderecoDTO endereco) {
         try {
             // Extrair email do token JWT
             String email = jwt.getSubject();
@@ -233,17 +236,19 @@ public class UsuarioLogadoResource {
                 throw new ValidationException("400", "Usuário não encontrado");
             }
             
-            Long userId = user.id(); // Supondo que UsuarioResponseDTO tenha um método getId()
-            PetResponseDTO petResponseDTO = enderecoService.insert(endereco, userId);
-            return Response.status(Status.CREATED).entity(petResponseDTO).build();
+            Long userId = user.id();
+            Response enderecoResponseDTO = enderecoService.insert(endereco, userId);
+            return Response.status(Status.CREATED).entity(enderecoResponseDTO).build();
         } catch (ValidationException e) {
-            LOG.error("Erro ao inserir o pet");
+            LOG.error("Erro ao inserir o endereço");
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
+        } catch (Exception e) {
+            LOG.error("Erro ao inserir o endereço", e);
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
         }
-    } */
-
-    
+    }    
 
 }

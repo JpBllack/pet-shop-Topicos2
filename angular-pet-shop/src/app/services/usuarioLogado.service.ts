@@ -47,6 +47,16 @@ export class UsuarioLogadoService {
     return this.http.post<Usuario[]>(`${this.apiUrl}/insert/pet`, petData, { headers: this.getHeaders() });
   }
   
+  insertEndereco(endereco: any): Observable<Usuario[]> {
+    // Imprime os dados do endereço para o console antes de fazer a solicitação HTTP
+    console.log('Dados do endereço:', endereco);
+
+    // Faz a solicitação HTTP e retorna o Observable
+    return this.http.post<Usuario[]>(`${this.apiUrl}/insert/endereco`, endereco, { headers: this.getHeaders() });
+  }
+
+
+  
   getPetsUsuario(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/search/pet`, { headers: this.getHeaders() });
   }
