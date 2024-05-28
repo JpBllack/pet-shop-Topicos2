@@ -12,7 +12,7 @@ public record CompraResponseDTO (
     List<ItemCompraResponseDTO> itemCompra,
     List<StatusCompraDTO> statusCompra,
     Double precoTotal,
-    Date dataCompra // Adicionando a data da compra ao DTO
+    Date dataCompra 
 ){
     public static CompraResponseDTO valueOf(Compra compra){
         List<ItemCompraResponseDTO> itemCompraDTOs = compra.getItensCompra().stream()
