@@ -1,18 +1,29 @@
 package br.projeto.petshop.resource;
 
+import org.jboss.logging.Logger;
 import br.projeto.petshop.dto.EnderecoDTO;
 import br.projeto.petshop.dto.EnderecoResponseDTO;
 import br.projeto.petshop.service.EnderecoService;
+import br.projeto.petshop.validation.ValidationException;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.validation.ValidationException;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import org.jboss.logging.Logger;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import br.projeto.petshop.application.Error;
 
 import java.util.List;
 
@@ -63,7 +74,7 @@ public class EnderecoResource {
     public Response insertEndereco(@Valid EnderecoDTO enderecoDTO, @QueryParam("userId") Long userId) {
         LOG.info("Inserindo novo endereço: " + enderecoDTO);
         try {
-            return enderecoService.insert(enderecoDTO, userId);
+            return Response.status(Status.CREATED).entity(enderecoService.insert(enderecoDTO, userId)).build();
         } catch (ValidationException e) {
             LOG.error("Erro ao inserir o endereço", e);
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
@@ -77,7 +88,7 @@ public class EnderecoResource {
     public Response updateEndereco(@PathParam("id") long id, @Valid EnderecoDTO enderecoDTO) {
         LOG.info("Atualizando endereço com ID: " + id);
         try {
-            return enderecoService.update(id, enderecoDTO);
+            return Response.noContent().build();
         } catch (NotFoundException e) {
             LOG.error("Endereço não encontrado para o ID: " + id, e);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
@@ -95,7 +106,7 @@ public class EnderecoResource {
     public Response deleteEndereco(@PathParam("id") long id) {
         LOG.info("Deletando endereço pelo ID: " + id);
         try {
-            return enderecoService.delete(id);
+            return Response.noContent().build();
         } catch (NotFoundException e) {
             LOG.error("Endereço não encontrado", e);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();

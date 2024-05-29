@@ -14,9 +14,9 @@ public interface EnderecoService {
 
     EnderecoResponseDTO getId(Long id);
 
-    Response insert(EnderecoDTO enderecoDTO, Long userId);
+    public EnderecoResponseDTO insert(EnderecoDTO enderecoDTO, Long userId);
     
-    Response update(long id, EnderecoDTO enderecoDTO);
+    public EnderecoResponseDTO update(long id, EnderecoDTO enderecoDTO);
 
-    Response delete(long id);
+    public void delete(long id);
 }

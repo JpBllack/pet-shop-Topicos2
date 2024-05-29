@@ -223,7 +223,7 @@ public class UsuarioLogadoResource {
 
     @POST
     @Path("/insert/endereco")
-    @RolesAllowed({"User", "Admin"})
+    @RolesAllowed({"User", "Admin", "Vet"})
     @Transactional
     public Response insertEndereco(EnderecoDTO endereco) {
         try {
@@ -237,7 +237,7 @@ public class UsuarioLogadoResource {
             }
             
             Long userId = user.id();
-            Response enderecoResponseDTO = enderecoService.insert(endereco, userId);
+            EnderecoResponseDTO enderecoResponseDTO = enderecoService.insert(endereco, userId);
             return Response.status(Status.CREATED).entity(enderecoResponseDTO).build();
         } catch (ValidationException e) {
             LOG.error("Erro ao inserir o endereço");

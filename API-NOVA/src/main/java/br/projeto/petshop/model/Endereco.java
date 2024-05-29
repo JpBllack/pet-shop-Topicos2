@@ -1,6 +1,12 @@
 package br.projeto.petshop.model;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -22,7 +28,7 @@ public class Endereco extends DefaultEntity{
     private String cep;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 

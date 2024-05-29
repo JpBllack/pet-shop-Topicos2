@@ -8,10 +8,10 @@ public record EnderecoResponseDTO(
         String numero,
         String complemento,
         String bairro,
-        MunicipioResponseDTO municipioResponseDTO,
+        String municipioResponseDTO,
         String cep
 ) {
-    public EnderecoResponseDTO(Endereco e){
-        this(e.getId(), e.getLogradouro(), e.getNumero(), e.getComplemento(), e.getBairro(), new MunicipioResponseDTO(e.getMunicipio()), e.getCep());
+    public static EnderecoResponseDTO valueOf(Endereco endereco){
+        return new EnderecoResponseDTO(endereco.getId(), endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(), endereco.getMunicipio().getNome(), endereco.getCep());
     }
 }
