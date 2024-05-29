@@ -16,42 +16,72 @@
     text-decoration: underline;
   }
   
-  form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f4f7f8;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+ 
+/* Estilos para o formulário */
+form {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  form div {
-    margin-bottom: 15px;
-  }
+form div {
+  margin-bottom: 15px;
+  flex: 1 1 45%;
+  padding: 0 10px;
+}
 
-  form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
-  form input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
+form input[type="text"],
+form input[type="number"],
+form input[type="checkbox"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
-  form button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+form button[type="submit"],
+form button[type="button"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+}
 
-  form button[type="submit"]:hover {
-    background-color: #45a049;
-  }
+form button[type="submit"]:hover,
+form button[type="button"]:hover {
+  background-color: #45a049;
+}
+
+form .full-width {
+  flex: 1 1 100%;
+}
+
+form .half-width {
+  flex: 1 1 45%;
+}
+
+form .checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+form .checkbox-container input {
+  width: auto;
+  margin-right: 10px;
+}

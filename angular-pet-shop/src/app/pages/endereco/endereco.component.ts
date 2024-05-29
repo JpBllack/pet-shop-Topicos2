@@ -10,18 +10,19 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-endereco',
-  standalone:true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule,CommonModule,FormsModule],
+  standalone: true,
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, CommonModule, FormsModule],
   templateUrl: './endereco.component.html',
   styleUrls: ['./endereco.component.css']
 })
 export class EnderecoComponent {
   logradouro!: string;
   numero!: string;
-  complemento!: string;
+  complemento: string = '%';
   bairro!: string;
-  idCidade!: string;
+  idCidade!: number;
   cep!: string;
+  enderecoPrincipal: boolean = false;
 
   constructor(
     private usuarioLogadoService: UsuarioLogadoService
@@ -40,12 +41,27 @@ export class EnderecoComponent {
     this.usuarioLogadoService.insertEndereco(endereco).subscribe(
       response => {
         console.log('Endereço criado com sucesso!', response);
-        // Reinicie os valores dos campos do formulário ou redirecione para outra página, se necessário
+        // Reinicie os valores dos campos do formulário se necessário
+        this.resetForm();
       },
       error => {
         console.error('Erro ao criar endereço:', error);
         // Lide com o erro de acordo com sua lógica de aplicativo
       }
     );
+  }
+
+  resetForm() {
+    this.logradouro = '';
+    this.numero = '';
+    this.complemento = '%';
+    this.bairro = '';
+    this.idCidade = 0;
+    this.cep = '';
+    this.enderecoPrincipal = false;
+  }
+
+  voltar() {
+    // Implemente a lógica de navegação para voltar à página anterior
   }
 }
