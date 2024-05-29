@@ -1,0 +1,143 @@
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #007BFF;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Main Container Styles */
+.ver-enderecos {
+    padding: 2rem;
+}
+
+.ver-enderecos h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Add Endereco Button Styles */
+.add-endereco-button {
+    display: block;
+    margin: 0 auto 2rem auto;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-endereco-button:hover {
+    background-color: #0056b3;
+}
+
+/* Lista Enderecos Styles */
+.lista-enderecos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.endereco-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    width: calc(33.333% - 2rem);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.endereco-info h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.endereco-info p {
+    margin: 0.5rem 0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.checkbox-container label {
+    color: #555;
+}
+
+/* Form Styles */
+form {
+    margin-top: 2rem;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.half-width {
+    width: calc(50% - 1rem);
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.half-width:last-child {
+    margin-right: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button[type="submit"],
+button[type="button"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"] {
+    background-color: #6c757d;
+}
+
+button[type="button"]:hover {
+    background-color: #5a6268;
+}
