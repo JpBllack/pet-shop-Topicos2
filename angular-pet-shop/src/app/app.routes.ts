@@ -64,6 +64,7 @@ export const routes: Routes = [
             { path: 'pedidos', component: MeusPedidosComponent, title: 'Meus Pedidos'},
             { path: 'detalhes-pedido/:id', component: MeusPedidosComponent },
             { path: 'busca', component: BuscaComponent},
+            { path: 'busca/:nome', component: BuscaComponent },
             { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'},
             { path: 'endereco', component: EnderecoComponent, title: 'Endereço'},
             
