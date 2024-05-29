@@ -1,37 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
 <div class="navbar">
-    <a routerLink="/dashboard">Meus Dados</a>
-    <a routerLink="/pedidos">Meus Pedidos</a>
-    <a routerLink="/pets">Meus Pets</a>
-    <a routerLink="/alterar-info">Alterar Informações</a>
-    <a routerLink="/seguranca">Segurança</a>
-    <a routerLink="/endereco">Endereço</a>
-  </div>
-  
+  <a routerLink="/dashboard">Meus Dados</a>
+  <a routerLink="/pedidos">Meus Pedidos</a>
+  <a routerLink="/pets">Meus Pets</a>
+  <a routerLink="/alterar-info">Alterar Informações</a>
+  <a routerLink="/seguranca">Segurança</a>
+  <a routerLink="/endereco">Endereço</a>
+</div>
+
 <form (submit)="submitForm()">
-    <div>
-      <label for="logradouro">Logradouro:</label>
-      <input type="text" id="logradouro" name="logradouro" [(ngModel)]="logradouro">
-    </div>
-    <div>
-      <label for="numero">Número:</label>
-      <input type="text" id="numero" name="numero" [(ngModel)]="numero">
-    </div>
-    <div>
-      <label for="complemento">Complemento:</label>
-      <input type="text" id="complemento" name="complemento" [(ngModel)]="complemento">
-    </div>
-    <div>
-      <label for="bairro">Bairro:</label>
-      <input type="text" id="bairro" name="bairro" [(ngModel)]="bairro">
-    </div>
-    <div>
-      <label for="idCidade">ID Cidade:</label>
-      <input type="text" id="idCidade" name="idCidade" [(ngModel)]="idCidade">
-    </div>
-    <div>
-      <label for="cep">CEP:</label>
-      <input type="text" id="cep" name="cep" [(ngModel)]="cep">
-    </div>
-    <button type="submit">Salvar</button>
-  </form>
-  
+  <div>
+    <label for="logradouro">Logradouro:</label>
+    <input type="text" id="logradouro" name="logradouro" [(ngModel)]="logradouro">
+  </div>
+  <div>
+    <label for="numero">Número:</label>
+    <input type="text" id="numero" name="numero" [(ngModel)]="numero">
+  </div>
+  <div>
+    <label for="complemento">Complemento:</label>
+    <input type="text" id="complemento" name="complemento" [(ngModel)]="complemento">
+  </div>
+  <div>
+    <label for="bairro">Bairro:</label>
+    <input type="text" id="bairro" name="bairro" [(ngModel)]="bairro">
+  </div>
+  <div>
+    <label for="idCidade">Cidade:</label>
+    <input type="text" id="idCidade" name="idCidade" [(ngModel)]="idCidade">
+  </div>
+  <div>
+    <label for="cep">CEP:</label>
+    <input type="text" id="cep" name="cep" [(ngModel)]="cep">
+  </div>
+  <button type="submit">Salvar</button>
+</form>
+
+</body>
+</html>
