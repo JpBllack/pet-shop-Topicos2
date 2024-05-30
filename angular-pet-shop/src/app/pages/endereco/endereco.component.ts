@@ -6,14 +6,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-endereco',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, CommonModule, FormsModule],
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, CommonModule, FormsModule, RouterModule],
   templateUrl: './endereco.component.html',
-  styleUrls: ['./endereco.component.css']
+  styleUrls: ['./endereco.component.css'],
 })
 export class EnderecoComponent {
   logradouro!: string;

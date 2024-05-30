@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Usuario } from "../models/Usuario";
 import { AuthService } from "./auth.service";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,10 +55,28 @@ export class UsuarioLogadoService {
     // Faz a solicitação HTTP e retorna o Observable
     return this.http.post<Usuario[]>(`${this.apiUrl}/insert/endereco`, endereco, { headers: this.getHeaders() });
   }
-
-
   
   getPetsUsuario(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/search/pet`, { headers: this.getHeaders() });
   }
+
+  insertCartao(cartao: Cartao): Observable<Cartao>{
+    return this.http.post<Cartao>(`${this.apiUrl}/insert/cartao`, cartao);
+  }
+
+  updateCartao(cartao: Cartao): Observable<Cartao>{
+    return this.http.put<Cartao>(`${this.apiUrl}/update/cartao`, cartao);
+  }
+
+  deleteCartao(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/delete/cartao/${id}`)
+  }
+
+}
+
+export interface Cartao{
+  numero: string;
+  codigoSeguranca: string;
+  mesValidade: number;
+  anovalidade: number;
 }
