@@ -6,7 +6,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -26,7 +26,8 @@ export class EnderecoComponent {
   enderecoPrincipal: boolean = false;
 
   constructor(
-    private usuarioLogadoService: UsuarioLogadoService
+    private usuarioLogadoService: UsuarioLogadoService,
+    private router: Router
   ) {}
 
   submitForm() {
@@ -62,7 +63,8 @@ export class EnderecoComponent {
     this.enderecoPrincipal = false;
   }
 
-  voltar() {
-    // Implemente a lógica de navegação para voltar à página anterior
+  voltar(): void {
+    this.router.navigate(['/ver-endereco']);
   }
+   
 }
