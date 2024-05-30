@@ -1,17 +1,22 @@
 package br.projeto.petshop.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "cartao_credito")
 public class CartaoCredito extends DefaultEntity {
 
     @NotNull
+    @Column(name = "numero_cartao", unique = true)
     private String numeroCartao;
 
     @NotNull
+    @Column(name = "codigo_seguranca")
     private String codigoSeguranca;
 
     @Embedded

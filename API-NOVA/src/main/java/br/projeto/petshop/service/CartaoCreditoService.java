@@ -13,6 +13,8 @@ public interface CartaoCreditoService {
 
     public CartaoCreditoResponseDTO insert(CartaoCreditoDTO dto, Long idUser);
 
+    public CartaoCreditoResponseDTO update(CartaoCreditoDTO dto, Long idCartao);
+
     public void delete(Long id);
 
     

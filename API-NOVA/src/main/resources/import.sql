@@ -7,33 +7,38 @@
 
 -- senha padrão: 12345
 -- Inserção de um usuário veterinário
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Teste', 'da Silva', '12345678910', 'Testizinho', 'teste@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Son Goku', 'Junior', '12345678900', 'goku', 'goku@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Vegeta', 'Almeida', '12345678901', 'vegeta', 'vegeta@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Son Gohan', 'Marques', '12345678902', 'gohan', 'gohan@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Piccolo', 'Cunha', '12345678903', 'piccolo', 'piccolo@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Trunks', 'Scot', '12345678904', 'trunks', 'trunks@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Alisson', 'Lima', '12345687654', 'alisson', 'alisson@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
-INSERT INTO Usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('João', 'Gomes', '12345616523', 'joao', 'joao@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
 
-
-
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('1234123412341234', '123', 12, 2025, 1);
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('1829273635364895', '124', 1, 2028, 1);
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('9292027263546489', '813', 9, 2025, 2);
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('9292920336635242', '721', 10, 2030, 1);
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('8484736363740902', '147', 5, 2025, 3);
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('0292918273263938', '456', 12, 2025, 3);
+INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('0282636352627838', '333', 9, 2024, 4);
 
 
 INSERT INTO TipoAnimal (nome) VALUES

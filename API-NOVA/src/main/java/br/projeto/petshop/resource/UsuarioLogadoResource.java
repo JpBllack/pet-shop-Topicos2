@@ -3,18 +3,23 @@ package br.projeto.petshop.resource;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
+import br.projeto.petshop.service.CartaoCreditoService;
 import br.projeto.petshop.service.EnderecoService;
 import br.projeto.petshop.service.PetService;
 import br.projeto.petshop.service.UsuarioService;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 
 import jakarta.ws.rs.ForbiddenException;
@@ -25,6 +30,7 @@ import jakarta.ws.rs.core.Response.Status;
 
 import br.projeto.petshop.validation.ValidationException;
 import br.projeto.petshop.application.Error;
+import br.projeto.petshop.dto.CartaoCreditoDTO;
 import br.projeto.petshop.dto.CpfDTO;
 import br.projeto.petshop.dto.EmailDTO;
 import br.projeto.petshop.dto.EnderecoDTO;
@@ -46,12 +52,15 @@ public class UsuarioLogadoResource {
 
     @Inject
     UsuarioService userService;
-    
+
     @Inject
     PetService petService;
 
     @Inject
     EnderecoService enderecoService;
+
+    @Inject
+    CartaoCreditoService cartaoCreditoService;
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -177,21 +186,23 @@ public class UsuarioLogadoResource {
         }
     }
 
+    // ---------- Pets ----------
+
     @POST
     @Path("/insert/pet")
-    @RolesAllowed({"User", "Admin"})
+    @RolesAllowed({ "User", "Admin" })
     @Transactional
     public Response insertPet(PetDTO dto) {
         try {
             // Extrair email do token JWT
             String email = jwt.getSubject();
-            
+
             // Buscar usuário pelo email
             UsuarioResponseDTO user = userService.findByEmail(email);
             if (user == null) {
                 throw new ValidationException("400", "Usuário não encontrado");
             }
-            
+
             Long userId = user.id(); // Supondo que UsuarioResponseDTO tenha um método getId()
             PetResponseDTO petResponseDTO = petService.insert(dto, userId);
             return Response.status(Status.CREATED).entity(petResponseDTO).build();
@@ -205,37 +216,38 @@ public class UsuarioLogadoResource {
 
     @GET
     @Path("/search/pet")
-    @RolesAllowed({"User", "Admin", "Vet"})
-    public Response getPets(){
-        try{
+    @RolesAllowed({ "User", "Admin", "Vet" })
+    public Response getPets() {
+        try {
             String email = jwt.getSubject();
 
             UsuarioResponseDTO user = userService.findByEmail(email);
             Long userId = user.id();
-            return  Response.ok(petService.getByUser(userId)).build();
-        } catch(NotFoundException e){
+            return Response.ok(petService.getByUser(userId)).build();
+        } catch (NotFoundException e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
     }
 
+    // ---------- Endereço ----------
 
     @POST
     @Path("/insert/endereco")
-    @RolesAllowed({"User", "Admin", "Vet"})
+    @RolesAllowed({ "User", "Admin", "Vet" })
     @Transactional
     public Response insertEndereco(EnderecoDTO endereco) {
         try {
             // Extrair email do token JWT
             String email = jwt.getSubject();
-            
+
             // Buscar usuário pelo email
             UsuarioResponseDTO user = userService.findByEmail(email);
             if (user == null) {
                 throw new ValidationException("400", "Usuário não encontrado");
             }
-            
+
             Long userId = user.id();
             EnderecoResponseDTO enderecoResponseDTO = enderecoService.insert(endereco, userId);
             return Response.status(Status.CREATED).entity(enderecoResponseDTO).build();
@@ -249,6 +261,86 @@ public class UsuarioLogadoResource {
             e.printStackTrace();
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
         }
-    }    
+    }
+
+    // ---------- Cartao ----------
+
+    @POST
+    @Path("/insert/cartao")
+    @RolesAllowed({ "User", "Admin", "Vet" })
+    public Response insert(CartaoCreditoDTO dto) {
+        String email = jwt.getSubject();
+
+        UsuarioResponseDTO user = userService.findByEmail(email);
+
+        try {
+            return Response.status(Status.CREATED).entity(cartaoCreditoService.insert(dto, user.id())).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+    @PUT
+    @Path("/update/cartao/{id}")
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    public Response update(@PathParam("id") Long id, CartaoCreditoDTO dto) {
+        try {
+            cartaoCreditoService.update(dto, id);
+            return Response.noContent().build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+    @DELETE
+    @Path("/delete/cartao/{id}")
+    @RolesAllowed({"Admin", "User", "Vet"})
+    public Response delete(@PathParam("id") Long id){
+        try{
+            cartaoCreditoService.delete(id);
+            return Response.noContent().build();
+        } catch(NotFoundException e){
+            e.printStackTrace();
+            Error error = new Error("404", e.getMessage());
+            return Response.status(Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+    @GET
+    @Path("/search/cartao")
+    @RolesAllowed({"Admin", "User", "Vet"})
+    public Response getCartoesUsuario(){
+        try{
+
+            String login = jwt.getSubject();
+            
+            UsuarioResponseDTO user = userService.findByEmail(login);
+
+            return Response.ok(cartaoCreditoService.getAllByUser(user.id())).build();
+        } catch (Exception e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.NOT_FOUND).entity(error).build();
+        }
+    }
+
+    @GET
+    @Path("/search/cartao/{id}")
+    @RolesAllowed({"Admin", "User", "Vet"})
+    public Response getCartaoById(@PathParam("id") Long id){
+        try{
+            return Response.ok(cartaoCreditoService.getById(id)).build();
+        } catch (Exception e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+
 
 }

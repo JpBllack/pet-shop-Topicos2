@@ -1,6 +1,7 @@
 package br.projeto.petshop.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Max;
@@ -8,14 +9,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Embeddable
-public class ValidadeCartao extends DefaultEntity{
+public class ValidadeCartao{
 
     @NotNull
     @Min(1)
     @Max(12)
+    @Column(name = "validade_mes")
     private Integer mes;
 
     @NotNull
+    @Column(name = "validade_ano")
     private Integer ano;
 
     public Integer getMes() {
