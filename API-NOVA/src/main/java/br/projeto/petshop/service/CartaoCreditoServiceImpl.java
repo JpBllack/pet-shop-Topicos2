@@ -17,7 +17,6 @@ public class CartaoCreditoServiceImpl implements CartaoCreditoService{
 
     @Override
     public List<CartaoCreditoResponseDTO> getAllByUser(Long id) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getById'");
     }
 
