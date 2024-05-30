@@ -1,18 +1,35 @@
+<div class="navbar">
+  <a routerLink="/dashboard">Meus Dados</a>
+  <a routerLink="/pedidos">Meus Pedidos</a>
+  <a routerLink="/meus-pets">Meus Pets</a>
+  <a routerLink="/alterar-info">Alterar Informações</a>
+  <a routerLink="/seguranca">Segurança</a>
+  <a routerLink="/meus-cartoes">Pagamento</a>
+  <a routerLink="/ver-endereco">Endereço</a>
+</div>
+
 <div class="container">
-    <!-- Lista de cartões -->
-    <ul *ngIf="cartoes | async as cartoes; else loading">
-      <li *ngFor="let cartao of cartoes" class="cartao">
-        <!-- Exiba os detalhes do cartão -->
-        <p>Número do Cartão: {{ cartao.numero }}</p>
-      </li>
-    </ul>
   
     <!-- Botão de adicionar -->
     <button class="botao-adicionar" (click)="adicionarCartao()">Adicionar Cartão</button>
-  
-    <!-- Mostra enquanto a lista de cartões está sendo carregada -->
-    <ng-template #loading class="loading">
-      <p>Carregando cartões...</p>
-    </ng-template>
-  </div>
-  
+    
+
+  <!-- Lista de cartões -->
+  <ul *ngIf="cartoes | async as cartoes; else loading">
+    <li *ngFor="let cartao of cartoes" class="cartao">
+      <!-- Exiba os detalhes do cartão -->
+      <p><strong>Nome no Cartão:</strong> {{ cartao.nome }}</p>
+      <p><strong>Número do Cartão:</strong> {{ cartao.numero }}</p>
+      <label>
+        <input type="checkbox" [checked]="cartao.isPrincipal" (change)="setPrincipal(cartao)">
+        Cartao Principal
+      </label>
+    </li>
+  </ul>
+
+
+  <!-- Mostra enquanto a lista de cartões está sendo carregada -->
+  <ng-template #loading class="loading">
+    <p>Carregando cartões...</p>
+  </ng-template>
+</div>

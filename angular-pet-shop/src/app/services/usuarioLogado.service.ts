@@ -49,7 +49,7 @@ export class UsuarioLogadoService {
   }
   
   insertEndereco(endereco: any): Observable<Usuario[]> {
-    // Imprime os dados do endereço para o console antes de fazer a solicitação HTTP
+    // Imprime os dados do endereço para o console antes de fazer a solicitação HTTP    
     console.log('Dados do endereço:', endereco);
 
     // Faz a solicitação HTTP e retorna o Observable
@@ -76,9 +76,14 @@ export class UsuarioLogadoService {
     return this.http.get<Cartao[]>(`${this.apiUrl}/search/cartao`);
   }
 
+  setCartaoPrincipal(id: number): Observable<Cartao>{
+    return this.http.patch<Cartao>(`${this.apiUrl}/update/cartao/principal/${id}`, {}, { headers: this.getHeaders() });
+  }
+
 }
 
 export interface Cartao{
+  id: number;
   numero: string;
   codigoSeguranca: string;
   mesValidade: number;

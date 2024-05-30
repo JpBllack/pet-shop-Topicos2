@@ -1,0 +1,75 @@
+<div class="navbar">
+    <a routerLink="/dashboard">Meus Dados</a>
+    <a routerLink="/pedidos">Meus Pedidos</a>
+    <a routerLink="/meus-pets">Meus Pets</a>
+    <a routerLink="/alterar-info">Alterar Informações</a>
+    <a routerLink="/seguranca">Segurança</a>
+    <a routerLink="/meus-cartoes">Pagamento</a>
+    <a routerLink="/ver-endereco">Endereço</a>
+</div>
+
+<div class="container">
+    <h2>Adicionar Cartão</h2>
+    <form [formGroup]="cartaoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nome">Nome no Cartão</label>
+            <input id="nome" formControlName="nome" class="form-control" type="text">
+            <div *ngIf="cartaoForm.get('nome')?.invalid && cartaoForm.get('nome')?.touched" class="text-danger">
+                Nome é obrigatório.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="numero">Número do Cartão</label>
+            <input id="numero" formControlName="numero" class="form-control" type="text" maxlength="16">
+            <div *ngIf="cartaoForm.get('numero')?.invalid && cartaoForm.get('numero')?.touched" class="text-danger">
+                Número do cartão inválido. Deve conter 16 dígitos
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="codigoSeguranca">Código de Segurança</label>
+            <input id="codigoSeguranca" formControlName="codigoSeguranca" class="form-control" type="text"
+                maxlength="3">
+            <div *ngIf="cartaoForm.get('codigoSeguranca')?.invalid && cartaoForm.get('codigoSeguranca')?.touched"
+                class="text-danger">
+                Código de segurança inválido. Deve conter no máximo 3 dígitos.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mesValidade">Mês de Validade</label>
+            <select id="mesValidade" formControlName="mesValidade" class="form-control">
+                <option *ngFor="let mes of meses" [value]="mes.value">{{ mes.name }}</option>
+            </select>
+            <div *ngIf="cartaoForm.get('mesValidade')?.invalid && cartaoForm.get('mesValidade')?.touched"
+                class="text-danger">
+                Mês de validade é obrigatório.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="anoValidade">Ano de Validade</label>
+            <select id="anoValidade" formControlName="anoValidade" class="form-control">
+                <option *ngFor="let ano of anos" [value]="ano">{{ ano }}</option>
+            </select>
+            <div *ngIf="cartaoForm.get('anoValidade')?.invalid && cartaoForm.get('anoValidade')?.touched"
+                class="text-danger">
+                Ano de validade é obrigatório.
+            </div>
+        </div>
+
+        <div class="form-group form-check">
+            <input id="isPrincipal" formControlName="isPrincipal" class="form-check-input" type="checkbox">
+            <label for="isPrincipal" class="form-check-label">Cartão Principal</label>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <!-- Botão de voltar -->
+            <button class="btn btn-secondary" (click)="voltar()">Voltar</button>
+            <!-- Botão de adicionar -->
+            <button type="submit" class="btn btn-primary">Adicionar Cartão</button>
+        </div>
+
+    </form>
+</div>

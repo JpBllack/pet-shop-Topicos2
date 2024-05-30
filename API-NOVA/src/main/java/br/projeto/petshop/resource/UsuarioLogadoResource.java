@@ -342,8 +342,9 @@ public class UsuarioLogadoResource {
     }
 
     @PATCH
-    @Path("/update/email/principal{id}")
-    public Response setEmailPrincipal(@PathParam("id") Long id){
+    @Path("/update/cartao/principal/{id}")
+    @RolesAllowed({"Admin", "User", "Vet"})
+    public Response setCartaoPrincipal(@PathParam("id") Long id){
         try{
             return Response.ok(cartaoCreditoService.setPrincipal(id)).build();
         } catch(Exception e){
