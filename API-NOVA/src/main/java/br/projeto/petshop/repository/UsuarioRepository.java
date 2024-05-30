@@ -4,6 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import br.projeto.petshop.model.CartaoCredito;
+import br.projeto.petshop.model.Endereco;
 import br.projeto.petshop.model.Usuario;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
 
     @Inject
     CartaoCreditoRepository cartaoRepository;
+
+    @Inject
+    EnderecoRepository enderecoRepository;
 
     public List<Usuario> findByNome(String nome){
         if (nome == null)
@@ -63,6 +67,17 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         }
         return cartaoRepository.find("usuario.id", idUsuario).list();
     }
+
+    
+    public List<Endereco> findEnderecosByUsuario(Long idUsuario) {
+        if (idUsuario == null) {
+            return null;
+        }
+        return enderecoRepository.find("usuario.id", idUsuario).list();
+    }
+
+
+    
 
 
     //Verifica se já existe no sistema

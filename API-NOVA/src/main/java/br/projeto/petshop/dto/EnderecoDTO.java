@@ -11,9 +11,10 @@ public record EnderecoDTO(
         @NotBlank String complemento,
         String bairro,
         @NotNull Long idCidade,
-        @NotBlank String cep
+        @NotBlank String cep,
+        boolean isPrincipal  
 ) {
         public EnderecoDTO(Endereco e){
-                this(e.getLogradouro(), e.getNumero(), e.getComplemento(), e.getBairro(), e.getMunicipio().getId(), e.getCep());
+                this(e.getLogradouro(), e.getNumero(), e.getComplemento(), e.getBairro(), e.getMunicipio().getId(), e.getCep(),e.isPrincipal());
         }
 }

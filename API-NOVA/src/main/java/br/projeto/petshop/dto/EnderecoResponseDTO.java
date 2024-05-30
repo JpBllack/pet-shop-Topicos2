@@ -9,9 +9,19 @@ public record EnderecoResponseDTO(
         String complemento,
         String bairro,
         String municipioResponseDTO,
-        String cep
+        String cep,
+        boolean isPrincipal
 ) {
     public static EnderecoResponseDTO valueOf(Endereco endereco){
-        return new EnderecoResponseDTO(endereco.getId(), endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(), endereco.getMunicipio().getNome(), endereco.getCep());
+        return new EnderecoResponseDTO(
+         endereco.getId(),
+         endereco.getLogradouro(),
+         endereco.getNumero(), 
+         endereco.getComplemento(), 
+         endereco.getBairro(), 
+         endereco.getMunicipio().getNome(), 
+         endereco.getCep(), 
+         endereco.isPrincipal()
+         );  
     }
 }

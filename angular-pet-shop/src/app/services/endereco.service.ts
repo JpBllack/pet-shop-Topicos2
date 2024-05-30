@@ -33,9 +33,9 @@ export class EnderecoService {
     );
   }
 
-  updateEndereco(id: number, endereco: Endereco): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.put<void>(url, endereco).pipe(
+  updateEndereco(id: number, endereco: Partial<Endereco>): Observable<void> {
+    const url = `${this.apiUrl}/update/${id}`;
+    return this.http.patch<void>(url, endereco).pipe(
       catchError(this.handleError)
     );
   }
@@ -51,7 +51,6 @@ export class EnderecoService {
     const url = `${this.apiUrl}/marcarPrincipal/${Endereco}`;
     return this.http.put<void>(url, { enderecoPrincipal });
   }
-  
   private handleError(error: any): Observable<never> {
     console.error('An error occurred', error);
     return throwError(error.message || 'Server error');

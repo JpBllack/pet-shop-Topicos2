@@ -56,7 +56,7 @@ export class EnderecoComponent {
   resetForm() {
     this.logradouro = '';
     this.numero = '';
-    this.complemento = '%';
+    this.complemento = '';
     this.bairro = '';
     this.idCidade = 0;
     this.cep = '';

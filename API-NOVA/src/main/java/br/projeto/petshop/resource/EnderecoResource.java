@@ -80,14 +80,15 @@ public class EnderecoResource {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
-
-
+    
     @PUT
+    @Path("/update/{id}")
     @PermitAll
     @Transactional
     public Response updateEndereco(@PathParam("id") long id, @Valid EnderecoDTO enderecoDTO) {
         LOG.info("Atualizando endereço com ID: " + id);
         try {
+            enderecoService.update(id, enderecoDTO);
             return Response.noContent().build();
         } catch (NotFoundException e) {
             LOG.error("Endereço não encontrado para o ID: " + id, e);
@@ -97,7 +98,7 @@ public class EnderecoResource {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
-
+    
 
     @DELETE
     @Path("/delete/{id}")

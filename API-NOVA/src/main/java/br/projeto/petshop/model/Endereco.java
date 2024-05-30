@@ -32,6 +32,19 @@ public class Endereco extends DefaultEntity{
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    private boolean isPrincipal;
+
+
+
+
+    public boolean isPrincipal() {
+        return isPrincipal;
+    }
+
+    public void setPrincipal(boolean isPrincipal) {
+        this.isPrincipal = isPrincipal;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
