@@ -17,6 +17,12 @@
   <!-- Lista de cartões -->
   <ul *ngIf="cartoes | async as cartoes; else loading">
     <li *ngFor="let cartao of cartoes" class="cartao">
+      <button mat-icon-button class="botao-editar" (click)="editarCartao(cartao.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button class="botao-excluir" (click)="deletarCartao(cartao.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
       <!-- Exiba os detalhes do cartão -->
       <p><strong>Nome no Cartão:</strong> {{ cartao.nome }}</p>
       <p><strong>Número do Cartão:</strong> {{ cartao.numero }}</p>

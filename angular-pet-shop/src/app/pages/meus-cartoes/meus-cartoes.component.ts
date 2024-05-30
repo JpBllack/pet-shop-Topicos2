@@ -3,13 +3,14 @@ import { map, Observable } from 'rxjs';
 import { Cartao, UsuarioLogadoService } from '../../services/usuarioLogado.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-meus-cartoes',
   standalone: true,
   templateUrl: './meus-cartoes.component.html',
   styleUrls: ['./meus-cartoes.component.css'],
-  imports: [NgFor, NgIf, CommonModule, RouterModule]
+  imports: [NgFor, NgIf, CommonModule, RouterModule, MatIcon]
 })
 export class MeusCartoesComponent implements OnInit {
   cartoes!: Observable<Cartao[]>;
@@ -32,6 +33,16 @@ export class MeusCartoesComponent implements OnInit {
 
   adicionarCartao(): void {
     this.router.navigate(['/add-cartao']); // Navegar para a página de adicionar cartão
+  }
+
+  editarCartao(id: number): void {
+    this.router.navigate(['/edit-cartao', id]);
+  }  
+
+  deletarCartao(id: number): void {
+    this.usuarioLogadoService.deleteCartao(id).subscribe(() => {
+      this.atualizarCartoes(); // Atualiza a lista após deletar o cartão
+    });
   }
 
   setPrincipal(cartao: Cartao): void {

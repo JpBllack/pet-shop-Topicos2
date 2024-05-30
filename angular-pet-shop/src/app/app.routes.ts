@@ -72,7 +72,8 @@ export const routes: Routes = [
             { path: 'endereco', component: EnderecoComponent, title: 'Endereço'},
             { path: 'ver-endereco', component: VerEnderecoComponent, title: 'Meus Endereços'},
             { path: 'meus-cartoes', component: MeusCartoesComponent, title: 'Meus cartoes'},
-            { path: 'add-cartao', component: AddCartaoComponent, title: 'Add Cartao '}
+            { path: 'add-cartao', component: AddCartaoComponent, title: 'Add Cartao '},
+            { path: 'edit-cartao/:id', component: AddCartaoComponent, title: 'Editar cartao'}
             
         ]
 

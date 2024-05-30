@@ -60,6 +60,10 @@ export class UsuarioLogadoService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/search/pet`, { headers: this.getHeaders() });
   }
 
+  getCartaoById(id: number): Observable<Cartao>{
+    return this.http.get<Cartao>(`${this.apiUrl}/search/cartao/${id}`);
+  }
+
   insertCartao(cartao: Cartao): Observable<Cartao>{
     return this.http.post<Cartao>(`${this.apiUrl}/insert/cartao`, cartao);
   }

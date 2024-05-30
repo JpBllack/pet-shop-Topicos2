@@ -2,6 +2,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 5%;
 }
 
 .cartao {
@@ -84,4 +85,32 @@
   color: #ff0000; /* Muda a cor do texto para vermelho */
   text-align: center; /* Centraliza o texto */
   margin-top: 50px; /* Adiciona espaço acima do texto */
+}
+
+.botao-excluir {
+  position: relative;
+  float: right;
+  color: red;
+  font-size: 20px;
+  margin-left: 10px;
+  border: none; /* Remover a borda */
+  background: none; /* Remover o fundo */
+}
+
+.botao-excluir:hover {
+  background-color: transparent;
+}
+
+.botao-editar{
+  position: relative;
+  float: right;
+  color: rgba(0, 0, 0, 0.596);
+  font-size: 20px;
+  margin-left: 10px;
+  border: none; /* Remover a borda */
+  background: none; /* Remover o fundo */
+}
+
+.botao-editar:hover {
+  background-color: transparent;
 }

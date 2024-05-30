@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -20,6 +20,7 @@ import { UsuarioLogadoService, Cartao } from '../../services/usuarioLogado.servi
 })
 export class AddCartaoComponent implements OnInit {
   cartaoForm!: FormGroup;
+  cartaoId!: number;
   meses = [
     { value: 1, name: 'Janeiro' },
     { value: 2, name: 'Fevereiro' },
@@ -40,6 +41,7 @@ export class AddCartaoComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioLogadoService: UsuarioLogadoService,
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location
   ) {}
 
@@ -52,6 +54,31 @@ export class AddCartaoComponent implements OnInit {
       anoValidade: ['', Validators.required],
       isPrincipal: [false]
     });
+
+    this.route.params.subscribe(params => {
+      this.cartaoId = +params['id'];
+      if (this.cartaoId) {
+        this.carregarDadosCartao(this.cartaoId);
+      }
+    });
+  }
+
+  carregarDadosCartao(id: number): void {
+    this.usuarioLogadoService.getCartaoById(id).subscribe(
+      cartao => {
+        this.cartaoForm.patchValue({
+          nome: cartao.nome,
+          //numero: cartao.numero,
+          codigoSeguranca: cartao.codigoSeguranca,
+          mesValidade: cartao.mesValidade,
+          anoValidade: cartao.anoValidade,
+          isPrincipal: cartao.isPrincipal
+        });
+      },
+      error => {
+        console.error('Erro ao carregar dados do cartão', error);
+      }
+    );
   }
 
   onSubmit(): void {
