@@ -263,6 +263,51 @@ public class UsuarioLogadoResource {
         }
     }
 
+    
+    @PATCH
+    @Path("/update/endereco/{id}")
+    @RolesAllowed({ "User", "Admin" })
+    @Transactional
+    public Response updateEndereco(@PathParam("id") Long id, EnderecoDTO enderecoDTO) {
+        try {
+            EnderecoResponseDTO enderecoAtualizado = enderecoService.update(id, enderecoDTO);
+            return Response.ok(enderecoAtualizado).build();
+        } catch (NotFoundException e) {
+            LOG.error("Endereço não encontrado para o ID: " + id);
+            e.printStackTrace();
+            Error error = new Error("404", "Endereço não encontrado");
+            return Response.status(Status.NOT_FOUND).entity(error).build();
+        } catch (Exception e) {
+            LOG.error("Erro ao atualizar o endereço");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+    @DELETE
+    @Path("/delete/endereco/{id}")
+    @RolesAllowed({ "User", "Admin" })
+    @Transactional
+    public Response deleteEndereco(@PathParam("id") Long id) {
+        try {
+            enderecoService.delete(id);
+            return Response.noContent().build();
+        } catch (NotFoundException e) {
+            LOG.error("Endereço não encontrado para o ID: " + id);
+            e.printStackTrace();
+            Error error = new Error("404", "Endereço não encontrado");
+            return Response.status(Status.NOT_FOUND).entity(error).build();
+        } catch (Exception e) {
+            LOG.error("Erro ao excluir o endereço");
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
+
+
     // ---------- Cartao ----------
 
     @POST

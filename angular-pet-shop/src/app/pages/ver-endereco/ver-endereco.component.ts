@@ -39,6 +39,7 @@ export class VerEnderecoComponent implements OnInit {
 
   submitForm(): void {
     const novoEndereco: Endereco = {
+      id: 0,
       cep: this.cep,
       idCidade: this.idCidade = 0,
       bairro: this.bairro,
@@ -57,7 +58,6 @@ export class VerEnderecoComponent implements OnInit {
     });
   }
 
-
   resetForm(): void {
     this.cep = '';
     this.idCidade = null;
@@ -73,15 +73,14 @@ export class VerEnderecoComponent implements OnInit {
   }
 
   marcarComoPrincipal(endereco: Endereco): void {
-    // Verifique se o endereço já está marcado como principal
-    if (endereco.enderecoPrincipal) {
-      console.log('Endereço já está marcado como principal:', endereco);
-      return; // Não é necessário fazer nada se já estiver marcado como principal
-    }
-  
     // Atualize o status de endereço principal no backend
-    this.enderecoService.marcarComoPrincipal(endereco.enderecoPrincipal).subscribe(() => {
+    this.enderecoService.marcarComoPrincipal(endereco.id).subscribe(() => {
       console.log('Endereço marcado como principal:', endereco);
+
+      // Desmarque o endereço principal atual e marque o novo endereço
+      this.enderecosUsuario.forEach(e => e.enderecoPrincipal = false);
+      endereco.enderecoPrincipal = true;
+
       // Atualize a lista de endereços após a marcação como principal
       this.getEnderecosUsuario();
     }, error => {
@@ -89,5 +88,6 @@ export class VerEnderecoComponent implements OnInit {
       // Lógica para lidar com erros, se necessário
     });
   }
-  
 }
+  
+
