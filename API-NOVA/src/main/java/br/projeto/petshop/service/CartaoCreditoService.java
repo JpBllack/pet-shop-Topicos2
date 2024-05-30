@@ -7,6 +7,8 @@ import br.projeto.petshop.dto.CartaoCreditoResponseDTO;
 
 public interface CartaoCreditoService {
 
+    public CartaoCreditoResponseDTO setPrincipal(Long id);
+
     public List<CartaoCreditoResponseDTO> getAllByUser(Long id);
 
     public CartaoCreditoResponseDTO getById(Long id);

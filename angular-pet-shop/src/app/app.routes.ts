@@ -41,6 +41,7 @@ import { VerProdutoComponent } from './pages/ver-produto/ver-produto.component';
 import { EnderecoComponent } from './pages/endereco/endereco.component';
 import { BuscaComponent } from './pages/busca/busca.component';
 import { VerEnderecoComponent } from './pages/ver-endereco/ver-endereco.component';
+import { MeusCartoesComponent } from './pages/meus-cartoes/meus-cartoes.component';
 
 
 export const routes: Routes = [
@@ -69,6 +70,7 @@ export const routes: Routes = [
             { path: 'seguranca', component: AlterarSenhaComponent, title: 'Alterar senha'},
             { path: 'endereco', component: EnderecoComponent, title: 'Endereço'},
             { path: 'ver-endereco', component: VerEnderecoComponent, title: 'Meus Endereços'},
+            { path: 'meus-cartoes', component: MeusCartoesComponent, title: 'Meus cartoes'},
             
         ]
 

@@ -1,0 +1,18 @@
+<div class="container">
+    <!-- Lista de cartões -->
+    <ul *ngIf="cartoes | async as cartoes; else loading">
+      <li *ngFor="let cartao of cartoes" class="cartao">
+        <!-- Exiba os detalhes do cartão -->
+        <p>Número do Cartão: {{ cartao.numero }}</p>
+      </li>
+    </ul>
+  
+    <!-- Botão de adicionar -->
+    <button class="botao-adicionar" (click)="adicionarCartao()">Adicionar Cartão</button>
+  
+    <!-- Mostra enquanto a lista de cartões está sendo carregada -->
+    <ng-template #loading class="loading">
+      <p>Carregando cartões...</p>
+    </ng-template>
+  </div>
+  

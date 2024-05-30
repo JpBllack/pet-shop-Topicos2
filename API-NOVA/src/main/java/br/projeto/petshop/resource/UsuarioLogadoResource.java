@@ -341,6 +341,18 @@ public class UsuarioLogadoResource {
         }
     }
 
+    @PATCH
+    @Path("/update/email/principal{id}")
+    public Response setEmailPrincipal(@PathParam("id") Long id){
+        try{
+            return Response.ok(cartaoCreditoService.setPrincipal(id)).build();
+        } catch(Exception e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
 
 
 }

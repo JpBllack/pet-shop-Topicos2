@@ -72,11 +72,17 @@ export class UsuarioLogadoService {
     return this.http.delete<void>(`${this.apiUrl}/delete/cartao/${id}`)
   }
 
+  getCartoesUsuario(): Observable<Cartao[]>{
+    return this.http.get<Cartao[]>(`${this.apiUrl}/search/cartao`);
+  }
+
 }
 
 export interface Cartao{
   numero: string;
   codigoSeguranca: string;
   mesValidade: number;
-  anovalidade: number;
+  anoValidade: number;
+  isPrincipal: boolean;
+  nome: string;
 }

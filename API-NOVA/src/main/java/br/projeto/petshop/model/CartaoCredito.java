@@ -12,6 +12,9 @@ import jakarta.validation.constraints.NotNull;
 public class CartaoCredito extends DefaultEntity {
 
     @NotNull
+    private String nome;
+
+    @NotNull
     @Column(name = "numero_cartao", unique = true)
     private String numeroCartao;
 
@@ -25,6 +28,9 @@ public class CartaoCredito extends DefaultEntity {
     @NotNull
     @ManyToOne
     private Usuario usuario;
+
+    @Column(name = "principal")
+    private boolean isPrincipal;
 
     public String getNumeroCartao() {
         return numeroCartao;
@@ -57,5 +63,23 @@ public class CartaoCredito extends DefaultEntity {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean isPrincipal() {
+        return isPrincipal;
+    }
+
+    public void setPrincipal(boolean isPrincipal) {
+        this.isPrincipal = isPrincipal;
+    }
+
+    
 
 }

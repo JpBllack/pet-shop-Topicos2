@@ -32,13 +32,13 @@ INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil)
 VALUES ('João', 'Gomes', '12345616523', 'joao', 'joao@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
 
 
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('1234123412341234', '123', 12, 2025, 1);
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('1829273635364895', '124', 1, 2028, 1);
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('9292027263546489', '813', 9, 2025, 2);
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('9292920336635242', '721', 10, 2030, 1);
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('8484736363740902', '147', 5, 2025, 3);
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('0292918273263938', '456', 12, 2025, 3);
-INSERT INTO cartao_credito (numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id) VALUES ('0282636352627838', '333', 9, 2024, 4);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('fulano de tal','1234123412341234', '123', 12, 2025, 1, true);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('cicrano de teo', '1829273635364895', '124', 1, 2028, 1, false);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('pessoa random', '9292027263546489', '813', 9, 2025, 2 true);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('pessoa teste', '9292920336635242', '721', 10, 2030, 1, false);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('fulano teste', '8484736363740902', '147', 5, 2025, 3, true);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('cicrano teste', '0292918273263938', '456', 12, 2025, 3, false);
+INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('teste de pessoa', '0282636352627838', '333', 9, 2024, 4, true);
 
 
 INSERT INTO TipoAnimal (nome) VALUES
