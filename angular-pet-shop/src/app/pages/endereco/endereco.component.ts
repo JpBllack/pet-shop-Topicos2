@@ -38,7 +38,7 @@ export class EnderecoComponent implements OnInit{
     private router: Router,
     private location: Location,
     private estadoService: EstadoService,
-    private municipioService: municipioService
+    private municipioService: municipioService,
   ) {}
 
   ngOnInit() {
@@ -78,14 +78,14 @@ export class EnderecoComponent implements OnInit{
       complemento: this.complemento,
       bairro: this.bairro,
       idCidade: this.idCidade,
-      cep: this.cep
+      isPrincipal: this.enderecoPrincipal
     };
     
     this.usuarioLogadoService.insertEndereco(endereco).subscribe(
       response => {
         console.log('Endereço criado com sucesso!', response);
         // Reinicie os valores dos campos do formulário se necessário
-        this.resetForm();
+        this.router.navigate(['/ver-endereco']);
       },
       error => {
         console.error('Erro ao criar endereço:', error);
