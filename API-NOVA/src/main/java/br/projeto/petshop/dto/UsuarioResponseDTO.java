@@ -13,7 +13,9 @@ public record UsuarioResponseDTO(
         String cpf,
         String username,
         String email,
-        Perfil perfil) {
+        Perfil perfil,
+        String imagem
+        ) {
 
     private static final Logger logger = Logger.getLogger(UsuarioResponseDTO.class.getName());
 
@@ -29,6 +31,8 @@ public record UsuarioResponseDTO(
                 user.getCpf(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getPerfil());
+                user.getPerfil(),
+                user.getImagem()
+                );
     }
 }

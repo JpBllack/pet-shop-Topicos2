@@ -1,11 +1,16 @@
 package br.projeto.petshop.resource;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import br.projeto.petshop.service.CartaoCreditoService;
 import br.projeto.petshop.service.EnderecoService;
 import br.projeto.petshop.service.PetService;
+import br.projeto.petshop.service.ProdutoFileService;
 import br.projeto.petshop.service.UsuarioService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -41,6 +46,7 @@ import br.projeto.petshop.dto.PetResponseDTO;
 import br.projeto.petshop.dto.UpdateSenhaDTO;
 import br.projeto.petshop.dto.UsernameDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
+import br.projeto.petshop.form.ProdutoImageForm;
 import br.projeto.petshop.model.Endereco;
 
 @Path("/usuarioLogado")
@@ -61,6 +67,11 @@ public class UsuarioLogadoResource {
 
     @Inject
     CartaoCreditoService cartaoCreditoService;
+
+    
+    @Inject
+    ProdutoFileService fileService;
+
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -429,5 +440,55 @@ public class UsuarioLogadoResource {
             return Response.status(Status.BAD_REQUEST).entity(error).build();
         }
     }
+
+
+//---------------imagemUsuario--------------
+   @Path("/quarkus/images/usuario")
+    public class ImageResource {
+    @GET
+    @Path("/{imageName}")
+    @Produces("image/jpeg")
+    public Response getImage(@PathParam("imageName") String imageName) {
+        File file = new File(System.getProperty("user.home") + "/quarkus/images/usuario/" + imageName);
+        if (!file.exists()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(file).build();
+    }
+}
+
+
+ @PATCH
+    @Path("/upload/image")
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response saveimage(@MultipartForm ProdutoImageForm form) {
+        Long id = form.getId();
+        String nomeImagem = form.getNomeImagem();
+        byte[] imagem = form.getImagem();
+        
+        if (id == null || nomeImagem == null || imagem == null) {
+            LOG.error("Parâmetros inválidos");
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    
+        try {
+            LOG.info("Inserindo imagem");
+            String imageName = fileService.save(nomeImagem, imagem);
+            LOG.info("Alterando imagem do usuário");
+    
+            userService.changeImage(id, imageName);
+            LOG.info("Imagem alterada");
+            return Response.ok("Imagem = " + imageName).build();
+        } catch (IOException e) {
+            LOG.error("Erro ao inserir imagem");
+            e.printStackTrace();
+            Error error = new Error("409", e.getMessage());
+            return Response.status(Response.Status.CONFLICT).entity(error).build();
+        }
+    }
+
+
 
 }

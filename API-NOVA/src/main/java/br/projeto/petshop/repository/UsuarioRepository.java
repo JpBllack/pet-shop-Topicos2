@@ -3,8 +3,11 @@ package br.projeto.petshop.repository;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import br.projeto.petshop.model.CartaoCredito;
 import br.projeto.petshop.model.Endereco;
+import br.projeto.petshop.model.Racao;
 import br.projeto.petshop.model.Usuario;
 
 import java.util.List;
@@ -17,6 +20,9 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
 
     @Inject
     EnderecoRepository enderecoRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public List<Usuario> findByNome(String nome){
         if (nome == null)
@@ -59,6 +65,12 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         return find("username = ?1", username).firstResult();
     }
 
+    public Usuario findById(Long id) {
+        if (id == null) {
+            return null;
+        }
+        return entityManager.find(Usuario.class, id);
+    }
     //Cartao de credito
 
     public List<CartaoCredito> findCartoesByUsuario(Long idUsuario) {
@@ -92,6 +104,9 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
     public boolean existsByCpf(String cpf){
         return find("cpf", cpf).count() > 0;
     }
+
+
+    
 
 
 }

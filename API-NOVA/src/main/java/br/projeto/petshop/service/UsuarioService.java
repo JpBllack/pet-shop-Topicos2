@@ -45,4 +45,7 @@ public interface UsuarioService {
     public UsuarioResponseDTO updateCPF(String login, CpfDTO cpf);
 
     public UsuarioResponseDTO updateNome(String login, NomeDTO nomeDto);
+
+    public UsuarioResponseDTO changeImage(Long id, String imageName);
+    
 }

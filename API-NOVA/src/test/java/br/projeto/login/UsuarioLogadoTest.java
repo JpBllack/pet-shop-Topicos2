@@ -38,7 +38,7 @@ public class UsuarioLogadoTest {
         // Inserindo o novo usuario
 
         UsuarioDTO dto = new UsuarioDTO("Fulano", "de tal", "77733399984", "fulaninho_br", "fulaninho@gmail.com",
-                hashService.getHashSenha("12345"), Perfil.valueOf(1));
+                hashService.getHashSenha("12345"), Perfil.valueOf(1), null);
         usuarioService.insert(dto);
 
         String token = jwtService.generateJwt(usuarioService.findByEmail("fulaninho@gmail.com"));

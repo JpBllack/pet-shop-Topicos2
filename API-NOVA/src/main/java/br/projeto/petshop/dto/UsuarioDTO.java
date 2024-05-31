@@ -21,6 +21,10 @@ public record UsuarioDTO(
 
         @NotBlank(message = "A senha não pode estar em branco") String senha,
 
-        @NotNull(message = "O perfil não pode ser nulo") Perfil perfil) {
+        @NotNull(message = "O perfil não pode ser nulo") Perfil perfil,
+        
+        String imagem
+
+        ) {
 
 }

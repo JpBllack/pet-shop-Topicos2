@@ -37,6 +37,16 @@ public class Usuario extends DefaultEntity {
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private Perfil perfil;
 
+    private String imagem;
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
     public String getCpf() {
         return cpf;
     }

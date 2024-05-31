@@ -15,6 +15,7 @@ import br.projeto.petshop.dto.EmailDTO;
 import br.projeto.petshop.dto.LoginDTO;
 import br.projeto.petshop.dto.LoginResponseDTO;
 import br.projeto.petshop.dto.NomeDTO;
+import br.projeto.petshop.dto.RacaoResponseDTO;
 import br.projeto.petshop.dto.UpdateSenhaDTO;
 import br.projeto.petshop.dto.UsernameDTO;
 import br.projeto.petshop.dto.UsuarioBasicoDTO;
@@ -22,6 +23,7 @@ import br.projeto.petshop.dto.UsuarioBasicoResponseDTO;
 import br.projeto.petshop.dto.UsuarioDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.Perfil;
+import br.projeto.petshop.model.Racao;
 import br.projeto.petshop.model.Usuario;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -275,6 +277,20 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         return UsuarioResponseDTO.valueOf(user);
+    }
+
+
+    @Override
+    @Transactional
+    public UsuarioResponseDTO changeImage(Long id, String imageName) {
+        Usuario usuario = repository.findById(id);
+        if (usuario != null) {
+            usuario.setImagem(imageName);
+            return UsuarioResponseDTO.valueOf(usuario);
+        } else {
+            // Trate o caso em que o usuário não foi encontrado
+            throw new IllegalArgumentException("Usuário não encontrado");
+        }
     }
 
 }
