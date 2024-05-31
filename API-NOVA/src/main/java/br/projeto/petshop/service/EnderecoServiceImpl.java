@@ -88,35 +88,33 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Override
     @Transactional
     public EnderecoResponseDTO update(long id, EnderecoDTO dto) {
-        LOG.info("Requisição update()");
+        LOG.info("Requisição update() para isPrincipal");
+
         Endereco endereco = enderecoRepository.findById(id);
-        if (endereco != null) {
-            endereco.setLogradouro(dto.logradouro());
-            endereco.setNumero(dto.numero());
-            endereco.setComplemento(dto.complemento());
-            endereco.setBairro(dto.bairro());
-            endereco.setMunicipio(municipioRepository.findById(dto.idCidade()));
-            endereco.setCep(dto.cep());
-
-            // Se o endereço atualizado for definido como principal, desmarque todos os outros do usuário
-            if (dto.isPrincipal()) {
-                Long userId = endereco.getUsuario().getId();
-                List<Endereco> userEnderecos = usuarioRepository.findEnderecosByUsuario(userId);
-                for (Endereco e : userEnderecos) {
-                    if (!e.getId().equals(id)) {
-                        e.setPrincipal(false);
-                        enderecoRepository.persist(e);
-                    }
-                }
-            }
-
-            endereco.setPrincipal(dto.isPrincipal());
-            return EnderecoResponseDTO.valueOf(endereco);
-        } else {
+        if (endereco == null) {
             LOG.error("Endereço não encontrado para o ID: " + id);
             throw new NotFoundException();
         }
+
+        Long userId = endereco.getUsuario().getId();
+        List<Endereco> userEnderecos = usuarioRepository.findEnderecosByUsuario(userId);
+
+        // Se o endereço atualizado for definido como principal, desmarque todos os outros do usuário
+        if (dto.isPrincipal()) {
+            for (Endereco e : userEnderecos) {
+                if (!e.getId().equals(id)) {
+                    e.setPrincipal(false);
+                    enderecoRepository.persist(e);
+                }
+            }
+        }
+
+        endereco.setPrincipal(dto.isPrincipal());
+        enderecoRepository.persist(endereco);
+
+        return EnderecoResponseDTO.valueOf(endereco);
     }
+
 
     @Override
     @Transactional

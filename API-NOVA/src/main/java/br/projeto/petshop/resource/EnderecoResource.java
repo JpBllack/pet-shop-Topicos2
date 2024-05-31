@@ -17,6 +17,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -81,7 +82,7 @@ public class EnderecoResource {
         }
     }
     
-    @PUT
+    @PATCH
     @Path("/update/{id}")
     @PermitAll
     @Transactional
@@ -102,7 +103,7 @@ public class EnderecoResource {
 
     @DELETE
     @Path("/delete/{id}")
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin", "User", "Veterinario"})
     @Transactional
     public Response deleteEndereco(@PathParam("id") long id) {
         LOG.info("Deletando endereço pelo ID: " + id);

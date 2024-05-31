@@ -33,13 +33,7 @@ export class EnderecoService {
     );
   }
 
-  updateEndereco(id: number, endereco: Partial<Endereco>): Observable<void> {
-    const url = `${this.apiUrl}/update/${id}`;
-    return this.http.put<void>(url, endereco).pipe(
-      catchError(this.handleError)
-    );
-  }
-
+ 
   deleteEndereco(id: number): Observable<void> {
     const url = `${this.apiUrl}/delete/${id}`;
     return this.http.delete<void>(url).pipe(
@@ -48,7 +42,7 @@ export class EnderecoService {
   }
 
   marcarComoPrincipal(id: number): Observable<void> {
-    const url = `${this.apiUrl}/update/principal/${id}`;
+    const url = `${this.apiUrl}/update/${id}`;
     return this.http.patch<void>(url, {}).pipe(
       catchError(this.handleError)
     );
