@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -7,6 +7,10 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { Estado } from '../../models/estado.model';
+import { municipio } from '../../models/municipio';
+import { EstadoService } from '../../services/estado.service';
+import { municipioService } from '../../services/municipio.service';
 
 
 @Component({
@@ -16,20 +20,56 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './endereco.component.html',
   styleUrls: ['./endereco.component.css'],
 })
-export class EnderecoComponent {
+export class EnderecoComponent implements OnInit{
   logradouro!: string;
   numero!: string;
   complemento!: string;
   bairro!: string;
+  estadoId!: number;
   idCidade!: number;
   cep!: string;
   enderecoPrincipal: boolean = false;
 
+  estados: Estado[] = [];
+  municipios: municipio[] = [];
+
   constructor(
     private usuarioLogadoService: UsuarioLogadoService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private estadoService: EstadoService,
+    private municipioService: municipioService
   ) {}
+
+  ngOnInit() {
+    this.loadEstados();
+  }
+
+  loadEstados() {
+    this.estadoService.findAll().subscribe(
+      (data) => {
+        this.estados = data.sort((a, b) => a.nome.localeCompare(b.nome));
+      },
+      (error) => {
+        console.error('Erro ao carregar estados:', error);
+      }
+    );
+  }
+
+  onEstadoChange() {
+    console.log('Estado ID selecionado:', this.estadoId); // Adicionado para depuração
+    if (this.estadoId) {
+      this.municipioService.findByEstadoId(this.estadoId).subscribe(
+        (data) => {
+          console.log('Municípios carregados:', data); // Adicionado para depuração
+          this.municipios = data.sort((a, b) => a.nome.localeCompare(b.nome));
+        },
+        (error) => {
+          console.error('Erro ao carregar municípios:', error);
+        }
+      );
+    }
+  }
 
   submitForm() {
     const endereco = {

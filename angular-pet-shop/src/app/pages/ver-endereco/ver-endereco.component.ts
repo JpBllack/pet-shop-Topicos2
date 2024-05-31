@@ -18,6 +18,7 @@ export class VerEnderecoComponent implements OnInit {
   enderecosUsuario: Endereco[] = [];
   cep: string = '';
   idCidade: number | null = null;
+  cidade!: string;
   bairro: string = '';
   logradouro: string = '';
   numero: string = '';

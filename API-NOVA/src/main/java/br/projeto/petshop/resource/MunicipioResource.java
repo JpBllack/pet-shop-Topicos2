@@ -8,10 +8,14 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.validation.ValidationException;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
+
+import br.projeto.petshop.validation.ValidationException;
+import br.projeto.petshop.application.Error;
+
 import org.jboss.logging.Logger;
 
 import java.util.List;
@@ -28,7 +32,6 @@ public class MunicipioResource {
 
     @GET
     @PermitAll
-    @Transactional
     public Response getAllMunicipios() {
         LOG.info("Buscando todos os municípios");
         List<MunicipioResponseDTO> municipios = municipioService.getAll();
@@ -40,6 +43,20 @@ public class MunicipioResource {
             return Response.ok(municipios).build();
         }
     }
+
+    @GET
+    @PermitAll
+    @Path("/search/estado/{id}")
+    public Response getMunicipioByIdEstado(@PathParam("id") Long id){
+        try{
+            return Response.ok(municipioService.getByEstadoId(id)).build();
+        } catch(Exception e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
+
 
     @GET
     @PermitAll

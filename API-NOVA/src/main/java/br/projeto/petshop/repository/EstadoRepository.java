@@ -1,6 +1,7 @@
 package br.projeto.petshop.repository;
 
 import br.projeto.petshop.model.Estado;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -8,7 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
-public class EstadoRepository {
+public class EstadoRepository implements PanacheRepository<Estado>{
 
     @PersistenceContext
     private EntityManager entityManager;

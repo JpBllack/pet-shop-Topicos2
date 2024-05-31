@@ -169,4 +169,10 @@ INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso do Sul', 'MS');
 
 
 INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Araguaina',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Paraiso',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Araguaina',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Porto Nacional',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Augustinopolis',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Gurupi',1);
 INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',5); 

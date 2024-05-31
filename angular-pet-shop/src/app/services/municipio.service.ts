@@ -9,7 +9,7 @@ import { municipio } from '../models/municipio';
 export class municipioService {
   private baseUrl = 'http://localhost:8080/municipios';
 
-  constructor(private httpClient: HttpClient) {  }
+  constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<municipio[]> {
     return this.httpClient.get<municipio[]>(`${this.baseUrl}`);
@@ -26,10 +26,16 @@ export class municipioService {
   updateMunicipio(municipio: municipio): Observable<municipio> {
     const url = `${this.baseUrl}/update/${municipio.id}`;
     return this.httpClient.put<municipio>(url, municipio);
-}
+  }
 
-deleteMunicipio(id: number): Observable<void> {
-  const url = `${this.baseUrl}/delete/${id}`;
-  return this.httpClient.delete<void>(url);
-}
+  // Adicione o método findByEstadoId
+  findByEstadoId(estadoId: number): Observable<municipio[]> {
+    return this.httpClient.get<municipio[]>(`${this.baseUrl}/search/estado/${estadoId}`);
+  }
+
+
+  deleteMunicipio(id: number): Observable<void> {
+    const url = `${this.baseUrl}/delete/${id}`;
+    return this.httpClient.delete<void>(url);
+  }
 }

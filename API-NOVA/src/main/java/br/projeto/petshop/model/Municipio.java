@@ -11,16 +11,9 @@ public class Municipio extends DefaultEntity{
     // Relacionamento com a entidade Estado
     @ManyToOne
     @JoinColumn(name = "estado_id", nullable = false)
-    private Estado estadoId;
+    private Estado estado;
 
 
-    public Estado getEstadoId() {
-        return estadoId;
-    }
-
-    public void setEstadoId(Estado estadoId) {
-        this.estadoId = estadoId;
-    }
 
     public String getNome() {
         return nome;
@@ -28,6 +21,14 @@ public class Municipio extends DefaultEntity{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
 }

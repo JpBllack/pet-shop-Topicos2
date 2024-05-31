@@ -13,6 +13,8 @@ public interface MunicipioService {
   
     MunicipioResponseDTO getById(long id);
 
+    public List<MunicipioResponseDTO> getByEstadoId(Long id);
+
    
     void insertMunicipio(MunicipioDTO municipioDTO);
 

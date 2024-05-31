@@ -1,13 +1,15 @@
 package br.projeto.petshop.repository;
 
+import br.projeto.petshop.dto.MunicipioResponseDTO;
 import br.projeto.petshop.model.Municipio;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
-public class MunicipioRepository {
+public class MunicipioRepository implements PanacheRepository<Municipio>{
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -17,7 +19,10 @@ public class MunicipioRepository {
         return entityManager.find(Municipio.class, id);
     }
 
-   
+    public List<Municipio> findByEstadoId(Long estadoId){
+        return find("estado.id", estadoId).list();
+    }
+
     public List<Municipio> listAll() {
         return entityManager.createQuery("SELECT m FROM Municipio m", Municipio.class).getResultList();
     }

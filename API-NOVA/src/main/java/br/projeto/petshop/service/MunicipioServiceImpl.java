@@ -4,6 +4,7 @@ import br.projeto.petshop.dto.MunicipioDTO;
 import br.projeto.petshop.dto.MunicipioResponseDTO;
 import br.projeto.petshop.model.Estado;
 import br.projeto.petshop.model.Municipio;
+import br.projeto.petshop.repository.EstadoRepository;
 import br.projeto.petshop.repository.MunicipioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -20,6 +21,9 @@ public class MunicipioServiceImpl implements MunicipioService {
     @Inject
     MunicipioRepository municipioRepository;
 
+    @Inject
+    EstadoRepository estadoRepository;
+
     private static final Logger LOG = Logger.getLogger(MunicipioServiceImpl.class);
 
     @Override
@@ -28,7 +32,7 @@ public class MunicipioServiceImpl implements MunicipioService {
         if (municipios.isEmpty()) {
             throw new NotFoundException("Não há municípios disponíveis");
         }
-        return municipios.stream().map(MunicipioResponseDTO::new).collect(Collectors.toList());
+        return municipioRepository.findAll().stream().map(e -> MunicipioResponseDTO.valueOf(e)).toList();
     }
 
     @Override
@@ -37,7 +41,12 @@ public class MunicipioServiceImpl implements MunicipioService {
         if (municipio == null) {
             throw new NotFoundException("Município não encontrado");
         }
-        return new MunicipioResponseDTO(municipio);
+        return MunicipioResponseDTO.valueOf(municipioRepository.findById(id));
+    }
+
+    @Override
+    public List<MunicipioResponseDTO> getByEstadoId(Long id){
+        return municipioRepository.findByEstadoId(id).stream().map(e -> MunicipioResponseDTO.valueOf(e)).toList();
     }
 
 
@@ -47,14 +56,8 @@ public class MunicipioServiceImpl implements MunicipioService {
     // Cria um novo objeto Municipio
     Municipio municipio = new Municipio();
     municipio.setNome(municipioDTO.nome());
-    
-    // Obtém o Estado a partir do EstadoDTO do MunicipioDTO e define no Municipio
-    Estado estado = new Estado();
-    estado.setId(municipioDTO.estado().id());
-    estado.setNome(municipioDTO.estado().nome());
-    estado.setSigla(municipioDTO.estado().sigla());
-    
-    municipio.setEstadoId(estado);
+
+    municipio.setEstado(estadoRepository.findById(municipioDTO.estado()));
 
     // Persiste o novo município no banco de dados
     municipioRepository.persistMunicipio(municipio);
@@ -78,14 +81,8 @@ public void updateMunicipio(long id, MunicipioDTO municipioDTO) {
     // Atualiza o nome do município com o novo nome fornecido
     municipio.setNome(municipioDTO.nome());
     
-    // Cria um novo objeto Estado e define seus atributos com base em EstadoDTO
-    Estado estado = new Estado();
-    estado.setId(municipioDTO.estado().id());
-    estado.setNome(municipioDTO.estado().nome());
-    estado.setSigla(municipioDTO.estado().sigla());
-    
     // Define o Estado no município
-    municipio.setEstadoId(estado);
+    municipio.setEstado(estadoRepository.findById(municipioDTO.estado()));;
     
     // Atualiza o município no banco de dados
     municipioRepository.updateMunicipio(municipio);
