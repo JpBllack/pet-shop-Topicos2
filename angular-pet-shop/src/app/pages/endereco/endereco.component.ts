@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
@@ -19,7 +19,7 @@ import { Router, RouterModule } from '@angular/router';
 export class EnderecoComponent {
   logradouro!: string;
   numero!: string;
-  complemento: string = '%';
+  complemento!: string;
   bairro!: string;
   idCidade!: number;
   cep!: string;
@@ -27,7 +27,8 @@ export class EnderecoComponent {
 
   constructor(
     private usuarioLogadoService: UsuarioLogadoService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   submitForm() {
@@ -64,7 +65,7 @@ export class EnderecoComponent {
   }
 
   voltar(): void {
-    this.router.navigate(['/ver-endereco']);
+    this.location.back();
   }
    
 }

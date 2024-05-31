@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Usuario } from "../models/Usuario";
 import { AuthService } from "./auth.service";
+import { Endereco } from "../models/endereco";
 
 
 @Injectable({
@@ -44,21 +45,43 @@ export class UsuarioLogadoService {
     return this.http.patch<Usuario>(`${this.apiUrl}/update/password`, senhas);
   }
 
-  insertPets(petData: any): Observable<Usuario[]> {
-    return this.http.post<Usuario[]>(`${this.apiUrl}/insert/pet`, petData, { headers: this.getHeaders() });
-  }
+  //Endereco
   
-  insertEndereco(endereco: any): Observable<Usuario[]> {
-    // Imprime os dados do endereço para o console antes de fazer a solicitação HTTP    
-    console.log('Dados do endereço:', endereco);
 
-    // Faz a solicitação HTTP e retorna o Observable
+  insertEndereco(endereco: any): Observable<Usuario[]> {
+    console.log('Dados do endereço:', endereco);
     return this.http.post<Usuario[]>(`${this.apiUrl}/insert/endereco`, endereco, { headers: this.getHeaders() });
   }
+
+  updateEndereco(endereco: Endereco): Observable<Endereco>{
+    return this.http.put<Endereco>(`${this.apiUrl}/update/endereco`, endereco);
+  }  
+  deleteEndereco(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/delete/endereco/${id}`)
+  }
+
+  getEnderecoUsuario(): Observable<Endereco[]>{
+    return this.http.get<Endereco[]>(`${this.apiUrl}/search/endereco`);
+  }
+
+  setEnderecoPrincipal(id: number): Observable<Endereco>{
+    return this.http.patch<Endereco>(`${this.apiUrl}/update/endereco/principal/${id}`, {}, { headers: this.getHeaders() });
+  }
   
+
+  //Pet
+
   getPetsUsuario(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/search/pet`, { headers: this.getHeaders() });
   }
+
+  insertPets(petData: any): Observable<Usuario[]> {
+    return this.http.post<Usuario[]>(`${this.apiUrl}/insert/pet`, petData, { headers: this.getHeaders() });
+  }
+
+
+
+  // Cartao
 
   getCartaoById(id: number): Observable<Cartao>{
     return this.http.get<Cartao>(`${this.apiUrl}/search/cartao/${id}`);

@@ -14,6 +14,8 @@ public interface EnderecoService {
     
     public List<EnderecoResponseDTO> getAll();
 
+    public List<EnderecoResponseDTO> getAllEnderecosByUser(Long id);
+
     public EnderecoResponseDTO getId(Long id);
 
     public EnderecoResponseDTO insert(EnderecoDTO enderecoDTO, Long userId);

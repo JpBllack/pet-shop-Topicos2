@@ -68,7 +68,7 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         return cartaoRepository.find("usuario.id", idUsuario).list();
     }
 
-    
+    //Endereço
     public List<Endereco> findEnderecosByUsuario(Long idUsuario) {
         if (idUsuario == null) {
             return null;

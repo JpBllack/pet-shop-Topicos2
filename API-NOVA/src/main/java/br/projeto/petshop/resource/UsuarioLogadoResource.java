@@ -233,6 +233,26 @@ public class UsuarioLogadoResource {
 
     // ---------- Endereço ----------
 
+    @GET
+    @Path("/search/endereco/")
+    @RolesAllowed({ "User", "Admin", "Vet" })
+    public Response getEnderecoByUser() {
+        try{
+            String email = jwt.getSubject();
+
+            // Buscar usuário pelo email
+            UsuarioResponseDTO user = userService.findByEmail(email);
+
+            return Response.ok(enderecoService.getAllEnderecosByUser(user.id())).build();
+        } catch(Exception e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.NOT_FOUND).entity(error).build();
+        }
+
+
+    }
+
     @POST
     @Path("/insert/endereco")
     @RolesAllowed({ "User", "Admin", "Vet" })
@@ -263,10 +283,9 @@ public class UsuarioLogadoResource {
         }
     }
 
-    
     @PATCH
     @Path("/update/endereco/{id}")
-    @RolesAllowed({ "User", "Admin" })
+    @RolesAllowed({ "User", "Admin", "Vet" })
     @Transactional
     public Response updateEndereco(@PathParam("id") Long id, EnderecoDTO enderecoDTO) {
         try {
@@ -306,6 +325,18 @@ public class UsuarioLogadoResource {
         }
     }
 
+    @PATCH
+    @Path("/update/endereco/principal/{id}")
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    public Response setEnderecoPrincipal(@PathParam("id") Long id){
+        try{
+            return Response.ok(enderecoService.setPrincipal(id)).build();
+        } catch(Exception e){
+            e.printStackTrace();
+            Error error = new Error("400", e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity(error).build();
+        }
+    }
 
 
     // ---------- Cartao ----------
@@ -343,12 +374,12 @@ public class UsuarioLogadoResource {
 
     @DELETE
     @Path("/delete/cartao/{id}")
-    @RolesAllowed({"Admin", "User", "Vet"})
-    public Response delete(@PathParam("id") Long id){
-        try{
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    public Response delete(@PathParam("id") Long id) {
+        try {
             cartaoCreditoService.delete(id);
             return Response.noContent().build();
-        } catch(NotFoundException e){
+        } catch (NotFoundException e) {
             e.printStackTrace();
             Error error = new Error("404", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
@@ -357,16 +388,16 @@ public class UsuarioLogadoResource {
 
     @GET
     @Path("/search/cartao")
-    @RolesAllowed({"Admin", "User", "Vet"})
-    public Response getCartoesUsuario(){
-        try{
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    public Response getCartoesUsuario() {
+        try {
 
             String login = jwt.getSubject();
-            
+
             UsuarioResponseDTO user = userService.findByEmail(login);
 
             return Response.ok(cartaoCreditoService.getAllByUser(user.id())).build();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
@@ -375,11 +406,11 @@ public class UsuarioLogadoResource {
 
     @GET
     @Path("/search/cartao/{id}")
-    @RolesAllowed({"Admin", "User", "Vet"})
-    public Response getCartaoById(@PathParam("id") Long id){
-        try{
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    public Response getCartaoById(@PathParam("id") Long id) {
+        try {
             return Response.ok(cartaoCreditoService.getById(id)).build();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
@@ -388,16 +419,15 @@ public class UsuarioLogadoResource {
 
     @PATCH
     @Path("/update/cartao/principal/{id}")
-    @RolesAllowed({"Admin", "User", "Vet"})
-    public Response setCartaoPrincipal(@PathParam("id") Long id){
-        try{
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    public Response setCartaoPrincipal(@PathParam("id") Long id) {
+        try {
             return Response.ok(cartaoCreditoService.setPrincipal(id)).build();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
         }
     }
-
 
 }

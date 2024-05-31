@@ -45,6 +45,11 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
+    public List<EnderecoResponseDTO> getAllEnderecosByUser(Long id){
+        return usuarioRepository.findEnderecosByUsuario(id).stream().map(e -> EnderecoResponseDTO.valueOf(e)).toList();
+    }
+
+    @Override
     public EnderecoResponseDTO getId(Long id) {
         try {
             LOG.info("Requisição getId()");
