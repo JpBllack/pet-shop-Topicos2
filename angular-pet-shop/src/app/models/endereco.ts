@@ -7,6 +7,6 @@ export class Endereco
     bairro!: string;
     idCidade!: number;
     cep!: string;
-    enderecoPrincipal: boolean = false;
+    isPrincipal!: boolean;
   
 }

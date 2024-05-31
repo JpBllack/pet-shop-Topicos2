@@ -1,36 +1,37 @@
+<!-- ver-endereco.component.html -->
+
 <div class="navbar">
-    <a routerLink="/dashboard">Meus Dados</a>
-    <a routerLink="/pedidos">Meus Pedidos</a>
-    <a routerLink="/meus-pets">Meus Pets</a>
-    <a routerLink="/alterar-info">Alterar Informações</a>
-    <a routerLink="/seguranca">Segurança</a>
-    <a routerLink="/meus-cartoes">Pagamento</a>
-    <a routerLink="/ver-endereco">Endereço</a>
-  </div>
-  
-  <div class="ver-enderecos">
-    <h2>Meus Endereços</h2>
-  
-    <button class="add-endereco-button" routerLink="/endereco">Adicionar Endereço</button>
-  
-    <div class="lista-enderecos" *ngIf="enderecosUsuario && enderecosUsuario.length > 0">
-      <div class="endereco-card" *ngFor="let endereco of enderecosUsuario">
-        <div class="endereco-info">
-          <h3>{{ endereco.logradouro }}, {{ endereco.numero }}</h3>
-          <p>Bairro: {{ endereco.bairro }}</p>
-          <p>Cidade: {{ endereco.idCidade }}</p>
-          <p>CEP: {{ endereco.cep }}</p>
-          <p *ngIf="endereco.complemento">Complemento: {{ endereco.complemento }}</p>
-          <label>
-            <input type="checkbox" [(ngModel)]="endereco.enderecoPrincipal" (change)="marcarComoPrincipal(endereco)">
-            Endereço Principal
-          </label>
-        </div>
+  <a routerLink="/dashboard">Meus Dados</a>
+  <a routerLink="/pedidos">Meus Pedidos</a>
+  <a routerLink="/meus-pets">Meus Pets</a>
+  <a routerLink="/alterar-info">Alterar Informações</a>
+  <a routerLink="/seguranca">Segurança</a>
+  <a routerLink="/meus-cartoes">Pagamento</a>
+  <a routerLink="/ver-endereco">Endereço</a>
+</div>
+
+<div class="ver-enderecos">
+  <h2>Meus Endereços</h2>
+
+  <button class="add-endereco-button" routerLink="/endereco">Adicionar Endereço</button>
+
+  <div class="lista-enderecos" *ngIf="enderecos | async as enderecosArray">
+    <div class="endereco-card" *ngFor="let endereco of enderecosArray">
+      <div class="endereco-info">
+        <h3>{{ endereco.logradouro }}, {{ endereco.numero }}</h3>
+        <p>Bairro: {{ endereco.bairro }}</p>
+        <p>Cidade: {{ endereco.idCidade }}</p>
+        <p>CEP: {{ endereco.cep }}</p>
+        <p *ngIf="endereco.complemento">Complemento: {{ endereco.complemento }}</p>
+        <label>
+          <input type="checkbox" [checked]="endereco.isPrincipal" (change)="marcarComoPrincipal(endereco)">
+          Endereço Principal
+        </label>
       </div>
     </div>
-  
-    <div *ngIf="!enderecosUsuario || enderecosUsuario.length === 0">
-      <p>Nenhum endereço encontrado.</p>
-    </div>
   </div>
-  
+
+  <div *ngIf="!(enderecos | async)?.length">
+    <p>Nenhum endereço encontrado.</p>
+  </div>
+</div>
