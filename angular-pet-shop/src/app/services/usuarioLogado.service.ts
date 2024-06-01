@@ -108,11 +108,11 @@ export class UsuarioLogadoService {
     return this.http.patch<Cartao>(`${this.apiUrl}/update/cartao/principal/${id}`, {}, { headers: this.getHeaders() });
   }
 
-  // Upload Image
-  uploadImage(formData: FormData): Observable<any> {
-    console.log("O método uploadImage foi utilizado."); // Adiciona o log aqui
-    const headers = this.getHeaders();
-    return this.http.patch(`${this.apiUrl}/upload/image`, formData, { headers });
-  }
-  
+  // Upload Imagem
+uploadImage(formData: FormData): Observable<any> {
+  console.log("O método uploadImage foi utilizado. Dados recebidos:", formData); // Adiciona o log aqui
+  const headers = this.getHeaders();
+  return this.http.patch(`${this.apiUrl}/upload/image`, formData, { headers });
+}
+
 }

@@ -458,12 +458,13 @@ public class UsuarioLogadoResource {
 }
 
 
- @PATCH
+    @PATCH
     @Path("/upload/image")
     @RolesAllowed({ "Admin", "User", "Vet" })
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
     public Response saveimage(@MultipartForm ProdutoImageForm form) {
+        
         Long id = form.getId();
         String nomeImagem = form.getNomeImagem();
         byte[] imagem = form.getImagem();

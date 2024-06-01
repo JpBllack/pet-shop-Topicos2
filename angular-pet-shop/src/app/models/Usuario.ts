@@ -9,4 +9,5 @@ export class Usuario{
     email!: string;
     senha!: string;
     perfil!: Perfil;
+    imagem!: string;
 }
