@@ -1,11 +1,17 @@
 package br.projeto.petshop.service;
 
+import br.projeto.petshop.dto.CartaoCreditoDTO;
 import br.projeto.petshop.dto.CompraResponseDTO;
+import br.projeto.petshop.dto.EnderecoDTO;
+import br.projeto.petshop.dto.MunicipioResponseDTO;
+import br.projeto.petshop.model.CartaoCreditoHistorico;
 import br.projeto.petshop.model.Compra;
+import br.projeto.petshop.model.EnderecoHistorico;
 import br.projeto.petshop.model.ItemCompra;
 import br.projeto.petshop.model.Status;
 import br.projeto.petshop.model.StatusCompra;
 import br.projeto.petshop.repository.CompraRepository;
+import br.projeto.petshop.repository.MunicipioRepository;
 import br.projeto.petshop.resource.PetResource;
 import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -25,6 +31,9 @@ public class CompraServiceImpl implements CompraService {
     @Inject
     private CompraRepository compraRepository;
 
+    @Inject
+    private MunicipioRepository municipioRepository;
+
     private static final Logger LOG = Logger.getLogger(PetResource.class);
 
     @Override
@@ -39,13 +48,14 @@ public class CompraServiceImpl implements CompraService {
     }
 
     @Override
-    public List<ItemCompra> getItensCompraByCompraId(Long compraId){
+    public List<ItemCompra> getItensCompraByCompraId(Long compraId) {
         return compraRepository.findItensByCompraId(compraId);
     }
 
     @Override
     @Transactional
-    public void concluirCompra(List<ItemCompra> itensCompra, Long userId) {
+    public void concluirCompra(List<ItemCompra> itensCompra, Long userId, EnderecoDTO enderecoDTO,
+            CartaoCreditoDTO cartaoDTO) {
 
         if (itensCompra.isEmpty()) {
             throw new IllegalStateException("O carrinho está vazio");
@@ -66,6 +76,21 @@ public class CompraServiceImpl implements CompraService {
         StatusCompra primeiroStatus = new StatusCompra();
         primeiroStatus.setStatus(Status.valueOf(1)); // Defina o status inicial aqui
         compra.addStatusCompra(primeiroStatus);
+
+        EnderecoHistorico enderecoHistorico = new EnderecoHistorico();
+        enderecoHistorico.setLogradouro(enderecoDTO.logradouro());
+        enderecoHistorico.setNumero(enderecoDTO.numero());
+        enderecoHistorico.setComplemento(enderecoDTO.complemento());
+        enderecoHistorico.setBairro(enderecoDTO.bairro());
+        enderecoHistorico.setMunicipio(municipioRepository.findById(userId));
+        enderecoHistorico.setCep(enderecoDTO.cep());
+
+        CartaoCreditoHistorico cartaoCreditoHistorico = new CartaoCreditoHistorico();
+        cartaoCreditoHistorico.setNome(cartaoDTO.nome());
+        cartaoCreditoHistorico.setNumeroCartao(cartaoDTO.numero());
+
+        compra.setEnderecoHistorico(enderecoHistorico);
+        compra.setCartaoCreditoHistorico(cartaoCreditoHistorico);
 
         compraRepository.persist(compra);
     }

@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -27,6 +28,14 @@ public class Compra extends DefaultEntity {
 
     @Column(name = "usuario_id")
     private Long usuarioId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private EnderecoHistorico enderecoHistorico;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cartao_credito_id", referencedColumnName = "id")
+    private CartaoCreditoHistorico cartaoCreditoHistorico;
 
     // Getters and Setters
 
@@ -96,5 +105,22 @@ public class Compra extends DefaultEntity {
     public void removeStatusCompra(StatusCompra statusCompra) {
         this.statusCompra.remove(statusCompra);
     }
+
+    public EnderecoHistorico getEnderecoHistorico() {
+        return enderecoHistorico;
+    }
+
+    public void setEnderecoHistorico(EnderecoHistorico enderecoHistorico) {
+        this.enderecoHistorico = enderecoHistorico;
+    }
+
+    public CartaoCreditoHistorico getCartaoCreditoHistorico() {
+        return cartaoCreditoHistorico;
+    }
+
+    public void setCartaoCreditoHistorico(CartaoCreditoHistorico cartaoCreditoHistorico) {
+        this.cartaoCreditoHistorico = cartaoCreditoHistorico;
+    }
+    
     
 }

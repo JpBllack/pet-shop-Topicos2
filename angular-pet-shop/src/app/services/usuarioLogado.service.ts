@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Usuario } from "../models/Usuario";
 import { AuthService } from "./auth.service";
 import { Endereco } from "../models/endereco";
+import { Cartao } from "../models/cartao";
 
 
 @Injectable({
@@ -114,14 +115,4 @@ export class UsuarioLogadoService {
     return this.http.patch(`${this.apiUrl}/upload/image`, formData, { headers });
   }
   
-}
-
-export interface Cartao{
-  id: number;
-  numero: string;
-  codigoSeguranca: string;
-  mesValidade: number;
-  anoValidade: number;
-  isPrincipal: boolean;
-  nome: string;
 }

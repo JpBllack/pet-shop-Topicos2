@@ -1,9 +1,10 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Cartao, UsuarioLogadoService } from '../../services/usuarioLogado.service';
+import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import { Cartao } from '../../models/cartao';
 
 @Component({
   selector: 'app-meus-cartoes',

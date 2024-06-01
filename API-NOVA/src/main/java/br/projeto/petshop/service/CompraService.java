@@ -2,7 +2,9 @@ package br.projeto.petshop.service;
 
 import java.util.List;
 
+import br.projeto.petshop.dto.CartaoCreditoDTO;
 import br.projeto.petshop.dto.CompraResponseDTO;
+import br.projeto.petshop.dto.EnderecoDTO;
 import br.projeto.petshop.model.ItemCompra;
 
 public interface CompraService {
@@ -13,7 +15,7 @@ public interface CompraService {
 
     public List<ItemCompra> getItensCompraByCompraId(Long compraId);
 
-    public void concluirCompra(List<ItemCompra> itensCompra, Long userId);
+    public void concluirCompra(List<ItemCompra> itensCompra, Long userId, EnderecoDTO enderecoDTO, CartaoCreditoDTO cartaoDTO);
 
     
 }

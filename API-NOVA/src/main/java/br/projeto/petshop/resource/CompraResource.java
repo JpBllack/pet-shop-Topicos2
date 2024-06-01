@@ -7,6 +7,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import br.projeto.petshop.dto.CompraResponseDTO;
+import br.projeto.petshop.dto.ConcluirCompraDTO;
 import br.projeto.petshop.dto.ItemCompraResponseDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
 import br.projeto.petshop.model.ItemCompra;
@@ -78,13 +79,13 @@ public class CompraResource {
     @POST
     @Path("/concluir")
     @RolesAllowed({"User", "Admin", "Vet"})
-    public Response concluirCompra(List<ItemCompra> itensCompra) {
+    public Response concluirCompra(ConcluirCompraDTO compraDTO) {
         try {
 
             String login = jwt.getSubject();
             UsuarioResponseDTO user = usuarioService.findByEmail(login);
 
-            compraService.concluirCompra(itensCompra, user.id());
+            compraService.concluirCompra(compraDTO.itensCompra(), user.id(), compraDTO.endereco(), compraDTO.cartaoCredito());
             return Response.status(Response.Status.OK).build();
         } catch(IllegalStateException e){
             LOG.error("Erro ao concluir compra", e);

@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { UsuarioLogadoService, Cartao } from '../../services/usuarioLogado.service';
+import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
+import { Cartao } from '../../models/cartao';
 
 @Component({
   selector: 'app-add-cartao',

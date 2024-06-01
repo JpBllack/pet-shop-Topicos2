@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ItemCarrinho } from "../models/itemcarrinho.model";
 import { Status } from "../models/status";
+import { Compra } from "../models/compra";
+import { ItemCompra } from "../models/itemCompra";
 
 @Injectable({
     providedIn: 'root'
@@ -24,24 +26,4 @@ export class CompraService {
         return this.http.get<ItemCompra[]>(url);
     }
 
-}
-
-export interface Compra {
-    id: number;
-    dataCompra: Date;
-    statusCompra: StatusCompra[];
-    precoTotal: number;
-    itens: ItemCompra[];
-}
-
-export interface ItemCompra {
-    nome: string;
-    precoUnitario: number; // Renomeando para corresponder ao modelo do backend
-    quantidade: number;
-}
-
-
-export class StatusCompra{
-    dataStatus!: Date;
-    status!: string;
 }

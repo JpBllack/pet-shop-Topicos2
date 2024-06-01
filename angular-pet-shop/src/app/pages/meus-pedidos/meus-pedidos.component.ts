@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Compra, CompraService, ItemCompra, StatusCompra } from '../../services/compra.service';
+import { CompraService } from '../../services/compra.service';
 
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Status, StatusLabel } from '../../models/status';
+import { Compra } from '../../models/compra';
+import { ItemCompra } from '../../models/itemCompra';
+import { StatusCompra } from '../../models/statusCompra';
 
 @Component({
   selector: 'app-compras-usuario',
