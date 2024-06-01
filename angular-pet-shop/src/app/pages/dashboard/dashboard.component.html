@@ -11,6 +11,26 @@
 <div class="dashboard-container">
   <div class="content">
     <h1>Meus Dados</h1>
+
+
+    <div class="col-xs-6">
+      <div class="row center-xs">
+        <div class="image-container">
+          <img [src]="usuario.imagem ? usuario.imagem : 'assets/login.png'" alt="Profile" class="profile-image">
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="row center-xs">
+      <div class="col-xs-12">
+        <input hidden type="file" #profileUpload (change)="onImageSelected($event)">
+        <button mat-raised-button color="primary" (click)="profileUpload.click()" class="button-with-icon">
+          <mat-icon class="icon">settings</mat-icon> Mudar Imagem
+        </button>
+      </div>
+    </div>
+    
   
     <div class="user-info">
       <div class="info-item">
