@@ -21,15 +21,15 @@
       </div>
     </div>
     
-
-    <div class="row center-xs">
-      <div class="col-xs-12">
-        <input hidden type="file" #profileUpload (change)="onImageSelected($event)">
-        <button mat-raised-button color="primary" (click)="profileUpload.click()" class="button-with-icon">
-          <mat-icon class="icon">settings</mat-icon> Mudar Imagem
-        </button>
-      </div>
-    </div>
+<div class="row center-xs">
+  <div class="col-xs-12">
+    <input hidden type="file" #profileUpload (change)="onImageSelected($event)">
+    <button mat-raised-button color="primary" (click)="profileUpload.click()" class="button-with-icon">
+      <mat-icon class="icon">settings</mat-icon> Mudar Imagem
+    </button>
+    <button mat-raised-button color="primary" (click)="onUpload()" style="display: none;" #uploadButton>Upload</button>
+  </div>
+</div>
     
   
     <div class="user-info">
