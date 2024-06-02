@@ -11,6 +11,7 @@ import br.projeto.petshop.service.CartaoCreditoService;
 import br.projeto.petshop.service.EnderecoService;
 import br.projeto.petshop.service.PetService;
 import br.projeto.petshop.service.ProdutoFileService;
+import br.projeto.petshop.service.UsuarioFileService;
 import br.projeto.petshop.service.UsuarioService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -70,7 +71,7 @@ public class UsuarioLogadoResource {
 
     
     @Inject
-    ProdutoFileService fileService;
+    UsuarioFileService fileService;
 
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
@@ -457,38 +458,45 @@ public class UsuarioLogadoResource {
     }
 }
 
+@PATCH
+@Path("/upload/image")
+@RolesAllowed({ "Admin", "User", "Vet" })
+@Consumes(MediaType.MULTIPART_FORM_DATA)
+@Produces(MediaType.TEXT_PLAIN)
+public Response saveimage(@MultipartForm ProdutoImageForm form) {
 
-    @PATCH
-    @Path("/upload/image")
-    @RolesAllowed({ "Admin", "User", "Vet" })
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response saveimage(@MultipartForm ProdutoImageForm form) {
-        
-        Long id = form.getId();
-        String nomeImagem = form.getNomeImagem();
-        byte[] imagem = form.getImagem();
-        
-        if (id == null || nomeImagem == null || imagem == null) {
-            LOG.error("Parâmetros inválidos");
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-    
-        try {
-            LOG.info("Inserindo imagem");
-            String imageName = fileService.save(nomeImagem, imagem);
-            LOG.info("Alterando imagem do usuário");
-    
-            userService.changeImage(id, imageName);
-            LOG.info("Imagem alterada");
-            return Response.ok("Imagem = " + imageName).build();
-        } catch (IOException e) {
-            LOG.error("Erro ao inserir imagem");
-            e.printStackTrace();
-            Error error = new Error("409", e.getMessage());
-            return Response.status(Response.Status.CONFLICT).entity(error).build();
-        }
+    String login = jwt.getSubject();
+    UsuarioResponseDTO user = userService.findByEmail(login);
+
+    if (user == null) {
+        LOG.error("Usuário não encontrado");
+        return Response.status(Response.Status.NOT_FOUND).entity("Usuário não encontrado").build();
     }
+
+    Long id = user.id();
+    String nomeImagem = form.getNomeImagem();
+    byte[] imagem = form.getImagem();
+
+    if (nomeImagem == null || imagem == null) {
+        LOG.error("Parâmetros inválidos");
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    try {
+        LOG.info("Inserindo imagem");
+        String imageName = fileService.save(nomeImagem, imagem);
+        LOG.info("Alterando imagem do usuário");
+
+        userService.changeImage(id, imageName);
+        LOG.info("Imagem alterada");
+        return Response.ok("Imagem = " + imageName).build();
+    } catch (IOException e) {
+        LOG.error("Erro ao inserir imagem");
+        e.printStackTrace();
+        Error error = new Error("409", e.getMessage());
+        return Response.status(Response.Status.CONFLICT).entity(error).build();
+    }
+}
 
 
 

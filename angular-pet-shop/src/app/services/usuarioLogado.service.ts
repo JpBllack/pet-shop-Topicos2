@@ -115,4 +115,15 @@ uploadImage(formData: FormData): Observable<any> {
   return this.http.patch(`${this.apiUrl}/upload/image`, formData, { headers });
 }
 
+
+// Método para obter a imagem do usuário
+getImagemUsuario(imageName: string): Observable<Blob> {
+  const headers = this.getHeaders();
+  return this.http.get(`http://localhost:8080/quarkus/images/usuario/${imageName}`, {
+    headers,
+    responseType: 'blob'
+  });
+}
+
+
 }

@@ -15,39 +15,39 @@
 
     <div class="col-xs-6">
       <div class="row center-xs">
-        <div class="image-container">
+        <div class="image-container" *ngIf="usuario">
           <img [src]="usuario.imagem ? usuario.imagem : 'assets/login.png'" alt="Profile" class="profile-image">
         </div>
       </div>
     </div>
     
-<div class="row center-xs">
-  <div class="col-xs-12">
-    <input hidden type="file" #profileUpload (change)="onImageSelected($event)">
-    <button mat-raised-button color="primary" (click)="profileUpload.click()" class="button-with-icon">
-      <mat-icon class="icon">settings</mat-icon> Mudar Imagem
-    </button>
-    <button mat-raised-button color="primary" (click)="onUpload()" style="display: none;" #uploadButton>Upload</button>
-  </div>
-</div>
-    
+    <div class="row center-xs">
+      <div class="col-xs-12">
+        <input hidden type="file" #profileUpload (change)="onImageSelected($event)">
+        <button mat-raised-button color="primary" (click)="profileUpload.click()" class="button-with-icon">
+          <mat-icon class="icon">settings</mat-icon> Mudar Imagem
+        </button>
+        <!-- Botão de upload visível apenas quando uma imagem é selecionada -->
+        <button mat-raised-button color="primary" (click)="onUpload()" *ngIf="selectedFile">Upload</button>
+      </div>
+    </div>
   
     <div class="user-info">
       <div class="info-item">
         <label>Nome:</label>
-        <span>{{ usuario.nome + ' ' + usuario.sobrenome }}</span>
+        <span>{{ usuario?.nome ? usuario.nome + ' ' + usuario.sobrenome : '' }}</span>
       </div>
       <div class="info-item">
         <label>Email:</label>
-        <span>{{ usuario.email }}</span>
+        <span>{{ usuario?.email }}</span>
       </div>
       <div class="info-item">
         <label>Username:</label>
-        <span>{{ usuario.username }}</span>
+        <span>{{ usuario?.username }}</span>
       </div>
       <div class="info-item">
         <label>CPF:</label>
-        <span>{{ formatarCPF(usuario.cpf) }}</span>
+        <span>{{ formatarCPF(usuario?.cpf) }}</span>
       </div>
     </div>
   </div>
