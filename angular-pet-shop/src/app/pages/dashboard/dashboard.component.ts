@@ -20,19 +20,23 @@ import { RouterModule } from "@angular/router";
 export class DashboardComponent implements OnInit {
   usuario: any;
   selectedFile: File | null = null;
+  urlImagem: string = 'assets/login.png';
 
   constructor(private authService: AuthService, private usuarioLogadoService: UsuarioLogadoService) { }
 
   ngOnInit(): void {
     this.carregarUsuario();
+    this.carregarImagemUsuario();
   }
 
   carregarUsuario() {
     this.usuarioLogadoService.getUsuarioLogado().subscribe(
       (usuario) => {
         this.usuario = usuario;
-        // Carregar a imagem do usuário quando o usuário for carregado
-        this.carregarImagemUsuario();
+        if (usuario && usuario.imagem) {
+          const nomeImagem = this.extractFileName(usuario.imagem);
+          this.urlImagem = `http://localhost:8080/quarkus/images/usuario/${nomeImagem}`;
+        }
       },
       (error) => {
         console.error('Erro ao carregar dados do usuário:', error);
@@ -43,31 +47,27 @@ export class DashboardComponent implements OnInit {
   carregarImagemUsuario() {
     if (this.usuario && this.usuario.imagem) {
       const nomeImagem = this.extractFileName(this.usuario.imagem);
-      console.log(nomeImagem);
-  
       this.getImagemUsuario(nomeImagem);
     }
   }
   
-  // Função para extrair o nome do arquivo da URL
   extractFileName(url: string): string {
     return url.substring(url.lastIndexOf('/') + 1);
   }
   
-  // Obter a imagem do usuário
   getImagemUsuario(nomeImagem: string) {
     this.usuarioLogadoService.getImagemUsuario(nomeImagem).subscribe(
       (imagemBlob) => {
-        // Aqui você pode processar a imagem, se necessário
-        console.log('Imagem carregada:', imagemBlob);
+        // Criar a URL da imagem
+        this.urlImagem = URL.createObjectURL(imagemBlob);
       },
       (error) => {
         console.error('Erro ao carregar imagem do usuário:', error);
+        // Em caso de erro, define a imagem padrão de login
+        this.urlImagem = 'assets/login.png';
       }
     );
   }
-  
-  
 
   formatarCPF(cpf: string): string {
     if (!cpf) return '';
@@ -104,8 +104,9 @@ export class DashboardComponent implements OnInit {
             console.log('Upload bem-sucedido:', response);
             // Atualizando a propriedade de imagem do usuário
             this.usuario.imagem = response; // Se o serviço de upload retornar o caminho da imagem
-            // Carregar a nova imagem do usuário após o upload
-            this.carregarImagemUsuario();
+            // Atualizar a URL da imagem
+            const nomeImagem = this.extractFileName(response);
+            this.urlImagem = `http://localhost:8080/quarkus/images/usuario/${nomeImagem}`;
           } else {
             console.error('Resposta do upload é nula.');
           }
@@ -116,3 +117,4 @@ export class DashboardComponent implements OnInit {
     }
   }  
 }
+

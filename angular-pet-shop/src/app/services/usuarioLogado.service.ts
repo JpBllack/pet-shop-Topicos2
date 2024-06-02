@@ -119,10 +119,13 @@ uploadImage(formData: FormData): Observable<any> {
 // Método para obter a imagem do usuário
 getImagemUsuario(imageName: string): Observable<Blob> {
   const headers = this.getHeaders();
-  return this.http.get(`http://localhost:8080/quarkus/images/usuario/${imageName}`, {
+  const apiUrl = 'http://localhost:8080'; // ou a URL do seu backend
+  return this.http.get(`${apiUrl}/quarkus/images/usuario/${imageName}`, {
     headers,
     responseType: 'blob'
   });
+  
+
 }
 
 
