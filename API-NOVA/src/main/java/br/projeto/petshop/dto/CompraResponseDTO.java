@@ -12,7 +12,9 @@ public record CompraResponseDTO (
     List<ItemCompraResponseDTO> itemCompra,
     List<StatusCompraDTO> statusCompra,
     Double precoTotal,
-    Date dataCompra 
+    Date dataCompra ,
+    String cartao,
+    String endereco
 ){
     public static CompraResponseDTO valueOf(Compra compra){
         List<ItemCompraResponseDTO> itemCompraDTOs = compra.getItensCompra().stream()
@@ -23,6 +25,6 @@ public record CompraResponseDTO (
                 .map(StatusCompraDTO::valueOf)
                 .collect(Collectors.toList());
 
-        return new CompraResponseDTO(compra.getId(), itemCompraDTOs, statusCompraDTOs, compra.getPrecoTotal(), compra.getDataCompra());
+        return new CompraResponseDTO(compra.getId(), itemCompraDTOs, statusCompraDTOs, compra.getPrecoTotal(), compra.getDataCompra(), compra.getCartao(), compra.getEndereco());
     }
 }
