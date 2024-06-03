@@ -43,11 +43,10 @@ import { BuscaComponent } from './pages/busca/busca.component';
 import { VerEnderecoComponent } from './pages/ver-endereco/ver-endereco.component';
 import { MeusCartoesComponent } from './pages/meus-cartoes/meus-cartoes.component';
 import { AddCartaoComponent } from './pages/add-cartao/add-cartao.component';
-<<<<<<< HEAD
+
 import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-compra.component';
-=======
 import { IndexComponent } from './index/index.component';
->>>>>>> ee142bc6ff5c1434a853c847ef2c500ca56ae69d
+
 
 
 export const routes: Routes = [
