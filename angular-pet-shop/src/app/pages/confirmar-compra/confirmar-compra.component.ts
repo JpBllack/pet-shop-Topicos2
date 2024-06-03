@@ -69,6 +69,7 @@ export class ConfirmarCompraComponent implements OnInit {
             }
         );
     }
+    
 
 
     confirmarCompra(): void {
