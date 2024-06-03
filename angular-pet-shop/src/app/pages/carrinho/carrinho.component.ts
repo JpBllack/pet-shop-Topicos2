@@ -6,6 +6,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { CompraService } from '../../services/compra.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -18,7 +19,7 @@ export class CarrinhoComponent implements OnInit {
 
   carrinhoItens: ItemCarrinho[] = [];
 
-  constructor(private carrinhoService: CarrinhoService, private route: Router) { }
+  constructor(private carrinhoService: CarrinhoService, private route: Router, private compraService: CompraService) { }
 
   ngOnInit(): void {
     this.carrinhoService.carrinho$.subscribe( itens => {
@@ -45,9 +46,13 @@ export class CarrinhoComponent implements OnInit {
       this.carrinhoService.atualizarCarrinho(this.carrinhoItens);
     }
   }
+
+  confirmarCompra(): void{
+    this.route.navigate(['/confirmar-compra'])
+  }
   
   finalizarCompra(): void {
-    this.carrinhoService.concluirCompra(this.carrinhoItens);
+    this.carrinhoService.concluirCompra(this.carrinhoItens)
   }
 
   navegarParaProduto(id: number) {

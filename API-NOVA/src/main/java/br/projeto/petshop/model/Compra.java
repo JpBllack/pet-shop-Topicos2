@@ -29,13 +29,9 @@ public class Compra extends DefaultEntity {
     @Column(name = "usuario_id")
     private Long usuarioId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
-    private EnderecoHistorico enderecoHistorico;
+    private String endereco;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cartao_credito_id", referencedColumnName = "id")
-    private CartaoCreditoHistorico cartaoCreditoHistorico;
+    private String cartao;
 
     // Getters and Setters
 
@@ -106,20 +102,20 @@ public class Compra extends DefaultEntity {
         this.statusCompra.remove(statusCompra);
     }
 
-    public EnderecoHistorico getEnderecoHistorico() {
-        return enderecoHistorico;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEnderecoHistorico(EnderecoHistorico enderecoHistorico) {
-        this.enderecoHistorico = enderecoHistorico;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public CartaoCreditoHistorico getCartaoCreditoHistorico() {
-        return cartaoCreditoHistorico;
+    public String getCartao() {
+        return cartao;
     }
 
-    public void setCartaoCreditoHistorico(CartaoCreditoHistorico cartaoCreditoHistorico) {
-        this.cartaoCreditoHistorico = cartaoCreditoHistorico;
+    public void setCartao(String cartao) {
+        this.cartao = cartao;
     }
     
     

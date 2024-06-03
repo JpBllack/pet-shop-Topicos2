@@ -7,6 +7,9 @@ import { Status, StatusLabel } from '../../models/status';
 import { Compra } from '../../models/compra';
 import { ItemCompra } from '../../models/itemCompra';
 import { StatusCompra } from '../../models/statusCompra';
+import { UsuarioLogadoService } from '../../services/usuarioLogado.service';
+import { Endereco } from '../../models/endereco';
+import { Cartao } from '../../models/cartao';
 
 @Component({
   selector: 'app-compras-usuario',
@@ -19,7 +22,7 @@ export class MeusPedidosComponent implements OnInit {
   compras: Compra[] = [];
   itensExpandidos: { [key: number]: boolean } = {};
 
-  constructor(private compraService: CompraService, private router: Router) { }
+  constructor(private compraService: CompraService, private router: Router, private usuarioLogadoService: UsuarioLogadoService) { }
 
   ngOnInit(): void {
     this.loadComprasByUserId();
@@ -29,9 +32,10 @@ export class MeusPedidosComponent implements OnInit {
     this.compraService.getComprasByUserId().subscribe(
       (compras: Compra[]) => {
         this.compras = compras;
-        console.log('Compras carregadas:', this.compras);
         this.compras.forEach(compra => {
           this.loadItensCompra(compra);
+          this.loadEnderecoEntrega(compra);
+          this.loadCartaoCredito(compra);
         });
       },
       (error) => {
@@ -68,6 +72,41 @@ export class MeusPedidosComponent implements OnInit {
       return 'Status desconhecido';
     }
   }
+
+  loadEnderecoEntrega(compra: Compra): void {
+    this.usuarioLogadoService.getEnderecoUsuario().subscribe(
+      (enderecos: Endereco[]) => {
+        if (compra.endereco && compra.endereco.id) { // Verifica se o endereço já está definido
+          const enderecoEntrega = enderecos.find(endereco => endereco.id === compra.endereco.id);
+          if (enderecoEntrega) {
+            compra.endereco = enderecoEntrega;
+          } else {
+            console.error(`Endereço de entrega não encontrado para a compra ${compra.id}`);
+          }
+        }
+      },
+      (error) => {
+        console.error('Erro ao carregar endereço de entrega:', error);
+      }
+    );
+  }
+  
+  loadCartaoCredito(compra: Compra): void {
+    if (compra.cartao) {
+      this.usuarioLogadoService.getCartaoById(compra.cartao.id).subscribe(
+        (cartao: Cartao) => {
+          // Faça algo com o cartão retornado
+        },
+        (error) => {
+          console.error(`Erro ao carregar cartão de crédito:`, error);
+        }
+      );
+    } else {
+      console.error(`Cartão de crédito não definido para a compra ${compra.id}`);
+    }
+  }
+  
+  
 
   // Método para alternar entre expandir e recolher os itens
   toggleItens(compra: Compra): void {

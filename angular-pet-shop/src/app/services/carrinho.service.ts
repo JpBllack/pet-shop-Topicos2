@@ -75,9 +75,7 @@ export class CarrinhoService {
     );
   }
   
-  
-
-  private limparCarrinho(): void {
+  limparCarrinho(): void {
     this.carrinhoSubject.next([]);
     localStorage.removeItem('carrinho');
   }

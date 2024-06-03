@@ -39,7 +39,7 @@
         <p>Resumo do Pedido</p>
         <p>Preço Total: {{ calcularTotal() | currency:'BRL' }}</p>
       </div>
-      <button mat-raised-button class="button-finalizar" (click)="finalizarCompra()">Finalizar Compra</button>
+      <button mat-raised-button class="button-finalizar" (click)="confirmarCompra()">Finalizar Compra</button>
     </div>
   </ng-container>
   <ng-template #carrinhoVazio>

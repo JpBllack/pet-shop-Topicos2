@@ -8,7 +8,6 @@
   <a routerLink="/ver-endereco">Endereço</a>
 </div>
 
-
 <div *ngIf="compras.length > 0; else noCompras" class="compra-container">
   <h2>Minhas Compras</h2>
   <div *ngFor="let compra of compras" class="compra-card">
@@ -27,6 +26,15 @@
                 <p>Quantidade: {{ item.quantidade }}</p>
             </li>
         </ul>
+        <div class="compra-additional-info">
+          <h3>Informações Adicionais:</h3>
+          <div *ngIf="compra.endereco">
+            <p>Endereço de Entrega: {{ compra.endereco.logradouro }}, {{ compra.endereco.numero }}</p>
+          </div>
+          <div *ngIf="compra.cartao">
+            <p>Cartão de Crédito: **** **** **** {{ compra.cartao.numero.slice(-4) }}</p>
+          </div>
+        </div>
       </div>
       <div class="compra-footer">
         <!-- Adicione qualquer conteúdo adicional para o rodapé aqui -->

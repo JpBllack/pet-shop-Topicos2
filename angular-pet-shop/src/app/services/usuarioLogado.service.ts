@@ -101,7 +101,7 @@ export class UsuarioLogadoService {
   }
 
   getCartoesUsuario(): Observable<Cartao[]>{
-    return this.http.get<Cartao[]>(`${this.apiUrl}/search/cartao`);
+    return this.http.get<Cartao[]>(`${this.apiUrl}/search/cartao`, { headers: this.getHeaders() });
   }
 
   setCartaoPrincipal(id: number): Observable<Cartao>{

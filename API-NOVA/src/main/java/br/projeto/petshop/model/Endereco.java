@@ -1,6 +1,7 @@
 package br.projeto.petshop.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -32,6 +33,7 @@ public class Endereco extends DefaultEntity{
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @Column(name = "principal")
     private boolean isPrincipal;
 
 

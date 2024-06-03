@@ -1,0 +1,24 @@
+<div class="confirmar-compra-container">
+    <h1>Confirmar Compra</h1>
+    
+    <h2>Itens no Carrinho</h2>
+    <div class="item" *ngFor="let item of itensCompra">
+      <p>{{ item.nome }} - {{ item.quantidade }} x R$ {{ item.precoUnitario }}</p>
+    </div>
+    
+    <h2>Endereço de Entrega</h2>
+    <div class="endereco">
+      <select [(ngModel)]="enderecoSelecionado" name="endereco">
+        <option *ngFor="let endereco of enderecos" [ngValue]="endereco">{{ endereco.logradouro }}, {{ endereco.numero }}{{ endereco.complemento ? ', ' + endereco.complemento : '' }} - {{ endereco.bairro }} - {{ endereco.cep }}</option>
+      </select>
+    </div>
+    
+    <h2>Cartão de Crédito</h2>
+    <div class="cartao">
+      <select [(ngModel)]="cartaoSelecionado" name="cartaoCredito">
+        <option *ngFor="let cartao of cartoes" [ngValue]="cartao">**** **** **** {{ cartao.numero.slice(-4) }}</option>
+      </select>
+    </div>
+    
+    <button (click)="confirmarCompra()">Confirmar Compra</button>
+</div>

@@ -5,6 +5,34 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
+
+INSERT INTO Estado (nome, sigla) VALUES ('Tocantins', 'TO');
+INSERT INTO Estado (nome, sigla) VALUES ('São Paulo', 'SP');
+INSERT INTO Estado (nome, sigla) VALUES ('Rio de Janeiro', 'RJ');
+INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
+INSERT INTO Estado (nome, sigla) VALUES ('Para', 'PA');
+INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
+INSERT INTO Estado (nome, sigla) VALUES ('Sergipe', 'SE');
+INSERT INTO Estado (nome, sigla) VALUES ('Minas Gerais', 'MG');
+INSERT INTO Estado (nome, sigla) VALUES ('Maranhão', 'MA');
+INSERT INTO Estado (nome, sigla) VALUES ('Amazonas', 'AM');
+INSERT INTO Estado (nome, sigla) VALUES ('Amapa', 'AP');
+INSERT INTO Estado (nome, sigla) VALUES ('Acre', 'AC');
+INSERT INTO Estado (nome, sigla) VALUES ('Alagoas', 'AL');
+INSERT INTO Estado (nome, sigla) VALUES ('Espirito Santo', 'ES');
+INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
+INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso do Sul', 'MS');
+
+
+INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Araguaina',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Paraiso',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Araguaina',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Porto Nacional',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Augustinopolis',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Gurupi',1);
+INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',5); 
+
 -- senha padrão: 12345
 -- Inserção de um usuário veterinário
 INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
@@ -30,6 +58,9 @@ VALUES ('Alisson', 'Lima', '12345687654', 'alisson', 'alisson@gmail.com', 'NuCgY
 
 INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('João', 'Gomes', '12345616523', 'joao', 'joao@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
+
+insert into endereco(logradouro, numero, complemento, bairro, endereco_cidade, usuario_id, principal, cep) values('Rua dos bobos', 'Casa 1', 'Em frente a passarela', 'Bairro gen', 1, 1, true, '48374836483');
+insert into endereco(logradouro, numero, complemento, bairro, endereco_cidade, usuario_id, principal, cep) values('Santana dourado', 'Complexo 2', 'Construção vermelha', 'Plano D', 1, 1, false, '778436836');
 
 
 INSERT INTO cartao_credito (nome, numero_cartao, codigo_seguranca, validade_mes, validade_ano, usuario_id, principal) VALUES ('fulano de tal','1234123412341234', '123', 12, 2025, 1, true);
@@ -148,31 +179,3 @@ INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Úmida GranPlus Gourmet Sachê para Gatos Adultos Sabor Atum - 85g', 'Atum', 2, 6, 2, 2, 3.00, 200, '4e047929-a671-48cb-a4c7-0809656efaf8.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Guabi Natural para Gatos Adultos Castrados Sabor Frango e Arroz Integral', 'Frango e arroz integral', 2, 5, 2, 9, 300.00, 80, 'fc0163a5-ee2f-41e8-afca-9213159933ed.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Royal Canin Sterilised 12+ para Gatos Adultos Castrados Acima de 12 Anos', 'Carne', 1, 5, 1, 5, 420.00, 80, '2d19410f-e601-4a20-a4e5-acf27e4871e6.jpeg');
-
-
-INSERT INTO Estado (nome, sigla) VALUES ('Tocantins', 'TO');
-INSERT INTO Estado (nome, sigla) VALUES ('São Paulo', 'SP');
-INSERT INTO Estado (nome, sigla) VALUES ('Rio de Janeiro', 'RJ');
-INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
-INSERT INTO Estado (nome, sigla) VALUES ('Para', 'PA');
-INSERT INTO Estado (nome, sigla) VALUES ('Piaui', 'PI');
-INSERT INTO Estado (nome, sigla) VALUES ('Sergipe', 'SE');
-INSERT INTO Estado (nome, sigla) VALUES ('Minas Gerais', 'MG');
-INSERT INTO Estado (nome, sigla) VALUES ('Maranhão', 'MA');
-INSERT INTO Estado (nome, sigla) VALUES ('Amazonas', 'AM');
-INSERT INTO Estado (nome, sigla) VALUES ('Amapa', 'AP');
-INSERT INTO Estado (nome, sigla) VALUES ('Acre', 'AC');
-INSERT INTO Estado (nome, sigla) VALUES ('Alagoas', 'AL');
-INSERT INTO Estado (nome, sigla) VALUES ('Espirito Santo', 'ES');
-INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
-INSERT INTO Estado (nome, sigla) VALUES ('Mato Grosso do Sul', 'MS');
-
-
-INSERT INTO Municipio(nome , estado_id) VALUES ('Palmas',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Araguaina',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Paraiso',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Araguaina',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Porto Nacional',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Augustinopolis',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Gurupi',1);
-INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',5); 

@@ -54,8 +54,8 @@ public class CompraServiceImpl implements CompraService {
 
     @Override
     @Transactional
-    public void concluirCompra(List<ItemCompra> itensCompra, Long userId, EnderecoDTO enderecoDTO,
-            CartaoCreditoDTO cartaoDTO) {
+    public void concluirCompra(List<ItemCompra> itensCompra, EnderecoDTO enderecoDTO,
+            CartaoCreditoDTO cartaoDTO, Long userId) {
 
         if (itensCompra.isEmpty()) {
             throw new IllegalStateException("O carrinho está vazio");
@@ -77,20 +77,9 @@ public class CompraServiceImpl implements CompraService {
         primeiroStatus.setStatus(Status.valueOf(1)); // Defina o status inicial aqui
         compra.addStatusCompra(primeiroStatus);
 
-        EnderecoHistorico enderecoHistorico = new EnderecoHistorico();
-        enderecoHistorico.setLogradouro(enderecoDTO.logradouro());
-        enderecoHistorico.setNumero(enderecoDTO.numero());
-        enderecoHistorico.setComplemento(enderecoDTO.complemento());
-        enderecoHistorico.setBairro(enderecoDTO.bairro());
-        enderecoHistorico.setMunicipio(municipioRepository.findById(userId));
-        enderecoHistorico.setCep(enderecoDTO.cep());
+        compra.setEndereco(enderecoDTO.logradouro() + ", " + enderecoDTO.numero() + ", " + enderecoDTO.bairro() + ", " + enderecoDTO.complemento() + ", "+ enderecoDTO.cep());
 
-        CartaoCreditoHistorico cartaoCreditoHistorico = new CartaoCreditoHistorico();
-        cartaoCreditoHistorico.setNome(cartaoDTO.nome());
-        cartaoCreditoHistorico.setNumeroCartao(cartaoDTO.numero());
-
-        compra.setEnderecoHistorico(enderecoHistorico);
-        compra.setCartaoCreditoHistorico(cartaoCreditoHistorico);
+        compra.setCartao(cartaoDTO.numero());
 
         compraRepository.persist(compra);
     }

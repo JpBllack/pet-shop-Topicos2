@@ -43,6 +43,7 @@ import { BuscaComponent } from './pages/busca/busca.component';
 import { VerEnderecoComponent } from './pages/ver-endereco/ver-endereco.component';
 import { MeusCartoesComponent } from './pages/meus-cartoes/meus-cartoes.component';
 import { AddCartaoComponent } from './pages/add-cartao/add-cartao.component';
+import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-compra.component';
 
 
 export const routes: Routes = [
@@ -73,7 +74,8 @@ export const routes: Routes = [
             { path: 'ver-endereco', component: VerEnderecoComponent, title: 'Meus Endereços'},
             { path: 'meus-cartoes', component: MeusCartoesComponent, title: 'Meus cartoes'},
             { path: 'add-cartao', component: AddCartaoComponent, title: 'Add Cartao '},
-            { path: 'edit-cartao/:id', component: AddCartaoComponent, title: 'Editar cartao'}
+            { path: 'edit-cartao/:id', component: AddCartaoComponent, title: 'Editar cartao'},
+            { path: 'confirmar-compra', component: ConfirmarCompraComponent, title: 'Confirmar Compra'}
             
         ]
 

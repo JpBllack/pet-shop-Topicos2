@@ -15,7 +15,7 @@ public interface CompraService {
 
     public List<ItemCompra> getItensCompraByCompraId(Long compraId);
 
-    public void concluirCompra(List<ItemCompra> itensCompra, Long userId, EnderecoDTO enderecoDTO, CartaoCreditoDTO cartaoDTO);
+    public void concluirCompra(List<ItemCompra> itensCompra, EnderecoDTO enderecoDTO, CartaoCreditoDTO cartaoDTO,  Long userId);
 
     
 }

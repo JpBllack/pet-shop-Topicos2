@@ -6,11 +6,17 @@ import java.util.stream.Collectors;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
+import br.projeto.petshop.dto.CartaoCreditoDTO;
 import br.projeto.petshop.dto.CompraResponseDTO;
 import br.projeto.petshop.dto.ConcluirCompraDTO;
+import br.projeto.petshop.dto.EnderecoDTO;
 import br.projeto.petshop.dto.ItemCompraResponseDTO;
 import br.projeto.petshop.dto.UsuarioResponseDTO;
+import br.projeto.petshop.model.CartaoCredito;
+import br.projeto.petshop.model.Endereco;
 import br.projeto.petshop.model.ItemCompra;
+import br.projeto.petshop.model.Municipio;
+import br.projeto.petshop.repository.MunicipioRepository;
 import br.projeto.petshop.service.CompraService;
 import br.projeto.petshop.service.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
@@ -41,17 +47,20 @@ public class CompraResource {
     @Inject
     private UsuarioService usuarioService;
 
+    @Inject
+    private MunicipioRepository municipioRepository;
+
     private static final Logger LOG = Logger.getLogger(PetResource.class);
 
     @GET
-    @RolesAllowed({"Admin"})
-    public Response findAll(){
-        try{
+    @RolesAllowed({ "Admin" })
+    public Response findAll() {
+        try {
 
             LOG.info("Buscando todas as compras");
             CompraResponseDTO[] compras = compraService.getAllCompras().toArray(new CompraResponseDTO[0]);
             return Response.ok(compras).build();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
@@ -60,17 +69,16 @@ public class CompraResource {
 
     @GET
     @Path("/usuario/compras")
-    @RolesAllowed({"User", "Admin", "Vet"})
+    @RolesAllowed({ "User", "Admin", "Vet" })
     public Response getComprasUsuarioLogado() {
         try {
-
 
             String login = jwt.getSubject();
             UsuarioResponseDTO user = usuarioService.findByEmail(login);
 
             List<CompraResponseDTO> compras = compraService.getComprasByUserId(user.id());
             return Response.ok(compras).build();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Status.NOT_FOUND).entity(new Error("400", e.getMessage())).build();
         }
@@ -78,16 +86,18 @@ public class CompraResource {
 
     @POST
     @Path("/concluir")
-    @RolesAllowed({"User", "Admin", "Vet"})
+    @RolesAllowed({ "User", "Admin", "Vet" })
     public Response concluirCompra(ConcluirCompraDTO compraDTO) {
         try {
 
             String login = jwt.getSubject();
             UsuarioResponseDTO user = usuarioService.findByEmail(login);
 
-            compraService.concluirCompra(compraDTO.itensCompra(), user.id(), compraDTO.endereco(), compraDTO.cartaoCredito());
+            LOG.info(compraDTO);
+
+            compraService.concluirCompra(compraDTO.itensCompra(), compraDTO.endereco(), compraDTO.cartao(), user.id());
             return Response.status(Response.Status.OK).build();
-        } catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
             LOG.error("Erro ao concluir compra", e);
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         } catch (Exception e) {
@@ -98,7 +108,7 @@ public class CompraResource {
 
     @GET
     @Path("/{compraId}/itens")
-    @RolesAllowed({"User", "Admin", "Vet"})
+    @RolesAllowed({ "User", "Admin", "Vet" })
     public Response getItensCompraByCompraId(@PathParam("compraId") Long compraId) {
         try {
             List<ItemCompra> itensCompra = compraService.getItensCompraByCompraId(compraId);
