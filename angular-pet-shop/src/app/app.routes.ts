@@ -43,6 +43,7 @@ import { BuscaComponent } from './pages/busca/busca.component';
 import { VerEnderecoComponent } from './pages/ver-endereco/ver-endereco.component';
 import { MeusCartoesComponent } from './pages/meus-cartoes/meus-cartoes.component';
 import { AddCartaoComponent } from './pages/add-cartao/add-cartao.component';
+import { IndexComponent } from './index/index.component';
 
 
 export const routes: Routes = [
@@ -54,6 +55,7 @@ export const routes: Routes = [
         children: [
             {path: '', pathMatch: 'full', redirectTo: 'produtos'},
 
+            { path: 'index', component: IndexComponent, title: 'Pagina Principal'},
             { path: 'produtos', component: RacaoCardListComponent, title: 'Produtos à Venda'},
             { path: 'ver-produto/:id', component: VerProdutoComponent },
             { path: 'login', component: LoginComponent, title: 'Login'},
