@@ -4,7 +4,7 @@ import br.projeto.petshop.model.ItemCompra;
 
 public record ItemCompraResponseDTO (
     String nome,
-    double preco, 
+    double precoUnitario, 
     int quantidade
 ) {
     public static ItemCompraResponseDTO valueOf(ItemCompra itemCompra) {

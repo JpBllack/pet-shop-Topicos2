@@ -74,8 +74,11 @@ public class CompraServiceImpl implements CompraService {
         compra.setUsuarioId(userId);
 
         StatusCompra primeiroStatus = new StatusCompra();
-        primeiroStatus.setStatus(Status.valueOf(1)); // Defina o status inicial aqui
+        primeiroStatus.setStatus(Status.valueOf(1));
+        primeiroStatus.setStatus(Status.valueOf(2));
+        primeiroStatus.setStatus(Status.valueOf(4));
         compra.addStatusCompra(primeiroStatus);
+
 
         compra.setEndereco(enderecoDTO.logradouro() + ", " + enderecoDTO.numero() + ", " + enderecoDTO.bairro() + ", " + enderecoDTO.complemento() + ", "+ enderecoDTO.cep());
 
