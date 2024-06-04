@@ -63,7 +63,7 @@ export class AlterarSenhaComponent implements OnInit {
         },
         (error) => {
           console.error('Erro ao alterar a senha:', error);
-          alert('A senha não foi alterada');
+          alert('A senha não pôde ser alterada');
         }
       );
   }
