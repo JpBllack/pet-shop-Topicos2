@@ -17,69 +17,80 @@ import { Login } from "../../models/login";
 import { UsuarioBasico } from "../../models/usuarioBasico";
 
 @Component({
-    selector: 'app-signup',
-    standalone: true,
-    templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.css'],
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatIconModule],
+  selector: 'app-signup',
+  standalone: true,
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css'],
+  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, CommonModule, MatIconModule],
 })
-export class SignupComponent implements OnInit{
-    senhaVisivel: boolean = false;
-    loginForm!: FormGroup;
+export class SignupComponent implements OnInit {
+  senhaVisivel: boolean = false;
+  loginForm!: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private signup: BasicUserService, private snackBar: MatSnackBar) {}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private signup: BasicUserService, private snackBar: MatSnackBar) { }
 
-    ngOnInit(): void {
-        this.loginForm = this.formBuilder.group({
-          nome: ['', [Validators.required]],
-          sobrenome: ['', [Validators.required]],
-          email: ['', [Validators.required, Validators.email]],
-          senha: ['', [Validators.required, Validators.minLength(3)]]
-        });
-    }
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      nome: ['', [Validators.required]],
+      sobrenome: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(3)]]
+    });
+  }
 
-    onRegister() {
-        if (this.loginForm.valid) {
-          const loginData: UsuarioBasico = {
-            nome: this.loginForm.get('nome')!.value,
-            sobrenome: this.loginForm.get('sobrenome')!.value,
-            email: this.loginForm.get('email')!.value,
-            senha: this.loginForm.get('senha')!.value
-          };
+  onRegister() {
+    if (this.loginForm.valid) {
+      const loginData: UsuarioBasico = {
+        nome: this.loginForm.get('nome')!.value,
+        sobrenome: this.loginForm.get('sobrenome')!.value,
+        email: this.loginForm.get('email')!.value,
+        senha: this.loginForm.get('senha')!.value
+      };
 
-          const logar: Login = {
-            email: this.loginForm.get('email')!.value,
-            senha: this.loginForm.get('senha')!.value
-          }
-    
-          this.signup.insert(loginData).subscribe({
-            next: (resp) => {
-              // redirecionar para a página principal
-              alert("Cadastrado com sucesso!")
+      const logar: Login = {
+        email: this.loginForm.get('email')!.value,
+        senha: this.loginForm.get('senha')!.value
+      }
+
+      this.signup.insert(loginData).subscribe({
+        next: (resp) => {
+          // redirecionar para a página principal
+          alert("Cadastrado com sucesso!")
+
+          this.authService.login(logar).subscribe({
+            next: (response) => {
               this.router.navigateByUrl('/dashboard');
-              console.log(logar);
-              this.authService.login(logar);
             },
-            error: (err) => {
-              console.log(err);
+            error: (erro) => {
+              console.log(erro);
               this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
             }
-          });
-        } else {
-          this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
-        }
-    }
 
-    showSnackbarTopPosition(content: any, action: any, duration: any) {
-        this.snackBar.open(content, action, {
-          duration: 2000,
-          verticalPosition: "top", // Allowed values are  'top' | 'bottom'
-          horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
-        });
+          });
+
+          console.log(logar);
+        },
+        error: (err) => {
+          console.log(err);
+          this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
+        }
+      })
+
+    } else {
+      this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
     }
-    
-    toggleSenhaVisivel() {
-        this.senhaVisivel = !this.senhaVisivel;
-    }
+  }
+
+  showSnackbarTopPosition(content: any, action: any, duration: any) {
+    this.snackBar.open(content, action, {
+      duration: 2000,
+      verticalPosition: "top", // Allowed values are  'top' | 'bottom'
+      horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+    });
+  }
+
+  toggleSenhaVisivel() {
+    this.senhaVisivel = !this.senhaVisivel;
+  }
 }
-    
+
