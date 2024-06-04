@@ -69,10 +69,8 @@ public class UsuarioLogadoResource {
     @Inject
     CartaoCreditoService cartaoCreditoService;
 
-    
     @Inject
     UsuarioFileService fileService;
-
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
@@ -249,19 +247,18 @@ public class UsuarioLogadoResource {
     @Path("/search/endereco/")
     @RolesAllowed({ "User", "Admin", "Vet" })
     public Response getEnderecoByUser() {
-        try{
+        try {
             String email = jwt.getSubject();
 
             // Buscar usuário pelo email
             UsuarioResponseDTO user = userService.findByEmail(email);
 
             return Response.ok(enderecoService.getAllEnderecosByUser(user.id())).build();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.NOT_FOUND).entity(error).build();
         }
-
 
     }
 
@@ -340,16 +337,15 @@ public class UsuarioLogadoResource {
     @PATCH
     @Path("/update/endereco/principal/{id}")
     @RolesAllowed({ "Admin", "User", "Vet" })
-    public Response setEnderecoPrincipal(@PathParam("id") Long id){
-        try{
+    public Response setEnderecoPrincipal(@PathParam("id") Long id) {
+        try {
             return Response.ok(enderecoService.setPrincipal(id)).build();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Error error = new Error("400", e.getMessage());
             return Response.status(Status.BAD_REQUEST).entity(error).build();
         }
     }
-
 
     // ---------- Cartao ----------
 
@@ -442,62 +438,62 @@ public class UsuarioLogadoResource {
         }
     }
 
-
-//---------------imagemUsuario--------------
-   @Path("/quarkus/images/usuario")
+    // ---------------imagemUsuario--------------
+    @Path("/quarkus/images/usuario")
     public class ImageResource {
-    @GET
-    @Path("/{imageName}")
-    @Produces("image/jpeg")
-    public Response getImage(@PathParam("imageName") String imageName) {
-        File file = new File(System.getProperty("user.home") + "/quarkus/images/usuario/" + imageName);
-        if (!file.exists()) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+        @GET
+        @Path("/{userId}/{imageName}")
+        @Produces("image/jpeg")
+        public Response getImage(@PathParam("userId") String userId, @PathParam("imageName") String imageName) {
+            File file = new File(
+                    System.getProperty("user.home") + "/quarkus/images/usuario/" + userId + File.separator + imageName);
+            System.out.println("Procurando imagem em: " + file.getPath());
+            if (!file.exists()) {
+                System.out.println("Imagem não encontrada.");
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+            return Response.ok(file).build();
         }
-        return Response.ok(file).build();
-    }
-}
-
-@PATCH
-@Path("/upload/image")
-@RolesAllowed({ "Admin", "User", "Vet" })
-@Consumes(MediaType.MULTIPART_FORM_DATA)
-@Produces(MediaType.TEXT_PLAIN)
-public Response saveimage(@MultipartForm ProdutoImageForm form) {
-
-    String login = jwt.getSubject();
-    UsuarioResponseDTO user = userService.findByEmail(login);
-
-    if (user == null) {
-        LOG.error("Usuário não encontrado");
-        return Response.status(Response.Status.NOT_FOUND).entity("Usuário não encontrado").build();
     }
 
-    Long id = user.id();
-    String nomeImagem = form.getNomeImagem();
-    byte[] imagem = form.getImagem();
+    @PATCH
+    @Path("/upload/image")
+    @RolesAllowed({ "Admin", "User", "Vet" })
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response saveimage(@MultipartForm ProdutoImageForm form) {
 
-    if (nomeImagem == null || imagem == null) {
-        LOG.error("Parâmetros inválidos");
-        return Response.status(Response.Status.BAD_REQUEST).build();
+        String login = jwt.getSubject();
+        UsuarioResponseDTO user = userService.findByEmail(login);
+
+        if (user == null) {
+            LOG.error("Usuário não encontrado");
+            return Response.status(Response.Status.NOT_FOUND).entity("Usuário não encontrado").build();
+        }
+
+        Long id = user.id();
+        String nomeImagem = form.getNomeImagem();
+        byte[] imagem = form.getImagem();
+
+        if (nomeImagem == null || imagem == null) {
+            LOG.error("Parâmetros inválidos");
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        try {
+            LOG.info("Inserindo imagem");
+            String imageName = fileService.save(id, nomeImagem, imagem);
+            LOG.info("Alterando imagem do usuário");
+
+            userService.changeImage(id, imageName);
+            LOG.info("Imagem alterada");
+            return Response.ok("Imagem = " + imageName).build();
+        } catch (IOException e) {
+            LOG.error("Erro ao inserir imagem");
+            e.printStackTrace();
+            Error error = new Error("409", e.getMessage());
+            return Response.status(Response.Status.CONFLICT).entity(error).build();
+        }
     }
-
-    try {
-        LOG.info("Inserindo imagem");
-        String imageName = fileService.save(nomeImagem, imagem);
-        LOG.info("Alterando imagem do usuário");
-
-        userService.changeImage(id, imageName);
-        LOG.info("Imagem alterada");
-        return Response.ok("Imagem = " + imageName).build();
-    } catch (IOException e) {
-        LOG.error("Erro ao inserir imagem");
-        e.printStackTrace();
-        Error error = new Error("409", e.getMessage());
-        return Response.status(Response.Status.CONFLICT).entity(error).build();
-    }
-}
-
-
 
 }

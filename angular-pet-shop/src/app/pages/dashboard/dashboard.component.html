@@ -15,7 +15,9 @@
     <div class="col-xs-6">
       <div class="row center-xs">
         <div class="image-container" *ngIf="urlImagem">
-          <a (click)="profileUpload.click()"><img [src]="urlImagem" alt="Profile" class="profile-image"></a>
+          <a (click)="profileUpload.click()">
+            <img [src]="urlImagem" alt="Profile" class="profile-image">
+          </a>
         </div>
       </div>
     </div>

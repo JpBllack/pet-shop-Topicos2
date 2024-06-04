@@ -37,7 +37,7 @@ export class AlterarSenhaComponent implements OnInit {
     this.usuarioLogadoService.updateSenha({senhaAtual, novaSenha})
       .subscribe(
         () => {
-          console.log('Senha alterada com sucesso');
+          //console.log('Senha alterada com sucesso');
           alert('Senha alterada com sucesso');
 
           const usuarioLogado = this.authService.getUsuarioLogadoAsValue();
@@ -52,7 +52,7 @@ export class AlterarSenhaComponent implements OnInit {
                 this.router.navigateByUrl('/dashboard');
               },
               error: (erro) => {
-                console.log('Erro ao fazer login automaticamente:', erro);
+                //console.log('Erro ao fazer login automaticamente:', erro);
                 alert('A senha foi alterada, mas houve um problema ao logar novamente.');
               }
             });
@@ -62,7 +62,7 @@ export class AlterarSenhaComponent implements OnInit {
           }
         },
         (error) => {
-          console.error('Erro ao alterar a senha:', error);
+          //console.error('Erro ao alterar a senha:', error);
           alert('A senha não pôde ser alterada');
         }
       );

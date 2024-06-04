@@ -97,7 +97,7 @@ export class VerProdutoComponent implements OnInit {
 } */
 
 getPesoLabel(peso: Peso | { label: string }): string {
-  console.log('Peso:', peso);
+  //console.log('Peso:', peso);
   
   // Verifica se peso é uma string diretamente
   if (typeof peso === 'string') {

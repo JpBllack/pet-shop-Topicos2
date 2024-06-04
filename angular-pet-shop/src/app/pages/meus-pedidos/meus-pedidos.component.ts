@@ -46,7 +46,7 @@ export class MeusPedidosComponent implements OnInit {
   loadItensCompra(compra: Compra): void {
     this.compraService.getItensByCompraId(compra.id).subscribe(
       (itensCompra: ItemCompra[]) => {
-        console.log(compra.itens)
+        //console.log(compra.itens)
         compra.itens = itensCompra;
       },
       (error) => {

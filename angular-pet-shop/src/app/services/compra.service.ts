@@ -29,7 +29,7 @@ export class CompraService {
 
     getComprasByUserId(): Observable<Compra[]> {
         const url = `${this.apiUrl}/usuario/compras`;
-        console.log(this.http.get<Compra[]>(url));
+        //console.log(this.http.get<Compra[]>(url));
         return this.http.get<Compra[]>(url, { headers: this.getHeaders() });
     }
 
@@ -41,8 +41,8 @@ export class CompraService {
     concluirCompra(itensCompra: ItemCompra[], endereco: Endereco, cartao: Cartao): Observable<Compra>{
         const url = `${this.apiUrl}/concluir`;
         const body = { itensCompra, endereco, cartao };
-        console.log('Cartao no Service: ' + cartao.numero)
-        console.log('Endereco no Service: ' + endereco.complemento)
+        //console.log('Cartao no Service: ' + cartao.numero)
+        //console.log('Endereco no Service: ' + endereco.complemento)
         return this.http.post<Compra>(url, body, { headers: this.getHeaders() });
     }
 

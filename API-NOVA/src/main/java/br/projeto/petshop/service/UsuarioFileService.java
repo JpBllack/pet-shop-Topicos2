@@ -13,7 +13,7 @@ import java.util.UUID;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class UsuarioFileService implements FileService {
+public class UsuarioFileService implements FileServiceUsuario {
     // /Users/fulano/quarkus/images/usuario/
     
     private final String PATH_USER = System.getProperty("user.home") +
@@ -26,11 +26,12 @@ public class UsuarioFileService implements FileService {
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 10; // 10mb 
 
     @Override
-    public String save(String fileName, byte[] file) throws IOException {
+    public String save(Long userId, String fileName, byte[] file) throws IOException {
         verifyImageSize(file);
         verifyImageType(fileName);
 
-        Path directory = createDirectoryIfNotExists(PATH_USER);
+        String userDirectoryPath = PATH_USER + userId + File.separator;
+        Path directory = createDirectoryIfNotExists(userDirectoryPath);
         String newFileName = generateUniqueFileName(fileName);
 
         Path filePath = directory.resolve(newFileName);

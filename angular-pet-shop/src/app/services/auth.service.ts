@@ -42,7 +42,7 @@ export class AuthService {
         if (authToken) {
           this.setToken(authToken);
           const usuarioLogado = res.body;
-          console.log('usuario logado: ', usuarioLogado);
+          //console.log('usuario logado: ', usuarioLogado);
           if (usuarioLogado) {
             this.setUsuarioLogado(usuarioLogado);
             this.usuarioLogadoSubject.next(usuarioLogado);
@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    console.log('Token definido:', token);
+    //console.log('Token definido:', token);
     this.localStorageService.setItem(this.tokenKey, token);
   }
 
@@ -92,7 +92,7 @@ export class AuthService {
 
   isTokenExpired(): boolean {
     const token = this.getToken();
-    console.error('token: ' + token);
+    //console.error('token: ' + token);
     if (!token) {
       return true;
     }

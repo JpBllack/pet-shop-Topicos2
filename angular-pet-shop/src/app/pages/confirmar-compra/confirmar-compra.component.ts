@@ -49,7 +49,7 @@ export class ConfirmarCompraComponent implements OnInit {
     private carregarDadosUsuario(): void {
         this.usuarioLogadoService.getEnderecoUsuario().subscribe(
             (enderecos: Endereco[]) => {
-                console.log('Endereços:', enderecos); // Verifica se os endereços estão sendo retornados corretamente
+                //console.log('Endereços:', enderecos); // Verifica se os endereços estão sendo retornados corretamente
                 this.enderecos = enderecos;
                 this.enderecoSelecionado = this.enderecos.find(endereco => endereco.isPrincipal) || this.enderecos[0];
             },
@@ -60,7 +60,7 @@ export class ConfirmarCompraComponent implements OnInit {
 
         this.usuarioLogadoService.getCartoesUsuario().subscribe(
             (cartoes: Cartao[]) => {
-                console.log('Cartões:', cartoes); // Verifica se os cartões estão sendo retornados corretamente
+                //console.log('Cartões:', cartoes); // Verifica se os cartões estão sendo retornados corretamente
                 this.cartoes = cartoes;
                 this.cartaoSelecionado = this.cartoes.find(cartao => cartao.isPrincipal) || this.cartoes[0];
             },

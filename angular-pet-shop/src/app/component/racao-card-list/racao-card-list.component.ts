@@ -61,7 +61,7 @@ export class RacaoCardListComponent implements OnInit {
     const cards: Card[] = [];
     this.racoes.forEach(racao => {
       const caminhoImagem = this.getImagemPath(racao.imagem);
-      console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
+      //console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
       cards.push({
         idConsulta: racao.id,
         nome: racao.nome,
@@ -69,7 +69,7 @@ export class RacaoCardListComponent implements OnInit {
         imagem: caminhoImagem
       });
     });
-    console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
+    //console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
     this.cards.set(cards);
   }
  

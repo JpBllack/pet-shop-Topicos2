@@ -35,7 +35,8 @@ export class DashboardComponent implements OnInit {
         this.usuario = usuario;
         if (usuario && usuario.imagem) {
           const nomeImagem = this.extractFileName(usuario.imagem);
-          this.urlImagem = `http://localhost:8080/quarkus/images/usuario/${nomeImagem}`;
+          const timestamp = new Date().getTime();
+          this.urlImagem = `http://localhost:8080/quarkus/images/usuario/${usuario.id}/${nomeImagem}?t=${timestamp}`;
         }
       },
       (error) => {
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+  
 
   carregarImagemUsuario() {
     if (this.usuario && this.usuario.imagem) {
@@ -90,9 +92,9 @@ export class DashboardComponent implements OnInit {
       const formData = new FormData();
       formData.append('imagem', this.selectedFile);
       formData.append('nomeImagem', this.selectedFile.name); // adicionando o nome do arquivo
-
+  
       console.log('FormData antes do upload:', formData);
-
+  
       this.usuarioLogadoService.uploadImage(formData).pipe(
         catchError((error) => {
           console.error('Erro ao fazer upload da imagem:', error);
@@ -104,9 +106,10 @@ export class DashboardComponent implements OnInit {
             console.log('Upload bem-sucedido:', response);
             // Atualizando a propriedade de imagem do usuário
             this.usuario.imagem = response; // Se o serviço de upload retornar o caminho da imagem
-            // Atualizar a URL da imagem
+            // Atualizar a URL da imagem com um parâmetro de timestamp
             const nomeImagem = this.extractFileName(response);
-            this.urlImagem = `http://localhost:8080/quarkus/images/usuario/${nomeImagem}`;
+            const timestamp = new Date().getTime(); // Obtém o timestamp atual
+            this.urlImagem = `http://localhost:8080/quarkus/images/usuario/${this.usuario.id}/${nomeImagem}?t=${timestamp}`;
           } else {
             console.error('Resposta do upload é nula.');
           }
@@ -115,6 +118,7 @@ export class DashboardComponent implements OnInit {
     } else {
       console.error('Nenhuma imagem selecionada');
     }
-  }  
+  }
+
 }
 

@@ -13,7 +13,7 @@ import { Cartao } from "../models/cartao";
 export class UsuarioLogadoService {
   private apiUrl = 'http://localhost:8080/usuarioLogado';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   private getHeaders() {
     const token = this.authService.getToken();
@@ -47,28 +47,28 @@ export class UsuarioLogadoService {
   }
 
   //Endereco
-  
+
 
   insertEndereco(endereco: any): Observable<Usuario[]> {
     console.log('Dados do endereço:', endereco);
     return this.http.post<Usuario[]>(`${this.apiUrl}/insert/endereco`, endereco, { headers: this.getHeaders() });
   }
 
-  updateEndereco(endereco: Endereco): Observable<Endereco>{
+  updateEndereco(endereco: Endereco): Observable<Endereco> {
     return this.http.put<Endereco>(`${this.apiUrl}/update/endereco`, endereco);
-  }  
-  deleteEndereco(id: number): Observable<void>{
+  }
+  deleteEndereco(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/endereco/${id}`)
   }
 
-  getEnderecoUsuario(): Observable<Endereco[]>{
+  getEnderecoUsuario(): Observable<Endereco[]> {
     return this.http.get<Endereco[]>(`${this.apiUrl}/search/endereco`);
   }
 
-  setEnderecoPrincipal(id: number): Observable<Endereco>{
+  setEnderecoPrincipal(id: number): Observable<Endereco> {
     return this.http.patch<Endereco>(`${this.apiUrl}/update/endereco/principal/${id}`, {}, { headers: this.getHeaders() });
   }
-  
+
 
   //Pet
 
@@ -84,49 +84,49 @@ export class UsuarioLogadoService {
 
   // Cartao
 
-  getCartaoById(id: number): Observable<Cartao>{
+  getCartaoById(id: number): Observable<Cartao> {
     return this.http.get<Cartao>(`${this.apiUrl}/search/cartao/${id}`);
   }
 
-  insertCartao(cartao: Cartao): Observable<Cartao>{
+  insertCartao(cartao: Cartao): Observable<Cartao> {
     return this.http.post<Cartao>(`${this.apiUrl}/insert/cartao`, cartao);
   }
 
-  updateCartao(cartao: Cartao): Observable<Cartao>{
+  updateCartao(cartao: Cartao): Observable<Cartao> {
     return this.http.put<Cartao>(`${this.apiUrl}/update/cartao`, cartao);
   }
 
-  deleteCartao(id: number): Observable<void>{
+  deleteCartao(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/cartao/${id}`)
   }
 
-  getCartoesUsuario(): Observable<Cartao[]>{
+  getCartoesUsuario(): Observable<Cartao[]> {
     return this.http.get<Cartao[]>(`${this.apiUrl}/search/cartao`, { headers: this.getHeaders() });
   }
 
-  setCartaoPrincipal(id: number): Observable<Cartao>{
+  setCartaoPrincipal(id: number): Observable<Cartao> {
     return this.http.patch<Cartao>(`${this.apiUrl}/update/cartao/principal/${id}`, {}, { headers: this.getHeaders() });
   }
 
   // Upload Imagem
-uploadImage(formData: FormData): Observable<any> {
-  console.log("O método uploadImage foi utilizado. Dados recebidos:", formData); // Adiciona o log aqui
-  const headers = this.getHeaders();
-  return this.http.patch(`${this.apiUrl}/upload/image`, formData, { headers });
-}
+  uploadImage(formData: FormData): Observable<any> {
+    console.log("O método uploadImage foi utilizado. Dados recebidos:", formData); // Adiciona o log aqui
+    const headers = this.getHeaders();
+    return this.http.patch(`${this.apiUrl}/upload/image`, formData, { headers });
+  }
 
 
-// Método para obter a imagem do usuário
-getImagemUsuario(imageName: string): Observable<Blob> {
-  const headers = this.getHeaders();
-  const apiUrl = 'http://localhost:8080'; // ou a URL do seu backend
-  return this.http.get(`${apiUrl}/quarkus/images/usuario/${imageName}`, {
-    headers,
-    responseType: 'blob'
-  });
-  
+  // Método para obter a imagem do usuário
+  getImagemUsuario(imageName: string): Observable<Blob> {
+    const headers = this.getHeaders();
+    const apiUrl = 'http://localhost:8080'; // ou a URL do seu backend
+    return this.http.get(`${apiUrl}/quarkus/images/usuario/${imageName}`, {
+      headers,
+      responseType: 'blob'
+    });
 
-}
+
+  }
 
 
 }

@@ -2,6 +2,7 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 5%;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
@@ -49,3 +50,21 @@
 .confirmar-compra-container button:hover {
     background-color: #0056b3;
 }
+
+.item {
+    margin-bottom: 20px; /* Aumente o espaçamento entre os itens */
+    border: 1px solid #ccc; /* Adicione uma borda para destacar os itens */
+    border-radius: 5px; /* Arredonde as bordas dos itens */
+    padding: 15px; /* Adicione um preenchimento interno */
+  }
+  
+  .item-details p {
+    margin: 5px 0; /* Ajuste o espaçamento entre os detalhes do item */
+  }
+  
+  /* Estilos para destacar o botão de confirmação de compra */
+  .confirmar-compra-container button {
+    margin-top: 30px; /* Adicione um espaçamento acima do botão */
+    margin-bottom: 15px; /* Adicione um espaçamento abaixo do botão */
+  }
+  
