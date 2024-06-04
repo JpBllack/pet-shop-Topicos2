@@ -83,9 +83,27 @@ export class AuthService {
     this.usuarioLogadoSubject.next(null);
   }
 
+  /*
   isTokenExpired(): boolean {
     const token = this.getToken();
     return !token || this.jwtHelper.isTokenExpired(token);
+  }
+  */
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    console.error('token: ' + token);
+    if (!token) {
+      return true;
+    }
+    
+    try {
+      console.error('jwtHelper: ' + this.jwtHelper.isTokenExpired(token));
+      return this.jwtHelper.isTokenExpired(token);
+    } catch (error) {
+      console.error('Token inválido:', error);
+      return true; 
+    }
   }
 
   updateUsuarioLogado(novoUsuario: Usuario): void {
