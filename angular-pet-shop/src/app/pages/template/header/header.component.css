@@ -32,7 +32,7 @@
     flex-direction: column; /* Alterado para organizar verticalmente */
     align-items: flex-start; /* Alinha os itens à esquerda */
     width: 150px; /* Largura desejada */
-    height: 80px; /* Altura desejada */
+    height: auto; /* Altura desejada */
     z-index: 999;
 }
 

@@ -38,6 +38,13 @@
                     Meus Dados
                 </button>
 
+                <div *ngIf="usuarioLogado.perfil == 1">
+                    <button mat-button (click)="admin()">
+                        <mat-icon>settings</mat-icon>
+                        Admin
+                    </button>
+                </div>
+
                 <button mat-button routerLink="" (click)="deslogar()">
                     <mat-icon>exit_to_app</mat-icon>
                     Sair

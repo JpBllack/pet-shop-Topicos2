@@ -74,6 +74,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/dashboard']);
   }
 
+  admin(){
+    this.router.navigate(['admin/estados'])
+  }
+
   buscarRacao() {
     if (this.searchQuery.trim()) {
       this.racaoService.findByNome(this.searchQuery).subscribe(racoes => {

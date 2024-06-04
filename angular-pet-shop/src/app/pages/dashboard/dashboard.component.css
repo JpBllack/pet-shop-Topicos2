@@ -1,23 +1,29 @@
 .dashboard-container {
   max-width: 800px;
-  margin: auto; /* Centraliza horizontalmente */
+  margin: auto;
+  /* Centraliza horizontalmente */
   padding: 20px;
-  background-color: #f0f8ff; /* Light blue background */
+  background-color: #f0f8ff;
+  /* Light blue background */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  display: flex; /* Usando flexbox */
-  flex-direction: column; /* Empilha os itens verticalmente */
+  display: flex;
+  /* Usando flexbox */
+  flex-direction: column;
+  /* Empilha os itens verticalmente */
 }
 
 
 .content {
   text-align: center;
-  flex: 1; /* Ocupa todo o espaço disponível */
+  flex: 1;
+  /* Ocupa todo o espaço disponível */
 }
 
 h1 {
-  color: #007BFF; /* Blue color */
+  color: #007BFF;
+  /* Blue color */
   font-size: 2.5em;
   margin-bottom: 10px;
 }
@@ -53,7 +59,7 @@ h2 {
 }
 
 .dashboard-container::before {
-  
+
   display: block;
   height: 200px;
   width: 100%;
@@ -89,6 +95,7 @@ h2 {
 }
 
 .image-container {
+  padding-bottom: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,4 +108,8 @@ h2 {
 
 .icon {
   margin-right: 10px;
- }
+}
+
+.row center-xs {
+  padding-bottom: 3%;
+}
