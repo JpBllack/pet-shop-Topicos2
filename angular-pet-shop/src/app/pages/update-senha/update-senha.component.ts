@@ -15,8 +15,8 @@ export class AlterarSenhaComponent implements OnInit {
   novaSenha: string = '';
   formGroup: FormGroup;
 
-  constructor(private usuarioLogadoService: UsuarioLogadoService, private formBuilder: FormBuilder) { 
-    this.formGroup = this.formBuilder.group({ 
+  constructor(private usuarioLogadoService: UsuarioLogadoService, private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({
       senhaAtual: ['', Validators.required],
       novaSenha: ['', Validators.required]
     });
@@ -25,16 +25,12 @@ export class AlterarSenhaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
   alterarSenha(): void {
 
-    /*
-    const senha = {
-      senha: this.formGroup.get('senhaAtual').value,
-      novaSenha: this.formGroup.get('novaSenha').value
-    };
-  
-    this.usuarioLogadoService.updateSenha(senha)
+    const {senhaAtual, novaSenha} = this.formGroup.value;
+
+    this.usuarioLogadoService.updateSenha({senhaAtual, novaSenha})
       .subscribe(
         () => {
           console.log('Senha alterada com sucesso');
@@ -45,11 +41,10 @@ export class AlterarSenhaComponent implements OnInit {
           alert('A senha não foi alterada');
         }
       );
-      */
   }
-  
-  
-  
-  
+
+
+
+
 
 }
