@@ -66,6 +66,11 @@ export class RacaoService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
+
+  getUltimasRacoes(limit: number = 4): Observable<Racao[]> {
+    return this.http.get<Racao[]>(`${this.apiUrl}?_limit=${limit}&_sort=id&_order=desc`);
+  }
+
 }
 
 

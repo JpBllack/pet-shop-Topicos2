@@ -1,0 +1,22 @@
+/* Estiliza o carrossel */
+.carousel {
+  margin-bottom: 2rem;
+}
+
+.carousel .carousel-inner img {
+  height: 500px;
+  object-fit: cover;
+}
+
+
+
+/* Botões de filtro */
+.btn-group {
+  margin-top: 20px; /* Espaçamento superior */
+  display: flex;
+  justify-content: center;
+}
+
+.btn-group .btn {
+  margin: 5px; /* Espaçamento entre os botões */
+}

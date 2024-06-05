@@ -1,0 +1,53 @@
+/* Estiliza o contêiner pai dos cards */
+.responsive-grid {
+    display: flex; /* Define o contêiner pai como um flex container */
+    flex-wrap: wrap; /* Permite que os elementos quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os elementos horizontalmente */
+    gap: 20px; /* Espaçamento entre os cards */
+    padding: 10px; /* Adiciona um pouco de preenchimento ao redor do contêiner */
+  }
+  
+  /* Estiliza os cards de produtos */
+  .mat-card-hover {
+    width: 200px; /* Define a largura fixa do card */
+    margin: 10px; /* Espaçamento ao redor dos cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s;
+    display: flex; /* Para ajustar a altura do conteúdo */
+    flex-direction: column; /* Empilhar o conteúdo verticalmente */
+  }
+  
+  .mat-card-hover:hover {
+    transform: translateY(-10px);
+  }
+  
+  .mat-card-hover img {
+    width: 100%; /* Ocupa toda a largura do card */
+    height: auto; /* Altura automática */
+    object-fit: cover;
+  }
+  
+  .card-content {
+    flex-grow: 1; /* Faz o conteúdo se expandir para ocupar o espaço disponível */
+  }
+  
+  .mat-card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center; /* Centraliza o texto */
+  }
+  
+  .preco {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center; /* Centraliza o texto */
+  }
+  
+  .add-to-cart-footer {
+    text-align: center; /* Centraliza o botão no rodapé */
+  }
+  
+  .add-to-cart-button {
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+  }
+  
