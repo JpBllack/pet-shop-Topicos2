@@ -1,40 +1,74 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+<!DOCTYPE html>
+<html lang="pt-br ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sua Página</title>
+  <!-- Adiciona os estilos do Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-lrZzZlEnaN7mhcH3/JcxVQ0h7CCWwcf7xFByjYZk2mwsZGmYc0IKwXfZxk4DTLjc" crossorigin="anonymous">
+  <!-- Adiciona seus estilos personalizados -->
+  <link rel="stylesheet" href="index.component.css">
+</head>
+<body class="no-default-footer">
+
+  <div class="main-content">
+  <!-- Carrossel Bootstrap -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/carrosel1.jpg" class="d-block w-100" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/carrosel2.png" class="d-block w-100" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/carrosel3.jpg" class="d-block w-100" alt="Image 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/carrosel1.jpg" class="d-block w-100" alt="Image 1">
-    </div>
-    <div class="carousel-item">
-      <img src="assets/carrosel2.png" class="d-block w-100" alt="Image 2">
-    </div>
-    <div class="carousel-item">
-      <img src="assets/carrosel3.jpg" class="d-block w-100" alt="Image 3">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
-
-
+  <!-- Seu conteúdo -->
   <div class="container">
     <app-ultimos-produtos class="card"></app-ultimos-produtos>
+  </div>
+
+<div class="text">
+<p>Categorias</p>
+</div>
+
+  <!-- Botões de grupo -->
+   <!-- Botões de grupo -->
+   <div class="btn-group mt-5" role="group" id="filterLinks">
+    <a routerLink="/produtos" class="btn btn-primary">Tudo</a>
+    <a routerLink="produtos/gatos" class="btn btn-primary">Gatos</a>
+    <a routerLink="produtos/cachorros" class="btn btn-primary">Cachorros</a>
+    <a routerLink="produtos/cavalos" class="btn btn-primary">Cavalos</a>
+  </div>
+  
+  
 </div>
 
 
-<div class="btn-group mt-5" role="group">
-  <button type="button" class="btn btn-primary">Tudo</button>
-  <button type="button" class="btn btn-primary">Gatos</button>
-  <button type="button" class="btn btn-primary">cachorros</button>
-  <button type="button" class="btn btn-primary">cavalo</button>
-</div>
+
+  <app-footer class="custom-footer">
+
+  </app-footer>
+
+  <!-- Adiciona os scripts JavaScript do Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-DnxrEx85Jt69rytvc7YUOVNAq7RmZpIWv8VSYQQ3kc9eWewD9FZ6rMz3JYwq5l2n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-HX+L1sMeU9Nvp1+fkraHNgbcZb4ZVpfbu7WrvoFrs2WzJWprufezcCw1lVV8IQ6T" crossorigin="anonymous"></script>
+</body>
+</html>

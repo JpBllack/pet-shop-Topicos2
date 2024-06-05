@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { UltimosProdutosComponent } from "../pages/ultimos-produtos/ultimos-produtos.component";
+import { FooterComponent } from '../pages/template/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-index',
     standalone: true,
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css'],
-    imports: [CommonModule, SlickCarouselModule, UltimosProdutosComponent]
+    imports: [CommonModule, SlickCarouselModule, UltimosProdutosComponent,FooterComponent,RouterModule]
 })
 export class IndexComponent {
   imagens = [
@@ -45,4 +47,6 @@ export class IndexComponent {
       }
     ]
   };
+
+  
 }

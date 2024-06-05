@@ -133,4 +133,16 @@ public class RacaoServiceImpl implements RacaoService {
         racao.setImagem(ImageName);
         return RacaoResponseDTO.valueOf(racao);
     }
+
+
+    @Override
+    public List<RacaoResponseDTO> getByAnimal(long animalId) {
+        List<Racao> racoes = racaoRepository.findByAnimalNome(animalId);
+        if (racoes.isEmpty()) {
+            throw new NotFoundException("Nenhuma ração encontrada para o animal especificado");
+        }
+        return racoes.stream().map(RacaoResponseDTO::valueOf).toList();
+    }
+    
+
 }

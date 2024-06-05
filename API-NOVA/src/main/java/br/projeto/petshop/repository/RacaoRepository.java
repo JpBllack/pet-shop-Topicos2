@@ -54,4 +54,10 @@ public class RacaoRepository {
         }
         return false;
     }
+
+    public List<Racao> findByAnimalNome(long animalId) {
+        return entityManager.createQuery("SELECT r FROM Racao r WHERE r.animal.id = :animalId", Racao.class)
+                            .setParameter("animalId", animalId)
+                            .getResultList();
+    }
 }

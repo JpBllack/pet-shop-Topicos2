@@ -22,4 +22,6 @@ public interface RacaoService {
     public void delete(long id);
 
     public RacaoResponseDTO changeImage(Long id, String ImageName);
+
+    public List<RacaoResponseDTO> getByAnimal(long animalId) ;
 }
