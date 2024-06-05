@@ -21,9 +21,17 @@
 }
 
 .item {
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Aumente o espaçamento entre os itens */
+    border: 1px solid #ccc; /* Adicione uma borda para destacar os itens */
+    border-radius: 5px; /* Arredonde as bordas dos itens */
+    padding: 15px; /* Adicione um preenchimento interno */
 }
 
+.item-details p {
+    margin: 5px 0; /* Ajuste o espaçamento entre os detalhes do item */
+}
+
+/* Estilos para o select de endereço e cartão */
 .endereco select,
 .cartao select {
     width: 100%;
@@ -34,6 +42,7 @@
     margin-bottom: 15px;
 }
 
+/* Estilos para o botão de confirmar compra */
 .confirmar-compra-container button {
     display: block;
     width: 100%;
@@ -45,26 +54,33 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 30px; /* Adicione um espaçamento acima do botão */
+    margin-bottom: 15px; /* Adicione um espaçamento abaixo do botão */
 }
 
 .confirmar-compra-container button:hover {
     background-color: #0056b3;
 }
 
-.item {
-    margin-bottom: 20px; /* Aumente o espaçamento entre os itens */
-    border: 1px solid #ccc; /* Adicione uma borda para destacar os itens */
-    border-radius: 5px; /* Arredonde as bordas dos itens */
-    padding: 15px; /* Adicione um preenchimento interno */
-  }
-  
-  .item-details p {
-    margin: 5px 0; /* Ajuste o espaçamento entre os detalhes do item */
-  }
-  
-  /* Estilos para destacar o botão de confirmação de compra */
-  .confirmar-compra-container button {
-    margin-top: 30px; /* Adicione um espaçamento acima do botão */
-    margin-bottom: 15px; /* Adicione um espaçamento abaixo do botão */
-  }
-  
+/* Estilos para os botões adicionar endereço e adicionar cartão */
+.adicionar-btn {
+    background-color: #d3d3d3; /* Cinza claro */
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px; /* Tamanho menor */
+    padding: 5px 10px; /* Padding reduzido */
+    margin-left: 10px; /* Espaçamento à esquerda para posicionar mais à direita */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-align: right;
+}
+.endereco,
+.cartao {
+    text-align: right;
+}
+
+.adicionar-btn:hover {
+    background-color: #b0b0b0; /* Cinza mais escuro ao passar o mouse */
+}

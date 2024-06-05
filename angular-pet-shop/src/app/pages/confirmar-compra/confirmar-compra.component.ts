@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Compra } from '../../models/compra';
 import { CarrinhoComponent } from '../carrinho/carrinho.component';
+import { Usuario } from '../../models/Usuario';
 
 @Component({
     selector: 'app-confirmar-compra',
@@ -25,6 +26,7 @@ export class ConfirmarCompraComponent implements OnInit {
     cartoes: Cartao[] = [];
     enderecoSelecionado!: Endereco;
     cartaoSelecionado!: Cartao;
+    usuario!: Usuario;
 
     constructor(
         private compraService: CompraService,
@@ -36,6 +38,7 @@ export class ConfirmarCompraComponent implements OnInit {
     ngOnInit(): void {
         this.carregarItensCarrinho();
         this.carregarDadosUsuario();
+        this.carregarUsuarioLogado();
     }
 
     private carregarItensCarrinho(): void {
@@ -47,9 +50,10 @@ export class ConfirmarCompraComponent implements OnInit {
     }
 
     private carregarDadosUsuario(): void {
+
         this.usuarioLogadoService.getEnderecoUsuario().subscribe(
             (enderecos: Endereco[]) => {
-                //console.log('Endereços:', enderecos); // Verifica se os endereços estão sendo retornados corretamente
+                //console.log('Endereços:', enderecos);
                 this.enderecos = enderecos;
                 this.enderecoSelecionado = this.enderecos.find(endereco => endereco.isPrincipal) || this.enderecos[0];
             },
@@ -60,7 +64,7 @@ export class ConfirmarCompraComponent implements OnInit {
 
         this.usuarioLogadoService.getCartoesUsuario().subscribe(
             (cartoes: Cartao[]) => {
-                //console.log('Cartões:', cartoes); // Verifica se os cartões estão sendo retornados corretamente
+                //console.log('Cartões:', cartoes);
                 this.cartoes = cartoes;
                 this.cartaoSelecionado = this.cartoes.find(cartao => cartao.isPrincipal) || this.cartoes[0];
             },
@@ -69,10 +73,28 @@ export class ConfirmarCompraComponent implements OnInit {
             }
         );
     }
+
+    private carregarUsuarioLogado(): void {
+        this.usuarioLogadoService.getUsuarioLogado().subscribe(
+            (usuario: Usuario) => {
+                this.usuario = usuario;
+            },
+            error => {
+                console.error('Erro ao carregar usuário logado:', error);
+            }
+        );
+    }
     
 
 
     confirmarCompra(): void {
+        if (!this.usuario || !this.usuario.cpf) {
+            console.error('O usuário não possui CPF cadastrado');
+            alert('Por favor, cadastre seu CPF antes de concluir a compra.');
+            this.router.navigate(['/alterar-info']);
+            return;
+        }
+
         if (!this.enderecoSelecionado || !this.cartaoSelecionado) {
             console.error('Endereço ou cartão de crédito não estão definidos');
             alert('Por favor, selecione um endereço e um cartão de crédito.');
@@ -85,7 +107,7 @@ export class ConfirmarCompraComponent implements OnInit {
             return;
         }
 
-        console.log(this.cartaoSelecionado);
+        //console.log(this.cartaoSelecionado);
     
         if (this.itensCompra.length === 0) {
             console.error('O carrinho está vazio');
@@ -101,7 +123,6 @@ export class ConfirmarCompraComponent implements OnInit {
         
         this.compraService.concluirCompra(this.itensCompra, this.enderecoSelecionado, this.cartaoSelecionado).subscribe(
             (response) => {
-                // Lide com a resposta do backend, que deve incluir a compra completa com ID
                 console.log('Compra concluída com sucesso:', response);
                 this.router.navigate(['/pedidos']);
                 this.carrinhoService.limparCarrinho();
@@ -111,6 +132,14 @@ export class ConfirmarCompraComponent implements OnInit {
             }
         );
         
+    }
+
+    adicionarEndereco(): void {
+        this.router.navigate(['/endereco']);
+    }
+
+    adicionarCartao(): void {
+        this.router.navigate(['/add-cartao']);
     }
     
     

@@ -85,7 +85,7 @@ export class EnderecoComponent implements OnInit{
       response => {
         console.log('Endereço criado com sucesso!', response);
         // Reinicie os valores dos campos do formulário se necessário
-        this.router.navigate(['/ver-endereco']);
+        this.location.back();
       },
       error => {
         console.error('Erro ao criar endereço:', error);

@@ -88,7 +88,7 @@ export class AddCartaoComponent implements OnInit {
       this.usuarioLogadoService.insertCartao(novoCartao).subscribe(
         response => {
           console.log('Cartão adicionado com sucesso', response);
-          this.router.navigate(['/meus-cartoes']);
+          this.location.back();
         },
         error => {
           console.error('Erro ao adicionar cartão', error);
