@@ -41,15 +41,16 @@ export class RacaoService {
 
   findByNome(nome: string): Observable<Racao[]> {
     console.log(nome);
-    console.log(`${this.apiUrl}?nome=${nome}`)
-    return this.http.get<Racao[]>(`${this.apiUrl}?nome=${nome}`).pipe(
+    const url = `${this.apiUrl}/search/${nome}`;
+    console.log(url);
+    return this.http.get<Racao[]>(url).pipe(
       catchError(error => {
         console.error('Erro na requisição:', error);
         return of([]); // Retorna um array vazio em caso de erro
       })
     );
-  }  
-
+  }
+  
   uploadImage(formData: FormData): Observable<any> {
     const url = `${this.apiUrl}/upload/image`;
     return this.http.patch<any>(url, formData);

@@ -82,10 +82,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.searchQuery.trim()) {
       this.racaoService.findByNome(this.searchQuery).subscribe(racoes => {
         console.log('Rações encontradas:', racoes);
-        console.log('Filtro: ', this.racaoService.findByNome(this.searchQuery).subscribe());
-        // Navegar para a página de resultados de busca com os resultados
         this.router.navigate(['/busca'], { queryParams: { racoes: JSON.stringify(racoes) } });
       });
     }
   }
+  
 }
