@@ -52,11 +52,24 @@
   <!-- Botões de grupo -->
    <!-- Botões de grupo -->
    <div class="btn-group mt-5" role="group" id="filterLinks">
-    <a routerLink="/produtos" class="btn btn-primary">Tudo</a>
-    <a [routerLink]="['/racoes/animal', 1]" class="btn btn-primary">Cachorros</a>
-    <a [routerLink]="['/racoes/animal', 2]" class="btn btn-primary">Gatos</a>
-    <a [routerLink]="['/racoes/animal', 3]" class="btn btn-primary">Passaros</a>
+    <a routerLink="/produtos" class="btn btn-primary">
+      <img src="assets/black-logo.png" alt="Todos os produtos">
+      <p>Todas Rações</p>
+    </a>
+    <a [routerLink]="['/racoes/animal', 1]" class="btn btn-primary">
+      <img src="assets/dog-botao.png" alt="Cachorros">
+      <p>Cachorro</p>
+    </a>
+    <a [routerLink]="['/racoes/animal', 2]" class="btn btn-primary">
+      <img src="assets/cat-botao.png" alt="Gatos">
+      <p>Gatos</p>
+    </a>
+    <a [routerLink]="['/racoes/animal', 3]" class="btn btn-primary">
+      <img src="caminho/para/imagem/passaros.jpg" alt="Pássaros">
+      <p>Pássaros</p>
+    </a>
   </div>
+  
   
 
   

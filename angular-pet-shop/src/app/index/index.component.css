@@ -47,3 +47,10 @@
 .btn-group .btn {
   margin: 5px; /* Espaçamento entre os botões */
 }
+
+
+
+.btn-group img {
+  width: 200px; /* Defina a largura desejada */
+  height: 200px; /* Defina a altura desejada */
+}

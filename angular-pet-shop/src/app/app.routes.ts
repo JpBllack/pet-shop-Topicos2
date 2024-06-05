@@ -57,7 +57,7 @@ export const routes: Routes = [
         component: UserTemplateComponent, 
         title: 'e-commerce',
         children: [
-            {path: '', pathMatch: 'full', redirectTo: 'produtos'},
+            {path: '', pathMatch: 'full', redirectTo: 'index'},
 
             { path: 'index', component: IndexComponent, title: 'Pagina Principal'},
             { path: 'racoes/animal/:id', component: FiltroRacaoComponent, title: 'Filtro Ração'},
