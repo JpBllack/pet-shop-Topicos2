@@ -53,10 +53,13 @@
    <!-- Botões de grupo -->
    <div class="btn-group mt-5" role="group" id="filterLinks">
     <a routerLink="/produtos" class="btn btn-primary">Tudo</a>
-    <a routerLink="produtos/gatos" class="btn btn-primary">Gatos</a>
-    <a routerLink="produtos/cachorros" class="btn btn-primary">Cachorros</a>
-    <a routerLink="produtos/cavalos" class="btn btn-primary">Cavalos</a>
+    <a [routerLink]="['/racoes/animal', 1]" class="btn btn-primary">Cachorros</a>
+    <a [routerLink]="['/racoes/animal', 2]" class="btn btn-primary">Gatos</a>
+    <a [routerLink]="['/racoes/animal', 3]" class="btn btn-primary">Passaros</a>
   </div>
+  
+
+  
   
   
 </div>

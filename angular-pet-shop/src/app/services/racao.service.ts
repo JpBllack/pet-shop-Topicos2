@@ -46,7 +46,7 @@ export class RacaoService {
     return this.http.get<Racao[]>(url).pipe(
       catchError(error => {
         console.error('Erro na requisição:', error);
-        return of([]); // Retorna um array vazio em caso de erro
+        return of([]); 
       })
     );
   }
@@ -70,6 +70,17 @@ export class RacaoService {
 
   getUltimasRacoes(limit: number = 4): Observable<Racao[]> {
     return this.http.get<Racao[]>(`${this.apiUrl}?_limit=${limit}&_sort=id&_order=desc`);
+  }
+
+
+  getRacoesByAnimal(animalId: number): Observable<Racao[]> {
+    const url = `${this.apiUrl}/animal/${animalId}`;
+    return this.http.get<Racao[]>(url).pipe(
+      catchError(error => {
+        console.error('Erro na requisição:', error);
+        return of([]); 
+      })
+    );
   }
 
 }

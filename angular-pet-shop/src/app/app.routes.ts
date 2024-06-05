@@ -46,6 +46,7 @@ import { AddCartaoComponent } from './pages/add-cartao/add-cartao.component';
 
 import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-compra.component';
 import { IndexComponent } from './index/index.component';
+import { FiltroRacaoComponent } from './pages/filtro-racao/filtro-racao.component';
 
 
 
@@ -59,6 +60,7 @@ export const routes: Routes = [
             {path: '', pathMatch: 'full', redirectTo: 'produtos'},
 
             { path: 'index', component: IndexComponent, title: 'Pagina Principal'},
+            { path: 'racoes/animal/:id', component: FiltroRacaoComponent, title: 'Filtro Ração'},
             { path: 'produtos', component: RacaoCardListComponent, title: 'Produtos à Venda'},
             { path: 'ver-produto/:id', component: VerProdutoComponent },
             { path: 'login', component: LoginComponent, title: 'Login'},

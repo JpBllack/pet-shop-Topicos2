@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { UltimosProdutosComponent } from "../pages/ultimos-produtos/ultimos-produtos.component";
 import { FooterComponent } from '../pages/template/footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Racao } from '../models/racao.model';
+import { RacaoService } from '../services/racao.service';
 
 @Component({
     selector: 'app-index',
@@ -18,6 +20,8 @@ export class IndexComponent {
     { src: "assets/carrosel2.png" },
     { src: "assets/carrosel3.jpg" }
   ];
+
+  racoes: Racao[] = [];
 
   myConfig = {
     slidesToShow: 1,
@@ -48,5 +52,13 @@ export class IndexComponent {
     ]
   };
 
+  constructor(private racaoService: RacaoService, private route: ActivatedRoute,
+    private router: Router
+  ) {}
+  
+  
+  carregarFiltro(animalId: number): void {
+    this.router.navigate(['racoes/animal', animalId]); 
+  }
   
 }

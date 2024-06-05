@@ -58,7 +58,7 @@ public class RacaoResource {
 
 
     @GET
-    @Path("/{animalId}")
+    @Path("animal/{animalId}")
     public List<RacaoResponseDTO> getByAnimal(@PathParam("animalId") long animalId) {
     return racaoService.getByAnimal(animalId);
     }
