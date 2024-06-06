@@ -79,19 +79,20 @@ export class RacaoCardListComponent implements OnInit {
   carregarCards() {
     const cards: Card[] = [];
     this.racoes.forEach(racao => {
-      const caminhoImagem = this.getImagemPath(racao.imagem);
-      //console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
-      cards.push({
-        idConsulta: racao.id,
-        nome: racao.nome,
-        preco: racao.preco,
-        imagem: caminhoImagem,
-        racao: racao
-      });
+      if (racao.estoque > 0) { // Verifica se o estoque é maior que zero
+        const caminhoImagem = this.getImagemPath(racao.imagem);
+        cards.push({
+          idConsulta: racao.id,
+          nome: racao.nome,
+          preco: racao.preco,
+          imagem: caminhoImagem,
+          racao: racao
+        });
+      }
     });
-    //console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
     this.cards.set(cards);
   }
+  
 
 
   adicionarAoCarrinho(card: Card) {
