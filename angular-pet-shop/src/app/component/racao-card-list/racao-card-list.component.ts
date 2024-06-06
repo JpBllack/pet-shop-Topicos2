@@ -17,6 +17,7 @@ type Card = {
   nome: string;
   preco: number;
   imagem: string;
+  racao: Racao;
 }
 
 @Component({
@@ -84,7 +85,8 @@ export class RacaoCardListComponent implements OnInit {
         idConsulta: racao.id,
         nome: racao.nome,
         preco: racao.preco,
-        imagem: caminhoImagem
+        imagem: caminhoImagem,
+        racao: racao
       });
     });
     //console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
@@ -100,7 +102,8 @@ export class RacaoCardListComponent implements OnInit {
       imagem: card.imagem,
       preco: card.preco,
       quantidade: 1,
-      frequencia: 0
+      frequencia: 0,
+      racao: card.racao
     })
 
   }

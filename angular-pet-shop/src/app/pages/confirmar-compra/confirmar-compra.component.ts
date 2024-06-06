@@ -45,7 +45,8 @@ export class ConfirmarCompraComponent implements OnInit {
         this.itensCompra = this.carrinhoService.obter().map(itemCarrinho => ({
             nome: itemCarrinho.nome,
             precoUnitario: itemCarrinho.preco,
-            quantidade: itemCarrinho.quantidade
+            quantidade: itemCarrinho.quantidade,
+            racao: itemCarrinho.racao.id
         }));
     }
 

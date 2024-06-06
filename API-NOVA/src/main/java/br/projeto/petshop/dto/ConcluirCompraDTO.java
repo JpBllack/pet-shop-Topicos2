@@ -7,7 +7,7 @@ import br.projeto.petshop.model.Endereco;
 import br.projeto.petshop.model.ItemCompra;
 
 public record ConcluirCompraDTO(
-    List<ItemCompra> itensCompra,
+    List<ItemCompraDTO> itensCompra,
     EnderecoDTO endereco,
     CartaoCreditoDTO cartao
 ) {

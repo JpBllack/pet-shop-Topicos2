@@ -61,7 +61,8 @@ export class VerProdutoComponent implements OnInit {
           imagem: this.getImagemPath(this.produto.imagem),
           preco: this.produto.preco,
           quantidade: this.quantidade,
-          frequencia: 0 // ou outro valor padrão para a frequência
+          frequencia: 0, // ou outro valor padrão para a frequência
+          racao: this.produto
         };
         this.carrinhoService.adicionar(itemCarrinho);
         this.snackBar.open('Produto adicionado ao carrinho!', 'Fechar', {

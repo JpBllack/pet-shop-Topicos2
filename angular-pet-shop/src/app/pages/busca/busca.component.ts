@@ -7,12 +7,14 @@ import { CarrinhoService } from '../../services/carrinho.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter } from '@angular/material/card';
+import { Racao } from '../../models/racao.model';
 
 type Card = {
   idConsulta: number;
   nome: string;
   preco: number;
   imagem: string;
+  racao: Racao;
 }
 
 @Component({
@@ -50,7 +52,8 @@ export class BuscaComponent implements OnInit {
       idConsulta: racao.id,
       nome: racao.nome,
       preco: racao.preco,
-      imagem: this.getImagemPath(racao.imagem)
+      imagem: this.getImagemPath(racao.imagem),
+      racao: racao
     }));
     this.cards.set(cards);
   }
@@ -68,7 +71,8 @@ export class BuscaComponent implements OnInit {
       imagem: card.imagem,
       preco: card.preco,
       quantidade: 1,
-      frequencia: 0
+      frequencia: 0,
+      racao: card.racao
     });
   }
 

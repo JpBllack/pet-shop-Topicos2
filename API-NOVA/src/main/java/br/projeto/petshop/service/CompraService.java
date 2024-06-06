@@ -5,6 +5,7 @@ import java.util.List;
 import br.projeto.petshop.dto.CartaoCreditoDTO;
 import br.projeto.petshop.dto.CompraResponseDTO;
 import br.projeto.petshop.dto.EnderecoDTO;
+import br.projeto.petshop.dto.ItemCompraDTO;
 import br.projeto.petshop.model.ItemCompra;
 
 public interface CompraService {
@@ -15,7 +16,7 @@ public interface CompraService {
 
     public List<ItemCompra> getItensCompraByCompraId(Long compraId);
 
-    public void concluirCompra(List<ItemCompra> itensCompra, EnderecoDTO enderecoDTO, CartaoCreditoDTO cartaoDTO,  Long userId);
+    public void concluirCompra(List<ItemCompraDTO> itensCompra, EnderecoDTO enderecoDTO, CartaoCreditoDTO cartaoDTO,  Long userId);
 
     
 }

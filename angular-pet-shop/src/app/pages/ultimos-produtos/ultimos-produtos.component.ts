@@ -13,6 +13,7 @@ type Card = {
   nome: string;
   preco: number;
   imagem: string;
+  racao: Racao;
 }
 
 @Component({
@@ -45,7 +46,8 @@ export class UltimosProdutosComponent implements OnInit {
         idConsulta: racao.id,
         nome: racao.nome,
         preco: racao.preco,
-        imagem: this.getImagemPath(racao.imagem)
+        imagem: this.getImagemPath(racao.imagem),
+        racao: racao
       }));
       this.cards.set(cards);
     });
@@ -64,7 +66,8 @@ export class UltimosProdutosComponent implements OnInit {
       imagem: card.imagem,
       preco: card.preco,
       quantidade: 1,
-      frequencia: 0
+      frequencia: 0,
+      racao: card.racao
     });
   }
 

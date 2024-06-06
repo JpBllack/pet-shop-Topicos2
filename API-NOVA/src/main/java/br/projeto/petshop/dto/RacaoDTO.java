@@ -13,7 +13,7 @@ public record RacaoDTO(
     String imagem,
     Long marca,
     Double preco,
-    Double estoque,
+    Integer estoque,
     String descricao
 
 ) {

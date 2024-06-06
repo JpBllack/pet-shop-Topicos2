@@ -16,7 +16,7 @@ public record RacaoResponseDTO(
     String imagem,
     Marca marca,
     Double preco,
-    Double estoque,
+    Integer estoque,
     String descricao
 ) {
 

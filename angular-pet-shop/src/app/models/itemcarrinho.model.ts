@@ -1,3 +1,5 @@
+import { Racao } from "./racao.model";
+
 export interface ItemCarrinho {
   id: number;
   nome: string;
@@ -5,4 +7,5 @@ export interface ItemCarrinho {
   quantidade: number;
   frequencia:number;
   imagem: string;
+  racao: Racao;
 }

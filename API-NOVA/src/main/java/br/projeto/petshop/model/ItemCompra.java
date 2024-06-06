@@ -15,6 +15,10 @@ public class ItemCompra extends DefaultEntity {
     @JoinColumn(name = "compra_id")
     private Compra compra;
 
+    @ManyToOne
+    @JoinColumn(name = "racao_id")
+    private Racao racao;
+
     public String getNome() {
         return nome;
     }
@@ -39,6 +43,10 @@ public class ItemCompra extends DefaultEntity {
     public void setCompra(Compra compra) {
         this.compra = compra;
     }
-    
-    
+    public Racao getRacao() {
+        return racao;
+    }
+    public void setRacao(Racao racao) {
+        this.racao = racao;
+    }
 }

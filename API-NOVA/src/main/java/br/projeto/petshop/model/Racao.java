@@ -24,7 +24,7 @@ public class Racao extends DefaultEntity {
     private Peso peso;
     private Idade idade;
     private Double preco;
-    private Double estoque;
+    private Integer estoque;
     private String descricao;
 
     // Getters e Setters para sabor, animal, peso e idade
@@ -35,14 +35,6 @@ public class Racao extends DefaultEntity {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public Double getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(Double estoque) {
-        this.estoque = estoque;
     }
 
     public Double getPreco() {
@@ -107,6 +99,14 @@ public class Racao extends DefaultEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
     }
 
 }
