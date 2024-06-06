@@ -3,10 +3,13 @@
   margin-bottom: 2rem;
 }
 
+
+
 .carousel .carousel-inner img {
-  height: 500px;
-  object-fit: cover;
   width: 100%;
+  height: auto; /* Permite que a altura se ajuste proporcionalmente */
+  max-height: 600px; /* Define um limite máximo de altura */
+  object-fit: contain; /* Ajusta a imagem para caber no contêiner sem cortá-la */
 }
 
 .main-content {
