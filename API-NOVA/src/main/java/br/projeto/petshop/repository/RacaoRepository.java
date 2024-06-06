@@ -23,16 +23,18 @@ public class RacaoRepository {
     }
 
     public List<Racao> findByNome(String nome) {
-        return entityManager.createQuery("SELECT r FROM Racao r WHERE r.nome LIKE :nome", Racao.class)
-                            .setParameter("nome", "%" + nome + "%")
+        return entityManager.createQuery("SELECT r FROM Racao r WHERE UPPER(r.nome) LIKE UPPER(:nome)", Racao.class)
+                            .setParameter("nome", "%" + nome.toUpperCase() + "%")
                             .getResultList();
     }
     
+    
     public List<Racao> findBySabor(String sabor) {
-        return entityManager.createQuery("SELECT r FROM Racao r WHERE r.sabor = :sabor", Racao.class)
-                            .setParameter("sabor", sabor)
+        return entityManager.createQuery("SELECT r FROM Racao r WHERE UPPER(r.sabor) = UPPER(:sabor)", Racao.class)
+                            .setParameter("sabor", sabor.toUpperCase())
                             .getResultList();
     }
+    
     
     public void persist(Racao racao) {
         entityManager.persist(racao);
