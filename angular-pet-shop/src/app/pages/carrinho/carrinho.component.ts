@@ -7,24 +7,32 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { CompraService } from '../../services/compra.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RacaoService } from '../../services/racao.service'; // Importar RacaoService
 
 @Component({
   selector: 'app-carrinho',
   standalone: true,
-  imports: [NgFor, NgIf, CommonModule,MatFormField,MatOptionModule,MatSelect,MatLabel],
+  imports: [NgFor, NgIf, CommonModule, MatFormField, MatOptionModule, MatSelect, MatLabel],
   templateUrl: './carrinho.component.html',
-  styleUrl: './carrinho.component.css'
+  styleUrls: ['./carrinho.component.css']
 })
 export class CarrinhoComponent implements OnInit {
 
   carrinhoItens: ItemCarrinho[] = [];
 
-  constructor(private carrinhoService: CarrinhoService, private route: Router, private compraService: CompraService) { }
+  constructor(
+    private carrinhoService: CarrinhoService, 
+    private route: Router, 
+    private compraService: CompraService,
+    private snackBar: MatSnackBar,
+    private racaoService: RacaoService // Injetar RacaoService
+  ) { }
 
   ngOnInit(): void {
-    this.carrinhoService.carrinho$.subscribe( itens => {
+    this.carrinhoService.carrinho$.subscribe(itens => {
       this.carrinhoItens = itens;
-    })
+    });
   }
 
   getImagemPath(imagem: string): string {
@@ -36,8 +44,18 @@ export class CarrinhoComponent implements OnInit {
   }
 
   aumentarQuantidade(item: ItemCarrinho): void {
-    item.quantidade += 1;
-    this.carrinhoService.atualizarCarrinho(this.carrinhoItens);
+    this.racaoService.getRacaoById(item.id).subscribe(racao => {
+      if (item.quantidade < racao.estoque) {
+        item.quantidade += 1;
+        this.carrinhoService.atualizarCarrinho(this.carrinhoItens);
+      } else {
+        this.snackBar.open(`Quantidade máxima do item ${item.nome} excedida. Estoque disponível: ${racao.estoque}.`, 'Fechar', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+    });
   }
 
   diminuirQuantidade(item: ItemCarrinho): void {
@@ -47,12 +65,12 @@ export class CarrinhoComponent implements OnInit {
     }
   }
 
-  confirmarCompra(): void{
-    this.route.navigate(['/confirmar-compra'])
+  confirmarCompra(): void {
+    this.route.navigate(['/confirmar-compra']);
   }
   
   finalizarCompra(): void {
-    this.carrinhoService.concluirCompra(this.carrinhoItens)
+    this.carrinhoService.concluirCompra(this.carrinhoItens);
   }
 
   navegarParaProduto(id: number) {
@@ -67,6 +85,4 @@ export class CarrinhoComponent implements OnInit {
       return total;
     }, 0);
   }
-  
-
 }
