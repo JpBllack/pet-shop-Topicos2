@@ -83,6 +83,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.racaoService.findByNome(this.searchQuery).subscribe(racoes => {
         console.log('Rações encontradas:', racoes);
         this.router.navigate(['/busca'], { queryParams: { racoes: JSON.stringify(racoes) } });
+        this.searchQuery = '';
       });
     }
   }

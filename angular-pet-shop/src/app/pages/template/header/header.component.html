@@ -10,11 +10,11 @@
     </span>
 
     <div class="search-container">
-        <input matInput [(ngModel)]="searchQuery" placeholder="Buscar ração..." />
+        <input matInput [(ngModel)]="searchQuery" placeholder="Buscar ração..." (keydown.enter)="buscarRacao()" />
         <button mat-icon-button (click)="buscarRacao()">
-            <mat-icon>search</mat-icon>
+          <mat-icon>search</mat-icon>
         </button>
-    </div>
+      </div>
 
     <span class="example-spacer"></span>
     
