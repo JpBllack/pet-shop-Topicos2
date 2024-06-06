@@ -57,7 +57,7 @@ export class RacaoCardListComponent implements OnInit {
     const inicio = (pagina - 1) * this.tamanhoPagina;
     const fim = inicio + this.tamanhoPagina;
     // buscando todos as consultas
-    this.racaoService.getAllRacoes().subscribe(data => {
+    this.racaoService.getAllRacoesDisponiveis().subscribe(data => {
       this.racoes = data.slice(inicio, fim); // Ajuste aqui para carregar apenas as consultas da página atual
       this.carregarTotalRacoes(); // Carregar o total de racoes após carregar as consultas
       this.carregarCards();
@@ -79,20 +79,19 @@ export class RacaoCardListComponent implements OnInit {
   carregarCards() {
     const cards: Card[] = [];
     this.racoes.forEach(racao => {
-      if (racao.estoque > 0) { // Verifica se o estoque é maior que zero
-        const caminhoImagem = this.getImagemPath(racao.imagem);
-        cards.push({
-          idConsulta: racao.id,
-          nome: racao.nome,
-          preco: racao.preco,
-          imagem: caminhoImagem,
-          racao: racao
-        });
-      }
+      const caminhoImagem = this.getImagemPath(racao.imagem);
+      //console.log('Conteúdo da raçao:', racao); // Adicione este log para verificar o conteúdo da raçao
+      cards.push({
+        idConsulta: racao.id,
+        nome: racao.nome,
+        preco: racao.preco,
+        imagem: caminhoImagem,
+        racao: racao
+      });
     });
+    //console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
     this.cards.set(cards);
   }
-  
 
 
   adicionarAoCarrinho(card: Card) {

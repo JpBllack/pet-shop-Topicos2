@@ -15,6 +15,11 @@ export class RacaoService {
     return this.http.get<Racao[]>(`${this.apiUrl}`);
   }
 
+  getAllRacoesDisponiveis(): Observable<Racao[]> {
+    return this.http.get<Racao[]>(`${this.apiUrl}`).pipe(
+      map(racoes => racoes.filter(racao => racao.estoque > 0)));
+  }
+
   getRacaoById(id: number): Observable<Racao> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Racao>(url);
@@ -69,13 +74,25 @@ export class RacaoService {
 
 
   getUltimasRacoes(limit: number = 4): Observable<Racao[]> {
-    return this.http.get<Racao[]>(`${this.apiUrl}?_limit=${limit}&_sort=id&_order=desc`);
+    return this.http.get<Racao[]>(`${this.apiUrl}?_limit=${limit}&_sort=id&_order=desc`).pipe(
+      map(racoes => racoes.filter(racao => racao.estoque > 0)));
   }
 
 
   getRacoesByAnimal(animalId: number): Observable<Racao[]> {
     const url = `${this.apiUrl}/animal/${animalId}`;
     return this.http.get<Racao[]>(url).pipe(
+      catchError(error => {
+        console.error('Erro na requisição:', error);
+        return of([]); 
+      })
+    );
+  }
+
+  getRacoesByAnimalDisponivel(animalId: number): Observable<Racao[]> {
+    const url = `${this.apiUrl}/animal/${animalId}`;
+    return this.http.get<Racao[]>(url).pipe(
+      map(racoes => racoes.filter(racao => racao.estoque > 0)), // Filtra as rações com estoque disponível
       catchError(error => {
         console.error('Erro na requisição:', error);
         return of([]); 

@@ -62,14 +62,14 @@ export class FiltroRacaoComponent implements OnInit {
 
   carregarConsultas() {
     // buscando todos as consultas
-    this.racaoService.getAllRacoes().subscribe(data => {
+    this.racaoService.getAllRacoesDisponiveis().subscribe(data => {
       this.racoes = data;
       this.carregarCards();
     });
   }
 
   carregarRacoesPorAnimal(animalId: number): void {
-    this.racaoService.getRacoesByAnimal(animalId).subscribe(data => {
+    this.racaoService.getRacoesByAnimalDisponivel(animalId).subscribe(data => {
       this.racoes = data;
       this.carregarCards();
     });
