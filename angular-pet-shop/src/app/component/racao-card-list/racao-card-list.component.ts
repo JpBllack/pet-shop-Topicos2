@@ -8,7 +8,8 @@ import { CommonModule, NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { RacaoService } from '../../services/racao.service';
 import { Racao } from '../../models/racao.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
@@ -21,34 +22,50 @@ type Card = {
 @Component({
   selector: 'app-consulta-card-list',
   standalone: true,
-  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton, CommonModule],
+  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton, CommonModule, MatPaginatorModule],
   templateUrl: './racao-card-list.component.html',
   styleUrl: './racao-card-list.component.css'
 })
 export class RacaoCardListComponent implements OnInit {
 
-  cards = signal<Card[]> ([]);
+  cards = signal<Card[]>([]);
   racoes: Racao[] = [];
+  paginaAtual = 1;
+  tamanhoPagina = 12;
+  totalRacoes: number = 0;
 
 
-  constructor(private racaoService: RacaoService, 
-              private carrinhoService: CarrinhoService,
-              private snackBar: MatSnackBar,
-              private route: Router
-            )
-               {}
+  constructor(private racaoService: RacaoService,
+    private carrinhoService: CarrinhoService,
+    private snackBar: MatSnackBar,
+    private route: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.carregarConsultas();
+    this.activatedRoute.queryParams.subscribe(params => {
+      const pagina = params['pagina'] || 1;
+      this.carregarConsultas(pagina);
+    });
   }
+
 
   PATH_USER = 'Users/Micro/quarkus/images/produto';
 
-  carregarConsultas() {
+  carregarConsultas(pagina: number) {
+    const inicio = (pagina - 1) * this.tamanhoPagina;
+    const fim = inicio + this.tamanhoPagina;
     // buscando todos as consultas
     this.racaoService.getAllRacoes().subscribe(data => {
-      this.racoes = data;
+      this.racoes = data.slice(inicio, fim); // Ajuste aqui para carregar apenas as consultas da página atual
+      this.carregarTotalRacoes(); // Carregar o total de racoes após carregar as consultas
       this.carregarCards();
+    });
+  }
+
+  carregarTotalRacoes() {
+    this.racaoService.getTotalRacoes().subscribe(total => {
+      this.totalRacoes = total;
     });
   }
 
@@ -72,7 +89,7 @@ export class RacaoCardListComponent implements OnInit {
     //console.log('Conteúdo dos cards:', cards); // Adicione este log para verificar o conteúdo do array de cards
     this.cards.set(cards);
   }
- 
+
 
   adicionarAoCarrinho(card: Card) {
     this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
@@ -88,10 +105,15 @@ export class RacaoCardListComponent implements OnInit {
   }
 
   navegarParaProduto(id: number) {
-    this.route.navigate(['/ver-produto', id]); 
+    this.route.navigate(['/ver-produto', id]);
   }
 
-  showSnackbarTopPosition(content:any, action:any) {
+  navegarParaPagina(pagina: number) {
+    this.route.navigate([], { queryParams: { pagina } });
+  }
+
+
+  showSnackbarTopPosition(content: any, action: any) {
     this.snackBar.open(content, action, {
       duration: 2000,
       verticalPosition: "top", // Allowed values are  'top' | 'bottom'

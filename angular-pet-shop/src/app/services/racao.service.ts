@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Racao } from '../models/racao.model';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +79,16 @@ export class RacaoService {
       catchError(error => {
         console.error('Erro na requisição:', error);
         return of([]); 
+      })
+    );
+  }
+
+  getTotalRacoes(): Observable<number> {
+    return this.http.get<Racao[]>(this.apiUrl).pipe(
+      map(racoes => racoes.length),
+      catchError(error => {
+        console.error('Erro na requisição:', error);
+        return of(0); 
       })
     );
   }

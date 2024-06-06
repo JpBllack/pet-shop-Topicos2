@@ -162,6 +162,10 @@ insert into Marca(nome) values('Hills');
 insert into Marca(nome) values('NuTropica');
 insert into Marca(nome) values('Guabi Natural');
 insert into Marca(nome) values('Coveli');
+insert into Marca(nome) values('Zee.Dog');
+insert into Marca(nome) values('Optimum');
+insert into Marca(nome) values('PremieR');
+
 
 --                                                                                                nome,                        sabor,                      animal_id,              peso,              idade,        marca_id,   preco,     estoque,               imagem
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração GranPlus Gourmet para Cães Adultos de Médio e Grande Porte Sabor Ovelha e Arroz','Ovelha e arroz', 1, 3, 2, 2, 62.00, 100, '73e31b9a-954d-40b0-a352-c151363fffbf.jpeg');
@@ -180,7 +184,13 @@ INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Úmida GranPlus Gourmet Sachê para Gatos Adultos Sabor Atum - 85g', 'Atum', 2, 6, 2, 2, 3.00, 200, '4e047929-a671-48cb-a4c7-0809656efaf8.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Guabi Natural para Gatos Adultos Castrados Sabor Frango e Arroz Integral', 'Frango e arroz integral', 2, 5, 2, 9, 300.00, 80, 'fc0163a5-ee2f-41e8-afca-9213159933ed.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Royal Canin Sterilised 12+ para Gatos Adultos Castrados Acima de 12 Anos', 'Carne', 1, 5, 1, 5, 420.00, 80, '2d19410f-e601-4a20-a4e5-acf27e4871e6.jpeg');
-
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Alimento Nutrópica Extrusados e Frutas para Papagaio', 'Não definido', 5, 1, 4, 8, 70.00, 50, 'aede1ead-6d56-4b06-b427-b1f733c72d85.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Alimento Avitrim Coveli para Papagaios e Araras', 'Não definido', 5, 1, 4, 10, 25.00, 90, '4cc9fdf7-b117-4e0b-b78d-ccb911a0cb85.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Nutrópica Seleção Natural para Canário', 'Não definido', 5, 6, 4, 10, 35.00, 40, '0af9c6f7-312a-4252-9201-d4fe68beed36.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Refeição Natural Zee.Dog Kitchen Lata para Cães', 'Carne', 1, 6, 2, 11, 25.00, 60, '36787479-60ae-4aeb-be14-316488efceec.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Refeição Natural Zee.Dog Kitchen Lata Baixo Fósforo', 'Frango e vegetais', 1, 6, 3, 11, 27.00, 60, '460d3089-adbf-494a-b428-489ea0e1cba3.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Optimum para Gatos Adultos Castrados 1+ anos', 'Carne', 2, 5, 2, 12, 150.00, 100, 'fa3a2406-3563-4d82-8e06-f4b9efe77ecc.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração GranPlus Gourmet para Gatos Filhotes', 'Salmão e Frango', 2, 3, 1, 2, 70.00, 100, 'cd3aa321-6736-4365-afdf-ed0ae8a085f5.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Premier Nutrição Clínica Cardio para Cães de Porte Médio e Grande', 'Não definido', 1, 5, 2, 13, 329.00, 1, 'f63316fb-bd8f-42d9-88a8-801fd7814d30.jpeg');
+
 
