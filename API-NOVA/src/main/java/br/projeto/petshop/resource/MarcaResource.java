@@ -11,6 +11,7 @@ import br.projeto.petshop.model.Marca;
 import br.projeto.petshop.service.MarcaService;
 import br.projeto.petshop.validation.ValidationException;
 import br.projeto.petshop.application.Error;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -81,6 +82,7 @@ public class MarcaResource {
     @POST
     @Transactional
     @Path("/insert")
+    @RolesAllowed({"Admin"})
     public Response insert(MarcaDTO dto){
         try{
             return Response.status(Response.Status.CREATED).entity(marcaService.insert(dto)).build();
@@ -101,6 +103,7 @@ public class MarcaResource {
     @PUT
     @Transactional
     @Path("/update/{id}")
+    @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, MarcaDTO dto){
         try{
             LOG.infof("Update em %s", dto.nome());
@@ -117,6 +120,7 @@ public class MarcaResource {
     @DELETE
     @Transactional
     @Path("/delete/{id}")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         try {
             LOG.info("Deletando tipo");
