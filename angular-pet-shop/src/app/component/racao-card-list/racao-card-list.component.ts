@@ -60,6 +60,7 @@ export class RacaoCardListComponent implements OnInit {
       this.racoes = data.slice(inicio, fim); // Ajuste aqui para carregar apenas as consultas da página atual
       this.carregarTotalRacoes(); // Carregar o total de racoes após carregar as consultas
       this.carregarCards();
+      window.scrollTo(0, 0);
     });
   }
 

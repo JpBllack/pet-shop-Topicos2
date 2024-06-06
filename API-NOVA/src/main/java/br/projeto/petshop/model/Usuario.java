@@ -1,5 +1,7 @@
 package br.projeto.petshop.model;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -20,6 +22,7 @@ public class Usuario extends DefaultEntity {
     private String nome;
     private String sobrenome;
 
+    @CPF
     @Pattern(regexp = "\\d{11}", message = "O CPF deve ter 11 dígitos")
     private String cpf;
 
