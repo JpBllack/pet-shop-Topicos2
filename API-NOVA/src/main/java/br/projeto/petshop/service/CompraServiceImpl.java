@@ -100,6 +100,7 @@ public class CompraServiceImpl implements CompraService {
 
         for (ItemCompra itemCompra : itensCompra) {
             compra.addItemCompra(itemCompra);
+            atualizarEstoque(itemCompra.getRacao().getId(), itemCompra.getQuantidade()); // -> Atualização do estoque
         }
 
         compra.setUsuarioId(userId);
@@ -136,6 +137,21 @@ public class CompraServiceImpl implements CompraService {
             return estoqueItem;
         } else {
             return 0; // Se não houver registro de estoque para o item, retorna 0
+        }
+    }
+
+    @Transactional
+    public void atualizarEstoque(Long id, int quantidadeVendida) {
+        Racao racao = racaoRepository.findById(id);
+        if (racao != null) {
+            int novoEstoque = racao.getEstoque() - quantidadeVendida;
+            if (novoEstoque < 0) {
+                throw new IllegalStateException("Estoque insuficiente para a ração: " + racao.getNome());
+            }
+            racao.setEstoque(novoEstoque);
+            racaoRepository.persist(racao);
+        } else {
+            throw new IllegalStateException("Ração não encontrada: " + id);
         }
     }
 
