@@ -1,10 +1,12 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importe o módulo de formulários se necessário
 import { RacaoService } from '../../services/racao.service';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter } from '@angular/material/card';
 
 type Card = {
   idConsulta: number;
@@ -18,7 +20,7 @@ type Card = {
   templateUrl: './busca.component.html',
   styleUrls: ['./busca.component.css'],
   standalone: true, // Defina como true para indicar que é um componente independente
-  imports: [CommonModule, FormsModule] // Importe os módulos necessários aqui
+  imports: [CommonModule, FormsModule, MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton] // Importe os módulos necessários aqui
 })
 export class BuscaComponent implements OnInit {
   resultados: any[] = [];

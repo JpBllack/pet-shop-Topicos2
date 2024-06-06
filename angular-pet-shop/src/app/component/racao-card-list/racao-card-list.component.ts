@@ -21,7 +21,7 @@ type Card = {
 @Component({
   selector: 'app-consulta-card-list',
   standalone: true,
-  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton,CommonModule],
+  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton, CommonModule],
   templateUrl: './racao-card-list.component.html',
   styleUrl: './racao-card-list.component.css'
 })
