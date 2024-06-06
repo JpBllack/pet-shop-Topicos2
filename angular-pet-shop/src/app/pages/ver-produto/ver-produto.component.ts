@@ -47,29 +47,38 @@ export class VerProdutoComponent implements OnInit {
   }
 
   adicionarAoCarrinho() {
-    if (this.produto && this.quantidade > 0) {
-      const itemCarrinho: ItemCarrinho = {
-        id: this.produto.id,
-        nome: this.produto.nome,
-        imagem: this.getImagemPath(this.produto.imagem),
-        preco: this.produto.preco,
-        quantidade: this.quantidade,
-        frequencia: 0 // ou outro valor padrão para a frequência
-      };
-      this.carrinhoService.adicionar(itemCarrinho);
-      this.snackBar.open('Produto adicionado ao carrinho!', 'Fechar', {
-        duration: 2000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-    } else {
-      this.snackBar.open('A quantidade deve ser maior que zero', 'Fechar', {
-        duration: 2000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
+    if (this.produto) {
+      if (this.quantidade > this.produto.estoque) {
+        this.snackBar.open(`Quantidade solicitada (${this.quantidade}) excede o estoque disponível (${this.produto.estoque}).`, 'Fechar', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      } else if (this.quantidade > 0) {
+        const itemCarrinho: ItemCarrinho = {
+          id: this.produto.id,
+          nome: this.produto.nome,
+          imagem: this.getImagemPath(this.produto.imagem),
+          preco: this.produto.preco,
+          quantidade: this.quantidade,
+          frequencia: 0 // ou outro valor padrão para a frequência
+        };
+        this.carrinhoService.adicionar(itemCarrinho);
+        this.snackBar.open('Produto adicionado ao carrinho!', 'Fechar', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      } else {
+        this.snackBar.open('A quantidade deve ser maior que zero', 'Fechar', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
     }
   }
+  
 
   aumentarQuantidade() {
     this.quantidade += 1;

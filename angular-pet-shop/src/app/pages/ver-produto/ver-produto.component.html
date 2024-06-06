@@ -1,34 +1,38 @@
 <div class="produto-container" *ngIf="produto">
     <div class="produto-details">
-        <div class="produto-imagem">
-            <img [src]="getImagemPath(produto.imagem)" alt="{{ produto.nome }}" class="produto-imagem">
-            <p class="produto-descricao">{{ produto.descricao }}</p>
-        </div>
+      <div class="produto-imagem">
+        <img [src]="getImagemPath(produto.imagem)" alt="{{ produto.nome }}" class="produto-imagem">
+        <p class="produto-descricao">{{ produto.descricao }}</p>
+      </div>
     </div>
-
+  
     <div class="adicionar-carrinho-card">
-        <div class="produto-nome">
-            <h1>{{ produto.nome }}</h1>
-        </div>
-        <div class="produto-preco-carrinho">
-            <p class="produto-preco">Preço: {{ produto.preco | currency:'BRL' }}</p>
+      <div class="produto-nome">
+        <h1>{{ produto.nome }}</h1>
+      </div>
+      <div class="produto-preco-carrinho">
+        <p class="produto-preco">Preço: {{ produto.preco | currency:'BRL' }}</p>
         <div class="tags"> 
-            <p class="produto-peso">Peso: {{ getPesoLabel(produto.peso) }}</p>
-            <p class="produto-idade">Idade: {{ getIdadeLabel(produto.idade) }}</p>
+          <p class="produto-peso">Peso: {{ getPesoLabel(produto.peso) }}</p>
+          <p class="produto-idade">Idade: {{ getIdadeLabel(produto.idade) }}</p>
         </div> 
-        </div>
-        <div class="quantidade-container">
-            <label for="quantidade">Quantidade:</label>
-            <button (click)="diminuirQuantidade()" class="quantity-button">-</button>
-            <input type="number" id="quantidade" [(ngModel)]="quantidade" min="1" class="quantidade-input" readonly>
-            <button (click)="aumentarQuantidade()" class="quantity-button">+</button>
-        </div>
-        <button mat-raised-button color="primary" (click)="adicionarAoCarrinho()" class="adicionar-carrinho-button">
-            <mat-icon>shopping_cart</mat-icon>
-            Adicionar ao carrinho por {{ produto.preco * quantidade | currency:'BRL' }}
-        </button>
+      </div>
+      <div class="quantidade-container">
+        <label for="quantidade">Quantidade:</label>
+        <button (click)="diminuirQuantidade()" class="quantity-button">-</button>
+        <input type="number" id="quantidade" [(ngModel)]="quantidade" min="1" class="quantidade-input" readonly>
+        <button (click)="aumentarQuantidade()" class="quantity-button">+</button>
+      </div>
+      <button mat-raised-button color="primary" (click)="adicionarAoCarrinho()" class="adicionar-carrinho-button">
+        <mat-icon>shopping_cart</mat-icon>
+        Adicionar ao carrinho por {{ produto.preco * quantidade | currency:'BRL' }}
+      </button>
+      <div *ngIf="produto && quantidade > produto.estoque" class="alerta-erro">
+        Quantidade solicitada excede o estoque disponível.
+      </div>
     </div>
-</div>
-<div *ngIf="!produto">
+  </div>
+  <div *ngIf="!produto">
     <p>Carregando produto...</p>
-</div>
+  </div>
+  
