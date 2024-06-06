@@ -22,7 +22,7 @@ public class Usuario extends DefaultEntity {
     private String nome;
     private String sobrenome;
 
-    @CPF
+    //@CPF
     @Pattern(regexp = "\\d{11}", message = "O CPF deve ter 11 dígitos")
     private String cpf;
 

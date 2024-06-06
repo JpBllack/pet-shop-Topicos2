@@ -35,23 +35,23 @@ INSERT INTO Municipio(nome , estado_id) VALUES ('Teresina',5);
 
 -- senha padrão: 12345
 -- Inserção de um usuário veterinário
-INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
-VALUES ('Teste', 'da Silva', '12345678910', 'Testizinho', 'teste@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil, imagem) 
+VALUES ('Teste', 'da Silva', '12345678910', 'Testizinho', 'teste@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN', '1/0fde6eb1-0c4d-4da4-b9c2-40ded1804877.jpeg');
 
-INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
-VALUES ('Son Goku', 'Junior', '12345678900', 'goku', 'goku@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil, imagem) 
+VALUES ('Son Goku', 'Junior', '12345678900', 'goku', 'goku@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN', '2/4fbcc36e-f464-4ef1-9acc-63ef680800fa.jpeg');
 
-INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
-VALUES ('Vegeta', 'Almeida', '12345678901', 'vegeta', 'vegeta@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET');
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil, imagem) 
+VALUES ('Vegeta', 'Almeida', '12345678901', 'vegeta', 'vegeta@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET', '3/00dbfd74-c18a-4f9a-87ce-97fb6137da74.jpeg');
 
-INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
-VALUES ('Son Gohan', 'Marques', '12345678902', 'gohan', 'gohan@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET');
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil, imagem) 
+VALUES ('Son Gohan', 'Marques', '12345678902', 'gohan', 'gohan@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'VET', '4/83d8476c-e778-418e-b309-abe60b0567f2.jpeg');
 
-INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
-VALUES ('Piccolo', 'Cunha', '12345678903', 'piccolo', 'piccolo@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil, imagem) 
+VALUES ('Piccolo', 'Cunha', '12345678903', 'piccolo', 'piccolo@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER', '5/0f75c222-8cbc-4a17-b0b1-3cbfde889b9b.jpeg');
 
-INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
-VALUES ('Trunks', 'Scot', '12345678904', 'trunks', 'trunks@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER');
+INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil, imagem) 
+VALUES ('Trunks', 'Scot', '12345678904', 'trunks', 'trunks@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'USER', '6/82201426-3be6-4d76-8fec-8f613dcac32d.jpeg');
 
 INSERT INTO usuario (nome, sobrenome, cpf, username, email, senha, perfil) 
 VALUES ('Alisson', 'Lima', '12345687654', 'alisson', 'alisson@gmail.com', 'NuCgY6/GPMQTMdNiush/UNx86FJs4rFVBcCfuzRRIREuEbf42eMqkc+ex10zbq4TK4fvrcJUpNH85V1+nUEcJg==', 'ADMIN');
