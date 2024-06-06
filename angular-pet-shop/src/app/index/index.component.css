@@ -4,7 +4,6 @@
 }
 
 
-
 .carousel .carousel-inner img {
   width: 100%;
   height: auto; /* Permite que a altura se ajuste proporcionalmente */
@@ -15,22 +14,6 @@
 .main-content {
   margin-bottom: 30px; /* Ajuste conforme necessário para a altura do footer */
 }
-/* ------------footer----------- */
-.custom-footer {
-  background-color: #3f51b5; 
-  color: white; 
-  text-align: center; 
-  padding: 1em 0; 
-  bottom: 0; 
-  left: 0;
-  position: relative;
-  width: 100%; 
-  z-index: 999; 
-  margin-top: 20px; }
-
-/* ------------footer----------- */
-
-
 
 .text
 {
@@ -41,15 +24,21 @@
   font-size: 30px;
 }
 
-/* Botões de filtro */
 .btn-group {
-  margin-top: 20px; /* Espaçamento superior */
+  margin-top: 20px;
+  margin-bottom: 60px; /* Adiciona espaço abaixo dos botões */
   display: flex;
   justify-content: center;
+  padding-bottom: 5%;
 }
 
 .btn-group .btn {
   margin: 5px; /* Espaçamento entre os botões */
+  transition: none; /* Removendo a transição */
+}
+
+.btn-group .btn:hover{
+  
 }
 
 
@@ -57,4 +46,8 @@
 .btn-group img {
   width: 200px; /* Defina a largura desejada */
   height: 200px; /* Defina a altura desejada */
+}
+
+.racao-cart{
+  
 }

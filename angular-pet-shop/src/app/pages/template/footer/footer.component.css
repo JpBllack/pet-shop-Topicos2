@@ -13,7 +13,7 @@ mat-toolbar {
   left: 0; /* Alinhar à esquerda */
   position: relative;
   width: 100%; /* Ocupar toda a largura da página */
-  z-index: 999; /* Z-index para garantir que fique acima de outros elementos */
+  z-index: 1000; /* Z-index para garantir que fique acima de outros elementos */
   margin-top: 20px; /* Adicionar margem superior para evitar que encoste em outros elementos */
 
 }

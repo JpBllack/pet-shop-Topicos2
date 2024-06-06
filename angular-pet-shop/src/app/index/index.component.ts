@@ -6,13 +6,14 @@ import { FooterComponent } from '../pages/template/footer/footer.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Racao } from '../models/racao.model';
 import { RacaoService } from '../services/racao.service';
+import { RacaoCardListComponent } from '../component/racao-card-list/racao-card-list.component';
 
 @Component({
   selector: 'app-index',
   standalone: true,
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
-  imports: [CommonModule, SlickCarouselModule, UltimosProdutosComponent, FooterComponent, RouterModule]
+  imports: [CommonModule, SlickCarouselModule, UltimosProdutosComponent, FooterComponent, RouterModule, RacaoCardListComponent]
 })
 export class IndexComponent {
   imagens = [

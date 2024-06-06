@@ -1,53 +1,103 @@
 /* Estiliza o contêiner pai dos cards */
 .responsive-grid {
-    display: flex; /* Define o contêiner pai como um flex container */
-    flex-wrap: wrap; /* Permite que os elementos quebrem para a próxima linha */
-    justify-content: center; /* Centraliza os elementos horizontalmente */
-    gap: 20px; /* Espaçamento entre os cards */
-    padding: 10px; /* Adiciona um pouco de preenchimento ao redor do contêiner */
+  display: flex;
+  /* Define o contêiner pai como um flex container */
+  flex-wrap: wrap;
+  /* Permite que os elementos quebrem para a próxima linha */
+  justify-content: center;
+  /* Centraliza os elementos horizontalmente */
+  gap: 20px;
+  /* Espaçamento entre os cards */
+  padding: 10px;
+  /* Adiciona um pouco de preenchimento ao redor do contêiner */
+}
+
+/* Estiliza os cards de produtos */
+.mat-card-hover {
+  width: 200px;
+  /* Define a largura fixa do card */
+  margin: 10px;
+  /* Espaçamento ao redor dos cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  transition: transform 0.2s;
+  display: flex;
+  /* Para ajustar a altura do conteúdo */
+  flex-direction: column;
+  /* Empilhar o conteúdo verticalmente */
+}
+
+.mat-card-hover:hover {
+  transform: translateY(-10px);
+}
+
+.mat-card-hover img {
+  width: 100%;
+  /* Ocupa toda a largura do card */
+  height: auto;
+  /* Altura automática */
+  object-fit: cover;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin: 10px;
+  padding-bottom: 20px;
+}
+
+.mat-card-title {
+  text-align: center;
+  font-size: 1.2em; /* Tamanho da fonte do nome */
+  font-weight: bold; /* Negrito */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncar com reticências */
+  white-space: nowrap; /* Não quebrar linha */
+  max-width: 100%; /* Largura máxima */
+}
+
+.preco {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  /* Centraliza o texto */
+}
+
+.add-to-cart-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Background com transparência */
+  transform: translateY(100%);
+  transition: transform 0.3s, opacity 0.3s;
+  display: flex;
+  justify-content: center;
+  opacity: 0; /* Inicialmente invisível */
+}
+.mat-card-hover:hover .add-to-cart-footer {
+  transform: translateY(0);
+  opacity: 1; /* Torna o botão visível quando o mouse está sobre o card */
+}
+
+.add-to-cart-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #ff4081; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 0;
+}
+
+/* Ajustes para evitar sobreposição */
+body.no-default-footer {
+  padding-bottom: 100px; /* Espaço adicional para garantir que o conteúdo não sobreponha o footer */
+}
+
+@media (max-width: 768px) {
+  body.no-default-footer {
+    padding-bottom: 150px; /* Ajuste o espaçamento para dispositivos móveis */
   }
-  
-  /* Estiliza os cards de produtos */
-  .mat-card-hover {
-    width: 200px; /* Define a largura fixa do card */
-    margin: 10px; /* Espaçamento ao redor dos cards */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.2s;
-    display: flex; /* Para ajustar a altura do conteúdo */
-    flex-direction: column; /* Empilhar o conteúdo verticalmente */
-  }
-  
-  .mat-card-hover:hover {
-    transform: translateY(-10px);
-  }
-  
-  .mat-card-hover img {
-    width: 100%; /* Ocupa toda a largura do card */
-    height: auto; /* Altura automática */
-    object-fit: cover;
-  }
-  
-  .card-content {
-    flex-grow: 1; /* Faz o conteúdo se expandir para ocupar o espaço disponível */
-  }
-  
-  .mat-card-title {
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center; /* Centraliza o texto */
-  }
-  
-  .preco {
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center; /* Centraliza o texto */
-  }
-  
-  .add-to-cart-footer {
-    text-align: center; /* Centraliza o botão no rodapé */
-  }
-  
-  .add-to-cart-button {
-    width: 100%; /* Faz o botão ocupar toda a largura disponível */
-  }
-  
+}
