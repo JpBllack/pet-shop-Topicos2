@@ -39,8 +39,8 @@ export class UltimosProdutosComponent implements OnInit {
 
   carregarUltimosProdutos() {
     this.racaoService.getUltimasRacoes().subscribe(data => {
-      // Limitar os produtos aos primeiros quatro
-      const limitedData = data.slice(0, 4);
+      // Limitar os produtos aos últimos quatro
+      const limitedData = data.slice(-4);
       const cards: Card[] = limitedData.map(racao => ({
         idConsulta: racao.id,
         nome: racao.nome,
@@ -50,6 +50,7 @@ export class UltimosProdutosComponent implements OnInit {
       this.cards.set(cards);
     });
   }
+  
   
   getImagemPath(imagem: string): string {
     return `http://localhost:8080/quarkus/images/produto/${imagem}`;

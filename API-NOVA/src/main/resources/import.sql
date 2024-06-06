@@ -85,7 +85,7 @@ INSERT INTO TipoAnimal (nome) VALUES
 ('Peixe');
 
 INSERT INTO TipoAnimal (nome) VALUES
-('Calopsita');
+('Aves');
 
 INSERT INTO TipoAnimal (nome) VALUES
 ('Papagaio');
@@ -161,8 +161,9 @@ insert into Marca(nome) values('FinoTrato');
 insert into Marca(nome) values('Hills');
 insert into Marca(nome) values('NuTropica');
 insert into Marca(nome) values('Guabi Natural');
+insert into Marca(nome) values('Coveli');
 
-
+--                                                                                                nome,                        sabor,                      animal_id,              peso,              idade,        marca_id,   preco,     estoque,               imagem
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração GranPlus Gourmet para Cães Adultos de Médio e Grande Porte Sabor Ovelha e Arroz','Ovelha e arroz', 1, 3, 2, 2, 62.00, 100, '73e31b9a-954d-40b0-a352-c151363fffbf.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz', 'Carne e arroz', 1, 5, 2, 2, 120.00, 100, 'fd5e07f8-82fd-409a-b747-e1a4dd9e8615.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Hills Science Diet para Cães Adultos de Grande Porte Sabor Frango', 'Frango', 1, 5, 2, 7, 450.00, 100, 'edb49a53-9379-4337-b70e-a9d323cd99ad.jpeg');
@@ -179,3 +180,7 @@ INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Úmida GranPlus Gourmet Sachê para Gatos Adultos Sabor Atum - 85g', 'Atum', 2, 6, 2, 2, 3.00, 200, '4e047929-a671-48cb-a4c7-0809656efaf8.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Guabi Natural para Gatos Adultos Castrados Sabor Frango e Arroz Integral', 'Frango e arroz integral', 2, 5, 2, 9, 300.00, 80, 'fc0163a5-ee2f-41e8-afca-9213159933ed.jpeg');
 INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Ração Royal Canin Sterilised 12+ para Gatos Adultos Castrados Acima de 12 Anos', 'Carne', 1, 5, 1, 5, 420.00, 80, '2d19410f-e601-4a20-a4e5-acf27e4871e6.jpeg');
+
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Alimento Nutrópica Extrusados e Frutas para Papagaio', 'Não definido', 5, 1, 4, 8, 70.00, 50, 'aede1ead-6d56-4b06-b427-b1f733c72d85.jpeg');
+INSERT INTO Racao (nome, sabor, animal_id, peso, idade, marca_id, preco, estoque, imagem) VALUES ('Alimento Avitrim Coveli para Papagaios e Araras', 'Não definido', 5, 1, 4, 10, 25.00, 90, '4cc9fdf7-b117-4e0b-b78d-ccb911a0cb85.jpeg');
+
