@@ -91,6 +91,10 @@
   font-size: 20px;
 }
 
+.paginator{
+  padding-bottom: 5%;
+}
+
 /* Responsividade */
 @media (max-width: 600px) {
   .mat-card {

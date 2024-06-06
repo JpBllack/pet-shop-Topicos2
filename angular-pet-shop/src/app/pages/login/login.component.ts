@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         next: (resp) => {
           // redirecionar para a página principal
           this.router.navigateByUrl('/produtos');
-          alert("Logado com sucesso!")
+          //alert("Logado com sucesso!")
         },
         error: (err) => {
           console.log(err);

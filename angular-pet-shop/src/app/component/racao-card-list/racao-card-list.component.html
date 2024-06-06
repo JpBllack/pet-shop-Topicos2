@@ -12,12 +12,10 @@
     </mat-card-footer>
   </mat-card>
 
+</div>
+
+<div class="paginator">
   <!-- MatPaginator -->
-  <mat-paginator [length]="totalRacoes" [pageSize]="tamanhoPagina"
-  (page)="navegarParaPagina($event.pageIndex + 1)">
-</mat-paginator>
-
-
-
-
+  <mat-paginator [length]="totalRacoes" [pageSize]="tamanhoPagina" (page)="navegarParaPagina($event.pageIndex + 1)">
+  </mat-paginator>
 </div>

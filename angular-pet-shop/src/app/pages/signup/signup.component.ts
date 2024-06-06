@@ -55,7 +55,7 @@ export class SignupComponent implements OnInit {
       this.signup.insert(loginData).subscribe({
         next: (resp) => {
           // redirecionar para a página principal
-          alert("Cadastrado com sucesso!")
+          //alert("Cadastrado com sucesso!")
 
           this.authService.login(logar).subscribe({
             next: (response) => {
