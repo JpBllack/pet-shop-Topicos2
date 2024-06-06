@@ -1,3 +1,5 @@
+<h2>Novos produtos</h2>
+
 <div class="responsive-grid">
   <mat-card *ngFor="let card of cards()" class="mat-card-hover" (click)="navegarParaProduto(card.idConsulta)">
     <img mat-card-image [src]="card.imagem ? card.imagem : 'assets/imageNotfound.jpg'" (error)="card.imagem = 'assets/imageNotfound.jpg'" class="card-image">

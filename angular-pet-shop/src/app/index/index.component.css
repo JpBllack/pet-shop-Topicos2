@@ -6,48 +6,47 @@
 
 .carousel .carousel-inner img {
   width: 100%;
-  height: auto; /* Permite que a altura se ajuste proporcionalmente */
-  max-height: 600px; /* Define um limite máximo de altura */
-  object-fit: contain; /* Ajusta a imagem para caber no contêiner sem cortá-la */
+  height: auto;
+  /* Permite que a altura se ajuste proporcionalmente */
+  max-height: 600px;
+  /* Define um limite máximo de altura */
+  object-fit: contain;
+  /* Ajusta a imagem para caber no contêiner sem cortá-la */
 }
 
 .main-content {
-  margin-bottom: 30px; /* Ajuste conforme necessário para a altura do footer */
+  margin-bottom: 30px;
+  /* Ajuste conforme necessário para a altura do footer */
 }
 
-.text
-{
+.text {
   display: flex;
   justify-content: center;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   margin-top: 30px;
   font-size: 30px;
 }
 
 .btn-group {
   margin-top: 20px;
-  margin-bottom: 60px; /* Adiciona espaço abaixo dos botões */
+  margin-bottom: 60px;
+  /* Adiciona espaço abaixo dos botões */
   display: flex;
   justify-content: center;
   padding-bottom: 5%;
 }
 
+
 .btn-group .btn {
-  margin: 5px; /* Espaçamento entre os botões */
-  transition: none; /* Removendo a transição */
+  margin: 5px;
+  /* Espaçamento entre os botões */
+  transition: none;
+  /* Removendo a transição */
 }
-
-.btn-group .btn:hover{
-  
-}
-
-
 
 .btn-group img {
-  width: 200px; /* Defina a largura desejada */
-  height: 200px; /* Defina a altura desejada */
-}
-
-.racao-cart{
-  
+  width: 200px;
+  /* Defina a largura desejada */
+  height: 200px;
+  /* Defina a altura desejada */
 }

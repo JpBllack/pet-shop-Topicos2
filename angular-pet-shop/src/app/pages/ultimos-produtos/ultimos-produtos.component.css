@@ -91,6 +91,10 @@
   border-radius: 0;
 }
 
+h2{
+  text-align: center;
+}
+
 /* Ajustes para evitar sobreposição */
 body.no-default-footer {
   padding-bottom: 100px; /* Espaço adicional para garantir que o conteúdo não sobreponha o footer */
