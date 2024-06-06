@@ -1,5 +1,13 @@
-<div *ngFor="let racao of resultados">
-  <!-- Exibir informações da ração, como nome, descrição, imagem, etc. -->
-  <h3>{{ racao.nome }}</h3>
-  <p>{{ racao.descricao }}</p>
+<div class="container">
+  <div *ngFor="let card of cards()">
+    <div class="card">
+      <img [src]="card.imagem" alt="{{ card.nome }}">
+      <div class="card-content">
+        <h3>{{ card.nome }}</h3>
+        <p>Preço: {{ card.preco | currency }}</p>
+        <button (click)="adicionarAoCarrinho(card)">Adicionar ao Carrinho</button>
+        <button (click)="navegarParaProduto(card.idConsulta)">Ver Produto</button>
+      </div>
+    </div>
+  </div>
 </div>
