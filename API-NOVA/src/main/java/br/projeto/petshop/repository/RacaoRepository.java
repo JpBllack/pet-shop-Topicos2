@@ -23,7 +23,7 @@ public class RacaoRepository {
     }
 
     public List<Racao> findByNome(String nome) {
-        return entityManager.createQuery("SELECT r FROM Racao r WHERE UPPER(r.nome) LIKE UPPER(:nome)", Racao.class)
+        return entityManager.createQuery("SELECT r FROM Racao r WHERE UPPER(r.nome) LIKE UPPER(:nome) OR UPPER(r.sabor) LIKE UPPER(:nome)", Racao.class)
                             .setParameter("nome", "%" + nome.toUpperCase() + "%")
                             .getResultList();
     }
